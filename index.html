@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Grow2Guide</title>
+  <meta name="description" content="Grow2Guide — site coming soon." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f766e'/%3E%3Cpath d='M8 20c4-8 12-8 16 0' stroke='%23fff' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="/">Grow2Guide</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">Coming soon</p>
+      <h1>Something useful is growing here.</h1>
+      <p class="lede">
+        We’re building the new Grow2Guide site. Check back shortly — or reach out if you need us now.
+      </p>
+      <a class="button" href="mailto:hello@grow2guide.com">hello@grow2guide.com</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> Grow2Guide</p>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = String(new Date().getFullYear());
+  </script>
+</body>
+</html>
