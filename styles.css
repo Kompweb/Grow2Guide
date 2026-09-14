@@ -63,10 +63,11 @@ a:focus-visible, .button:focus-visible {
 }
 .brand { text-decoration: none; }
 .logo {
-  width: 138px;
-  background: #000;
-  border-radius: 12px;
-  padding: 0.3rem 0.5rem;
+  width: 148px;
+  height: auto;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
 }
 nav {
   display: flex;
