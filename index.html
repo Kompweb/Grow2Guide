@@ -462,71 +462,93 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-[#EAF3EF] text-[#5A6A63] py-24 border-t border-[#0F766E]/10">
-      <div class="container-custom">
-        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 mb-16">
-          <div class="lg:col-span-4 space-y-6">
-            <a href="/" id="footer-logo-link" class="inline-block">
-              <img src="assets/logo.png" alt="Grow2Guide" class="h-[86px] w-auto">
+    <footer class="bg-[#EAF3EF] text-[#5A6A63] border-t border-[#0F766E]/10">
+      <div class="container-custom pt-20 pb-10">
+        <!-- Primary footer grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-12 gap-12 xl:gap-10 mb-16">
+          <!-- Brand -->
+          <div class="xl:col-span-4 space-y-6">
+            <a href="/" id="footer-logo-link" class="inline-block transition-opacity hover:opacity-90">
+              <img src="assets/logo.png" alt="Grow2Guide" class="h-[72px] w-auto">
             </a>
-            <p class="text-[15px] leading-relaxed max-w-sm">
+            <p class="text-[15px] leading-relaxed max-w-sm text-[#5A6A63]">
               Nevada-first licensing, accreditation readiness, compliance, and workforce learning — practical systems that hold up.
             </p>
-            <div class="space-y-2 text-[15px]">
-              <a href="mailto:grow2guide@gmail.com" id="footer-email" class="block font-semibold text-[#0F766E] hover:text-[#0B5F59] transition-colors">grow2guide@gmail.com</a>
-              <p class="text-[13px] text-[#5A6A63]">Educational consulting — not legal advice.</p>
+            <div class="space-y-1.5">
+              <a href="mailto:grow2guide@gmail.com" id="footer-email" class="inline-flex items-center gap-2 text-[15px] font-semibold text-[#0F766E] hover:text-[#0B5F59] transition-colors">
+                <iconify-icon icon="lucide:mail" class="text-base"></iconify-icon>
+                grow2guide@gmail.com
+              </a>
+              <p class="text-[12px] text-[#5A6A63]/90">Educational consulting — not legal advice.</p>
             </div>
           </div>
 
-          <div class="lg:col-span-2 space-y-5">
-            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Services</h4>
-            <ul class="space-y-3.5 text-[15px] font-medium">
+          <!-- Professionals -->
+          <div class="xl:col-span-2 space-y-5">
+            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.1em] uppercase">Professionals</h4>
+            <ul class="space-y-3 text-[14px] font-medium">
               <li><a href="#professionals" id="footer-tier1" class="hover:text-[#0F766E] transition-colors">Tier 1 · Foundations</a></li>
               <li><a href="#professionals" id="footer-tier2" class="hover:text-[#0F766E] transition-colors">Tier 2 · Leadership</a></li>
-              <li><a href="/quiz/tier-1/" id="footer-quiz1" class="hover:text-[#0F766E] transition-colors">Tier 1 intake quiz</a></li>
-              <li><a href="/quiz/tier-2/" id="footer-quiz2" class="hover:text-[#0F766E] transition-colors">Tier 2 intake quiz</a></li>
               <li><a href="#how-it-works" id="footer-how" class="hover:text-[#0F766E] transition-colors">How it works</a></li>
+              <li><a href="#about" id="footer-about" class="hover:text-[#0F766E] transition-colors">About Sara Tudor</a></li>
             </ul>
           </div>
 
-          <div class="lg:col-span-2 space-y-5">
-            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Products</h4>
-            <ul class="space-y-3.5 text-[15px] font-medium">
+          <!-- Intake quizzes (category-clear labels) -->
+          <div class="xl:col-span-2 space-y-5">
+            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.1em] uppercase">Intake quizzes</h4>
+            <ul class="space-y-3 text-[14px] font-medium">
+              <li>
+                <a href="/quiz/tier-1/" id="footer-quiz1" class="group inline-flex items-center gap-2 text-[#0F766E] font-semibold hover:text-[#0B5F59] transition-colors">
+                  <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#D8F0EA] text-[10px] font-bold text-[#0F766E]">1</span>
+                  Tier 1 intake quiz
+                  <iconify-icon icon="lucide:arrow-up-right" class="opacity-0 -translate-y-0.5 group-hover:opacity-100 transition-all text-sm"></iconify-icon>
+                </a>
+              </li>
+              <li>
+                <a href="/quiz/tier-2/" id="footer-quiz2" class="group inline-flex items-center gap-2 text-[#0F766E] font-semibold hover:text-[#0B5F59] transition-colors">
+                  <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#D8F0EA] text-[10px] font-bold text-[#0F766E]">2</span>
+                  Tier 2 intake quiz
+                  <iconify-icon icon="lucide:arrow-up-right" class="opacity-0 -translate-y-0.5 group-hover:opacity-100 transition-all text-sm"></iconify-icon>
+                </a>
+              </li>
+            </ul>
+            <p class="text-[12px] leading-relaxed text-[#5A6A63]/90 max-w-[14rem]">Short intake forms to prepare for a discovery call.</p>
+          </div>
+
+          <!-- Products -->
+          <div class="xl:col-span-2 space-y-5">
+            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.1em] uppercase">Products</h4>
+            <ul class="space-y-3 text-[14px] font-medium">
               <li><a href="#products" id="footer-guide" class="hover:text-[#0F766E] transition-colors">Learning Guide — $67</a></li>
               <li><a href="#products" id="footer-checklist" class="hover:text-[#0F766E] transition-colors">Accreditation Checklist — $67</a></li>
               <li><a href="#products" id="footer-bundle" class="text-[#0F766E] font-bold hover:text-[#0B5F59] transition-colors">Bundle — $99</a></li>
-              <li><a href="/handbook/" id="footer-handbook" class="hover:text-[#0F766E] transition-colors">Parents’ Handbook</a></li>
+              <li class="pt-1"><a href="/handbook/" id="footer-handbook" class="hover:text-[#0F766E] transition-colors">Parents’ Handbook</a></li>
               <li><a href="/handbook/programs/" id="footer-programs" class="hover:text-[#0F766E] transition-colors">Programs</a></li>
             </ul>
           </div>
 
-          <div class="lg:col-span-2 space-y-5">
-            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Company</h4>
-            <ul class="space-y-3.5 text-[15px] font-medium">
-              <li><a href="#about" id="footer-about" class="hover:text-[#0F766E] transition-colors">About Sara Tudor</a></li>
-              <li><a href="/quiz/tier-1/" id="footer-book" class="hover:text-[#0F766E] transition-colors">Tier 1 intake quiz</a></li>
-              <li><a href="mailto:grow2guide@gmail.com" id="footer-contact" class="hover:text-[#0F766E] transition-colors">Contact</a></li>
-            </ul>
-          </div>
-
-          <div class="lg:col-span-2 space-y-5">
-            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Legal</h4>
-            <ul class="space-y-3.5 text-[15px] font-medium">
+          <!-- Legal + contact -->
+          <div class="xl:col-span-2 space-y-5">
+            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.1em] uppercase">Legal</h4>
+            <ul class="space-y-3 text-[14px] font-medium">
               <li><a href="/terms/" id="footer-terms" class="hover:text-[#0F766E] transition-colors">Terms &amp; Conditions</a></li>
               <li><a href="/privacy/" id="footer-privacy" class="hover:text-[#0F766E] transition-colors">Privacy</a></li>
               <li><a href="/refunds/" id="footer-refunds" class="hover:text-[#0F766E] transition-colors">Refunds</a></li>
               <li><a href="#disclaimer" id="footer-disclaimer" class="hover:text-[#0F766E] transition-colors">Educational disclaimer</a></li>
+              <li class="pt-1"><a href="mailto:grow2guide@gmail.com" id="footer-contact" class="hover:text-[#0F766E] transition-colors">Contact</a></li>
             </ul>
           </div>
         </div>
 
-        <div class="pt-10 border-t border-[#0F766E]/10 flex flex-col md:flex-row justify-between items-center gap-8">
-          <p id="disclaimer" class="text-[12px] leading-relaxed max-w-2xl text-center md:text-left">
+        <!-- Bottom bar -->
+        <div class="pt-8 border-t border-[#0F766E]/10 flex flex-col lg:flex-row justify-between items-center gap-6">
+          <p id="disclaimer" class="text-[12px] leading-relaxed max-w-2xl text-center lg:text-left order-2 lg:order-1">
             © 2026 Grow2Guide. Resources are for educational purposes only and do not constitute legal advice. Licensure is not guaranteed.
           </p>
-          <div class="flex items-center gap-6 text-2xl text-[#0F766E]">
-            <a href="https://www.instagram.com/grow2guide/" id="footer-ig" class="hover:text-[#0B5F59] transition-transform hover:scale-110" aria-label="Instagram" rel="noopener noreferrer" target="_blank"><iconify-icon icon="mdi:instagram"></iconify-icon></a>
-            <a href="https://www.facebook.com/Grow2Guide" id="footer-fb" class="hover:text-[#0B5F59] transition-transform hover:scale-110" aria-label="Facebook" rel="noopener noreferrer" target="_blank"><iconify-icon icon="mdi:facebook"></iconify-icon></a>
+          <div class="flex items-center gap-5 order-1 lg:order-2">
+            <a href="https://www.instagram.com/grow2guide/" id="footer-ig" class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/70 border border-[#0F766E]/10 text-[#0F766E] hover:bg-white hover:border-[#0F766E]/25 hover:text-[#0B5F59] transition-all" aria-label="Instagram" rel="noopener noreferrer" target="_blank"><iconify-icon icon="mdi:instagram" class="text-xl"></iconify-icon></a>
+            <a href="https://www.facebook.com/Grow2Guide" id="footer-fb" class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/70 border border-[#0F766E]/10 text-[#0F766E] hover:bg-white hover:border-[#0F766E]/25 hover:text-[#0B5F59] transition-all" aria-label="Facebook" rel="noopener noreferrer" target="_blank"><iconify-icon icon="mdi:facebook" class="text-xl"></iconify-icon></a>
           </div>
         </div>
       </div>
