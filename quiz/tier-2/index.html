@@ -210,6 +210,10 @@
                   <label class="block text-xs font-bold text-[#5A6A63] uppercase mb-2" for="window">Preferred Appointment Window</label>
                   <textarea id="window" name="window" rows="3" class="field" placeholder="e.g., Tuesday mornings or anytime after 3 PM next week"></textarea>
                 </div>
+                <div>
+                  <label class="block text-xs font-bold text-[#5A6A63] uppercase mb-2" for="message">Message (optional)</label>
+                  <textarea id="message" name="message" rows="3" class="field" placeholder="Anything else we should know before the call?"></textarea>
+                </div>
                 <div class="pt-2 flex items-start gap-3 text-xs text-[#5A6A63] leading-relaxed">
                   <iconify-icon icon="lucide:lock" class="text-[#0F766E] shrink-0 mt-0.5"></iconify-icon>
                   <p>We respect your professional privacy. Intake information is used only to assess Tier 2 Leadership readiness. Submitting opens your email client to send answers to grow2guide@gmail.com.</p>
@@ -318,6 +322,7 @@
         'Email: ' + text('email'),
         'Phone: ' + (text('phone') || '(none)'),
         'Preferred window: ' + (text('window') || '(none)'),
+        'Message: ' + (text('message') || '(none)'),
         '',
         'Submitted from grow2guide.com/quiz/tier-2/'
       ];

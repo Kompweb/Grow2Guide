@@ -203,13 +203,23 @@
                     <label class="block text-xs font-bold text-[#5A6A63] uppercase mb-2" for="email">Email</label>
                     <input class="field" type="email" id="email" name="email" required autocomplete="email" />
                   </div>
-                  <div>
-                    <label class="block text-xs font-bold text-[#5A6A63] uppercase mb-2" for="organization">Organization (optional)</label>
-                    <input class="field" type="text" id="organization" name="organization" autocomplete="organization" />
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                      <label class="block text-xs font-bold text-[#5A6A63] uppercase mb-2" for="organization">Organization (optional)</label>
+                      <input class="field" type="text" id="organization" name="organization" autocomplete="organization" />
+                    </div>
+                    <div>
+                      <label class="block text-xs font-bold text-[#5A6A63] uppercase mb-2" for="phone">Phone (optional)</label>
+                      <input class="field" type="tel" id="phone" name="phone" autocomplete="tel" />
+                    </div>
                   </div>
                   <div>
                     <label class="block text-xs font-bold text-[#5A6A63] uppercase mb-2" for="window">Preferred appointment window</label>
                     <textarea class="field" id="window" name="window" rows="2" placeholder="e.g., Tuesday mornings, or after 3pm next week"></textarea>
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-[#5A6A63] uppercase mb-2" for="message">Message (optional)</label>
+                    <textarea class="field" id="message" name="message" rows="3" placeholder="Anything else we should know before the call?"></textarea>
                   </div>
                 </div>
                 <p class="err" data-for="contact">Please enter your name and a valid email.</p>
@@ -311,7 +321,9 @@
         'Name: ' + text('name'),
         'Email: ' + text('email'),
         'Organization: ' + (text('organization') || '(none)'),
+        'Phone: ' + (text('phone') || '(none)'),
         'Preferred window: ' + (text('window') || '(none)'),
+        'Message: ' + (text('message') || '(none)'),
         '',
         'Submitted from grow2guide.com/quiz/tier-1/'
       ];
