@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tier 2 Intake Quiz — Leadership Pathway | Grow2Guide</title>
+  <meta name="description" content="Tier 2 Advanced Leadership intake quiz for clinical directors and operators." />
+  <link rel="icon" href="../../assets/logo-square.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    :root {
+      --bg-paper: #F5F8F4; --surface: #FFFFFF; --surface-soft: #EAF3EF;
+      --ink-primary: #12201C; --ink-muted: #5A6A63;
+      --accent-teal: #0F766E; --accent-teal-dark: #0B5F59; --accent-soft: #D8F0EA;
+    }
+    body { font-family: Inter, system-ui, -apple-system, sans-serif; color: var(--ink-primary); margin: 0; background: var(--bg-paper); }
+    .atmosphere-glow {
+      position: fixed; inset: 0; pointer-events: none; z-index: -1;
+      background:
+        radial-gradient(1000px 420px at 0% -10%, rgba(223,245,239,.5) 0%, transparent 55%),
+        radial-gradient(800px 360px at 100% 0%, rgba(238,242,248,.6) 0%, transparent 48%);
+    }
+    .glass-nav { background: #fff; border-bottom: 1px solid rgba(15,118,110,.08); }
+    .card-shadow { box-shadow: 0 16px 40px rgba(18,32,28,.08); }
+    .container-custom { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .quiz-step { display: none; }
+    .quiz-step.active { display: block; }
+    .option-card { display:flex; align-items:center; gap:1rem; padding:1.15rem 1.25rem; border-radius:20px; border:2px solid rgba(15,118,110,.1); background:#fff; color:#5A6A63; font-weight:600; cursor:pointer; transition:all .15s; }
+    .option-card:hover { background:#F5F8F4; }
+    label.option-wrap { display:block; }
+    label.option-wrap input { position:absolute; opacity:0; pointer-events:none; }
+    label.option-wrap:has(input:checked) .option-card {
+      border-color: var(--accent-teal); background: var(--accent-soft); color: var(--accent-teal-dark);
+    }
+    .field, select.field { width:100%; background:#F5F8F4; border:1px solid rgba(15,118,110,.1); padding:1rem; border-radius:1rem; font:inherit; color:inherit; appearance:none; }
+    .field:focus, select.field:focus { outline: none; box-shadow: 0 0 0 3px rgba(15,118,110,.2); }
+    .btn-active:active { transform: scale(0.98); }
+    .err { color:#b91c1c; font-size:0.875rem; margin-top:0.5rem; display:none; }
+    .scope-card { display:flex; flex-direction:column; align-items:center; text-align:center; gap:.5rem; padding:1.5rem; border-radius:1rem; border:2px solid rgba(15,118,110,.1); cursor:pointer; font-weight:700; }
+    label.option-wrap:has(input:checked) .scope-card {
+      border-color: var(--accent-teal); background: var(--accent-soft); color: var(--accent-teal-dark);
+    }
+</style>
+</head>
+<body>
+  <div class="min-h-screen relative flex flex-col overflow-x-hidden">
+    <div class="atmosphere-glow"></div>
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+      <div class="container-custom h-[100px] lg:h-[120px] flex items-center justify-between">
+        <div class="flex items-center gap-12 lg:gap-20">
+          <a href="/" class="flex shrink-0"><img src="../../assets/logo.png" alt="Grow2Guide" class="h-[64px] lg:h-[86px] w-auto"></a>
+          <div class="hidden lg:flex items-center gap-12">
+            <a href="/#professionals" class="text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Professionals</a>
+            <a href="/#products" class="text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Programs</a>
+            <a href="/handbook/" class="text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Handbook</a>
+            <a href="/#about" class="text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">About</a>
+          </div>
+        </div>
+        <a href="mailto:grow2guide@gmail.com" class="bg-[#0F766E] text-white px-6 lg:px-8 py-3 rounded-full text-sm font-bold shadow-md hover:bg-[#0B5F59] transition-all">Contact</a>
+      </div>
+    </nav>
+    <main class="flex-1 pt-36 lg:pt-48 pb-24">
+      <div class="container-custom max-w-[800px]">
+        <div class="mb-10 text-center">
+          <div class="inline-flex items-center gap-2 bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-6">
+            <iconify-icon icon="lucide:graduation-cap"></iconify-icon>
+            Tier 2 · Leadership Pathway
+          </div>
+          <h1 class="text-4xl lg:text-5xl font-bold tracking-tight text-[#12201C] mb-4">Advanced Leadership Intake</h1>
+          <p class="text-lg text-[#5A6A63] max-w-xl mx-auto">Tell us about your organization's clinical and operational goals so we can prepare for our conversation.</p>
+        </div>
+
+        <div class="mb-4 flex items-center justify-between text-sm font-bold">
+          <span id="step-label" class="text-[#0F766E]">Step 1 of 3</span>
+          <span id="step-name" class="text-[#5A6A63] uppercase tracking-wider text-xs">Role &amp; Pathway</span>
+        </div>
+        <div class="w-full bg-white/50 h-2 rounded-full mb-12 overflow-hidden border border-[#0F766E]/5">
+          <div id="progress-bar" class="bg-[#0F766E] h-full transition-all duration-500" style="width:33.333%"></div>
+        </div>
+
+        <form id="quiz-form" novalidate>
+          <!-- Step 1 -->
+          <div class="quiz-step active" data-step="0">
+            <section class="bg-white p-8 lg:p-12 rounded-[24px] card-shadow border border-[#0F766E]/5">
+              <div class="flex items-center gap-4 mb-10">
+                <span class="flex items-center justify-center w-8 h-8 rounded-full bg-[#0F766E] text-white font-bold text-sm">1</span>
+                <h2 class="text-2xl font-bold">Role &amp; Pathway</h2>
+              </div>
+              <div class="grid gap-8">
+                <div>
+                  <p class="block text-sm font-bold text-[#12201C] uppercase tracking-wider mb-4">What is your primary role?</p>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <label class="option-wrap">
+                <input type="radio" name="role" value="Clinical Director" />
+                <div class="option-card"><span>Clinical Director</span></div>
+              </label>
+              <label class="option-wrap">
+                <input type="radio" name="role" value="QA / Compliance Lead" />
+                <div class="option-card"><span>QA / Compliance Lead</span></div>
+              </label>
+              <label class="option-wrap">
+                <input type="radio" name="role" value="Owner / Operator" />
+                <div class="option-card"><span>Owner / Operator</span></div>
+              </label>
+              <label class="option-wrap">
+                <input type="radio" name="role" value="Program Manager" />
+                <div class="option-card"><span>Program Manager</span></div>
+              </label>
+                  </div>
+                  <p class="err" data-for="role">Please select a role.</p>
+                </div>
+                <div>
+                  <label class="block text-sm font-bold text-[#12201C] uppercase tracking-wider mb-4" for="pathway">Select your target pathway</label>
+                  <select id="pathway" name="pathway" class="field">
+                    <option value="">Choose one…</option>
+                    <option>Nevada Licensing</option>
+                    <option>CCBHC</option>
+                    <option>DFS Child-Serving</option>
+                    <option>CARF Accreditation</option>
+                    <option>Joint Commission</option>
+                    <option>Not sure yet</option>
+                  </select>
+                  <p class="err" data-for="pathway">Please choose a pathway.</p>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="quiz-step" data-step="1">
+            <section class="bg-white p-8 lg:p-12 rounded-[24px] card-shadow border border-[#0F766E]/5">
+              <div class="flex items-center gap-4 mb-10">
+                <span class="flex items-center justify-center w-8 h-8 rounded-full bg-[#0F766E] text-white font-bold text-sm">2</span>
+                <h2 class="text-2xl font-bold">Status &amp; Scope</h2>
+              </div>
+              <div class="grid gap-8">
+                <div>
+                  <p class="block text-sm font-bold text-[#12201C] uppercase tracking-wider mb-4">What is your current stage?</p>
+                  <div class="grid gap-3">
+              <label class="option-wrap">
+                <input type="radio" name="stage" value="Unsure of current gaps" />
+                <div class="option-card"><span>Unsure of current gaps</span></div>
+              </label>
+              <label class="option-wrap">
+                <input type="radio" name="stage" value="Preparing initial application" />
+                <div class="option-card"><span>Preparing initial application</span></div>
+              </label>
+              <label class="option-wrap">
+                <input type="radio" name="stage" value="Survey date is already set" />
+                <div class="option-card"><span>Survey date is already set</span></div>
+              </label>
+                  </div>
+                  <p class="err" data-for="stage">Please select a stage.</p>
+                </div>
+                <div>
+                  <p class="block text-sm font-bold text-[#12201C] uppercase tracking-wider mb-4">Operational scope</p>
+                  <div class="grid grid-cols-2 gap-4">
+              <label class="option-wrap">
+                <input type="radio" name="scope" value="Single Location" />
+                <div class="scope-card">
+                  <iconify-icon icon="lucide:home" class="text-2xl text-[#0F766E]"></iconify-icon>
+                  <span>Single Location</span>
+                </div>
+              </label>
+              <label class="option-wrap">
+                <input type="radio" name="scope" value="Multi-site / Program" />
+                <div class="scope-card">
+                  <iconify-icon icon="lucide:building-2" class="text-2xl text-[#0F766E]"></iconify-icon>
+                  <span>Multi-site / Program</span>
+                </div>
+              </label>
+                  </div>
+                  <p class="err" data-for="scope">Please select a scope.</p>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="quiz-step" data-step="2">
+            <section class="bg-white p-8 lg:p-12 rounded-[24px] card-shadow border border-[#0F766E]/5">
+              <div class="flex items-center gap-4 mb-10">
+                <span class="flex items-center justify-center w-8 h-8 rounded-full bg-[#0F766E] text-white font-bold text-sm">3</span>
+                <h2 class="text-2xl font-bold">Final Details</h2>
+              </div>
+              <div class="grid gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label class="block text-xs font-bold text-[#5A6A63] uppercase mb-2" for="name">Full Name</label>
+                    <input type="text" id="name" name="name" class="field" autocomplete="name" required />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-[#5A6A63] uppercase mb-2" for="organization">Organization</label>
+                    <input type="text" id="organization" name="organization" class="field" autocomplete="organization" />
+                  </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label class="block text-xs font-bold text-[#5A6A63] uppercase mb-2" for="email">Email Address</label>
+                    <input type="email" id="email" name="email" class="field" autocomplete="email" required />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-[#5A6A63] uppercase mb-2" for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" class="field" autocomplete="tel" />
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-[#5A6A63] uppercase mb-2" for="window">Preferred Appointment Window</label>
+                  <textarea id="window" name="window" rows="3" class="field" placeholder="e.g., Tuesday mornings or anytime after 3 PM next week"></textarea>
+                </div>
+                <div class="pt-2 flex items-start gap-3 text-xs text-[#5A6A63] leading-relaxed">
+                  <iconify-icon icon="lucide:lock" class="text-[#0F766E] shrink-0 mt-0.5"></iconify-icon>
+                  <p>We respect your professional privacy. Intake information is used only to assess Tier 2 Leadership readiness. Submitting opens your email client to send answers to grow2guide@gmail.com.</p>
+                </div>
+                <p class="err" data-for="contact">Please enter your name and a valid email.</p>
+              </div>
+            </section>
+          </div>
+
+          <div class="flex flex-col md:flex-row items-center justify-between gap-6 pt-10">
+            <button type="button" id="btn-back" class="text-[#5A6A63] font-bold hover:text-[#0F766E] transition-colors flex items-center gap-2 disabled:opacity-40" disabled>
+              <iconify-icon icon="lucide:arrow-left"></iconify-icon>
+              Back
+            </button>
+            <button type="button" id="btn-next" class="btn-active bg-[#0F766E] text-white h-[56px] px-12 flex items-center justify-center rounded-full font-bold text-lg hover:bg-[#0B5F59] shadow-lg shadow-[#0F766E]/20 transition-all w-full md:w-auto">
+              <span id="btn-next-label">Continue</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+    <footer class="bg-white text-[#5A6A63] py-16 border-t border-[#0F766E]/10">
+      <div class="container-custom flex flex-col md:flex-row justify-between items-center gap-8">
+        <div class="text-center md:text-left">
+          <a href="/"><img src="../../assets/logo.png" alt="Grow2Guide" class="h-[64px] w-auto mx-auto md:mx-0 mb-4"></a>
+          <p class="text-sm">Educational consulting — not legal advice / not a guarantee of licensure.</p>
+        </div>
+        <div class="flex flex-wrap justify-center gap-6 text-sm font-semibold">
+          <a href="/quiz/tier-1/" class="hover:text-[#0F766E]">Tier 1 quiz</a>
+          <a href="/quiz/tier-2/" class="hover:text-[#0F766E]">Tier 2 quiz</a>
+          <a href="/terms/" class="hover:text-[#0F766E]">Terms</a>
+          <a href="/privacy/" class="hover:text-[#0F766E]">Privacy</a>
+          <a href="mailto:grow2guide@gmail.com" class="hover:text-[#0F766E]">Contact</a>
+        </div>
+      </div>
+      <p class="container-custom mt-10 pt-8 border-t border-[#0F766E]/5 text-[11px] text-center opacity-70">© 2026 Grow2Guide. All rights reserved. NV Clinician-Operator Expertise.</p>
+    </footer>
+  </div>
+  <script>
+  (function () {
+    const TOTAL = 3;
+    const names = ['Role & Pathway', 'Status & Scope', 'Final Details'];
+    let step = 0;
+    const form = document.getElementById('quiz-form');
+    const steps = [...form.querySelectorAll('.quiz-step')];
+    const bar = document.getElementById('progress-bar');
+    const stepLabel = document.getElementById('step-label');
+    const stepName = document.getElementById('step-name');
+    const btnBack = document.getElementById('btn-back');
+    const btnNext = document.getElementById('btn-next');
+    const btnNextLabel = document.getElementById('btn-next-label');
+
+    function showStep(i) {
+      steps.forEach((el, idx) => el.classList.toggle('active', idx === i));
+      step = i;
+      bar.style.width = ((i + 1) / TOTAL * 100) + '%';
+      stepLabel.textContent = 'Step ' + (i + 1) + ' of ' + TOTAL;
+      stepName.textContent = names[i];
+      btnBack.disabled = i === 0;
+      btnNextLabel.textContent = i === TOTAL - 1 ? 'Submit via email' : 'Continue';
+      form.querySelectorAll('.err').forEach(e => e.style.display = 'none');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function val(name) {
+      const el = form.querySelector('[name="' + name + '"]:checked');
+      return el ? el.value : '';
+    }
+    function text(name) {
+      const el = form.querySelector('[name="' + name + '"]');
+      return el ? el.value.trim() : '';
+    }
+
+    function validate() {
+      form.querySelectorAll('.err').forEach(e => e.style.display = 'none');
+      if (step === 0) {
+        if (!val('role')) { form.querySelector('[data-for=role]').style.display = 'block'; return false; }
+        if (!text('pathway')) { form.querySelector('[data-for=pathway]').style.display = 'block'; return false; }
+      }
+      if (step === 1) {
+        if (!val('stage')) { form.querySelector('[data-for=stage]').style.display = 'block'; return false; }
+        if (!val('scope')) { form.querySelector('[data-for=scope]').style.display = 'block'; return false; }
+      }
+      if (step === 2) {
+        const name = text('name');
+        const email = text('email');
+        if (!name || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          form.querySelector('[data-for=contact]').style.display = 'block';
+          return false;
+        }
+      }
+      return true;
+    }
+
+    function submitMailto() {
+      const lines = [
+        'Tier 2 Leadership — Intake Quiz',
+        '',
+        'Role: ' + val('role'),
+        'Pathway: ' + text('pathway'),
+        'Stage: ' + val('stage'),
+        'Scope: ' + val('scope'),
+        '',
+        'Name: ' + text('name'),
+        'Organization: ' + (text('organization') || '(none)'),
+        'Email: ' + text('email'),
+        'Phone: ' + (text('phone') || '(none)'),
+        'Preferred window: ' + (text('window') || '(none)'),
+        '',
+        'Submitted from grow2guide.com/quiz/tier-2/'
+      ];
+      const subject = encodeURIComponent('Tier 2 Intake Quiz — ' + text('name'));
+      const body = encodeURIComponent(lines.join('\n'));
+      window.location.href = 'mailto:grow2guide@gmail.com?subject=' + subject + '&body=' + body;
+    }
+
+    btnBack.addEventListener('click', () => { if (step > 0) showStep(step - 1); });
+    btnNext.addEventListener('click', () => {
+      if (!validate()) return;
+      if (step < TOTAL - 1) showStep(step + 1);
+      else submitMailto();
+    });
+    form.addEventListener('submit', (e) => { e.preventDefault(); btnNext.click(); });
+    showStep(0);
+  })();
+  </script>
+</body>
+</html>

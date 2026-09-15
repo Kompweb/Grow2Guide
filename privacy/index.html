@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../assets/logo-square.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    :root {
+      --bg-paper: #F5F8F4; --surface: #FFFFFF; --surface-soft: #EAF3EF;
+      --ink-primary: #12201C; --ink-muted: #5A6A63;
+      --accent-teal: #0F766E; --accent-teal-dark: #0B5F59; --accent-soft: #D8F0EA;
+    }
+    body { font-family: Inter, system-ui, -apple-system, sans-serif; color: var(--ink-primary); margin: 0; background: var(--bg-paper); }
+    .atmosphere-glow {
+      position: fixed; inset: 0; pointer-events: none; z-index: -1;
+      background:
+        radial-gradient(1000px 420px at 0% -10%, rgba(223,245,239,.5) 0%, transparent 55%),
+        radial-gradient(800px 360px at 100% 0%, rgba(238,242,248,.6) 0%, transparent 48%);
+    }
+    .glass-nav { background: rgba(245,248,244,.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(15,118,110,.08); }
+    .card-shadow { box-shadow: 0 16px 40px rgba(18,32,28,.08); }
+    .container-custom { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .nav-link { position: relative; }
+    .nav-link::after { content:''; position:absolute; bottom:-6px; left:0; width:0; height:2px; background:var(--accent-teal); transition:width .3s; }
+    .nav-link:hover::after { width:100%; }
+    .legal-content h2 { font-size:28px; font-weight:700; color:#12201C; margin:48px 0 16px; letter-spacing:-0.02em; }
+    .legal-content p { font-size:16px; line-height:1.6; color:#5A6A63; margin-bottom:16px; }
+    .legal-content ul { margin-bottom:24px; list-style:none; padding:0; }
+    .legal-content li { position:relative; padding-left:24px; margin-bottom:12px; color:#5A6A63; }
+    .legal-content li::before { content:""; position:absolute; left:0; top:10px; width:6px; height:6px; border-radius:50%; background:#0F766E; }
+    .quiz-step { display:none; }
+    .quiz-step.active { display:block; }
+    input[type="radio"]:checked + label,
+    .option-card:has(input:checked) { border-color: var(--accent-teal) !important; background: var(--accent-soft) !important; color: var(--accent-teal-dark); }
+    .btn-active:active { transform: scale(0.98); }
+  </style>
+  <title>Privacy — Grow2Guide</title>
+  <meta name="description" content="Grow2Guide privacy practices for consulting and digital learning." />
+</head>
+<body>
+  <div class="min-h-screen relative flex flex-col">
+    <div class="atmosphere-glow"></div>
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+      <div class="container-custom h-[100px] lg:h-[120px] flex items-center justify-between">
+        <div class="flex items-center gap-12 lg:gap-20">
+          <a href="/" class="flex shrink-0"><img src="../assets/logo.png" alt="Grow2Guide" class="h-[64px] lg:h-[86px] w-auto"></a>
+          <div class="hidden lg:flex items-center gap-12">
+            <a href="/#professionals" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Professionals</a>
+            <a href="/#products" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Programs</a>
+            <a href="/#how-it-works" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">How it works</a>
+            <a href="/#about" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">About</a>
+          </div>
+        </div>
+        <a href="mailto:grow2guide@gmail.com" class="bg-[#0F766E] text-white px-6 lg:px-8 py-3 rounded-full text-sm font-bold shadow-md shadow-[#0F766E]/20 hover:bg-[#0B5F59] transition-all">Contact</a>
+      </div>
+    </nav>
+    <main class="flex-1 pt-40 pb-24">
+      <div class="container-custom max-w-3xl">
+        <nav class="flex items-center gap-2 text-sm font-medium text-[#5A6A63] mb-10">
+          <a href="/" class="hover:text-[#0F766E]">Home</a>
+          <span class="opacity-40">/</span>
+          <span class="text-[#12201C]">Privacy</span>
+        </nav>
+        <h1 class="text-4xl font-bold tracking-tight mb-4">Privacy</h1>
+        <p class="text-[#5A6A63] font-medium mb-12">Last updated: September 2026</p>
+        <div class="bg-white rounded-[24px] p-8 lg:p-12 card-shadow border border-[#0F766E]/5 legal-content">
+          <p>Grow2Guide collects only the information you choose to share — typically name, organization, email, and intake-quiz answers — when you contact us or request products and mentoring.</p>
+          <h2>What we use information for</h2>
+          <ul>
+            <li>Responding to orders, appointment requests, and intake quizzes</li>
+            <li>Delivering purchased PDF resources</li>
+            <li>Improving our educational materials and services</li>
+          </ul>
+          <h2>What we do not do</h2>
+          <ul>
+            <li>We do not sell personal information</li>
+            <li>We do not use intake responses for advertising networks</li>
+            <li>We do not require an account to browse this site</li>
+          </ul>
+          <h2>Contact</h2>
+          <p>Questions about privacy: <a class="text-[#0F766E] font-bold" href="mailto:grow2guide@gmail.com">grow2guide@gmail.com</a></p>
+          <p class="text-sm mt-8">This page is a concise site stub. A fuller policy can be published after counsel review.</p>
+        </div>
+      </div>
+    </main>
+    <footer class="bg-[#EAF3EF] text-[#5A6A63] py-24 border-t border-[#0F766E]/10">
+      <div class="container-custom">
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 mb-16">
+          <div class="lg:col-span-4 space-y-6">
+            <a href="/" class="inline-block"><img src="../assets/logo.png" alt="Grow2Guide" class="h-[86px] w-auto"></a>
+            <p class="text-[15px] leading-relaxed max-w-sm">Nevada-first licensing, accreditation readiness, compliance, and workforce learning — practical systems that hold up.</p>
+            <a href="mailto:grow2guide@gmail.com" class="block font-semibold text-[#0F766E] hover:text-[#0B5F59]">grow2guide@gmail.com</a>
+            <p class="text-[13px]">Educational consulting — not legal advice.</p>
+          </div>
+          <div class="lg:col-span-2 space-y-5">
+            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Services</h4>
+            <ul class="space-y-3.5 text-[15px] font-medium">
+              <li><a href="/#professionals" class="hover:text-[#0F766E]">Tier 1 · Foundations</a></li>
+              <li><a href="/#professionals" class="hover:text-[#0F766E]">Tier 2 · Leadership</a></li>
+              <li><a href="/quiz/tier-1/" class="hover:text-[#0F766E]">Tier 1 intake quiz</a></li>
+              <li><a href="/quiz/tier-2/" class="hover:text-[#0F766E]">Tier 2 intake quiz</a></li>
+              <li><a href="/#how-it-works" class="hover:text-[#0F766E]">How it works</a></li>
+            </ul>
+          </div>
+          <div class="lg:col-span-2 space-y-5">
+            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Products</h4>
+            <ul class="space-y-3.5 text-[15px] font-medium">
+              <li><a href="/#products" class="hover:text-[#0F766E]">Learning Guide — $67</a></li>
+              <li><a href="/#products" class="hover:text-[#0F766E]">Accreditation Checklist — $67</a></li>
+              <li><a href="/#products" class="text-[#0F766E] font-bold hover:text-[#0B5F59]">Bundle — $99</a></li>
+              <li><a href="https://www.grow2guide.com/handbook/" class="hover:text-[#0F766E]">Parents’ Handbook</a></li>
+              <li><a href="https://www.grow2guide.com/handbook/programs/" class="hover:text-[#0F766E]">Programs</a></li>
+            </ul>
+          </div>
+          <div class="lg:col-span-2 space-y-5">
+            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Company</h4>
+            <ul class="space-y-3.5 text-[15px] font-medium">
+              <li><a href="/#about" class="hover:text-[#0F766E]">About Sara Tudor</a></li>
+              <li><a href="mailto:grow2guide@gmail.com?subject=Book%20appointment" class="hover:text-[#0F766E]">Book appointment</a></li>
+              <li><a href="mailto:grow2guide@gmail.com" class="hover:text-[#0F766E]">Contact</a></li>
+            </ul>
+          </div>
+          <div class="lg:col-span-2 space-y-5">
+            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Legal</h4>
+            <ul class="space-y-3.5 text-[15px] font-medium">
+              <li><a href="/terms/" class="hover:text-[#0F766E]">Terms &amp; Conditions</a></li>
+              <li><a href="/privacy/" class="hover:text-[#0F766E]">Privacy</a></li>
+              <li><a href="/refunds/" class="hover:text-[#0F766E]">Refunds</a></li>
+              <li><a href="/#disclaimer" class="hover:text-[#0F766E]">Educational disclaimer</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="pt-10 border-t border-[#0F766E]/10">
+          <p id="disclaimer" class="text-[12px] leading-relaxed max-w-2xl">© 2026 Grow2Guide. Resources are for educational purposes only and do not constitute legal advice. Licensure is not guaranteed.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
