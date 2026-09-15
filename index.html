@@ -1,243 +1,523 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Grow2Guide — Behavioral Health Consulting & Digital Learning</title>
-  <meta name="description" content="Digital learning programs for behavioral health organizations — Policy Inventory & Learning Guide and Accreditation Starter Checklist from Sara Tudor, LMSW, CSW-I, CADC-I." />
-  <meta name="theme-color" content="#0f766e" />
-  <meta property="og:title" content="Grow2Guide — Practical systems for behavioral health" />
-  <meta property="og:description" content="Download the Learning Guide and Accreditation Starter Checklist. $67 each or both for $99." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.grow2guide.com/" />
-  <meta property="og:image" content="https://www.grow2guide.com/assets/logo-square.png" />
-  <link rel="canonical" href="https://www.grow2guide.com/" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grow2Guide — From first-day staff to survey-ready systems</title>
+  <meta name="view-transition" content="same-origin">
   <link rel="icon" href="assets/logo-square.png" />
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="Nevada-first behavioral health consulting, clinical mentoring, and digital learning programs from Sara Tudor, LMSW, CSW-I, CADC-I." />
+  <meta name="theme-color" content="#0F766E" />
+  <link rel="canonical" href="https://www.grow2guide.com/" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    :root {
+      --bg-paper: #F5F8F4;
+      --surface: #FFFFFF;
+      --surface-soft: #EAF3EF;
+      --ink-primary: #12201C;
+      --ink-muted: #5A6A63;
+      --accent-teal: #0F766E;
+      --accent-teal-dark: #0B5F59;
+      --accent-soft: #D8F0EA;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--ink-primary);
+      margin: 0;
+      background-color: var(--bg-paper);
+    }
+
+    .atmosphere-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      background: 
+        radial-gradient(1000px 420px at 0% -10%, rgba(223, 245, 239, 0.5) 0%, rgba(0, 0, 0, 0) 55%),
+        radial-gradient(800px 360px at 100% 0%, rgba(238, 242, 248, 0.6) 0%, rgba(0, 0, 0, 0) 48%);
+    }
+
+    .glass-nav {
+      background: rgba(245, 248, 244, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(15, 118, 110, 0.08);
+    }
+
+    .card-shadow {
+      box-shadow: 0 16px 40px rgba(18, 32, 28, 0.08);
+    }
+
+    .btn-active:active {
+      transform: scale(0.98);
+    }
+
+    .container-custom {
+      max-width: 1120px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    .nav-link {
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-teal);
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    section {
+      scroll-margin-top: 120px;
+    }
+
+    /* View Transitions */
+    @view-transition { navigation: auto; }
+    html { background-color: var(--bg-paper); }
+
+    .glass-nav { view-transition-name: main-nav; }
+    main { view-transition-name: main-content; }
+    footer { view-transition-name: site-footer; }
+
+    ::view-transition-old(main-nav),
+    ::view-transition-new(main-nav),
+    ::view-transition-old(site-footer),
+    ::view-transition-new(site-footer) {
+      animation: none;
+      mix-blend-mode: normal;
+    }
+
+    ::view-transition-old(main-content) {
+      animation: 0.25s ease-out both fade-out;
+    }
+    ::view-transition-new(main-content) {
+      animation: 0.25s ease-in 0.1s both fade-in;
+    }
+
+    @keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
+    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+  </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:px-4 focus:py-2 focus:rounded-full" href="#main">Skip to content</a>
+  <div class="min-h-screen relative flex flex-col overflow-x-hidden">
+    <div class="atmosphere-glow"></div>
 
-  <header class="site-header">
-    <div class="header-inner">
-      <a class="brand" href="/" aria-label="Grow2Guide home">
-        <img src="assets/logo.png" alt="Grow2Guide" class="logo" width="148" height="74" />
-      </a>
-      <nav aria-label="Primary">
-        <a href="#products">Products</a>
-        <a href="#how-it-works">How it works</a>
-        <a href="#about">About</a>
-        <a class="nav-cta" href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <main id="main">
-    <section class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">Behavioral health consulting &amp; operations</p>
-        <h1>From first-day staff to survey-ready systems.</h1>
-        <p class="lede">
-          Grow2Guide helps behavioral health organizations — and the people in them — succeed at every stage.
-          Start with practical digital programs you can order today and receive by email.
-        </p>
-        <div class="hero-actions">
-          <a class="button" href="#products">See the programs</a>
-          <a class="button button-ghost" href="#bundle">Bundle &amp; save $35</a>
-        </div>
-        <ul class="hero-points" aria-label="Highlights">
-          <li>Nevada-first expertise</li>
-          <li>Plain-language learning</li>
-          <li>Built by a working clinician-operator</li>
-        </ul>
-      </div>
-      <aside class="hero-panel" aria-label="Quick order">
-        <p class="panel-label">Digital downloads</p>
-        <p class="panel-price"><span>$67</span> each</p>
-        <p class="panel-or">or both for <strong>$99</strong></p>
-        <a class="button button-block" href="#bundle">Get the bundle</a>
-        <p class="panel-note">PDF delivery after payment · Stripe checkout coming soon</p>
-      </aside>
-    </section>
-
-    <section id="products" class="section">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">Programs</p>
-          <h2>Digital programs</h2>
-        </div>
-        <p class="section-price">$67 each · or both for $99</p>
-      </div>
-
-      <div class="product-grid">
-        <article class="product-card">
-          <div class="card-top">
-            <p class="tag">PDF 1 · Foundations</p>
-            <p class="audience">For staff, students &amp; new managers</p>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+      <div class="container-custom h-[120px] flex items-center justify-between">
+        <div class="flex items-center gap-20">
+          <a href="/" id="nav-logo-link" class="transition-transform hover:scale-[1.02] flex shrink-0">
+            <img src="assets/logo.png" alt="Grow2Guide Logo" class="h-[86px] w-auto">
+          </a>
+          <div class="hidden lg:flex items-center gap-12">
+            <a href="#professionals" id="nav-link-prof" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Professionals</a>
+            <a href="#products" id="nav-link-prod" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Programs</a>
+            <a href="#how-it-works" id="nav-link-how" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">How it works</a>
+            <a href="#about" id="nav-link-about" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">About</a>
+            <a href="/handbook/" id="nav-link-handbook" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Handbook</a>
           </div>
-          <h3>Behavioral Health Policy Inventory &amp; Learning Guide</h3>
-          <p class="price"><span class="amount">$67</span></p>
-          <p class="card-body">
-            A plain-language introduction to 69 policies across HR, operations, QA, compliance &amp; risk,
-            safety, and clinical service delivery.
+        </div>
+        <a href="mailto:hello@grow2guide.com" id="nav-contact-btn" class="bg-[#0F766E] text-white px-8 py-3.5 rounded-full text-sm font-bold shadow-md shadow-[#0F766E]/20 btn-active transition-all hover:bg-[#0B5F59] hover:shadow-xl">Contact</a>
+      </div>
+    </nav>
+
+    <main id="main" class="flex-1">
+      
+      <!-- Hero Section -->
+      <section class="pt-56 pb-32">
+        <div class="container-custom flex flex-col lg:flex-row items-center gap-24">
+          <div class="flex-1 space-y-10">
+            <div class="flex flex-wrap items-center gap-3">
+              <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase">Tier 1 · Mentoring</span>
+              <span class="bg-[#F5F8F4] border border-[#0F766E]/10 text-[#5A6A63] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase">For Professionals</span>
+            </div>
+            <h1 class="text-5xl xl:text-6xl font-bold leading-[1.08] tracking-[-0.03em] text-[#12201C]">
+              Foundations for <br class="hidden xl:block">Professionals.
+            </h1>
+            <p class="text-xl text-[#5A6A63] leading-[1.55] max-w-xl">
+              Individual clinical mentoring for practitioners — staff development frameworks, Nevada licensure navigation, and practical guidance from a working clinician-operator.
+            </p>
+            <div class="flex flex-wrap items-center gap-5">
+              <a href="mailto:hello@grow2guide.com?subject=Book%20appointment:%20Tier%201%20Foundations" id="hero-cta-book" class="btn-active bg-[#0F766E] text-white h-[56px] px-10 flex items-center justify-center rounded-full font-bold text-base shadow-lg shadow-[#0F766E]/20 hover:bg-[#0B5F59] transition-all">Book appointment</a>
+              <a href="#professionals" id="hero-cta-secondary" class="btn-active bg-white border border-[#0F766E]/30 text-[#0F766E] h-[56px] px-10 flex items-center justify-center rounded-full font-bold text-base hover:bg-[#D8F0EA] transition-all">See Tiers</a>
+            </div>
+            <div class="space-y-4 pt-4">
+              <div class="flex items-center gap-3 text-[#5A6A63] font-medium">
+                <iconify-icon icon="lucide:check" class="text-[#0F766E] text-xl"></iconify-icon>
+                <span>Individual clinical mentoring for practitioners</span>
+              </div>
+              <div class="flex items-center gap-3 text-[#5A6A63] font-medium">
+                <iconify-icon icon="lucide:check" class="text-[#0F766E] text-xl"></iconify-icon>
+                <span>Staff development frameworks for direct-care</span>
+              </div>
+              <div class="flex items-center gap-3 text-[#5A6A63] font-medium">
+                <iconify-icon icon="lucide:check" class="text-[#0F766E] text-xl"></iconify-icon>
+                <span>Nevada-first licensure guidance</span>
+              </div>
+            </div>
+          </div>
+          <div class="w-full max-w-md bg-[#EAF3EF] rounded-[24px] p-12 card-shadow border border-[#0F766E]/10 flex flex-col relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#0F766E]/5 to-transparent rounded-bl-full"></div>
+            <div class="text-[11px] font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-4">Mentoring Pathway</div>
+            <h2 class="text-3xl font-bold mb-5 leading-tight text-[#12201C]">Start with Foundations</h2>
+            <p class="text-[#5A6A63] text-base mb-10 leading-[1.55]">Book a discovery appointment to see if Tier 1 mentoring fits your practice goals. We tailor next steps individually after our conversation.</p>
+            <ul class="space-y-4 mb-12 flex-1">
+              <li class="flex items-start gap-3 text-sm text-[#12201C] font-semibold">
+                <iconify-icon icon="lucide:arrow-right" class="text-[#0F766E] mt-0.5"></iconify-icon>
+                <span>1:1 clinical mentoring</span>
+              </li>
+              <li class="flex items-start gap-3 text-sm text-[#12201C] font-semibold">
+                <iconify-icon icon="lucide:arrow-right" class="text-[#0F766E] mt-0.5"></iconify-icon>
+                <span>Direct-care development</span>
+              </li>
+              <li class="flex items-start gap-3 text-sm text-[#12201C] font-semibold">
+                <iconify-icon icon="lucide:arrow-right" class="text-[#0F766E] mt-0.5"></iconify-icon>
+                <span>Nevada licensure guidance</span>
+              </li>
+            </ul>
+            <a href="mailto:hello@grow2guide.com?subject=Book%20appointment:%20Tier%201%20Foundations" id="hero-card-book" class="btn-active w-full bg-white text-[#0F766E] h-[52px] flex items-center justify-center rounded-full font-bold text-base hover:bg-[#D8F0EA] border border-[#0F766E]/10 transition-all">Book appointment</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Professionals Section -->
+      <section id="professionals" class="py-32 bg-white/50">
+        <div class="container-custom">
+          <div class="max-w-3xl mb-20">
+            <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Professional Services</span>
+            <h2 class="text-4xl font-bold text-[#12201C] mb-6 tracking-tight">For Professionals</h2>
+            <p class="text-[#5A6A63] text-lg leading-[1.55]">
+              Clinical mentoring, training, and leadership development for behavioral health staff looking to elevate their clinical practice and operational effectiveness.
+            </p>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-10">
+            <!-- Tier 1 -->
+            <div class="bg-white rounded-[24px] p-12 card-shadow border border-[#0F766E]/5 flex flex-col hover:border-[#0F766E]/20 transition-colors group">
+              <div class="text-[11px] font-bold text-[#5A6A63] tracking-[0.06em] uppercase mb-8 group-hover:text-[#0F766E] transition-colors">Tier 1 • Mentoring</div>
+              <h3 class="text-2xl font-bold mb-6 text-[#12201C]">Foundations for Professionals</h3>
+              <ul class="space-y-5 mb-12 flex-1">
+                <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+                  <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg"></iconify-icon>
+                  <span>Individual clinical mentoring for practitioners</span>
+                </li>
+                <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+                  <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg"></iconify-icon>
+                  <span>Staff development frameworks for direct-care</span>
+                </li>
+                <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+                  <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg"></iconify-icon>
+                  <span>Nevada licensure navigation and guidance</span>
+                </li>
+              </ul>
+              <a href="mailto:hello@grow2guide.com?subject=Booking Inquiry: Tier 1 Foundations" id="tier1-btn" class="btn-active w-full border border-[#0F766E]/30 text-[#0F766E] h-[56px] flex items-center justify-center rounded-full font-bold text-base hover:bg-[#D8F0EA] transition-all">
+                Book appointment
+              </a>
+            </div>
+
+            <!-- Tier 2 -->
+            <div class="bg-[#EAF3EF] rounded-[24px] p-12 card-shadow border border-[#0F766E]/10 flex flex-col hover:border-[#0F766E]/30 transition-colors group">
+              <div class="text-[11px] font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-8">Tier 2 • Leadership</div>
+              <h3 class="text-2xl font-bold mb-6 text-[#12201C]">Advanced for Professionals</h3>
+              <ul class="space-y-5 mb-12 flex-1">
+                <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+                  <iconify-icon icon="lucide:check-circle-2" class="text-[#0F766E] mt-0.5 text-lg"></iconify-icon>
+                  <span>Deeper cohort training for clinical directors</span>
+                </li>
+                <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+                  <iconify-icon icon="lucide:check-circle-2" class="text-[#0F766E] mt-0.5 text-lg"></iconify-icon>
+                  <span>Supervision-ready leadership skills & audits</span>
+                </li>
+                <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+                  <iconify-icon icon="lucide:check-circle-2" class="text-[#0F766E] mt-0.5 text-lg"></iconify-icon>
+                  <span>Operational efficiency for residential sites</span>
+                </li>
+                <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+                  <iconify-icon icon="lucide:check-circle-2" class="text-[#0F766E] mt-0.5 text-lg"></iconify-icon>
+                  <span>Risk mitigation and compliance labs</span>
+                </li>
+              </ul>
+              <a href="mailto:hello@grow2guide.com?subject=Booking Inquiry: Tier 2 Advanced" id="tier2-btn" class="btn-active w-full bg-[#0F766E] text-white h-[56px] flex items-center justify-center rounded-full font-bold text-base hover:bg-[#0B5F59] transition-all">
+                Book appointment
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Digital Programs Section -->
+      <section id="products" class="py-32">
+        <div class="container-custom">
+          <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-20">
+            <div class="max-w-2xl">
+              <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">For Organizations</span>
+              <h2 class="text-4xl font-bold text-[#12201C] tracking-tight">Digital learning programs</h2>
+            </div>
+            <p class="text-[#5A6A63] text-lg max-w-sm">
+              Practical resource bundles for busy clinical managers and organizational leaders.
+            </p>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-10">
+            <!-- Product 1 -->
+            <div class="bg-white rounded-[24px] p-12 card-shadow border border-[#0F766E]/5 flex flex-col">
+              <div class="flex justify-between items-start mb-8">
+                <span class="text-[11px] font-bold text-[#5A6A63] tracking-[0.06em] uppercase">PDF 1 • Foundations</span>
+                <span class="text-3xl font-bold text-[#0F766E]">$67</span>
+              </div>
+              <h3 class="text-2xl font-bold mb-5 leading-snug text-[#12201C]">Behavioral Health Policy Inventory & Learning Guide</h3>
+              <p class="text-[#5A6A63] text-base mb-10 leading-[1.55] flex-1">
+                A structured breakdown of 69 critical policy areas from HR to Risk Management. Essential for agencies auditing existing systems.
+              </p>
+              <div class="space-y-4 mb-12">
+                <div class="flex items-center gap-3 text-[#12201C] font-semibold text-sm">
+                  <iconify-icon icon="lucide:shield-check" class="text-[#0F766E] text-lg"></iconify-icon>
+                  <span>69 Policy topic inventory</span>
+                </div>
+                <div class="flex items-center gap-3 text-[#12201C] font-semibold text-sm">
+                  <iconify-icon icon="lucide:file-text" class="text-[#0F766E] text-lg"></iconify-icon>
+                  <span>Plain-language compliance tips</span>
+                </div>
+              </div>
+              <a href="mailto:hello@grow2guide.com?subject=Order%20Learning%20Guide&body=I%20would%20like%20to%20order%20the%20$67%20Learning%20Guide." id="buy-guide-btn" class="btn-active w-full bg-[#0F766E] text-white h-[56px] flex items-center justify-center rounded-full font-bold text-base hover:bg-[#0B5F59] transition-all">
+                Buy Guide — $67
+              </a>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="bg-white rounded-[24px] p-12 card-shadow border border-[#0F766E]/5 flex flex-col">
+              <div class="flex justify-between items-start mb-8">
+                <span class="text-[11px] font-bold text-[#5A6A63] tracking-[0.06em] uppercase">PDF 2 • Readiness</span>
+                <span class="text-3xl font-bold text-[#0F766E]">$67</span>
+              </div>
+              <h3 class="text-2xl font-bold mb-5 leading-snug text-[#12201C]">Accreditation Starter Checklist</h3>
+              <p class="text-[#5A6A63] text-base mb-10 leading-[1.55] flex-1">
+                Practical preparation guide for CARF, Joint Commission, or Licensure surveys. Identify and close operational gaps before the survey.
+              </p>
+              <div class="space-y-4 mb-12">
+                <div class="flex items-center gap-3 text-[#12201C] font-semibold text-sm">
+                  <iconify-icon icon="lucide:clipboard-check" class="text-[#0F766E] text-lg"></iconify-icon>
+                  <span>Survey prep priority list</span>
+                </div>
+                <div class="flex items-center gap-3 text-[#12201C] font-semibold text-sm">
+                  <iconify-icon icon="lucide:search" class="text-[#0F766E] text-lg"></iconify-icon>
+                  <span>Operational gap analysis tool</span>
+                </div>
+              </div>
+              <a href="mailto:hello@grow2guide.com?subject=Order%20Checklist&body=I%20would%20like%20to%20order%20the%20$67%20Checklist." id="buy-checklist-btn" class="btn-active w-full bg-[#0F766E] text-white h-[56px] flex items-center justify-center rounded-full font-bold text-base hover:bg-[#0B5F59] transition-all">
+                Buy Checklist — $67
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bundle Offer -->
+      <section class="py-16">
+        <div class="container-custom">
+          <div class="bg-[#EAF3EF] rounded-[32px] p-12 lg:p-16 card-shadow flex flex-col lg:flex-row items-center justify-between text-[#12201C] border border-[#0F766E]/10">
+            <div class="space-y-4 text-center lg:text-left mb-10 lg:mb-0">
+              <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase inline-block">Best Value Offer</span>
+              <h2 class="text-4xl lg:text-5xl font-bold tracking-tight">Bundle both for $99</h2>
+              <p class="text-[#5A6A63] text-xl">Full Foundation inventory + Readiness checklist.</p>
+            </div>
+            <div class="flex flex-col items-center lg:items-end gap-5">
+              <span class="text-[#5A6A63]/60 text-2xl line-through font-medium">$134 separate</span>
+              <a href="mailto:hello@grow2guide.com?subject=Order%20Bundle&body=I%20would%20like%20to%20order%20the%20$99%20Bundle." id="bundle-cta" class="btn-active bg-[#0F766E] text-white h-[64px] px-14 flex items-center justify-center rounded-full font-bold text-xl hover:bg-[#0B5F59] shadow-lg shadow-[#0F766E]/20 transition-all">
+                Buy Bundle — $99
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- How It Works Section -->
+      <section id="how-it-works" class="py-32 bg-[#F5F8F4]">
+        <div class="container-custom">
+          <div class="text-center mb-24">
+            <h2 class="text-4xl font-bold mb-6 tracking-tight">How buying works</h2>
+            <p class="text-[#5A6A63] text-lg max-w-xl mx-auto">A simple, human-led process from order to digital delivery.</p>
+          </div>
+          <div class="grid md:grid-cols-3 gap-12 relative">
+            <div class="hidden md:block absolute top-12 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#0F766E]/10 to-transparent z-0"></div>
+            <div class="relative z-10 bg-white p-10 rounded-[24px] border border-[#0F766E]/5 card-shadow">
+              <div class="w-14 h-14 rounded-full bg-[#D8F0EA] text-[#0F766E] flex items-center justify-center font-bold text-2xl mb-8">01</div>
+              <h3 class="font-bold text-xl mb-4">Email Order</h3>
+              <p class="text-[#5A6A63] text-base leading-relaxed">Click a buy button or email us. Tell us what you need and where to send the invoice.</p>
+            </div>
+            <div class="relative z-10 bg-white p-10 rounded-[24px] border border-[#0F766E]/5 card-shadow">
+              <div class="w-14 h-14 rounded-full bg-[#D8F0EA] text-[#0F766E] flex items-center justify-center font-bold text-2xl mb-8">02</div>
+              <h3 class="font-bold text-xl mb-4">Pay via Link</h3>
+              <p class="text-[#5A6A63] text-base leading-relaxed">We send a secure Stripe payment link. Pay instantly with any major credit or debit card.</p>
+            </div>
+            <div class="relative z-10 bg-white p-10 rounded-[24px] border border-[#0F766E]/5 card-shadow">
+              <div class="w-14 h-14 rounded-full bg-[#D8F0EA] text-[#0F766E] flex items-center justify-center font-bold text-2xl mb-8">03</div>
+              <h3 class="font-bold text-xl mb-4">Get PDFs</h3>
+              <p class="text-[#5A6A63] text-base leading-relaxed">Once confirmed, your digital guides are emailed to your inbox within 24 hours.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="py-32">
+        <div class="container-custom grid lg:grid-cols-2 gap-24 items-center">
+          <div class="space-y-10">
+            <h2 class="text-4xl lg:text-5xl font-bold leading-[1.15] tracking-tight">Clinical insight.<br>Operational expertise.</h2>
+            <div class="space-y-8 text-[#5A6A63] text-lg leading-[1.6]">
+              <div>
+                <p class="font-bold text-[#12201C] text-2xl mb-2">Sara Tudor, LMSW, CSW-I, CADC-I</p>
+                <p class="text-[#5A6A63]">Founder & Consultant</p>
+              </div>
+              <p>
+                Sara founded Grow2Guide to bridge clinical intent and operational reality. As a licensed professional in Nevada, she builds systems that work for the staff using them every day.
+              </p>
+              <div class="pt-4 flex items-center gap-4 text-[#0F766E] font-bold text-xl italic">
+                <iconify-icon icon="lucide:sparkles" class="text-2xl"></iconify-icon>
+                <span>Nevada-first. Practical systems. Readiness that holds up.</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-[32px] p-12 lg:p-16 card-shadow border border-[#0F766E]/5 relative">
+            <div class="absolute -top-6 -right-6 w-24 h-24 bg-[#D8F0EA] rounded-full blur-3xl opacity-50"></div>
+            <h3 class="text-2xl font-bold mb-10 text-[#12201C]">Who this is for</h3>
+            <ul class="space-y-8">
+              <li class="flex gap-5">
+                <div class="shrink-0 w-8 h-8 rounded-full bg-[#D8F0EA] flex items-center justify-center">
+                  <iconify-icon icon="lucide:arrow-right" class="text-[#0F766E]"></iconify-icon>
+                </div>
+                <span class="text-[#5A6A63] text-lg font-medium">New managers needing a compliance roadmap.</span>
+              </li>
+              <li class="flex gap-5">
+                <div class="shrink-0 w-8 h-8 rounded-full bg-[#D8F0EA] flex items-center justify-center">
+                  <iconify-icon icon="lucide:arrow-right" class="text-[#0F766E]"></iconify-icon>
+                </div>
+                <span class="text-[#5A6A63] text-lg font-medium">Agencies preparing for CARF or licensure surveys.</span>
+              </li>
+              <li class="flex gap-5">
+                <div class="shrink-0 w-8 h-8 rounded-full bg-[#D8F0EA] flex items-center justify-center">
+                  <iconify-icon icon="lucide:arrow-right" class="text-[#0F766E]"></iconify-icon>
+                </div>
+                <span class="text-[#5A6A63] text-lg font-medium">Direct-care teams looking for operational guidance.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final CTA Section -->
+      <section class="pb-32">
+        <div class="container-custom">
+          <div class="bg-white rounded-[32px] p-24 text-center card-shadow border border-[#0F766E]/5 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-[0.02] pointer-events-none" style="background-image: radial-gradient(#0F766E 2px, transparent 2px); background-size: 40px 40px;"></div>
+            <h2 class="text-5xl lg:text-6xl font-bold mb-8 tracking-tight text-[#12201C]">Ready to grow?</h2>
+            <p class="text-[#5A6A63] text-xl mb-14 max-w-2xl mx-auto leading-relaxed">
+              Take the guesswork out of behavioral health operations. Expert resources for survey-ready systems.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
+              <a href="mailto:hello@grow2guide.com" id="footer-cta-email" class="btn-active bg-[#0F766E] text-white h-[60px] px-12 flex items-center justify-center rounded-full font-bold text-lg hover:bg-[#0B5F59] shadow-lg shadow-[#0F766E]/20 transition-all w-full sm:w-auto">
+                Email hello@grow2guide.com
+              </a>
+              <a href="#products" id="footer-cta-back" class="btn-active bg-white border border-[#0F766E]/30 text-[#0F766E] h-[60px] px-12 flex items-center justify-center rounded-full font-bold text-lg hover:bg-[#D8F0EA] transition-all w-full sm:w-auto">
+                Back to products
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#EAF3EF] text-[#5A6A63] py-24 border-t border-[#0F766E]/10">
+      <div class="container-custom">
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 mb-16">
+          <div class="lg:col-span-4 space-y-6">
+            <a href="/" id="footer-logo-link" class="inline-block">
+              <img src="assets/logo.png" alt="Grow2Guide" class="h-[86px] w-auto">
+            </a>
+            <p class="text-[15px] leading-relaxed max-w-sm">
+              Nevada-first licensing, accreditation readiness, compliance, and workforce learning — practical systems that hold up.
+            </p>
+            <div class="space-y-2 text-[15px]">
+              <a href="mailto:hello@grow2guide.com" id="footer-email" class="block font-semibold text-[#0F766E] hover:text-[#0B5F59] transition-colors">hello@grow2guide.com</a>
+              <p class="text-[13px] text-[#5A6A63]">Educational consulting — not legal advice.</p>
+            </div>
+          </div>
+
+          <div class="lg:col-span-2 space-y-5">
+            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Services</h4>
+            <ul class="space-y-3.5 text-[15px] font-medium">
+              <li><a href="#professionals" id="footer-tier1" class="hover:text-[#0F766E] transition-colors">Tier 1 · Foundations</a></li>
+              <li><a href="#professionals" id="footer-tier2" class="hover:text-[#0F766E] transition-colors">Tier 2 · Leadership</a></li>
+              <li><a href="/quiz/tier-1/" id="footer-quiz1" class="hover:text-[#0F766E] transition-colors">Tier 1 intake quiz</a></li>
+              <li><a href="/quiz/tier-2/" id="footer-quiz2" class="hover:text-[#0F766E] transition-colors">Tier 2 intake quiz</a></li>
+              <li><a href="#how-it-works" id="footer-how" class="hover:text-[#0F766E] transition-colors">How it works</a></li>
+            </ul>
+          </div>
+
+          <div class="lg:col-span-2 space-y-5">
+            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Products</h4>
+            <ul class="space-y-3.5 text-[15px] font-medium">
+              <li><a href="#products" id="footer-guide" class="hover:text-[#0F766E] transition-colors">Learning Guide — $67</a></li>
+              <li><a href="#products" id="footer-checklist" class="hover:text-[#0F766E] transition-colors">Accreditation Checklist — $67</a></li>
+              <li><a href="#products" id="footer-bundle" class="text-[#0F766E] font-bold hover:text-[#0B5F59] transition-colors">Bundle — $99</a></li>
+              <li><a href="/handbook/" id="footer-handbook" class="hover:text-[#0F766E] transition-colors">Parents’ Handbook</a></li>
+              <li><a href="/handbook/programs/" id="footer-programs" class="hover:text-[#0F766E] transition-colors">Programs</a></li>
+            </ul>
+          </div>
+
+          <div class="lg:col-span-2 space-y-5">
+            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Company</h4>
+            <ul class="space-y-3.5 text-[15px] font-medium">
+              <li><a href="#about" id="footer-about" class="hover:text-[#0F766E] transition-colors">About Sara Tudor</a></li>
+              <li><a href="mailto:hello@grow2guide.com?subject=Book%20appointment" id="footer-book" class="hover:text-[#0F766E] transition-colors">Book appointment</a></li>
+              <li><a href="mailto:hello@grow2guide.com" id="footer-contact" class="hover:text-[#0F766E] transition-colors">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="lg:col-span-2 space-y-5">
+            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Legal</h4>
+            <ul class="space-y-3.5 text-[15px] font-medium">
+              <li><a href="/terms/" id="footer-terms" class="hover:text-[#0F766E] transition-colors">Terms &amp; Conditions</a></li>
+              <li><a href="/privacy/" id="footer-privacy" class="hover:text-[#0F766E] transition-colors">Privacy</a></li>
+              <li><a href="/refunds/" id="footer-refunds" class="hover:text-[#0F766E] transition-colors">Refunds</a></li>
+              <li><a href="#disclaimer" id="footer-disclaimer" class="hover:text-[#0F766E] transition-colors">Educational disclaimer</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pt-10 border-t border-[#0F766E]/10 flex flex-col md:flex-row justify-between items-center gap-8">
+          <p id="disclaimer" class="text-[12px] leading-relaxed max-w-2xl text-center md:text-left">
+            © 2026 Grow2Guide. Resources are for educational purposes only and do not constitute legal advice. Licensure is not guaranteed.
           </p>
-          <ul>
-            <li>Self-paced digital PDF</li>
-            <li>Onboarding-ready for agencies</li>
-            <li>Educational — not legal advice</li>
-          </ul>
-          <div class="card-actions">
-            <a class="button" href="mailto:hello@grow2guide.com?subject=Purchase%20Learning%20Guide%20(%2467)&body=Hi%20Sara%2C%0A%0AI%27d%20like%20to%20purchase%20the%20Behavioral%20Health%20Policy%20Inventory%20%26%20Learning%20Guide%20for%20%2467.%0A%0AName%3A%0AOrganization%3A%0AEmail%20for%20delivery%3A%0A">Buy Learning Guide — $67</a>
+          <div class="flex items-center gap-6 text-2xl text-[#0F766E]">
+            <a href="https://www.instagram.com/" id="footer-ig" class="hover:text-[#0B5F59] transition-transform hover:scale-110" aria-label="Instagram"><iconify-icon icon="mdi:instagram"></iconify-icon></a>
+            <a href="https://www.linkedin.com/" id="footer-li" class="hover:text-[#0B5F59] transition-transform hover:scale-110" aria-label="LinkedIn"><iconify-icon icon="mdi:linkedin"></iconify-icon></a>
           </div>
-        </article>
-
-        <article class="product-card featured">
-          <div class="card-top">
-            <p class="tag">PDF 2 · Readiness</p>
-            <p class="audience">For leaders preparing for survey</p>
-          </div>
-          <h3>Accreditation Starter Checklist</h3>
-          <p class="price"><span class="amount">$67</span></p>
-          <p class="card-body">
-            A practical readiness checklist for licensure, CARF, or Joint Commission preparation —
-            mark Done / In progress / Gap and build your remediation list.
-          </p>
-          <ul>
-            <li>Governance, HR, clinical, QA, privacy, safety</li>
-            <li>Survey-prep evidence prompts</li>
-            <li>Companion to the Learning Guide</li>
-          </ul>
-          <div class="card-actions">
-            <a class="button" href="mailto:hello@grow2guide.com?subject=Purchase%20Accreditation%20Starter%20Checklist%20(%2467)&body=Hi%20Sara%2C%0A%0AI%27d%20like%20to%20purchase%20the%20Accreditation%20Starter%20Checklist%20for%20%2467.%0A%0AName%3A%0AOrganization%3A%0AEmail%20for%20delivery%3A%0A">Buy Checklist — $67</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="bundle" class="bundle">
-      <div class="bundle-inner">
-        <div class="bundle-copy">
-          <p class="tag">Best value</p>
-          <h2>Both programs — $99</h2>
-          <p>Learning Guide + Accreditation Starter Checklist. Save $35 versus buying separately.</p>
-        </div>
-        <div class="bundle-cta">
-          <p class="was">$134 if bought apart</p>
-          <a class="button button-light" href="mailto:hello@grow2guide.com?subject=Purchase%20Grow2Guide%20Bundle%20(%2499)&body=Hi%20Sara%2C%0A%0AI%27d%20like%20to%20purchase%20both%20PDFs%20(Learning%20Guide%20%2B%20Accreditation%20Starter%20Checklist)%20for%20%2499.%0A%0AName%3A%0AOrganization%3A%0AEmail%20for%20delivery%3A%0A">Buy bundle — $99</a>
         </div>
       </div>
-    </section>
-
-    <section id="how-it-works" class="section">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">Ordering</p>
-          <h2>How buying works</h2>
-        </div>
-      </div>
-      <ol class="steps">
-        <li>
-          <span class="step-num">1</span>
-          <div>
-            <h3>Email your order</h3>
-            <p>Use a Buy button or write <a href="mailto:hello@grow2guide.com">hello@grow2guide.com</a> with your name, organization, and delivery email.</p>
-          </div>
-        </li>
-        <li>
-          <span class="step-num">2</span>
-          <div>
-            <h3>Pay via link</h3>
-            <p>You’ll receive a payment link. Stripe checkout on-site is coming soon.</p>
-          </div>
-        </li>
-        <li>
-          <span class="step-num">3</span>
-          <div>
-            <h3>Get your PDFs</h3>
-            <p>After payment clears, your files are emailed to the address you provided.</p>
-          </div>
-        </li>
-      </ol>
-    </section>
-
-    <section id="about" class="section about">
-      <div class="about-grid">
-        <div class="about-copy">
-          <p class="eyebrow">Founder</p>
-          <h2>Clinical insight. Operational expertise.</h2>
-          <p>
-            <strong>Sara Tudor, LMSW, CSW-I, CADC-I</strong> — Founder of Grow2Guide — bridges clinical services and organizational operations:
-            policy development, compliance, quality assurance, program design, and staff learning.
-          </p>
-          <p class="about-tagline">Nevada-first. Practical systems. Readiness that holds up.</p>
-        </div>
-        <aside class="note">
-          <h3>Who this is for</h3>
-          <ul>
-            <li>Behavioral health agencies &amp; residentials</li>
-            <li>Direct-care staff and new managers</li>
-            <li>Teams preparing for licensure or accreditation</li>
-          </ul>
-        </aside>
-      </div>
-    </section>
-
-    <section id="contact" class="section contact">
-      <div class="contact-inner">
-        <h2>Ready to grow?</h2>
-        <p class="contact-lede">Questions or ready to order — send a note and we’ll take it from there.</p>
-        <div class="contact-actions">
-          <a class="button" href="mailto:hello@grow2guide.com">Email hello@grow2guide.com</a>
-          <a class="button button-ghost" href="#products">Back to products</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <img src="assets/logo-square.png" alt="Grow2Guide" class="footer-mark" width="48" height="48" />
-        <p>Grow2Guide helps behavioral health organizations build practical policies, compliance systems, and staff learning.</p>
-        <p class="footer-email"><a href="mailto:hello@grow2guide.com">hello@grow2guide.com</a></p>
-      </div>
-
-      <div class="footer-col">
-        <h3>Products</h3>
-        <ul>
-          <li><a href="#products">Learning Guide — $67</a></li>
-          <li><a href="#products">Accreditation Checklist — $67</a></li>
-          <li><a href="#bundle">Bundle both — $99</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h3>Company</h3>
-        <ul>
-          <li><a href="#about">About Sara</a></li>
-          <li><a href="#how-it-works">How buying works</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h3>Legal</h3>
-        <ul>
-          <li><a href="#disclaimer">Disclaimer</a></li>
-          <li><a href="mailto:hello@grow2guide.com?subject=License%20question">License questions</a></li>
-          <li><a href="mailto:hello@grow2guide.com?subject=Refund%20request">Refunds</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div id="disclaimer" class="footer-bottom">
-      <p>&copy; <span id="year"></span> Grow2Guide. Educational resources are not legal advice, certification, or a guarantee of licensure or accreditation. Decisions belong to the responsible authority.</p>
-      <p class="footer-meta">Nevada-first · <a href="https://www.grow2guide.com">www.grow2guide.com</a></p>
-    </div>
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = String(new Date().getFullYear());
-  </script>
+    </footer>
+  </div>
 </body>
 </html>

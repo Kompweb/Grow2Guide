@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms & Conditions — Grow2Guide</title>
+  <link rel="icon" href="../assets/logo-square.png" />
+  <meta name="view-transition" content="same-origin">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    :root {
+      --bg-paper: #F5F8F4;
+      --surface: #FFFFFF;
+      --surface-soft: #EAF3EF;
+      --ink-primary: #12201C;
+      --ink-muted: #5A6A63;
+      --accent-teal: #0F766E;
+      --accent-teal-dark: #0B5F59;
+      --accent-soft: #D8F0EA;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--ink-primary);
+      margin: 0;
+      background-color: var(--bg-paper);
+    }
+
+    html {
+      background-color: #F5F8F4;
+    }
+
+    @view-transition {
+      navigation: auto;
+    }
+
+    ::view-transition {
+      background-color: #F5F8F4;
+    }
+
+    ::view-transition-old(main-nav),
+    ::view-transition-new(main-nav) {
+      animation: none;
+      mix-blend-mode: normal;
+    }
+
+    ::view-transition-old(main-content) {
+      animation: 0.25s ease-out both fade-out;
+    }
+    ::view-transition-new(main-content) {
+      animation: 0.25s ease-in 0.1s both fade-in;
+    }
+
+    @keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
+    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+    .atmosphere-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      background: 
+        radial-gradient(1000px 420px at 0% -10%, rgba(223, 245, 239, 0.4) 0%, rgba(0, 0, 0, 0) 55%),
+        radial-gradient(800px 360px at 100% 0%, rgba(238, 242, 248, 0.5) 0%, rgba(0, 0, 0, 0) 48%);
+    }
+
+    .glass-nav {
+      background: #FFFFFF;
+      border-bottom: 1px solid rgba(15, 118, 110, 0.08);
+    }
+
+    .container-custom {
+      max-width: 1120px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    .nav-link {
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .legal-content h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #12201C;
+      margin-top: 48px;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .legal-content p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #5A6A63;
+      margin-bottom: 16px;
+    }
+
+    .legal-content ul {
+      margin-bottom: 24px;
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .legal-content li {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 12px;
+      color: #5A6A63;
+    }
+
+    .legal-content li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: #0F766E;
+    }
+  </style>
+</head>
+<body>
+  <div class="min-h-screen relative flex flex-col">
+    <div class="atmosphere-glow"></div>
+
+    <div class="bg-[#0F766E] text-white py-2 text-center text-xs font-semibold tracking-wide">
+      Draft for website — have counsel review before publishing.
+    </div>
+
+    <!-- Navigation (Persistent) -->
+    <nav class="sticky top-0 w-full z-50 glass-nav" style="view-transition-name: main-nav">
+      <div class="container-custom h-[120px] flex items-center justify-between">
+        <div class="flex items-center gap-20">
+          <a href="/" id="nav-logo-link" class="transition-transform hover:scale-[1.02] flex shrink-0">
+            <img src="../assets/logo.png" alt="Grow2Guide Logo" class="h-[86px] w-auto">
+          </a>
+          <div class="hidden lg:flex items-center gap-12">
+            <a href="/#professionals" id="nav-link-prof" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Professionals</a>
+            <a href="/#products" id="nav-link-prod" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Programs</a>
+            <a href="/#how-it-works" id="nav-link-how" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">How it works</a>
+            <a href="/#about" id="nav-link-about" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">About</a>
+          </div>
+        </div>
+        <a href="mailto:hello@grow2guide.com" id="nav-contact-btn" class="bg-[#0F766E] text-white px-8 py-3.5 rounded-full text-sm font-bold shadow-md shadow-[#0F766E]/20 transition-all hover:bg-[#0B5F59] hover:shadow-xl active:scale-95">Contact</a>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-1 py-24" style="view-transition-name: main-content">
+      <div class="container-custom">
+        <div class="max-w-3xl">
+          <nav class="flex items-center gap-2 text-sm font-medium text-[#5A6A63] mb-12">
+            <a href="/" id="breadcrumb-home" class="hover:text-[#0F766E]">Home</a>
+            <iconify-icon icon="lucide:chevron-right" class="text-xs opacity-50"></iconify-icon>
+            <span class="text-[#12201C]">Terms & Conditions</span>
+          </nav>
+
+          <header class="mb-16">
+            <h1 class="text-4xl lg:text-5xl font-bold text-[#12201C] tracking-tight mb-4">Terms & Conditions</h1>
+            <p class="text-[#5A6A63] font-medium">Last updated: September 2026</p>
+          </header>
+
+          <div class="bg-white rounded-[24px] p-8 lg:p-12 border border-[#0F766E]/5 shadow-sm mb-16">
+            <p class="text-lg text-[#12201C] leading-relaxed">
+              Grow2Guide provides consulting, implementation support, and educational resources. Please be advised that these resources are for educational purposes and do not constitute legal advice or formal legal representation.
+            </p>
+          </div>
+
+          <div class="legal-content">
+            <section id="scope-of-services">
+              <h2>1. Scope of services</h2>
+              <p>Grow2Guide offers professional services designed to elevate behavioral health operations. Our current service offerings include:</p>
+              <ul>
+                <li>Fixed-fee consultation packages</li>
+                <li>Organizational assessments and gap analysis</li>
+                <li>Individual clinical mentoring and staff training</li>
+                <li>Workforce learning modules</li>
+                <li>Ongoing advisory retainers</li>
+              </ul>
+            </section>
+
+            <section id="client-responsibilities">
+              <h2>2. Client responsibilities</h2>
+              <p>For the success of our collaboration, clients agree to the following:</p>
+              <ul>
+                <li>Provide factual accuracy in all data and documents shared.</li>
+                <li>Timely approvals of project deliverables and milestones.</li>
+                <li>Appropriate staffing and resource allocation for implementation.</li>
+                <li>Ongoing operational compliance within their own organization.</li>
+              </ul>
+            </section>
+
+            <section id="fees-payment">
+              <h2>3. Fees & payment</h2>
+              <p>Standard payment terms are structured as follows:</p>
+              <ul>
+                <li><strong>Under $5,000:</strong> Full payment required to confirm scheduling.</li>
+                <li><strong>$5,000–$15,000:</strong> 50% deposit / 50% upon completion.</li>
+                <li><strong>Over $15,000:</strong> 40% deposit / 30% milestone / 30% completion.</li>
+                <li><strong>Retainers:</strong> Monthly in advance.</li>
+                <li><strong>Travel:</strong> All travel expenses must be approved by the client before booking.</li>
+              </ul>
+            </section>
+
+            <section id="timelines-change-orders">
+              <h2>4. Timelines & change orders</h2>
+              <p>Projects are subject to standard timeline management:</p>
+              <ul>
+                <li>Client-caused delays will result in an equitable extension of the delivery timeline.</li>
+                <li>Requests for new locations, programs, or different licensing authorities require a written rescoping and additional fees.</li>
+                <li>Includes one comprehensive review round per major deliverable unless explicitly stated otherwise in the project agreement.</li>
+              </ul>
+            </section>
+
+            <section id="educational-resources">
+              <h2>5. Educational resources & licenses</h2>
+              <p>Grow2Guide digital products, including the Policy Inventory & Learning Guide, are sold as individual educational licenses. They are not intended as certification or employer-specific mandatory training. Content may not be redistributed or white-labeled without express written consent.</p>
+            </section>
+
+            <section id="outcomes-no-guarantees">
+              <h2>6. Outcomes & no guarantees</h2>
+              <p>While we provide expert guidance to prepare your systems, final licensure, certification, or accreditation decisions belong solely to the responsible authorities. Grow2Guide does not guarantee any specific outcome from third-party audits or surveys.</p>
+            </section>
+
+            <section id="confidentiality">
+              <h2>7. Confidentiality & materials</h2>
+              <p>Both parties agree to maintain the confidentiality of sensitive proprietary information. Grow2Guide retains intellectual property rights for the underlying methodologies and frameworks used in service delivery.</p>
+            </section>
+
+            <section id="liability">
+              <h2>8. Limitation of liability</h2>
+              <p>Our liability is limited to the amount of fees paid for the specific service provided. We maintain professional service standards but do not accept liability for operational failures or regulatory actions taken against the client organization.</p>
+            </section>
+
+            <section id="contact-legal">
+              <h2>9. Contact</h2>
+              <p>If you have questions regarding these terms, please contact us at:</p>
+              <a href="mailto:hello@grow2guide.com" id="legal-email-link" class="inline-flex items-center gap-2 text-[#0F766E] font-bold text-lg hover:underline">
+                hello@grow2guide.com
+              </a>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer (Persistent Style) -->
+    <footer class="bg-white text-[#5A6A63] py-24 border-t border-[#0F766E]/10">
+      <div class="container-custom">
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 mb-16">
+          <div class="lg:col-span-4 space-y-6">
+            <a href="/" id="footer-logo-link" class="inline-block">
+              <img src="../assets/logo.png" alt="Grow2Guide" class="h-[86px] w-auto">
+            </a>
+            <p class="text-[15px] leading-relaxed max-w-sm">
+              Nevada-first licensing, accreditation readiness, compliance, and workforce learning — practical systems that hold up.
+            </p>
+          </div>
+
+          <div class="lg:col-span-2 space-y-5">
+            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Navigation</h4>
+            <ul class="space-y-3.5 text-[15px] font-medium">
+              <li><a href="/" id="footer-nav-home" class="hover:text-[#0F766E] transition-colors">Home</a></li>
+              <li><a href="/#products" id="footer-nav-products" class="hover:text-[#0F766E] transition-colors">Products</a></li>
+              <li><a href="/quiz/tier-1/" id="footer-nav-quiz1" class="hover:text-[#0F766E] transition-colors">Tier 1 Intake</a></li>
+              <li><a href="/quiz/tier-2/" id="footer-nav-quiz2" class="hover:text-[#0F766E] transition-colors">Tier 2 Intake</a></li>
+            </ul>
+          </div>
+
+          <div class="lg:col-span-3 space-y-5">
+            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Legal Documents</h4>
+            <ul class="space-y-3.5 text-[15px] font-medium">
+              <li><a href="/terms/" id="footer-legal-terms" class="text-[#0F766E] font-bold">Terms & Conditions</a></li>
+              <li><a href="/privacy/" id="footer-legal-privacy" class="hover:text-[#0F766E] transition-colors">Privacy Policy</a></li>
+              <li><a href="/refunds/" id="footer-legal-refunds" class="hover:text-[#0F766E] transition-colors">Refunds</a></li>
+              <li><a href="/#disclaimer" id="footer-legal-disclaimer" class="hover:text-[#0F766E] transition-colors">Educational Disclaimer</a></li>
+            </ul>
+          </div>
+
+          <div class="lg:col-span-3 space-y-5">
+            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Support</h4>
+            <p class="text-[15px] text-[#5A6A63]">For inquiries regarding our terms or services:</p>
+            <a href="mailto:hello@grow2guide.com" id="footer-support-email" class="block font-semibold text-[#0F766E] hover:text-[#0B5F59] transition-colors">hello@grow2guide.com</a>
+          </div>
+        </div>
+
+        <div class="pt-10 border-t border-[#0F766E]/10 flex flex-col md:flex-row justify-between items-center gap-8">
+          <p class="text-[12px] leading-relaxed max-w-2xl text-center md:text-left">
+            © 2026 Grow2Guide. Resources are for educational purposes only and do not constitute legal advice. Licensure is not guaranteed.
+          </p>
+          <div class="flex items-center gap-6 text-2xl text-[#0F766E]">
+            <a href="#ig" id="footer-social-ig" class="hover:scale-110 transition-transform"><iconify-icon icon="mdi:instagram"></iconify-icon></a>
+            <a href="#li" id="footer-social-li" class="hover:scale-110 transition-transform"><iconify-icon icon="mdi:linkedin"></iconify-icon></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

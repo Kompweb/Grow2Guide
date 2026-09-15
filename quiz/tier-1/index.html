@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tier 1 Intake Quiz — Grow2Guide</title>
+  <meta name="description" content="Tier 1 Foundations intake quiz for clinical mentoring with Grow2Guide." />
+  <link rel="icon" href="../../assets/logo-square.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    :root {
+      --bg-paper: #F5F8F4; --surface: #FFFFFF; --surface-soft: #EAF3EF;
+      --ink-primary: #12201C; --ink-muted: #5A6A63;
+      --accent-teal: #0F766E; --accent-teal-dark: #0B5F59; --accent-soft: #D8F0EA;
+    }
+    body { font-family: Inter, system-ui, -apple-system, sans-serif; color: var(--ink-primary); margin: 0; background: var(--bg-paper); }
+    .atmosphere-glow {
+      position: fixed; inset: 0; pointer-events: none; z-index: -1;
+      background:
+        radial-gradient(1000px 420px at 0% -10%, rgba(223,245,239,.4) 0%, transparent 55%),
+        radial-gradient(800px 360px at 100% 0%, rgba(238,242,248,.5) 0%, transparent 48%);
+    }
+    .glass-nav { background: rgba(245,248,244,.95); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(15,118,110,.08); }
+    .card-shadow { box-shadow: 0 16px 40px rgba(18,32,28,.08); }
+    .container-custom { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .quiz-step { display: none; }
+    .quiz-step.active { display: block; }
+    .option-card { display:flex; align-items:center; gap:1rem; padding:1.15rem 1.25rem; border-radius:20px; border:2px solid transparent; background:#F5F8F4; color:#5A6A63; font-weight:600; cursor:pointer; transition:all .15s; }
+    .option-card:hover { background:#EAF3EF; }
+    .option-card:has(input:checked), input[type=radio]:checked + .option-card {
+      border-color: var(--accent-teal); background: var(--accent-soft); color: var(--accent-teal-dark);
+    }
+    label.option-wrap { display:block; }
+    label.option-wrap input { position:absolute; opacity:0; pointer-events:none; }
+    label.option-wrap:has(input:checked) .option-card {
+      border-color: var(--accent-teal); background: var(--accent-soft); color: var(--accent-teal-dark);
+    }
+    .field { width:100%; background:#F5F8F4; border:1px solid rgba(15,118,110,.1); padding:1rem; border-radius:1rem; font:inherit; color:inherit; }
+    .field:focus { outline: none; box-shadow: 0 0 0 3px rgba(15,118,110,.2); }
+    .btn-active:active { transform: scale(0.98); }
+    .err { color:#b91c1c; font-size:0.875rem; margin-top:0.5rem; display:none; }
+</style>
+</head>
+<body>
+  <div class="min-h-screen relative flex flex-col">
+    <div class="atmosphere-glow"></div>
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+      <div class="container-custom h-[100px] lg:h-[120px] flex items-center justify-between">
+        <div class="flex items-center gap-12 lg:gap-20">
+          <a href="/" class="flex shrink-0"><img src="../../assets/logo.png" alt="Grow2Guide" class="h-[64px] lg:h-[86px] w-auto"></a>
+          <div class="hidden lg:flex items-center gap-12">
+            <a href="/#professionals" class="text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Professionals</a>
+            <a href="/#products" class="text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Programs</a>
+            <a href="/#how-it-works" class="text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">How it works</a>
+            <a href="/#about" class="text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">About</a>
+          </div>
+        </div>
+        <a href="mailto:hello@grow2guide.com" class="bg-[#0F766E] text-white px-6 lg:px-8 py-3 rounded-full text-sm font-bold shadow-md hover:bg-[#0B5F59] transition-all">Contact</a>
+      </div>
+    </nav>
+    <main class="flex-1 pt-40 lg:pt-48 pb-24">
+      <div class="container-custom max-w-3xl">
+        <div class="mb-10 text-center">
+          <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-4 inline-block">Tier 1 Foundations</span>
+          <h1 class="text-4xl font-bold tracking-tight text-[#12201C] mb-4">Clinical Intake Quiz</h1>
+          <p class="text-[#5A6A63] text-lg leading-relaxed">Help us understand your clinical focus so we can tailor our initial conversation.</p>
+        </div>
+
+        <div class="sticky top-28 z-40 bg-white/95 border border-[#0F766E]/10 rounded-full px-6 py-4 mb-10 shadow-sm backdrop-blur-md flex items-center justify-between gap-4">
+          <span id="step-label" class="text-sm font-bold text-[#0F766E] whitespace-nowrap">Step 1 of 5</span>
+          <div class="flex-1 h-1.5 bg-[#EAF3EF] rounded-full overflow-hidden">
+            <div id="progress-bar" class="h-full bg-[#0F766E] rounded-full transition-all duration-500" style="width:20%"></div>
+          </div>
+          <span id="step-name" class="text-xs font-bold text-[#5A6A63] uppercase tracking-wider whitespace-nowrap hidden sm:inline">Role</span>
+        </div>
+
+        <div class="bg-white rounded-[32px] p-8 md:p-12 card-shadow border border-[#0F766E]/5">
+          <form id="quiz-form" novalidate>
+            <!-- Step 1 -->
+            <div class="quiz-step active" data-step="0">
+              <fieldset>
+                <legend class="text-2xl font-bold text-[#12201C] leading-tight mb-8">Which best describes your current professional role?</legend>
+                <div class="grid sm:grid-cols-2 gap-4">
+              <label class="option-wrap">
+                <input type="radio" name="role" value="Clinician" />
+                <div class="option-card"><iconify-icon icon="lucide:user" class="text-2xl"></iconify-icon><span>Clinician</span></div>
+              </label>
+              <label class="option-wrap">
+                <input type="radio" name="role" value="New Manager" />
+                <div class="option-card"><iconify-icon icon="lucide:briefcase" class="text-2xl"></iconify-icon><span>New Manager</span></div>
+              </label>
+              <label class="option-wrap">
+                <input type="radio" name="role" value="Direct-Care Lead" />
+                <div class="option-card"><iconify-icon icon="lucide:users" class="text-2xl"></iconify-icon><span>Direct-Care Lead</span></div>
+              </label>
+              <label class="option-wrap">
+                <input type="radio" name="role" value="Student" />
+                <div class="option-card"><iconify-icon icon="lucide:graduation-cap" class="text-2xl"></iconify-icon><span>Student</span></div>
+              </label>
+                </div>
+                <p class="err" data-for="role">Please select a role to continue.</p>
+              </fieldset>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="quiz-step" data-step="1">
+              <fieldset>
+                <legend class="text-2xl font-bold text-[#12201C] leading-tight mb-8">What is your primary focus right now?</legend>
+                <div class="grid gap-4">
+              <label class="option-wrap">
+                <input type="radio" name="focus" value="Clinical mentoring" />
+                <div class="option-card"><span>Individual clinical mentoring</span></div>
+              </label>
+              <label class="option-wrap">
+                <input type="radio" name="focus" value="Staff development" />
+                <div class="option-card"><span>Staff development for direct-care</span></div>
+              </label>
+              <label class="option-wrap">
+                <input type="radio" name="focus" value="Licensure navigation" />
+                <div class="option-card"><span>Nevada licensure navigation</span></div>
+              </label>
+              <label class="option-wrap">
+                <input type="radio" name="focus" value="Operations basics" />
+                <div class="option-card"><span>Operations &amp; documentation basics</span></div>
+              </label>
+                </div>
+                <p class="err" data-for="focus">Please select a focus area.</p>
+              </fieldset>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="quiz-step" data-step="2">
+              <fieldset>
+                <legend class="text-2xl font-bold text-[#12201C] leading-tight mb-8">Where do you primarily practice?</legend>
+                <div class="grid sm:grid-cols-2 gap-4">
+              <label class="option-wrap">
+                <input type="radio" name="setting" value="Outpatient" />
+                <div class="option-card"><span>Outpatient / clinic</span></div>
+              </label>
+              <label class="option-wrap">
+                <input type="radio" name="setting" value="Residential" />
+                <div class="option-card"><span>Residential / group home</span></div>
+              </label>
+              <label class="option-wrap">
+                <input type="radio" name="setting" value="Hospital" />
+                <div class="option-card"><span>Hospital / acute</span></div>
+              </label>
+              <label class="option-wrap">
+                <input type="radio" name="setting" value="School or community" />
+                <div class="option-card"><span>School / community</span></div>
+              </label>
+              <label class="option-wrap">
+                <input type="radio" name="setting" value="Other or mixed" />
+                <div class="option-card"><span>Other / mixed setting</span></div>
+              </label>
+                </div>
+                <p class="err" data-for="setting">Please select a setting.</p>
+              </fieldset>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="quiz-step" data-step="3">
+              <fieldset>
+                <legend class="text-2xl font-bold text-[#12201C] leading-tight mb-8">What would make this mentoring most useful?</legend>
+                <div class="grid gap-4">
+              <label class="option-wrap">
+                <input type="radio" name="goal" value="Confidence in practice" />
+                <div class="option-card"><span>Build confidence in day-to-day practice</span></div>
+              </label>
+              <label class="option-wrap">
+                <input type="radio" name="goal" value="Licensure pathway" />
+                <div class="option-card"><span>Clarify my licensure pathway</span></div>
+              </label>
+              <label class="option-wrap">
+                <input type="radio" name="goal" value="Lead a team" />
+                <div class="option-card"><span>Learn to lead or coach a team</span></div>
+              </label>
+              <label class="option-wrap">
+                <input type="radio" name="goal" value="Survey readiness" />
+                <div class="option-card"><span>Prepare for survey / compliance questions</span></div>
+              </label>
+                </div>
+                <div class="mt-8">
+                  <label class="block text-sm font-bold text-[#5A6A63] uppercase mb-2" for="notes">Anything else we should know? (optional)</label>
+                  <textarea id="notes" name="notes" rows="3" class="field" placeholder="Brief context is helpful"></textarea>
+                </div>
+                <p class="err" data-for="goal">Please select a goal.</p>
+              </fieldset>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="quiz-step" data-step="4">
+              <fieldset>
+                <legend class="text-2xl font-bold text-[#12201C] leading-tight mb-8">How should we reach you?</legend>
+                <div class="grid gap-5">
+                  <div>
+                    <label class="block text-xs font-bold text-[#5A6A63] uppercase mb-2" for="name">Full name</label>
+                    <input class="field" type="text" id="name" name="name" required autocomplete="name" />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-[#5A6A63] uppercase mb-2" for="email">Email</label>
+                    <input class="field" type="email" id="email" name="email" required autocomplete="email" />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-[#5A6A63] uppercase mb-2" for="organization">Organization (optional)</label>
+                    <input class="field" type="text" id="organization" name="organization" autocomplete="organization" />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-[#5A6A63] uppercase mb-2" for="window">Preferred appointment window</label>
+                    <textarea class="field" id="window" name="window" rows="2" placeholder="e.g., Tuesday mornings, or after 3pm next week"></textarea>
+                  </div>
+                </div>
+                <p class="err" data-for="contact">Please enter your name and a valid email.</p>
+              </fieldset>
+            </div>
+
+            <div class="flex items-center justify-between pt-10 mt-4 border-t border-[#0F766E]/10">
+              <button type="button" id="btn-back" class="px-6 py-3 text-[#5A6A63] font-bold hover:text-[#0F766E] transition-colors disabled:opacity-40" disabled>Back</button>
+              <button type="button" id="btn-next" class="btn-active bg-[#0F766E] text-white px-10 py-4 rounded-full font-bold shadow-lg shadow-[#0F766E]/20 hover:bg-[#0B5F59] transition-all inline-flex items-center gap-2">
+                <span id="btn-next-label">Continue</span>
+                <iconify-icon icon="lucide:arrow-right"></iconify-icon>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <p class="mt-10 text-center text-[13px] text-[#5A6A63] max-w-md mx-auto">Privacy note: Your responses are only used to route your appointment request and prepare for our discovery call. Submitting opens your email client to send answers to hello@grow2guide.com.</p>
+      </div>
+    </main>
+    <footer class="bg-[#EAF3EF] text-[#5A6A63] py-16 border-t border-[#0F766E]/10">
+      <div class="container-custom flex flex-col md:flex-row justify-between items-center gap-8">
+        <div class="text-center md:text-left">
+          <a href="/"><img src="../../assets/logo.png" alt="Grow2Guide" class="h-[64px] w-auto mx-auto md:mx-0 mb-4"></a>
+          <p class="text-sm">Educational consulting — not legal advice.</p>
+        </div>
+        <div class="flex flex-wrap justify-center gap-6 text-sm font-semibold">
+          <a href="/quiz/tier-1/" class="hover:text-[#0F766E]">Tier 1 quiz</a>
+          <a href="/quiz/tier-2/" class="hover:text-[#0F766E]">Tier 2 quiz</a>
+          <a href="/terms/" class="hover:text-[#0F766E]">Terms</a>
+          <a href="/privacy/" class="hover:text-[#0F766E]">Privacy</a>
+          <a href="mailto:hello@grow2guide.com" class="hover:text-[#0F766E]">Contact</a>
+        </div>
+      </div>
+      <p class="container-custom mt-10 pt-8 border-t border-[#0F766E]/10 text-[12px] text-center">© 2026 Grow2Guide. Resources are for educational purposes only and do not constitute legal advice. Licensure is not guaranteed.</p>
+    </footer>
+  </div>
+  <script>
+  (function () {
+    const TOTAL = 5;
+    const names = ['Role', 'Focus', 'Setting', 'Goals', 'Contact'];
+    let step = 0;
+    const form = document.getElementById('quiz-form');
+    const steps = [...form.querySelectorAll('.quiz-step')];
+    const bar = document.getElementById('progress-bar');
+    const stepLabel = document.getElementById('step-label');
+    const stepName = document.getElementById('step-name');
+    const btnBack = document.getElementById('btn-back');
+    const btnNext = document.getElementById('btn-next');
+    const btnNextLabel = document.getElementById('btn-next-label');
+
+    function showStep(i) {
+      steps.forEach((el, idx) => el.classList.toggle('active', idx === i));
+      step = i;
+      bar.style.width = ((i + 1) / TOTAL * 100) + '%';
+      stepLabel.textContent = 'Step ' + (i + 1) + ' of ' + TOTAL;
+      stepName.textContent = names[i];
+      btnBack.disabled = i === 0;
+      btnNextLabel.textContent = i === TOTAL - 1 ? 'Submit via email' : 'Continue';
+      form.querySelectorAll('.err').forEach(e => e.style.display = 'none');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function val(name) {
+      const el = form.querySelector('[name="' + name + '"]:checked');
+      return el ? el.value : '';
+    }
+    function text(name) {
+      const el = form.querySelector('[name="' + name + '"]');
+      return el ? el.value.trim() : '';
+    }
+
+    function validate() {
+      form.querySelectorAll('.err').forEach(e => e.style.display = 'none');
+      if (step === 0 && !val('role')) { form.querySelector('[data-for=role]').style.display = 'block'; return false; }
+      if (step === 1 && !val('focus')) { form.querySelector('[data-for=focus]').style.display = 'block'; return false; }
+      if (step === 2 && !val('setting')) { form.querySelector('[data-for=setting]').style.display = 'block'; return false; }
+      if (step === 3 && !val('goal')) { form.querySelector('[data-for=goal]').style.display = 'block'; return false; }
+      if (step === 4) {
+        const name = text('name');
+        const email = text('email');
+        if (!name || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          form.querySelector('[data-for=contact]').style.display = 'block';
+          return false;
+        }
+      }
+      return true;
+    }
+
+    function submitMailto() {
+      const lines = [
+        'Tier 1 Foundations — Intake Quiz',
+        '',
+        'Role: ' + val('role'),
+        'Focus: ' + val('focus'),
+        'Setting: ' + val('setting'),
+        'Goal: ' + val('goal'),
+        'Notes: ' + (text('notes') || '(none)'),
+        '',
+        'Name: ' + text('name'),
+        'Email: ' + text('email'),
+        'Organization: ' + (text('organization') || '(none)'),
+        'Preferred window: ' + (text('window') || '(none)'),
+        '',
+        'Submitted from grow2guide.com/quiz/tier-1/'
+      ];
+      const subject = encodeURIComponent('Tier 1 Intake Quiz — ' + text('name'));
+      const body = encodeURIComponent(lines.join('\n'));
+      window.location.href = 'mailto:hello@grow2guide.com?subject=' + subject + '&body=' + body;
+    }
+
+    btnBack.addEventListener('click', () => { if (step > 0) showStep(step - 1); });
+    btnNext.addEventListener('click', () => {
+      if (!validate()) return;
+      if (step < TOTAL - 1) showStep(step + 1);
+      else submitMailto();
+    });
+    form.addEventListener('submit', (e) => { e.preventDefault(); btnNext.click(); });
+    showStep(0);
+  })();
+  </script>
+</body>
+</html>

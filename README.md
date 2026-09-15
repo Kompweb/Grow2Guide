@@ -14,3 +14,13 @@ Pages: `main` / root. Custom domain: `www.grow2guide.com` (`CNAME` file).
 
 ## DNS
 Apex A → GitHub Pages IPs; `www` CNAME → `kompweb.github.io` (managed in Wix Domains).
+
+## Site map (static Pages)
+- `/` — Main marketing homepage (professionals + digital programs)
+- `/handbook/` — Parents’ Handbook
+- `/handbook/programs/` — Handbook programs
+- `/quiz/tier-1/` · `/quiz/tier-2/` — Multi-step intake quizzes (mailto submit)
+- `/terms/` · `/privacy/` · `/refunds/` — Legal stubs (terms includes counsel-review banner)
+
+Main site contact: `hello@grow2guide.com`. Handbook contact remains `grow2guide@gmail.com`.
+
