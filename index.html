@@ -50,6 +50,10 @@
       background: rgba(245, 248, 244, 0.85);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(15, 118, 110, 0.08);
+      transition: transform 0.3s ease;
+    }
+    .glass-nav.nav-hidden {
+      transform: translateY(-100%);
     }
 
     .card-shadow {
@@ -137,28 +141,28 @@
             <img src="assets/logo.png" alt="Grow2Guide Logo" class="h-[69px] w-auto">
           </a>
           <div class="hidden lg:flex items-center gap-12">
-            <a href="#products" id="nav-link-prod" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Products</a>
-            <a href="/services/" id="nav-link-services" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Services</a>
-            <a href="#how-it-works" id="nav-link-how" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">How it works</a>
-            <a href="#about" id="nav-link-about" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">About</a>
-            <a href="/handbook/" id="nav-link-handbook" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Handbook</a>
+            <a href="#products" id="nav-link-prod" class="nav-link text-[20px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Products</a>
+            <a href="/services/" id="nav-link-services" class="nav-link text-[20px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Services</a>
+            <a href="#how-it-works" id="nav-link-how" class="nav-link text-[20px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">How it works</a>
+            <a href="#about" id="nav-link-about" class="nav-link text-[20px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">About</a>
+            <a href="/handbook/" id="nav-link-handbook" class="nav-link text-[20px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Handbook</a>
           </div>
         </div>
         <div class="flex items-center gap-3">
           <a href="#" data-g2g-mailto="" id="nav-contact-btn" class="hidden sm:flex bg-[#0F766E] text-white px-8 py-3.5 rounded-full text-sm font-bold shadow-md shadow-[#0F766E]/20 btn-active transition-all hover:bg-[#0B5F59] hover:shadow-xl">Contact</a>
-          <button type="button" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu" class="lg:hidden w-12 h-12 flex items-center justify-center rounded-full border border-[#0F766E]/15 text-[#0F766E] bg-white/70 btn-active">
-            <iconify-icon id="menu-icon-open" icon="lucide:menu" class="text-2xl"></iconify-icon>
-            <iconify-icon id="menu-icon-close" icon="lucide:x" class="text-2xl hidden"></iconify-icon>
+          <button type="button" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu" class="lg:hidden w-14 h-14 flex items-center justify-center rounded-full border-2 border-[#0F766E]/25 text-[#0F766E] bg-white/70 btn-active">
+            <iconify-icon id="menu-icon-open" icon="ph:list-bold" class="text-3xl"></iconify-icon>
+            <iconify-icon id="menu-icon-close" icon="ph:x-bold" class="text-3xl hidden"></iconify-icon>
           </button>
         </div>
       </div>
       <div id="mobile-menu" class="hidden lg:hidden border-t border-[#0F766E]/10 bg-[#F5F8F4]">
         <div class="container-custom py-6 flex flex-col gap-1">
-          <a href="#products" class="mobile-nav-link text-[16px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Products</a>
-          <a href="/services/" class="mobile-nav-link text-[16px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Services</a>
-          <a href="#how-it-works" class="mobile-nav-link text-[16px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">How it works</a>
-          <a href="#about" class="mobile-nav-link text-[16px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">About</a>
-          <a href="/handbook/" class="mobile-nav-link text-[16px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Handbook</a>
+          <a href="#products" class="mobile-nav-link text-[20px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Products</a>
+          <a href="/services/" class="mobile-nav-link text-[20px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Services</a>
+          <a href="#how-it-works" class="mobile-nav-link text-[20px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">How it works</a>
+          <a href="#about" class="mobile-nav-link text-[20px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">About</a>
+          <a href="/handbook/" class="mobile-nav-link text-[20px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Handbook</a>
           <a href="#" data-g2g-mailto="" class="mobile-nav-link mt-4 bg-[#0F766E] text-white h-[52px] flex items-center justify-center rounded-full font-bold text-base">Contact</a>
         </div>
       </div>
@@ -167,31 +171,74 @@
     <main id="main" class="flex-1">
 
       <!-- Hero Section -->
-      <section class="pt-56 pb-32">
-        <div class="container-custom max-w-3xl mx-auto text-center space-y-10">
-          <h1 class="text-5xl xl:text-6xl font-bold leading-[1.08] tracking-[-0.03em] text-[#12201C]">
-            You Know Where You Want to Go.<br class="hidden sm:block">
-            Let's Build the Path to Get There.
-          </h1>
-          <div class="space-y-5 text-xl text-[#5A6A63] leading-[1.55] max-w-2xl mx-auto">
-            <p>Behavioral health doesn't come with a handbook for everything.</p>
-            <p>Sometimes you need a practical resource to help you navigate your next step. Sometimes you already have the policies, materials, or systems&mdash;but they aren't quite working. And sometimes you need someone to build it with you from the ground up.</p>
-            <p class="font-bold text-[#12201C]">Grow2Guide offers practical resources and consulting for all three.</p>
+      <section class="pt-44 lg:pt-52 pb-24 lg:pb-32">
+        <div class="container-custom grid lg:grid-cols-[1.15fr_1fr] gap-14 lg:gap-16 items-center">
+          <div>
+            <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Practical Resources &amp; Consulting</span>
+            <h1 class="text-5xl xl:text-6xl font-bold leading-[1.08] tracking-[-0.03em] text-[#12201C] mb-6">
+              You Know Where You Want to Go.<br class="hidden sm:block">
+              Let's <span class="text-[#0F766E]">Build the Path</span> to Get There.
+            </h1>
+            <div class="space-y-4 text-lg text-[#5A6A63] leading-[1.6] max-w-xl mb-10">
+              <p>Behavioral health doesn't come with a handbook for everything. Sometimes you need a practical resource, sometimes you need a second look at what isn't quite working, and sometimes you need someone to build it with you from the ground up.</p>
+              <p class="font-bold text-[#12201C]">Grow2Guide offers practical resources and consulting for all three.</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-5 mb-8">
+              <a href="#products" id="hero-cta-products" class="group btn-active bg-[#0F766E] text-white h-[56px] px-10 flex items-center justify-center gap-2 rounded-full font-bold text-base shadow-lg shadow-[#0F766E]/20 hover:bg-[#0B5F59] transition-all">
+                Explore Products <iconify-icon icon="lucide:arrow-right" class="transition-transform group-hover:translate-x-1"></iconify-icon>
+              </a>
+              <a href="/services/" id="hero-cta-services" class="btn-active bg-white border border-[#0F766E]/30 text-[#0F766E] h-[56px] px-10 flex items-center justify-center rounded-full font-bold text-base hover:bg-[#D8F0EA] transition-all">Explore Services</a>
+            </div>
+            <div class="flex items-center gap-2.5 text-sm font-semibold text-[#5A6A63]">
+              <iconify-icon icon="lucide:shield-check" class="text-[#0F766E] text-lg"></iconify-icon>
+              <span>Nevada-first &middot; Led by a licensed clinician-operator</span>
+            </div>
           </div>
-          <div class="flex flex-wrap items-center justify-center gap-3">
-            <a href="#path-guide" class="inline-flex items-center gap-2 bg-white border border-[#0F766E]/10 text-[#12201C] px-4 py-2 rounded-full text-sm font-semibold card-shadow hover:border-[#0F766E]/30 transition-colors">
-              <iconify-icon icon="lucide:book-open" class="text-[#0F766E]"></iconify-icon> A Guide
+
+          <div class="relative bg-white rounded-[28px] p-9 card-shadow border border-[#0F766E]/5 overflow-hidden">
+            <div class="absolute -top-6 -right-6 w-28 h-28 bg-[#D8F0EA] rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+            <p class="relative text-[11px] font-bold text-[#0F766E] tracking-[0.08em] uppercase mb-5">Three ways to start</p>
+
+            <a href="#path-guide" class="group relative flex items-center gap-4 py-4 -mx-2 px-2 rounded-2xl hover:bg-[#F5F8F4] transition-colors">
+              <span class="shrink-0 w-12 h-12 rounded-full bg-[#D8F0EA] text-[#0F766E] flex items-center justify-center">
+                <iconify-icon icon="lucide:book-open" class="text-xl"></iconify-icon>
+              </span>
+              <span class="flex-1 min-w-0">
+                <span class="block text-base font-bold text-[#12201C]">A Guide</span>
+                <span class="block text-[13px] text-[#5A6A63]">Downloadable tools &amp; templates</span>
+              </span>
+              <iconify-icon icon="lucide:arrow-right" class="shrink-0 text-[#0F766E] opacity-60 transition-transform group-hover:translate-x-1"></iconify-icon>
             </a>
-            <a href="#path-strengthen" class="inline-flex items-center gap-2 bg-white border border-[#0F766E]/10 text-[#12201C] px-4 py-2 rounded-full text-sm font-semibold card-shadow hover:border-[#0F766E]/30 transition-colors">
-              <iconify-icon icon="lucide:search-check" class="text-[#0F766E]"></iconify-icon> Strengthen What You Have
+
+            <div class="border-t border-[#0F766E]/8"></div>
+
+            <a href="#path-strengthen" class="group relative flex items-center gap-4 py-4 -mx-2 px-2 rounded-2xl hover:bg-[#F5F8F4] transition-colors">
+              <span class="shrink-0 w-12 h-12 rounded-full bg-[#D8F0EA] text-[#0F766E] flex items-center justify-center">
+                <iconify-icon icon="lucide:search-check" class="text-xl"></iconify-icon>
+              </span>
+              <span class="flex-1 min-w-0">
+                <span class="block text-base font-bold text-[#12201C]">Strengthen What You Have</span>
+                <span class="block text-[13px] text-[#5A6A63]">Evaluate &amp; close the gaps</span>
+              </span>
+              <iconify-icon icon="lucide:arrow-right" class="shrink-0 text-[#0F766E] opacity-60 transition-transform group-hover:translate-x-1"></iconify-icon>
             </a>
-            <a href="#path-build" class="inline-flex items-center gap-2 bg-white border border-[#0F766E]/10 text-[#12201C] px-4 py-2 rounded-full text-sm font-semibold card-shadow hover:border-[#0F766E]/30 transition-colors">
-              <iconify-icon icon="lucide:hammer" class="text-[#0F766E]"></iconify-icon> Build It With You
+
+            <div class="border-t border-[#0F766E]/8"></div>
+
+            <a href="#path-build" class="group relative flex items-center gap-4 py-4 -mx-2 px-2 rounded-2xl hover:bg-[#F5F8F4] transition-colors">
+              <span class="shrink-0 w-12 h-12 rounded-full bg-[#D8F0EA] text-[#0F766E] flex items-center justify-center">
+                <iconify-icon icon="lucide:hammer" class="text-xl"></iconify-icon>
+              </span>
+              <span class="flex-1 min-w-0">
+                <span class="block text-base font-bold text-[#12201C]">Build It With You</span>
+                <span class="block text-[13px] text-[#5A6A63]">Full program infrastructure</span>
+              </span>
+              <iconify-icon icon="lucide:arrow-right" class="shrink-0 text-[#0F766E] opacity-60 transition-transform group-hover:translate-x-1"></iconify-icon>
             </a>
-          </div>
-          <div class="flex flex-wrap items-center justify-center gap-5 pt-2">
-            <a href="#products" id="hero-cta-products" class="btn-active bg-[#0F766E] text-white h-[56px] px-10 flex items-center justify-center rounded-full font-bold text-base shadow-lg shadow-[#0F766E]/20 hover:bg-[#0B5F59] transition-all">Explore Products</a>
-            <a href="/services/" id="hero-cta-services" class="btn-active bg-white border border-[#0F766E]/30 text-[#0F766E] h-[56px] px-10 flex items-center justify-center rounded-full font-bold text-base hover:bg-[#D8F0EA] transition-all">Explore Services</a>
+
+            <p class="relative mt-5 pt-5 border-t border-[#0F766E]/8 text-center text-[13px] text-[#5A6A63]">
+              Not sure yet? <span class="font-bold text-[#0F766E]">Start with where you are.</span>
+            </p>
           </div>
         </div>
       </section>
@@ -204,49 +251,63 @@
             <h2 class="text-4xl font-bold text-[#12201C] tracking-tight">Three ways to work with Grow2Guide</h2>
           </div>
 
-          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-            <!-- I Need a Guide -->
-            <div id="path-guide" class="scroll-mt-32 bg-white rounded-[24px] p-10 card-shadow border border-[#0F766E]/5 flex flex-col hover:border-[#0F766E]/20 hover:-translate-y-1 transition-all sm:col-span-2 lg:col-span-1">
-              <div class="w-14 h-14 rounded-full bg-[#D8F0EA] text-[#0F766E] flex items-center justify-center mb-8">
-                <iconify-icon icon="lucide:book-open" class="text-2xl"></iconify-icon>
-              </div>
-              <h3 class="text-2xl font-bold mb-4 text-[#12201C]">I Need a Guide.</h3>
-              <p class="text-[#5A6A63] text-base leading-[1.6] mb-10 flex-1">
-                For behavioral health professionals and supervisors looking for practical tools, guidance, and resources they can use in their work. Explore our downloadable guides designed to address the real-world questions that come with working in behavioral health.
-              </p>
-              <a href="#products" id="path-products-btn" class="group btn-active w-full border border-[#0F766E]/30 text-[#0F766E] h-[52px] flex items-center justify-center gap-2 rounded-full font-bold text-base hover:bg-[#D8F0EA] transition-all">
-                Explore Products <iconify-icon icon="lucide:arrow-right" class="transition-transform group-hover:translate-x-1"></iconify-icon>
-              </a>
-            </div>
+          <div class="relative">
+            <div class="hidden lg:block absolute top-[52px] left-0 w-full h-px bg-gradient-to-r from-transparent via-[#0F766E]/15 to-transparent z-0"></div>
 
-            <!-- I Already Have Something -->
-            <div id="path-strengthen" class="scroll-mt-32 bg-[#EAF3EF] rounded-[24px] p-10 card-shadow border border-[#0F766E]/10 flex flex-col hover:border-[#0F766E]/30 hover:-translate-y-1 transition-all">
-              <div class="w-14 h-14 rounded-full bg-white text-[#0F766E] flex items-center justify-center mb-8">
-                <iconify-icon icon="lucide:search-check" class="text-2xl"></iconify-icon>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 relative z-10">
+              <!-- I Need a Guide -->
+              <div id="path-guide" class="scroll-mt-32 bg-white rounded-[24px] p-8 lg:p-9 card-shadow border border-[#0F766E]/5 flex flex-col hover:border-[#0F766E]/20 hover:-translate-y-1 transition-all sm:col-span-2 lg:col-span-1">
+                <div class="flex items-center gap-4 mb-6">
+                  <div class="w-12 h-12 rounded-full bg-[#D8F0EA] text-[#0F766E] flex items-center justify-center shrink-0">
+                    <iconify-icon icon="lucide:book-open" class="text-xl"></iconify-icon>
+                  </div>
+                  <span class="text-[11px] font-bold text-[#5A6A63] tracking-[0.06em] uppercase">For Professionals</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-3 text-[#12201C]">I Need a Guide.</h3>
+                <p class="text-[#5A6A63] text-base leading-[1.6] mb-6 flex-1">
+                  For behavioral health professionals and supervisors looking for practical tools and resources they can use in their work every day.
+                </p>
+                <p class="text-[#12201C] font-bold text-sm mb-8">Downloadable guides for the real-world questions behavioral health throws at you.</p>
+                <a href="#products" id="path-products-btn" class="group btn-active w-full border border-[#0F766E]/30 text-[#0F766E] h-[52px] flex items-center justify-center gap-2 rounded-full font-bold text-base hover:bg-[#D8F0EA] transition-all mt-auto">
+                  Explore Products <iconify-icon icon="lucide:arrow-right" class="transition-transform group-hover:translate-x-1"></iconify-icon>
+                </a>
               </div>
-              <h3 class="text-2xl font-bold mb-4 text-[#12201C]">I Already Have Something.</h3>
-              <p class="text-[#5A6A63] text-base leading-[1.6] mb-6 flex-1">
-                You have policies. Procedures. Forms. Training materials. Programs. Systems. But are they actually working? Grow2Guide helps organizations evaluate what they already have, identify gaps, and strengthen what needs to change.
-              </p>
-              <p class="text-[#12201C] font-bold text-sm mb-10">You don't always need to start over. Sometimes you need to know what to fix.</p>
-              <a href="/services/" id="path-tier2-btn" class="group btn-active w-full bg-[#0F766E] text-white h-[52px] flex items-center justify-center gap-2 rounded-full font-bold text-base hover:bg-[#0B5F59] transition-all">
-                Explore Tier 2 Services <iconify-icon icon="lucide:arrow-right" class="transition-transform group-hover:translate-x-1"></iconify-icon>
-              </a>
-            </div>
 
-            <!-- I Need Someone to Build It -->
-            <div id="path-build" class="scroll-mt-32 bg-white rounded-[24px] p-10 card-shadow border border-[#0F766E]/5 flex flex-col hover:border-[#0F766E]/20 hover:-translate-y-1 transition-all">
-              <div class="w-14 h-14 rounded-full bg-[#D8F0EA] text-[#0F766E] flex items-center justify-center mb-8">
-                <iconify-icon icon="lucide:hammer" class="text-2xl"></iconify-icon>
+              <!-- I Already Have Something -->
+              <div id="path-strengthen" class="scroll-mt-32 bg-[#EAF3EF] rounded-[24px] p-8 lg:p-9 card-shadow border border-[#0F766E]/10 flex flex-col hover:border-[#0F766E]/30 hover:-translate-y-1 transition-all">
+                <div class="flex items-center gap-4 mb-6">
+                  <div class="w-12 h-12 rounded-full bg-white text-[#0F766E] flex items-center justify-center shrink-0">
+                    <iconify-icon icon="lucide:search-check" class="text-xl"></iconify-icon>
+                  </div>
+                  <span class="text-[11px] font-bold text-[#0F766E] tracking-[0.06em] uppercase">Tier 2 &middot; For Organizations</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-3 text-[#12201C]">I Already Have Something.</h3>
+                <p class="text-[#5A6A63] text-base leading-[1.6] mb-6 flex-1">
+                  Policies. Procedures. Forms. Systems. But are they actually working? We help organizations evaluate what they have, identify gaps, and strengthen what needs to change.
+                </p>
+                <p class="text-[#12201C] font-bold text-sm mb-8">You don't always need to start over. Sometimes you need to know what to fix.</p>
+                <a href="/services/" id="path-tier2-btn" class="group btn-active w-full bg-[#0F766E] text-white h-[52px] flex items-center justify-center gap-2 rounded-full font-bold text-base hover:bg-[#0B5F59] transition-all mt-auto">
+                  Explore Tier 2 Services <iconify-icon icon="lucide:arrow-right" class="transition-transform group-hover:translate-x-1"></iconify-icon>
+                </a>
               </div>
-              <h3 class="text-2xl font-bold mb-4 text-[#12201C]">I Need Someone to Build It.</h3>
-              <p class="text-[#5A6A63] text-base leading-[1.6] mb-6 flex-1">
-                Starting a behavioral health program or building organizational infrastructure from the ground up can be overwhelming. Whether you're preparing for state licensing, Department of Family Services (DFS) requirements, CARF accreditation, an initial survey, re-survey, program expansion, or simply need the systems and materials to get your program operational, Grow2Guide can help. From policies and procedures to workflows, forms, quality systems, documentation, staff resources, and implementation, we help build the infrastructure behind the program.
-              </p>
-              <p class="text-[#12201C] font-bold text-sm mb-10">From the first draft to a system your team can actually use&mdash;and maintain.</p>
-              <a href="/services/" id="path-tier3-btn" class="group btn-active w-full border border-[#0F766E]/30 text-[#0F766E] h-[52px] flex items-center justify-center gap-2 rounded-full font-bold text-base hover:bg-[#D8F0EA] transition-all">
-                Explore Tier 3 Services <iconify-icon icon="lucide:arrow-right" class="transition-transform group-hover:translate-x-1"></iconify-icon>
-              </a>
+
+              <!-- I Need Someone to Build It -->
+              <div id="path-build" class="scroll-mt-32 bg-white rounded-[24px] p-8 lg:p-9 card-shadow border border-[#0F766E]/5 flex flex-col hover:border-[#0F766E]/20 hover:-translate-y-1 transition-all">
+                <div class="flex items-center gap-4 mb-6">
+                  <div class="w-12 h-12 rounded-full bg-[#D8F0EA] text-[#0F766E] flex items-center justify-center shrink-0">
+                    <iconify-icon icon="lucide:hammer" class="text-xl"></iconify-icon>
+                  </div>
+                  <span class="text-[11px] font-bold text-[#5A6A63] tracking-[0.06em] uppercase">Tier 3 &middot; For Organizations</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-3 text-[#12201C]">I Need Someone to Build It.</h3>
+                <p class="text-[#5A6A63] text-base leading-[1.6] mb-6 flex-1">
+                  Starting a program or building infrastructure from the ground up can be overwhelming&mdash;licensing, CARF accreditation, surveys, program expansion. We build the policies, workflows, forms, and staff resources your program needs.
+                </p>
+                <p class="text-[#12201C] font-bold text-sm mb-8">From the first draft to a system your team can actually use&mdash;and maintain.</p>
+                <a href="/services/" id="path-tier3-btn" class="group btn-active w-full border border-[#0F766E]/30 text-[#0F766E] h-[52px] flex items-center justify-center gap-2 rounded-full font-bold text-base hover:bg-[#D8F0EA] transition-all mt-auto">
+                  Explore Tier 3 Services <iconify-icon icon="lucide:arrow-right" class="transition-transform group-hover:translate-x-1"></iconify-icon>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -605,6 +666,36 @@
       menu.querySelectorAll('a').forEach(function (link) {
         link.addEventListener('click', function () { setOpen(false); });
       });
+    })();
+
+    (function () {
+      var nav = document.querySelector('nav.glass-nav');
+      var mobileMenu = document.getElementById('mobile-menu');
+      if (!nav) return;
+
+      var lastY = window.scrollY;
+      var ticking = false;
+
+      function onScroll() {
+        var y = window.scrollY;
+        var menuOpen = mobileMenu && !mobileMenu.classList.contains('hidden');
+        if (menuOpen) {
+          nav.classList.remove('nav-hidden');
+        } else if (y > lastY && y > 160) {
+          nav.classList.add('nav-hidden');
+        } else if (y < lastY) {
+          nav.classList.remove('nav-hidden');
+        }
+        lastY = y;
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          window.requestAnimationFrame(onScroll);
+          ticking = true;
+        }
+      }, { passive: true });
     })();
   </script>
 </body>
