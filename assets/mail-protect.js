@@ -1,7 +1,7 @@
 (function () {
   function address() {
-    var user = ['g', 'r', 'o', 'w', '2', 'g', 'u', 'i', 'd', 'e'];
-    var host = ['g', 'm', 'a', 'i', 'l', '.', 'c', 'o', 'm'];
+    var user = ['h', 'e', 'l', 'l', 'o'];
+    var host = ['g', 'r', 'o', 'w', '2', 'g', 'u', 'i', 'd', 'e', '.', 'c', 'o', 'm'];
     return user.join('') + '@' + host.join('');
   }
 
