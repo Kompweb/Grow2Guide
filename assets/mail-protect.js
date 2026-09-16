@@ -1,4 +1,4 @@
-''(function () {
+(function () {
   function address() {
     var user = ['g', 'r', 'o', 'w', '2', 'g', 'u', 'i', 'd', 'e'];
     var host = ['g', 'm', 'a', 'i', 'l', '.', 'c', 'o', 'm'];
