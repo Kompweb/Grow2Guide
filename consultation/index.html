@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../assets/logo-square.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <script src="/assets/mail-protect.js" defer></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    :root {
+      --bg-paper: #F5F8F4; --surface: #FFFFFF; --surface-soft: #EAF3EF;
+      --ink-primary: #12201C; --ink-muted: #5A6A63;
+      --accent-teal: #0F766E; --accent-teal-dark: #0B5F59; --accent-soft: #D8F0EA;
+    }
+    body { font-family: Inter, system-ui, -apple-system, sans-serif; color: var(--ink-primary); margin: 0; background: var(--bg-paper); }
+    .atmosphere-glow {
+      position: fixed; inset: 0; pointer-events: none; z-index: -1;
+      background:
+        radial-gradient(1000px 420px at 0% -10%, rgba(223,245,239,.5) 0%, transparent 55%),
+        radial-gradient(800px 360px at 100% 0%, rgba(238,242,248,.6) 0%, transparent 48%);
+    }
+    .glass-nav { background: rgba(245,248,244,.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(15,118,110,.08); }
+    .card-shadow { box-shadow: 0 16px 40px rgba(18,32,28,.08); }
+    .container-custom { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .nav-link { position: relative; }
+    .nav-link::after { content:''; position:absolute; bottom:-6px; left:0; width:0; height:2px; background:var(--accent-teal); transition:width .3s; }
+    .nav-link:hover::after { width:100%; }
+    .btn-active:active { transform: scale(0.98); }
+    .field { width:100%; background:#F5F8F4; border:1px solid rgba(15,118,110,.12); padding:0.9rem 1.1rem; border-radius:0.9rem; font:inherit; color:inherit; }
+    .field:focus { outline: none; box-shadow: 0 0 0 3px rgba(15,118,110,.2); }
+    .check-card { display:flex; align-items:center; gap:0.85rem; padding:0.9rem 1.1rem; border-radius:14px; border:2px solid transparent; background:#F5F8F4; color:#5A6A63; font-weight:600; font-size:0.9rem; cursor:pointer; transition:all .15s; }
+    .check-card:hover { background:#EAF3EF; }
+    label.opt-wrap { display:block; }
+    label.opt-wrap input { position:absolute; opacity:0; pointer-events:none; }
+    label.opt-wrap:has(input:checked) .check-card { border-color: var(--accent-teal); background: var(--accent-soft); color: var(--accent-teal-dark); }
+    .req::after { content:' *'; color:#0F766E; }
+    .err { color:#b91c1c; font-size:0.8rem; margin-top:0.5rem; display:none; }
+  </style>
+  <title>Request a Consultation — Grow2Guide</title>
+  <meta name="description" content="Tell us about your organization before your Grow2Guide consultation, so we can prepare a focused discovery call." />
+  <link rel="canonical" href="https://www.grow2guide.com/consultation/" />
+</head>
+<body>
+  <div class="min-h-screen relative flex flex-col">
+    <div class="atmosphere-glow"></div>
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+      <div class="container-custom h-[100px] lg:h-[120px] flex items-center justify-between">
+        <div class="flex items-center gap-12 lg:gap-20">
+          <a href="/" class="flex shrink-0"><img src="../assets/logo.png" alt="Grow2Guide" class="h-[64px] lg:h-[86px] w-auto"></a>
+          <div class="hidden lg:flex items-center gap-12">
+            <a href="/#products" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Products</a>
+            <a href="/services/" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Services</a>
+            <a href="/#how-it-works" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">How it works</a>
+            <a href="/#about" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">About</a>
+            <a href="/handbook/" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Handbook</a>
+          </div>
+        </div>
+        <a href="#" data-g2g-mailto="" class="bg-[#0F766E] text-white px-6 lg:px-8 py-3 rounded-full text-sm font-bold shadow-md shadow-[#0F766E]/20 hover:bg-[#0B5F59] transition-all">Contact</a>
+      </div>
+    </nav>
+
+    <main class="flex-1 pt-40 pb-24">
+      <div class="container-custom max-w-3xl">
+        <nav class="flex items-center gap-2 text-sm font-medium text-[#5A6A63] mb-10">
+          <a href="/" class="hover:text-[#0F766E]">Home</a>
+          <span class="opacity-40">/</span>
+          <a href="/services/" class="hover:text-[#0F766E]">Services</a>
+          <span class="opacity-40">/</span>
+          <span class="text-[#12201C]">Consultation Request</span>
+        </nav>
+        <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Before we talk</span>
+        <h1 class="text-4xl lg:text-5xl font-bold tracking-tight mb-6 leading-[1.1]">Grow2Guide Consultation Request</h1>
+        <p class="text-[#5A6A63] text-lg leading-[1.6]">
+          Please complete the following form so we can better understand your organization and what you are looking for before our consultation.
+        </p>
+      </div>
+
+      <div class="container-custom max-w-3xl mt-14">
+        <form id="consult-form" novalidate class="bg-white rounded-[32px] p-8 md:p-12 card-shadow border border-[#0F766E]/5 space-y-10">
+
+          <!-- Q1 -->
+          <div>
+            <label for="org-name" class="req block text-sm font-bold text-[#12201C] mb-3">1. Organization Name</label>
+            <input class="field" type="text" id="org-name" name="org-name" required />
+            <p class="err" data-for="org-name">Please enter your organization's name.</p>
+          </div>
+
+          <!-- Q2 -->
+          <div>
+            <label for="contact-name" class="req block text-sm font-bold text-[#12201C] mb-3">2. Contact Name &amp; Title</label>
+            <input class="field" type="text" id="contact-name" name="contact-name" placeholder="e.g., Jane Doe, Program Director" required />
+            <p class="err" data-for="contact-name">Please enter your name and title.</p>
+          </div>
+
+          <!-- Q3 -->
+          <div>
+            <label for="contact-info" class="req block text-sm font-bold text-[#12201C] mb-3">3. Email &amp; Phone</label>
+            <input class="field" type="text" id="contact-info" name="contact-info" placeholder="e.g., jane@agency.org, (555) 123-4567" required />
+            <p class="err" data-for="contact-info">Please enter an email address and phone number.</p>
+          </div>
+
+          <!-- Q4 -->
+          <div>
+            <label for="state" class="req block text-sm font-bold text-[#12201C] mb-3">4. State</label>
+            <select class="field" id="state" name="state" required>
+              <option value="" disabled selected>Select your state</option>
+              <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
+              <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
+              <option>District of Columbia</option><option>Florida</option><option>Georgia</option><option>Hawaii</option>
+              <option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option>
+              <option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option>
+              <option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option>
+              <option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option>
+              <option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option>
+              <option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option>
+              <option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option>
+              <option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option>
+              <option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option>
+              <option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option>
+              <option>Other / outside the U.S.</option>
+            </select>
+            <p class="err" data-for="state">Please select a state.</p>
+          </div>
+
+          <!-- Q5 -->
+          <div>
+            <label for="org-type" class="req block text-sm font-bold text-[#12201C] mb-3">5. Type of Organization/Program</label>
+            <input class="field" type="text" id="org-type" name="org-type" placeholder="e.g., outpatient behavioral health clinic, residential program" required />
+            <p class="err" data-for="org-type">Please describe your organization or program type.</p>
+          </div>
+
+          <!-- Q6 -->
+          <div>
+            <p class="block text-sm font-bold text-[#12201C] mb-3">6. What are you looking for help with?</p>
+            <div class="grid sm:grid-cols-2 gap-3">
+              <label class="opt-wrap"><input type="checkbox" name="help" value="Policy & procedure development/review" /><div class="check-card"><iconify-icon icon="lucide:check" class="text-lg"></iconify-icon><span>Policy &amp; procedure development/review</span></div></label>
+              <label class="opt-wrap"><input type="checkbox" name="help" value="Program development or startup" /><div class="check-card"><iconify-icon icon="lucide:check" class="text-lg"></iconify-icon><span>Program development or startup</span></div></label>
+              <label class="opt-wrap"><input type="checkbox" name="help" value="Operations & workflow" /><div class="check-card"><iconify-icon icon="lucide:check" class="text-lg"></iconify-icon><span>Operations &amp; workflow</span></div></label>
+              <label class="opt-wrap"><input type="checkbox" name="help" value="Quality assurance" /><div class="check-card"><iconify-icon icon="lucide:check" class="text-lg"></iconify-icon><span>Quality assurance</span></div></label>
+              <label class="opt-wrap"><input type="checkbox" name="help" value="Licensing/accreditation readiness" /><div class="check-card"><iconify-icon icon="lucide:check" class="text-lg"></iconify-icon><span>Licensing/accreditation readiness</span></div></label>
+              <label class="opt-wrap"><input type="checkbox" name="help" value="Compliance" /><div class="check-card"><iconify-icon icon="lucide:check" class="text-lg"></iconify-icon><span>Compliance</span></div></label>
+              <label class="opt-wrap"><input type="checkbox" name="help" value="Staff/leadership systems" /><div class="check-card"><iconify-icon icon="lucide:check" class="text-lg"></iconify-icon><span>Staff/leadership systems</span></div></label>
+            </div>
+            <div class="mt-3">
+              <label for="help-other" class="block text-xs font-bold text-[#5A6A63] uppercase mb-2">Other</label>
+              <input class="field" type="text" id="help-other" name="help-other" placeholder="Tell us what else you need help with" />
+            </div>
+          </div>
+
+          <!-- Q7 -->
+          <div>
+            <label for="describe" class="req block text-sm font-bold text-[#12201C] mb-3">7. Briefly describe what you are currently working on or where you are experiencing challenges.</label>
+            <textarea class="field" id="describe" name="describe" rows="4" required></textarea>
+            <p class="err" data-for="describe">Please tell us a bit about what you're working on.</p>
+          </div>
+
+          <!-- Q8 -->
+          <div>
+            <p class="block text-sm font-bold text-[#12201C] mb-3">8. What do you currently have in place?</p>
+            <div class="grid gap-3">
+              <label class="opt-wrap"><input type="radio" name="in-place" value="Nothing yet" /><div class="check-card"><span>Nothing yet</span></div></label>
+              <label class="opt-wrap"><input type="radio" name="in-place" value="Some materials/systems" /><div class="check-card"><span>Some materials/systems</span></div></label>
+              <label class="opt-wrap"><input type="radio" name="in-place" value="Established materials/systems that need review or improvement" /><div class="check-card"><span>Established materials/systems that need review or improvement</span></div></label>
+              <label class="opt-wrap"><input type="radio" name="in-place" value="Not sure" /><div class="check-card"><span>Not sure</span></div></label>
+            </div>
+          </div>
+
+          <!-- Q9 -->
+          <div>
+            <label for="accomplish" class="req block text-sm font-bold text-[#12201C] mb-3">9. What would you like to accomplish through consultation?</label>
+            <textarea class="field" id="accomplish" name="accomplish" rows="4" required></textarea>
+            <p class="err" data-for="accomplish">Please let us know what you'd like to accomplish.</p>
+          </div>
+
+          <!-- Q10 -->
+          <div>
+            <label for="timeframe" class="block text-sm font-bold text-[#12201C] mb-3">10. Is there a specific deadline, licensing/accreditation survey, program opening, or other timeframe we should know about? <span class="font-normal text-[#5A6A63]">(optional)</span></label>
+            <input class="field" type="text" id="timeframe" name="timeframe" />
+          </div>
+
+          <!-- Anything else -->
+          <div>
+            <label for="anything-else" class="block text-sm font-bold text-[#12201C] mb-3">Anything else you'd like us to know before the consultation? <span class="font-normal text-[#5A6A63]">(optional)</span></label>
+            <textarea class="field" id="anything-else" name="anything-else" rows="3"></textarea>
+          </div>
+
+          <div class="pt-4 border-t border-[#0F766E]/10">
+            <button type="submit" class="btn-active w-full sm:w-auto bg-[#0F766E] text-white h-[56px] px-10 inline-flex items-center justify-center rounded-full font-bold text-base shadow-lg shadow-[#0F766E]/20 hover:bg-[#0B5F59] transition-all">
+              Submit Request
+            </button>
+            <p class="mt-5 text-[13px] text-[#5A6A63] leading-relaxed">Submitting opens your email client with your answers ready to send to Grow2Guide. Nothing is transmitted until you send the email.</p>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <footer class="bg-[#EAF3EF] text-[#5A6A63] py-24 border-t border-[#0F766E]/10">
+      <div class="container-custom">
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 mb-16">
+          <div class="lg:col-span-4 space-y-6">
+            <a href="/" class="inline-block"><img src="../assets/logo.png" alt="Grow2Guide" class="h-[86px] w-auto"></a>
+            <p class="text-[15px] leading-relaxed max-w-sm">Nevada-first licensing, accreditation readiness, compliance, and workforce learning — practical systems that hold up.</p>
+            <a href="#" data-g2g-mailto="" data-g2g-email-text class="block font-semibold text-[#0F766E] hover:text-[#0B5F59]"></a>
+            <p class="text-[13px]">Educational consulting — not legal advice.</p>
+          </div>
+          <div class="lg:col-span-2 space-y-5">
+            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Services</h4>
+            <ul class="space-y-3.5 text-[15px] font-medium">
+              <li><a href="/services/" class="hover:text-[#0F766E]">Services & pricing</a></li>
+              <li><a href="/consultation/" class="hover:text-[#0F766E]">Request a consultation</a></li>
+            </ul>
+          </div>
+          <div class="lg:col-span-2 space-y-5">
+            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Products</h4>
+            <ul class="space-y-3.5 text-[15px] font-medium">
+              <li><a href="/#products" class="hover:text-[#0F766E]">Learning Guide — $67</a></li>
+              <li><a href="/#products" class="hover:text-[#0F766E]">Accreditation Checklist — $67</a></li>
+              <li><a href="/#products" class="text-[#0F766E] font-bold hover:text-[#0B5F59]">Bundle — $99</a></li>
+              <li><a href="https://www.grow2guide.com/handbook/" class="hover:text-[#0F766E]">Parents' Handbook</a></li>
+            </ul>
+          </div>
+          <div class="lg:col-span-2 space-y-5">
+            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Company</h4>
+            <ul class="space-y-3.5 text-[15px] font-medium">
+              <li><a href="/#about" class="hover:text-[#0F766E]">About Sara Tudor</a></li>
+              <li><a href="#" data-g2g-mailto="" class="hover:text-[#0F766E]">Contact</a></li>
+            </ul>
+          </div>
+          <div class="lg:col-span-2 space-y-5">
+            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Legal</h4>
+            <ul class="space-y-3.5 text-[15px] font-medium">
+              <li><a href="/terms/" class="hover:text-[#0F766E]">Terms &amp; Conditions</a></li>
+              <li><a href="/privacy/" class="hover:text-[#0F766E]">Privacy</a></li>
+              <li><a href="/refunds/" class="hover:text-[#0F766E]">Refunds</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="pt-10 border-t border-[#0F766E]/10">
+          <p class="text-[12px] leading-relaxed max-w-2xl">© 2026 Grow2Guide. Resources are for educational purposes only and do not constitute legal advice. Licensure is not guaranteed.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+  (function () {
+    const form = document.getElementById('consult-form');
+
+    function val(name) {
+      const el = form.querySelector('[name="' + name + '"]');
+      return el ? el.value.trim() : '';
+    }
+    function checkedVal(name) {
+      const el = form.querySelector('[name="' + name + '"]:checked');
+      return el ? el.value : '';
+    }
+    function checkedList(name) {
+      return [...form.querySelectorAll('[name="' + name + '"]:checked')].map(el => el.value);
+    }
+    function clearErrors() {
+      form.querySelectorAll('.err').forEach(e => e.style.display = 'none');
+    }
+    function showError(name) {
+      const err = form.querySelector('.err[data-for="' + name + '"]');
+      if (err) err.style.display = 'block';
+    }
+
+    function validate() {
+      clearErrors();
+      let ok = true;
+      ['org-name', 'contact-name', 'contact-info', 'org-type', 'describe', 'accomplish'].forEach(name => {
+        if (!val(name)) { showError(name); ok = false; }
+      });
+      if (!val('state')) { showError('state'); ok = false; }
+      return ok;
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!validate()) {
+        form.querySelector('.err[style*="block"]')?.closest('div')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      const help = checkedList('help');
+      const helpOther = val('help-other');
+      if (helpOther) help.push('Other: ' + helpOther);
+
+      const lines = [
+        'Grow2Guide Consultation Request',
+        '',
+        '1. Organization Name: ' + val('org-name'),
+        '2. Contact Name & Title: ' + val('contact-name'),
+        '3. Email & Phone: ' + val('contact-info'),
+        '4. State: ' + val('state'),
+        '5. Type of Organization/Program: ' + val('org-type'),
+        '6. What are you looking for help with: ' + (help.length ? help.join(', ') : '(none selected)'),
+        '',
+        '7. Currently working on / challenges:',
+        val('describe'),
+        '',
+        '8. What do you currently have in place: ' + (checkedVal('in-place') || '(not answered)'),
+        '',
+        '9. Goals for consultation:',
+        val('accomplish'),
+        '',
+        '10. Deadline / timeframe: ' + (val('timeframe') || '(none)'),
+        '',
+        'Anything else: ' + (val('anything-else') || '(none)'),
+        '',
+        'Submitted from grow2guide.com/consultation/'
+      ];
+
+      const subject = encodeURIComponent('Consultation Request — ' + val('org-name'));
+      const body = encodeURIComponent(lines.join('\n'));
+      window.location.href = window.g2gMail.mailto('subject=' + subject + '&body=' + body);
+    });
+  })();
+  </script>
+</body>
+</html>

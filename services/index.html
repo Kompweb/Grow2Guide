@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../assets/logo-square.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <script src="/assets/mail-protect.js" defer></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    :root {
+      --bg-paper: #F5F8F4; --surface: #FFFFFF; --surface-soft: #EAF3EF;
+      --ink-primary: #12201C; --ink-muted: #5A6A63;
+      --accent-teal: #0F766E; --accent-teal-dark: #0B5F59; --accent-soft: #D8F0EA;
+    }
+    body { font-family: Inter, system-ui, -apple-system, sans-serif; color: var(--ink-primary); margin: 0; background: var(--bg-paper); }
+    .atmosphere-glow {
+      position: fixed; inset: 0; pointer-events: none; z-index: -1;
+      background:
+        radial-gradient(1000px 420px at 0% -10%, rgba(223,245,239,.5) 0%, transparent 55%),
+        radial-gradient(800px 360px at 100% 0%, rgba(238,242,248,.6) 0%, transparent 48%);
+    }
+    .glass-nav { background: rgba(245,248,244,.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(15,118,110,.08); }
+    .card-shadow { box-shadow: 0 16px 40px rgba(18,32,28,.08); }
+    .container-custom { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .nav-link { position: relative; }
+    .nav-link::after { content:''; position:absolute; bottom:-6px; left:0; width:0; height:2px; background:var(--accent-teal); transition:width .3s; }
+    .nav-link:hover::after { width:100%; }
+    .btn-active:active { transform: scale(0.98); }
+  </style>
+  <title>Tier 2 & Tier 3 Services — Grow2Guide</title>
+  <meta name="description" content="Tier 2 Organizational Gap Assessment and Tier 3 Become & Stay Ready infrastructure-building services from Grow2Guide." />
+  <link rel="canonical" href="https://www.grow2guide.com/services/" />
+</head>
+<body>
+  <div class="min-h-screen relative flex flex-col">
+    <div class="atmosphere-glow"></div>
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+      <div class="container-custom h-[100px] lg:h-[120px] flex items-center justify-between">
+        <div class="flex items-center gap-12 lg:gap-20">
+          <a href="/" class="flex shrink-0"><img src="../assets/logo.png" alt="Grow2Guide" class="h-[64px] lg:h-[86px] w-auto"></a>
+          <div class="hidden lg:flex items-center gap-12">
+            <a href="/#products" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Products</a>
+            <a href="/services/" class="nav-link text-[15px] font-semibold text-[#0F766E]">Services</a>
+            <a href="/#how-it-works" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">How it works</a>
+            <a href="/#about" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">About</a>
+            <a href="/handbook/" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Handbook</a>
+          </div>
+        </div>
+        <a href="#" data-g2g-mailto="" class="bg-[#0F766E] text-white px-6 lg:px-8 py-3 rounded-full text-sm font-bold shadow-md shadow-[#0F766E]/20 hover:bg-[#0B5F59] transition-all">Contact</a>
+      </div>
+    </nav>
+
+    <main class="flex-1 pt-40 pb-24">
+      <div class="container-custom max-w-3xl">
+        <nav class="flex items-center gap-2 text-sm font-medium text-[#5A6A63] mb-10">
+          <a href="/" class="hover:text-[#0F766E]">Home</a>
+          <span class="opacity-40">/</span>
+          <span class="text-[#12201C]">Services</span>
+        </nav>
+        <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Two ways to engage</span>
+        <h1 class="text-4xl lg:text-5xl font-bold tracking-tight mb-6 leading-[1.1]">Strengthen what you have, or build what you don't.</h1>
+        <p class="text-[#5A6A63] text-lg leading-[1.6]">
+          Grow2Guide offers two consulting tiers, depending on where your organization is today: evaluating what already exists, or building the infrastructure from the ground up.
+        </p>
+      </div>
+
+      <!-- Recommended Positioning -->
+      <div class="container-custom max-w-3xl mt-16">
+        <h2 class="text-sm font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-4">How engagements build</h2>
+        <p class="text-2xl font-bold text-[#12201C] mb-6 leading-tight">Sell a pathway, not a stack of hours.</p>
+        <p class="text-[#5A6A63] text-base leading-[1.6] mb-6">
+          Grow2Guide leads with fixed-fee, outcome-based packages that match where an agency is today: unsure of its gaps, preparing an application, implementing requirements, facing a survey, or trying to sustain compliance. Hourly work remains available for narrow advisory needs, but it is not the default for complex engagements.
+        </p>
+        <div class="bg-[#EAF3EF] rounded-[16px] p-6 mb-10">
+          <h3 class="text-xs font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-2">Core promise</h3>
+          <p class="text-[#12201C] font-semibold leading-relaxed">
+            Grow2Guide turns regulatory and accreditation requirements into practical policies, workflows, staff expectations, and evidence an agency can actually use.
+          </p>
+        </div>
+
+        <h3 class="text-lg font-bold text-[#12201C] mb-5">The offer ladder creates clear next steps</h3>
+        <ol class="space-y-4 mb-10">
+          <li class="flex items-start gap-4 text-[#5A6A63] leading-relaxed">
+            <span class="shrink-0 w-7 h-7 rounded-full bg-[#0F766E] text-white text-sm font-bold flex items-center justify-center">1</span>
+            <span>Enter through a paid strategy session or readiness assessment.</span>
+          </li>
+          <li class="flex items-start gap-4 text-[#5A6A63] leading-relaxed">
+            <span class="shrink-0 w-7 h-7 rounded-full bg-[#0F766E] text-white text-sm font-bold flex items-center justify-center">2</span>
+            <span>Advance into state licensing, CCBHC, DFS, CARF, or Joint Commission implementation support.</span>
+          </li>
+          <li class="flex items-start gap-4 text-[#5A6A63] leading-relaxed">
+            <span class="shrink-0 w-7 h-7 rounded-full bg-[#0F766E] text-white text-sm font-bold flex items-center justify-center">3</span>
+            <span>Add workforce orientation and survey-readiness training so requirements live beyond the binder.</span>
+          </li>
+          <li class="flex items-start gap-4 text-[#5A6A63] leading-relaxed">
+            <span class="shrink-0 w-7 h-7 rounded-full bg-[#0F766E] text-white text-sm font-bold flex items-center justify-center">4</span>
+            <span>Continue with a monthly compliance partnership to reduce drift after launch or accreditation.</span>
+          </li>
+        </ol>
+
+        <h3 class="text-lg font-bold text-[#12201C] mb-3">The differentiation is operational</h3>
+        <p class="text-[#5A6A63] text-base leading-[1.6] mb-10">
+          Grow2Guide can credibly bridge clinical services and organizational operations: policy development, compliance, quality assurance, program design, implementation, and staff learning. The Behavioral Health Policy Inventory &amp; Learning Guide adds an entry-level workforce solution that licensing and accreditation consultants do not routinely bundle.
+        </p>
+
+        <h3 class="text-lg font-bold text-[#12201C] mb-3">Pricing stance</h3>
+        <p class="text-[#5A6A63] text-base leading-[1.6]">
+          The recommended fees below are launch pricing: high enough to reflect specialized expertise, but structured below the upper end of publicly stated full-service market ranges. Every fixed fee assumes one legal entity, one primary program, and one location unless the proposal states otherwise.
+        </p>
+      </div>
+
+      <!-- TIER 2 -->
+      <div class="container-custom max-w-5xl mt-20">
+        <div class="bg-white rounded-[32px] p-10 lg:p-16 card-shadow border border-[#0F766E]/5">
+          <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Tier 2</span>
+          <h2 class="text-3xl lg:text-4xl font-bold tracking-tight mb-4 text-[#12201C]">Organizational Gap Assessment</h2>
+          <p class="text-[#0F766E] font-bold text-lg mb-8">You Have the Pieces. We'll Find What's Missing.</p>
+          <p class="text-[#5A6A63] text-base leading-[1.6] mb-3">
+            You provide your existing policies, procedures, forms, workflows, and organizational materials. <strong class="text-[#12201C]">We assess what you have—and how well it actually works in practice.</strong>
+          </p>
+          <p class="text-[#5A6A63] text-base leading-[1.6] mb-10">
+            Because being compliant on paper isn't the same as being compliant in practice.
+          </p>
+
+          <h3 class="text-sm font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-6">We Assess</h3>
+          <ul class="space-y-4 mb-10">
+            <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+              <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg shrink-0"></iconify-icon>
+              <span>What you have—and what's missing</span>
+            </li>
+            <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+              <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg shrink-0"></iconify-icon>
+              <span>Whether policies reflect day-to-day operations</span>
+            </li>
+            <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+              <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg shrink-0"></iconify-icon>
+              <span>Whether systems are actually being implemented</span>
+            </li>
+            <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+              <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg shrink-0"></iconify-icon>
+              <span>Where documentation, workflow, or compliance gaps exist</span>
+            </li>
+            <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+              <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg shrink-0"></iconify-icon>
+              <span>Potential licensing, accreditation, audit, and operational risks</span>
+            </li>
+            <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+              <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg shrink-0"></iconify-icon>
+              <span>What should be prioritized next</span>
+            </li>
+          </ul>
+
+          <p class="text-[#5A6A63] text-base leading-[1.6] mb-10">
+            Our assessments may consider applicable <strong class="text-[#12201C]">state licensing, health department requirements, adult and aging services, CARF, ASAM, The Joint Commission, regulatory audits, payer reviews,</strong> and other oversight requirements.
+          </p>
+
+          <div class="bg-[#F5F8F4] rounded-[20px] p-8 mb-10">
+            <h3 class="text-sm font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-5">What You Receive</h3>
+            <p class="text-[#5A6A63] text-base leading-[1.6] mb-5">
+              A <strong class="text-[#12201C]">customized evaluation and prioritized roadmap</strong> showing:
+            </p>
+            <p class="text-[#12201C] font-bold text-base leading-relaxed">
+              What you have &rarr; What's working &rarr; What's missing &rarr; What needs attention &rarr; What to do next
+            </p>
+          </div>
+
+          <p class="text-[#12201C] font-bold text-lg mb-2">You provide the materials. We provide the clarity.</p>
+          <p class="text-[#5A6A63] text-base leading-[1.6] mb-10">Before someone else finds the gaps—find them first.</p>
+
+          <a href="/consultation/" class="btn-active inline-flex bg-[#0F766E] text-white h-[56px] px-10 items-center justify-center rounded-full font-bold text-base shadow-lg shadow-[#0F766E]/20 hover:bg-[#0B5F59] transition-all mb-6">
+            Schedule a Consultation
+          </a>
+          <p class="text-[#5A6A63] text-sm italic leading-relaxed">
+            Assessment scope varies by organization, program, jurisdiction, and applicable requirements. An assessment does not guarantee licensure, accreditation, certification, or audit outcomes.
+          </p>
+        </div>
+      </div>
+
+      <!-- TIER 3 -->
+      <div class="container-custom max-w-5xl mt-12">
+        <div class="bg-[#EAF3EF] rounded-[32px] p-10 lg:p-16 card-shadow border border-[#0F766E]/10">
+          <span class="bg-white text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Tier 3</span>
+          <h2 class="text-3xl lg:text-4xl font-bold tracking-tight mb-4 text-[#12201C]">Become & Stay Ready</h2>
+          <p class="text-[#0F766E] font-bold text-lg mb-8">Don't Have the Infrastructure? We'll Build It—and Show You How to Use It.</p>
+          <p class="text-[#5A6A63] text-base leading-[1.6] mb-3">
+            Starting or rebuilding a behavioral health or aging-services organization requires more than policies on paper.
+          </p>
+          <p class="text-[#5A6A63] text-base leading-[1.6] mb-10">
+            <strong class="text-[#12201C]">We build the infrastructure—and help you put it into practice.</strong>
+          </p>
+
+          <h3 class="text-sm font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-6">We Build</h3>
+          <ul class="space-y-4 mb-10">
+            <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+              <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg shrink-0"></iconify-icon>
+              <span>Policies & procedures</span>
+            </li>
+            <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+              <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg shrink-0"></iconify-icon>
+              <span>Program manuals</span>
+            </li>
+            <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+              <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg shrink-0"></iconify-icon>
+              <span>Forms & documentation</span>
+            </li>
+            <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+              <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg shrink-0"></iconify-icon>
+              <span>Clinical & operational workflows</span>
+            </li>
+            <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+              <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg shrink-0"></iconify-icon>
+              <span>QA/QI systems</span>
+            </li>
+            <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+              <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg shrink-0"></iconify-icon>
+              <span>Compliance & risk-management systems</span>
+            </li>
+            <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+              <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg shrink-0"></iconify-icon>
+              <span>Staff training & competency structures</span>
+            </li>
+            <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+              <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg shrink-0"></iconify-icon>
+              <span>Audit and monitoring systems</span>
+            </li>
+          </ul>
+
+          <div class="bg-white rounded-[20px] p-8 mb-10">
+            <h3 class="text-sm font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-5">We Implement</h3>
+            <p class="text-[#5A6A63] text-base leading-[1.6] mb-4">We don't simply hand you a manual.</p>
+            <p class="text-[#5A6A63] text-base leading-[1.6]">
+              We help you <strong class="text-[#12201C]">translate policies into day-to-day practice</strong>, show your team how systems should work, establish implementation processes, and create structures for ongoing monitoring and accountability.
+            </p>
+          </div>
+
+          <p class="text-[#5A6A63] text-base leading-[1.6] mb-10">
+            Our work can support readiness for applicable <strong class="text-[#12201C]">state licensing, health department requirements, adult and aging services, CARF, ASAM, The Joint Commission, regulatory audits, payer reviews,</strong> and other oversight requirements.
+          </p>
+
+          <p class="text-[#12201C] font-bold text-lg mb-2">Become Ready. Stay Ready.</p>
+          <p class="text-[#5A6A63] text-base leading-[1.6] mb-2">Build the right systems. Know how to use them. Keep them working.</p>
+          <p class="text-[#12201C] font-bold text-base leading-[1.6] mb-10">You build the vision. We build the infrastructure.</p>
+
+          <a href="/consultation/" class="btn-active inline-flex bg-[#0F766E] text-white h-[56px] px-10 items-center justify-center rounded-full font-bold text-base shadow-lg shadow-[#0F766E]/20 hover:bg-[#0B5F59] transition-all mb-6">
+            Schedule a Consultation
+          </a>
+          <p class="text-[#5A6A63] text-sm italic leading-relaxed">
+            Services are customized based on your organization, program type, jurisdiction, and applicable requirements. Readiness support does not guarantee licensure, accreditation, certification, or audit outcomes.
+          </p>
+        </div>
+      </div>
+
+      <div class="container-custom max-w-5xl mt-8">
+        <div class="bg-[#F7FBF9] border border-[#0F766E]/10 rounded-[16px] px-6 py-5 text-sm text-[#5A6A63] leading-relaxed">
+          <span class="font-bold text-[#12201C]">Important:</span> Government, accreditor, legal, filing, background-check, inspection, technology, and travel costs are separate from Grow2Guide professional fees.
+        </div>
+      </div>
+
+      <!-- Full Fee Schedule -->
+      <div class="container-custom max-w-3xl mt-24 mb-14">
+        <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Detailed fee schedule</span>
+        <h2 class="text-3xl lg:text-4xl font-bold tracking-tight text-[#12201C] mb-4">Every package, in full</h2>
+        <p class="text-[#5A6A63] text-lg leading-[1.6]">Fixed fees assume one legal entity, one primary program, and one location unless a proposal states otherwise. State submission, accreditor, and approval timelines are outside Grow2Guide's control.</p>
+      </div>
+
+      <!-- Service Track 01 -->
+      <div class="container-custom max-w-5xl mb-16">
+        <div class="mb-8">
+          <span class="text-[11px] font-bold text-[#0F766E] tracking-[0.06em] uppercase">Service Track 01</span>
+          <h3 class="text-2xl font-bold text-[#12201C] mt-2">State licensing packages protect scope as complexity grows</h3>
+        </div>
+        <div class="space-y-6">
+          <div class="bg-[#EAF3EF] rounded-[20px] p-8 lg:p-10 border border-[#0F766E]/10">
+            <div class="flex flex-wrap items-baseline justify-between gap-3 mb-2">
+              <h4 class="text-xl font-bold text-[#12201C]">Licensing Readiness Assessment</h4>
+              <span class="text-lg font-bold text-[#0F766E]">$2,750</span>
+            </div>
+            <p class="text-[#5A6A63] text-sm mb-5"><strong class="text-[#12201C]">Best for:</strong> Founders or operators who need a clear path before committing to full implementation.</p>
+            <p class="text-xs font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-3">Includes</p>
+            <ul class="space-y-2 mb-5 text-[#5A6A63] text-sm">
+              <li>&bull; Kickoff and target-license clarification</li>
+              <li>&bull; Review of available application materials, policies, staffing model, and program description</li>
+              <li>&bull; Gap matrix with critical, high, and medium priorities</li>
+              <li>&bull; 90-day implementation roadmap</li>
+              <li>&bull; 60-minute findings review</li>
+            </ul>
+            <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Typical timeline:</strong> 2–3 weeks</p>
+            <p class="text-[#5A6A63] text-sm italic"><strong class="text-[#12201C] not-italic">Scope note:</strong> Virtual; one program and one location. This is advisory and does not include application drafting or policy creation.</p>
+          </div>
+
+          <div class="bg-white rounded-[20px] p-8 lg:p-10 border border-[#0F766E]/5 card-shadow">
+            <div class="flex flex-wrap items-baseline justify-between gap-3 mb-2">
+              <h4 class="text-xl font-bold text-[#12201C]">Nevada License Ready</h4>
+              <span class="text-lg font-bold text-[#0F766E]">$15,000–$30,000</span>
+            </div>
+            <p class="text-[#5A6A63] text-sm mb-5"><strong class="text-[#12201C]">Best for:</strong> Nevada behavioral health agencies pursuing a new license, adding a service, or preparing for a licensing inspection.</p>
+            <p class="text-xs font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-3">Includes</p>
+            <ul class="space-y-2 mb-5 text-[#5A6A63] text-sm">
+              <li>&bull; Requirements map for the identified Nevada license type</li>
+              <li>&bull; Application document checklist and project tracker</li>
+              <li>&bull; Policy and procedure alignment for the agreed scope</li>
+              <li>&bull; Program narrative and operational workflow review</li>
+              <li>&bull; Staffing, credential, training, and personnel-file readiness guidance</li>
+              <li>&bull; Inspection-readiness review and one corrective-action cycle</li>
+              <li>&bull; Standing implementation calls during the engagement</li>
+            </ul>
+            <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Typical timeline:</strong> 12–24 weeks, depending on readiness and agency timelines</p>
+            <p class="text-[#5A6A63] text-sm italic"><strong class="text-[#12201C] not-italic">Scope note:</strong> Final fee depends on license type, service model, number of documents, location count, and starting readiness.</p>
+          </div>
+
+          <div class="bg-[#EAF3EF] rounded-[20px] p-8 lg:p-10 border border-[#0F766E]/10">
+            <div class="flex flex-wrap items-baseline justify-between gap-3 mb-2">
+              <h4 class="text-xl font-bold text-[#12201C]">Multistate Licensing Roadmap</h4>
+              <span class="text-lg font-bold text-[#0F766E]">from $5,000/state</span>
+            </div>
+            <p class="text-[#5A6A63] text-sm mb-5"><strong class="text-[#12201C]">Best for:</strong> Established operators considering expansion beyond Nevada.</p>
+            <p class="text-xs font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-3">Includes</p>
+            <ul class="space-y-2 mb-5 text-[#5A6A63] text-sm">
+              <li>&bull; State-specific research and regulator pathway map</li>
+              <li>&bull; Crosswalk against the current operating model</li>
+              <li>&bull; Licensing risk, dependency, and sequencing memo</li>
+              <li>&bull; Budget and implementation recommendation</li>
+              <li>&bull; Go/no-go decision session</li>
+            </ul>
+            <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Typical timeline:</strong> 3–5 weeks per state</p>
+            <p class="text-[#5A6A63] text-sm italic"><strong class="text-[#12201C] not-italic">Scope note:</strong> Roadmap only. Full application and implementation work is quoted after the state-specific review.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Service Track 02 -->
+      <div class="container-custom max-w-5xl mb-16">
+        <div class="mb-8">
+          <span class="text-[11px] font-bold text-[#0F766E] tracking-[0.06em] uppercase">Service Track 02</span>
+          <h3 class="text-2xl font-bold text-[#12201C] mt-2">CCBHC and DFS work require separate, state-specific scopes</h3>
+          <p class="text-[#5A6A63] text-sm mt-3 leading-relaxed">Certified Community Behavioral Health Clinic (CCBHC) certification readiness and Nevada Division of Child and Family Services (DFS) licensing are distinct from general facility licensing. Each engagement begins with discovery to confirm the governing pathway, responsible authority, program type, population, funding context, and current requirements.</p>
+        </div>
+        <div class="space-y-6">
+          <div class="bg-[#EAF3EF] rounded-[20px] p-8 lg:p-10 border border-[#0F766E]/10">
+            <div class="flex flex-wrap items-baseline justify-between gap-3 mb-2">
+              <h4 class="text-xl font-bold text-[#12201C]">CCBHC Certification Readiness</h4>
+              <span class="text-lg font-bold text-[#0F766E]">$18,000–$40,000</span>
+            </div>
+            <p class="text-[#5A6A63] text-sm mb-5"><strong class="text-[#12201C]">Best for:</strong> Community behavioral health providers preparing for state certification or strengthening readiness against current federal criteria.</p>
+            <p class="text-xs font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-3">Includes</p>
+            <ul class="space-y-2 mb-5 text-[#5A6A63] text-sm">
+              <li>&bull; Readiness crosswalk against current Substance Abuse and Mental Health Services Administration criteria and applicable state requirements</li>
+              <li>&bull; Review across staffing, access, care coordination, scope of services, quality reporting, and governance</li>
+              <li>&bull; Needs-assessment and service-delivery workflow guidance</li>
+              <li>&bull; Policy, evidence, data, and partnership-gap plan</li>
+              <li>&bull; Implementation coaching and leadership check-ins</li>
+              <li>&bull; Final readiness review</li>
+            </ul>
+            <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Typical timeline:</strong> 4–9 months</p>
+            <p class="text-[#5A6A63] text-sm italic"><strong class="text-[#12201C] not-italic">Scope note:</strong> State certification pathways and deadlines vary. Data-system builds, grant writing, actuarial work, and legal review are separately scoped.</p>
+          </div>
+
+          <div class="bg-white rounded-[20px] p-8 lg:p-10 border border-[#0F766E]/5 card-shadow">
+            <div class="flex flex-wrap items-baseline justify-between gap-3 mb-2">
+              <h4 class="text-xl font-bold text-[#12201C]">Nevada DFS License Ready</h4>
+              <span class="text-lg font-bold text-[#0F766E]">$20,000–$40,000</span>
+            </div>
+            <p class="text-[#5A6A63] text-sm mb-5"><strong class="text-[#12201C]">Best for:</strong> Children's behavioral health, residential, or child-serving programs pursuing the applicable Nevada pathway.</p>
+            <p class="text-xs font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-3">Includes</p>
+            <ul class="space-y-2 mb-5 text-[#5A6A63] text-sm">
+              <li>&bull; Program-type and licensing-pathway confirmation</li>
+              <li>&bull; Requirements matrix and application tracker</li>
+              <li>&bull; Policy, staffing, training, safety, incident, and quality-system review</li>
+              <li>&bull; Child- and family-centered workflow alignment</li>
+              <li>&bull; Facility and inspection-readiness coordination checklist</li>
+              <li>&bull; Mock interview or inspection-preparation session</li>
+              <li>&bull; One corrective-action review cycle</li>
+            </ul>
+            <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Typical timeline:</strong> 16–28 weeks, depending on program and authority timelines</p>
+            <p class="text-[#5A6A63] text-sm italic"><strong class="text-[#12201C] not-italic">Scope note:</strong> Requirements vary by program model and licensing authority. Facility design, fire, zoning, construction, legal, and clinical credential determinations remain with the appropriate professionals and agencies.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Service Track 03 -->
+      <div class="container-custom max-w-5xl mb-16">
+        <div class="mb-8">
+          <span class="text-[11px] font-bold text-[#0F766E] tracking-[0.06em] uppercase">Service Track 03</span>
+          <h3 class="text-2xl font-bold text-[#12201C] mt-2">CARF and Joint Commission should be sold as different levels of work</h3>
+        </div>
+        <div class="space-y-6">
+          <div class="bg-[#EAF3EF] rounded-[20px] p-8 lg:p-10 border border-[#0F766E]/10">
+            <div class="flex flex-wrap items-baseline justify-between gap-3 mb-2">
+              <h4 class="text-xl font-bold text-[#12201C]">CARF Readiness Partnership</h4>
+              <span class="text-lg font-bold text-[#0F766E]">$15,000–$28,000</span>
+            </div>
+            <p class="text-[#5A6A63] text-sm mb-5"><strong class="text-[#12201C]">Best for:</strong> Organizations pursuing initial CARF accreditation or preparing for reaccreditation.</p>
+            <p class="text-xs font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-3">Includes</p>
+            <ul class="space-y-2 mb-5 text-[#5A6A63] text-sm">
+              <li>&bull; Standards-based gap assessment</li>
+              <li>&bull; Policy, plan, and evidence crosswalk</li>
+              <li>&bull; Performance measurement and quality-improvement guidance</li>
+              <li>&bull; Implementation work plan with recurring check-ins</li>
+              <li>&bull; Staff readiness and interview preparation</li>
+              <li>&bull; One virtual mock survey</li>
+              <li>&bull; Final priority list before survey</li>
+            </ul>
+            <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Typical timeline:</strong> 4–8 months</p>
+            <p class="text-[#5A6A63] text-sm italic"><strong class="text-[#12201C] not-italic">Scope note:</strong> One program and one location. Additional programs, sites, policy creation, onsite work, or accelerated timelines are priced separately.</p>
+          </div>
+
+          <div class="bg-white rounded-[20px] p-8 lg:p-10 border border-[#0F766E]/5 card-shadow">
+            <div class="flex flex-wrap items-baseline justify-between gap-3 mb-2">
+              <h4 class="text-xl font-bold text-[#12201C]">Joint Commission Readiness Partnership</h4>
+              <span class="text-lg font-bold text-[#0F766E]">$30,000–$55,000</span>
+            </div>
+            <p class="text-[#5A6A63] text-sm mb-5"><strong class="text-[#12201C]">Best for:</strong> Behavioral health organizations preparing for initial accreditation or rebuilding readiness after significant findings.</p>
+            <p class="text-xs font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-3">Includes</p>
+            <ul class="space-y-2 mb-5 text-[#5A6A63] text-sm">
+              <li>&bull; Comprehensive standards and evidence gap assessment</li>
+              <li>&bull; Policy and workflow alignment across the agreed chapters</li>
+              <li>&bull; Clinical documentation, human resources, quality, safety, and leadership readiness review</li>
+              <li>&bull; Implementation coaching with executive accountability</li>
+              <li>&bull; Staff interview practice and tracer preparation</li>
+              <li>&bull; Two mock-survey checkpoints</li>
+              <li>&bull; Final survey-readiness briefing</li>
+            </ul>
+            <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Typical timeline:</strong> 6–12 months</p>
+            <p class="text-[#5A6A63] text-sm italic"><strong class="text-[#12201C] not-italic">Scope note:</strong> One program and one location. Environment-of-care specialists, architectural review, life-safety engineering, legal advice, and accreditor fees are not included.</p>
+          </div>
+
+          <div class="bg-[#EAF3EF] rounded-[20px] p-8 lg:p-10 border border-[#0F766E]/10">
+            <div class="flex flex-wrap items-baseline justify-between gap-3 mb-2">
+              <h4 class="text-xl font-bold text-[#12201C]">Mock Survey &amp; Corrective Action Sprint</h4>
+              <span class="text-lg font-bold text-[#0F766E]">Virtual $3,500 &middot; Onsite $6,500 + travel</span>
+            </div>
+            <p class="text-[#5A6A63] text-sm mb-5"><strong class="text-[#12201C]">Best for:</strong> Agencies with an inspection or survey approaching and a functioning compliance foundation.</p>
+            <p class="text-xs font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-3">Includes</p>
+            <ul class="space-y-2 mb-5 text-[#5A6A63] text-sm">
+              <li>&bull; Pre-review of priority documents</li>
+              <li>&bull; Survey-style interviews and evidence sampling</li>
+              <li>&bull; Findings ranked by risk and urgency</li>
+              <li>&bull; Written corrective-action roadmap</li>
+              <li>&bull; 90-minute leadership debrief</li>
+              <li>&bull; One follow-up review within 30 days</li>
+            </ul>
+            <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Typical timeline:</strong> 2–4 weeks</p>
+            <p class="text-[#5A6A63] text-sm italic"><strong class="text-[#12201C] not-italic">Scope note:</strong> Up to one location and three programs; not a substitute for comprehensive readiness work.</p>
+          </div>
+
+          <div class="bg-[#F7FBF9] border border-[#0F766E]/10 rounded-[16px] px-6 py-6">
+            <h4 class="text-sm font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-4">Useful add-ons</h4>
+            <ul class="space-y-2 text-[#5A6A63] text-sm">
+              <li>&bull; Policy creation or major rewrite: scoped at $175/hour or quoted by deliverable.</li>
+              <li>&bull; Additional location: from $3,500 for virtual review; onsite quoted with travel.</li>
+              <li>&bull; Accelerated timeline: 20%–30% premium when capacity allows.</li>
+              <li>&bull; Post-survey corrective action or Evidence of Standards Compliance support: from $4,500.</li>
+              <li>&bull; Survey-day remote advisory availability: $2,000 per day.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Service Track 04 -->
+      <div class="container-custom max-w-5xl mb-16">
+        <div class="mb-8">
+          <span class="text-[11px] font-bold text-[#0F766E] tracking-[0.06em] uppercase">Service Track 04</span>
+          <h3 class="text-2xl font-bold text-[#12201C] mt-2">Workforce learning makes Grow2Guide harder to compare</h3>
+          <p class="text-[#5A6A63] text-sm mt-3 leading-relaxed">The Behavioral Health Policy Inventory &amp; Learning Guide introduces entry-level employees, students, direct-care staff, and emerging leaders to the policies, systems, and operational functions behind behavioral health services. It can stand alone or reinforce a licensing or accreditation engagement.</p>
+        </div>
+        <div class="space-y-6">
+          <div class="bg-[#EAF3EF] rounded-[20px] p-8 lg:p-10 border border-[#0F766E]/10">
+            <div class="flex flex-wrap items-baseline justify-between gap-3 mb-2">
+              <h4 class="text-xl font-bold text-[#12201C]">Individual Learning Guide</h4>
+              <span class="text-lg font-bold text-[#0F766E]">$149 per user</span>
+            </div>
+            <p class="text-[#5A6A63] text-sm mb-5"><strong class="text-[#12201C]">Best for:</strong> Individuals building foundational knowledge of behavioral health operations.</p>
+            <p class="text-xs font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-3">Includes</p>
+            <ul class="space-y-2 mb-5 text-[#5A6A63] text-sm">
+              <li>&bull; Digital access to the guide</li>
+              <li>&bull; Self-paced learning structure</li>
+              <li>&bull; Policy inventory spanning core operational categories</li>
+            </ul>
+            <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Typical timeline:</strong> Self-paced</p>
+            <p class="text-[#5A6A63] text-sm italic"><strong class="text-[#12201C] not-italic">Scope note:</strong> Educational resource; not legal advice, certification, or a substitute for employer-specific training.</p>
+          </div>
+
+          <div class="bg-white rounded-[20px] p-8 lg:p-10 border border-[#0F766E]/5 card-shadow">
+            <div class="flex flex-wrap items-baseline justify-between gap-3 mb-2">
+              <h4 class="text-xl font-bold text-[#12201C]">Agency Learning License</h4>
+              <span class="text-lg font-bold text-[#0F766E]">$1,250–$2,750</span>
+            </div>
+            <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Best for:</strong> Agencies strengthening onboarding, leadership development, or cross-department understanding.</p>
+            <p class="text-[#5A6A63] text-sm mb-5">Up to 10 users: $1,250 &middot; Up to 25 users: $2,750 &middot; 26+ users: custom</p>
+            <p class="text-xs font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-3">Includes</p>
+            <ul class="space-y-2 mb-5 text-[#5A6A63] text-sm">
+              <li>&bull; Defined organizational-use license</li>
+              <li>&bull; Guide access for the purchased user tier</li>
+              <li>&bull; Manager implementation checklist</li>
+              <li>&bull; 60-minute virtual kickoff for 10+ users</li>
+            </ul>
+            <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Typical timeline:</strong> Launch within 2 weeks</p>
+            <p class="text-[#5A6A63] text-sm italic"><strong class="text-[#12201C] not-italic">Scope note:</strong> Final license terms should specify access duration, permitted copying, updates, and replacement-user rules.</p>
+          </div>
+
+          <div class="bg-[#EAF3EF] rounded-[20px] p-8 lg:p-10 border border-[#0F766E]/10">
+            <div class="flex flex-wrap items-baseline justify-between gap-3 mb-2">
+              <h4 class="text-xl font-bold text-[#12201C]">New Hire Foundations Workshop</h4>
+              <span class="text-lg font-bold text-[#0F766E]">Virtual $1,500 &middot; Onsite $2,500 + travel</span>
+            </div>
+            <p class="text-[#5A6A63] text-sm mb-5"><strong class="text-[#12201C]">Best for:</strong> Teams that want facilitated orientation rather than self-study alone.</p>
+            <p class="text-xs font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-3">Includes</p>
+            <ul class="space-y-2 mb-5 text-[#5A6A63] text-sm">
+              <li>&bull; Two-hour interactive session</li>
+              <li>&bull; How policies, procedures, and forms work together</li>
+              <li>&bull; How departments support quality, safety, and compliance</li>
+              <li>&bull; Practical scenarios and questions</li>
+              <li>&bull; Facilitator materials and attendance record</li>
+            </ul>
+            <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Typical timeline:</strong> 2–4 weeks from booking</p>
+            <p class="text-[#5A6A63] text-sm italic"><strong class="text-[#12201C] not-italic">Scope note:</strong> Up to 25 participants; employer-specific policy training remains the agency's responsibility.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Service Track 05 -->
+      <div class="container-custom max-w-5xl mb-16">
+        <div class="mb-8">
+          <span class="text-[11px] font-bold text-[#0F766E] tracking-[0.06em] uppercase">Service Track 05</span>
+          <h3 class="text-2xl font-bold text-[#12201C] mt-2">Ongoing compliance turns readiness into a management habit</h3>
+        </div>
+        <div class="space-y-6">
+          <div class="bg-[#EAF3EF] rounded-[20px] p-8 lg:p-10 border border-[#0F766E]/10">
+            <div class="flex flex-wrap items-baseline justify-between gap-3 mb-2">
+              <h4 class="text-xl font-bold text-[#12201C]">Compliance Partner — Core</h4>
+              <span class="text-lg font-bold text-[#0F766E]">$2,500/month</span>
+            </div>
+            <p class="text-[#5A6A63] text-sm mb-5"><strong class="text-[#12201C]">Best for:</strong> Single-site agencies needing structured support after licensure or accreditation.</p>
+            <p class="text-xs font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-3">Includes</p>
+            <ul class="space-y-2 mb-5 text-[#5A6A63] text-sm">
+              <li>&bull; Two consulting hours or one working session each month</li>
+              <li>&bull; Quarterly policy-priority review</li>
+              <li>&bull; Monthly compliance dashboard review</li>
+              <li>&bull; Email guidance with two-business-day target response</li>
+              <li>&bull; Quarterly leadership summary</li>
+            </ul>
+            <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Typical timeline:</strong> 6-month minimum</p>
+            <p class="text-[#5A6A63] text-sm italic"><strong class="text-[#12201C] not-italic">Scope note:</strong> Unused hours do not roll over. Audits, policy creation, applications, and survey support are separate projects.</p>
+          </div>
+
+          <div class="bg-white rounded-[20px] p-8 lg:p-10 border border-[#0F766E]/5 card-shadow">
+            <div class="flex flex-wrap items-baseline justify-between gap-3 mb-2">
+              <h4 class="text-xl font-bold text-[#12201C]">Compliance Partner — Growth</h4>
+              <span class="text-lg font-bold text-[#0F766E]">$4,500/month</span>
+            </div>
+            <p class="text-[#5A6A63] text-sm mb-5"><strong class="text-[#12201C]">Best for:</strong> Growing or multi-program agencies that need more active quality and compliance support.</p>
+            <p class="text-xs font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-3">Includes</p>
+            <ul class="space-y-2 mb-5 text-[#5A6A63] text-sm">
+              <li>&bull; Up to six consulting hours per month</li>
+              <li>&bull; Monthly risk and corrective-action review</li>
+              <li>&bull; Quarterly focused audit</li>
+              <li>&bull; Policy-calendar and training-matrix oversight</li>
+              <li>&bull; Leadership coaching and implementation accountability</li>
+              <li>&bull; Priority scheduling</li>
+            </ul>
+            <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Typical timeline:</strong> 6-month minimum</p>
+            <p class="text-[#5A6A63] text-sm italic"><strong class="text-[#12201C] not-italic">Scope note:</strong> One legal entity and up to two programs. Additional locations, chart volume, or audit depth require a custom scope.</p>
+          </div>
+
+          <div class="bg-[#EAF3EF] rounded-[20px] p-8 lg:p-10 border border-[#0F766E]/10">
+            <div class="flex flex-wrap items-baseline justify-between gap-3 mb-2">
+              <h4 class="text-xl font-bold text-[#12201C]">Fractional Quality &amp; Compliance Lead</h4>
+              <span class="text-lg font-bold text-[#0F766E]">from $8,500/month</span>
+            </div>
+            <p class="text-[#5A6A63] text-sm mb-5"><strong class="text-[#12201C]">Best for:</strong> Agencies without a senior internal compliance leader or those navigating rapid growth.</p>
+            <p class="text-xs font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-3">Includes</p>
+            <ul class="space-y-2 mb-5 text-[#5A6A63] text-sm">
+              <li>&bull; Defined fractional leadership cadence</li>
+              <li>&bull; Compliance work plan and executive reporting</li>
+              <li>&bull; Policy governance and version-control oversight</li>
+              <li>&bull; Incident, grievance, audit, and quality-trend review</li>
+              <li>&bull; Committee facilitation and leadership advising</li>
+              <li>&bull; Readiness planning across licensing and accreditation obligations</li>
+            </ul>
+            <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Typical timeline:</strong> 6–12 month minimum</p>
+            <p class="text-[#5A6A63] text-sm italic"><strong class="text-[#12201C] not-italic">Scope note:</strong> Not an employee role, legal counsel, or 24/7 on-call service. Authority and responsibilities must be defined in the agreement.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Client Experience -->
+      <div class="container-custom max-w-3xl mb-8">
+        <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Client experience</span>
+        <h2 class="text-3xl lg:text-4xl font-bold tracking-tight text-[#12201C]">A seven-stage process makes complex work manageable</h2>
+      </div>
+      <div class="container-custom max-w-3xl mb-24">
+        <div class="space-y-4">
+          <div class="flex gap-5 bg-white rounded-[16px] p-6 card-shadow border border-[#0F766E]/5">
+            <span class="shrink-0 w-9 h-9 rounded-full bg-[#0F766E] text-white text-sm font-bold flex items-center justify-center">1</span>
+            <div><p class="font-bold text-[#12201C] mb-1">Fit check</p><p class="text-[#5A6A63] text-sm leading-relaxed">A 20-minute call confirms the program, target authority, stage, timeline, decision-makers, and immediate risks. The call does not provide detailed regulatory advice.</p></div>
+          </div>
+          <div class="flex gap-5 bg-white rounded-[16px] p-6 card-shadow border border-[#0F766E]/5">
+            <span class="shrink-0 w-9 h-9 rounded-full bg-[#0F766E] text-white text-sm font-bold flex items-center justify-center">2</span>
+            <div><p class="font-bold text-[#12201C] mb-1">Paid discovery</p><p class="text-[#5A6A63] text-sm leading-relaxed">The Strategy Intensive or Readiness Assessment establishes the right pathway when scope is unclear.</p></div>
+          </div>
+          <div class="flex gap-5 bg-white rounded-[16px] p-6 card-shadow border border-[#0F766E]/5">
+            <span class="shrink-0 w-9 h-9 rounded-full bg-[#0F766E] text-white text-sm font-bold flex items-center justify-center">3</span>
+            <div><p class="font-bold text-[#12201C] mb-1">Scope and agreement</p><p class="text-[#5A6A63] text-sm leading-relaxed">Grow2Guide defines outcomes, deliverables, assumptions, exclusions, timeline, client responsibilities, milestones, and fee.</p></div>
+          </div>
+          <div class="flex gap-5 bg-white rounded-[16px] p-6 card-shadow border border-[#0F766E]/5">
+            <span class="shrink-0 w-9 h-9 rounded-full bg-[#0F766E] text-white text-sm font-bold flex items-center justify-center">4</span>
+            <div><p class="font-bold text-[#12201C] mb-1">Secure onboarding</p><p class="text-[#5A6A63] text-sm leading-relaxed">The client names a project lead, provides requested materials, grants approved access, and confirms meeting cadence.</p></div>
+          </div>
+          <div class="flex gap-5 bg-white rounded-[16px] p-6 card-shadow border border-[#0F766E]/5">
+            <span class="shrink-0 w-9 h-9 rounded-full bg-[#0F766E] text-white text-sm font-bold flex items-center justify-center">5</span>
+            <div><p class="font-bold text-[#12201C] mb-1">Assessment and roadmap</p><p class="text-[#5A6A63] text-sm leading-relaxed">Requirements are mapped to current documents, workflows, staffing, evidence, and operational practice. Priorities are ranked by risk and dependency.</p></div>
+          </div>
+          <div class="flex gap-5 bg-white rounded-[16px] p-6 card-shadow border border-[#0F766E]/5">
+            <span class="shrink-0 w-9 h-9 rounded-full bg-[#0F766E] text-white text-sm font-bold flex items-center justify-center">6</span>
+            <div><p class="font-bold text-[#12201C] mb-1">Build and implement</p><p class="text-[#5A6A63] text-sm leading-relaxed">Grow2Guide drafts or refines agreed materials, coaches leaders, tracks decisions, and tests whether policies are being used in practice.</p></div>
+          </div>
+          <div class="flex gap-5 bg-white rounded-[16px] p-6 card-shadow border border-[#0F766E]/5">
+            <span class="shrink-0 w-9 h-9 rounded-full bg-[#0F766E] text-white text-sm font-bold flex items-center justify-center">7</span>
+            <div><p class="font-bold text-[#12201C] mb-1">Readiness and closeout</p><p class="text-[#5A6A63] text-sm leading-relaxed">A mock review, findings debrief, and sustainability plan identify remaining ownership, deadlines, and recommended ongoing support.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Commercial Guardrails -->
+      <div class="container-custom max-w-3xl mb-10">
+        <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Commercial guardrails</span>
+        <h2 class="text-3xl lg:text-4xl font-bold tracking-tight text-[#12201C] mb-10">Clear terms protect the client and Grow2Guide</h2>
+
+        <h3 class="text-lg font-bold text-[#12201C] mb-5">Recommended payment structure</h3>
+        <ul class="space-y-3 mb-10 text-[#5A6A63] leading-relaxed">
+          <li class="flex items-start gap-3"><span class="mt-2.5 w-1.5 h-1.5 rounded-full bg-[#0F766E] shrink-0"></span><span>Projects under $5,000: payment in full to schedule.</span></li>
+          <li class="flex items-start gap-3"><span class="mt-2.5 w-1.5 h-1.5 rounded-full bg-[#0F766E] shrink-0"></span><span>Projects from $5,000 to $15,000: 50% at signing, 50% at midpoint or delivery.</span></li>
+          <li class="flex items-start gap-3"><span class="mt-2.5 w-1.5 h-1.5 rounded-full bg-[#0F766E] shrink-0"></span><span>Projects over $15,000: 40% at signing, 30% at midpoint, 30% before final readiness review.</span></li>
+          <li class="flex items-start gap-3"><span class="mt-2.5 w-1.5 h-1.5 rounded-full bg-[#0F766E] shrink-0"></span><span>Retainers: billed monthly in advance by automatic payment.</span></li>
+          <li class="flex items-start gap-3"><span class="mt-2.5 w-1.5 h-1.5 rounded-full bg-[#0F766E] shrink-0"></span><span>Onsite work: travel estimate approved and paid before booking.</span></li>
+        </ul>
+
+        <h3 class="text-lg font-bold text-[#12201C] mb-5">Standard boundaries</h3>
+        <ul class="space-y-3 mb-10 text-[#5A6A63] leading-relaxed">
+          <li class="flex items-start gap-3"><span class="mt-2.5 w-1.5 h-1.5 rounded-full bg-[#0F766E] shrink-0"></span><span>Client delays extend the timeline; expedited catch-up work may require a change order.</span></li>
+          <li class="flex items-start gap-3"><span class="mt-2.5 w-1.5 h-1.5 rounded-full bg-[#0F766E] shrink-0"></span><span>One consolidated client review round is included per major deliverable unless otherwise stated.</span></li>
+          <li class="flex items-start gap-3"><span class="mt-2.5 w-1.5 h-1.5 rounded-full bg-[#0F766E] shrink-0"></span><span>New locations, programs, service lines, applications, or authorities require written rescoping.</span></li>
+          <li class="flex items-start gap-3"><span class="mt-2.5 w-1.5 h-1.5 rounded-full bg-[#0F766E] shrink-0"></span><span>Grow2Guide provides consulting and implementation support, not legal advice or representation.</span></li>
+          <li class="flex items-start gap-3"><span class="mt-2.5 w-1.5 h-1.5 rounded-full bg-[#0F766E] shrink-0"></span><span>Licensure, certification, and accreditation decisions belong solely to the responsible authority; no outcome is guaranteed.</span></li>
+          <li class="flex items-start gap-3"><span class="mt-2.5 w-1.5 h-1.5 rounded-full bg-[#0F766E] shrink-0"></span><span>The client remains responsible for factual accuracy, approvals, implementation, staffing, training, and operating compliance.</span></li>
+          <li class="flex items-start gap-3"><span class="mt-2.5 w-1.5 h-1.5 rounded-full bg-[#0F766E] shrink-0"></span><span>Current standards and state instructions should be confirmed at kickoff and before submission.</span></li>
+        </ul>
+
+        <div class="bg-[#F7FBF9] border border-[#0F766E]/10 rounded-[16px] px-6 py-6 mb-6">
+          <h4 class="text-xs font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-3">Investment statement</h4>
+          <p class="text-[#5A6A63] text-sm leading-relaxed">Your investment is based on the agreed scope, current readiness, number of programs and locations, document volume, and target timeline. If discovery reveals a material change in scope, Grow2Guide will pause, explain the impact, and obtain written approval before additional work begins.</p>
+        </div>
+        <div class="bg-[#EAF3EF] rounded-[16px] px-6 py-6">
+          <h4 class="text-xs font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-3">Outcome statement</h4>
+          <p class="text-[#5A6A63] text-sm leading-relaxed">Grow2Guide will provide practical guidance, deliverables, and readiness support aligned to the agreed requirements. Because regulators and accreditors retain independent decision-making authority, Grow2Guide cannot promise a license, certification, accreditation decision, or survey result.</p>
+        </div>
+      </div>
+
+      <div class="container-custom max-w-3xl mt-16 text-center">
+        <p class="text-[#5A6A63] text-lg mb-3">Not sure which tier fits?</p>
+        <p class="text-[#12201C] font-bold text-xl mb-10">Start with where you are. We'll help you figure out what's next.</p>
+        <a href="#" data-g2g-mailto="subject=Grow2Guide%20services%20inquiry" class="btn-active inline-flex bg-white border border-[#0F766E]/30 text-[#0F766E] h-[56px] px-10 items-center justify-center rounded-full font-bold text-base hover:bg-[#D8F0EA] transition-all">
+          Email <span data-g2g-email-text></span>
+        </a>
+      </div>
+    </main>
+
+    <footer class="bg-[#EAF3EF] text-[#5A6A63] py-24 border-t border-[#0F766E]/10">
+      <div class="container-custom">
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 mb-16">
+          <div class="lg:col-span-4 space-y-6">
+            <a href="/" class="inline-block"><img src="../assets/logo.png" alt="Grow2Guide" class="h-[86px] w-auto"></a>
+            <p class="text-[15px] leading-relaxed max-w-sm">Nevada-first licensing, accreditation readiness, compliance, and workforce learning — practical systems that hold up.</p>
+            <a href="#" data-g2g-mailto="" data-g2g-email-text class="block font-semibold text-[#0F766E] hover:text-[#0B5F59]"></a>
+            <p class="text-[13px]">Educational consulting — not legal advice.</p>
+          </div>
+          <div class="lg:col-span-2 space-y-5">
+            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Services</h4>
+            <ul class="space-y-3.5 text-[15px] font-medium">
+              <li><a href="/services/" class="hover:text-[#0F766E]">Services & pricing</a></li>
+              <li><a href="/services/" class="hover:text-[#0F766E]">Tier 2 · Already have something</a></li>
+              <li><a href="/services/" class="hover:text-[#0F766E]">Tier 3 · Build it with you</a></li>
+              <li><a href="/#how-it-works" class="hover:text-[#0F766E]">How it works</a></li>
+            </ul>
+          </div>
+          <div class="lg:col-span-2 space-y-5">
+            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Products</h4>
+            <ul class="space-y-3.5 text-[15px] font-medium">
+              <li><a href="/#products" class="hover:text-[#0F766E]">Learning Guide — $67</a></li>
+              <li><a href="/#products" class="hover:text-[#0F766E]">Accreditation Checklist — $67</a></li>
+              <li><a href="/#products" class="text-[#0F766E] font-bold hover:text-[#0B5F59]">Bundle — $99</a></li>
+              <li><a href="https://www.grow2guide.com/handbook/" class="hover:text-[#0F766E]">Parents' Handbook</a></li>
+            </ul>
+          </div>
+          <div class="lg:col-span-2 space-y-5">
+            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Company</h4>
+            <ul class="space-y-3.5 text-[15px] font-medium">
+              <li><a href="/#about" class="hover:text-[#0F766E]">About Sara Tudor</a></li>
+              <li><a href="#" data-g2g-mailto="" class="hover:text-[#0F766E]">Contact</a></li>
+            </ul>
+          </div>
+          <div class="lg:col-span-2 space-y-5">
+            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Legal</h4>
+            <ul class="space-y-3.5 text-[15px] font-medium">
+              <li><a href="/terms/" class="hover:text-[#0F766E]">Terms &amp; Conditions</a></li>
+              <li><a href="/privacy/" class="hover:text-[#0F766E]">Privacy</a></li>
+              <li><a href="/refunds/" class="hover:text-[#0F766E]">Refunds</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="pt-10 border-t border-[#0F766E]/10">
+          <p class="text-[12px] leading-relaxed max-w-2xl">© 2026 Grow2Guide. Resources are for educational purposes only and do not constitute legal advice. Licensure is not guaranteed.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

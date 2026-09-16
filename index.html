@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Grow2Guide — From first-day staff to survey-ready systems</title>
+  <title>Grow2Guide — Practical resources. Real-world consulting.</title>
   <meta name="view-transition" content="same-origin">
   <link rel="icon" href="assets/logo-square.png" />
-  <meta name="description" content="Nevada-first behavioral health consulting, clinical mentoring, and digital learning programs from Sara Tudor, LMSW, CSW-I, CADC-I." />
+  <meta name="description" content="Grow2Guide offers practical resources and real-world consulting for behavioral health professionals and organizations — whether you need a guide, need to strengthen what you have, or need someone to build it with you." />
   <meta name="theme-color" content="#0F766E" />
   <link rel="canonical" href="https://www.grow2guide.com/" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <script src="/assets/mail-protect.js" defer></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
@@ -40,7 +41,7 @@
       height: 100%;
       pointer-events: none;
       z-index: -1;
-      background: 
+      background:
         radial-gradient(1000px 420px at 0% -10%, rgba(223, 245, 239, 0.5) 0%, rgba(0, 0, 0, 0) 55%),
         radial-gradient(800px 360px at 100% 0%, rgba(238, 242, 248, 0.6) 0%, rgba(0, 0, 0, 0) 48%);
     }
@@ -89,9 +90,16 @@
       scroll-margin-top: 120px;
     }
 
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--accent-teal);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
     /* View Transitions */
     @view-transition { navigation: auto; }
-    html { background-color: var(--bg-paper); }
+    html { background-color: var(--bg-paper); scroll-behavior: smooth; }
 
     .glass-nav { view-transition-name: main-nav; }
     main { view-transition-name: main-content; }
@@ -126,154 +134,134 @@
       <div class="container-custom h-[120px] flex items-center justify-between">
         <div class="flex items-center gap-20">
           <a href="/" id="nav-logo-link" class="transition-transform hover:scale-[1.02] flex shrink-0">
-            <img src="assets/logo.png" alt="Grow2Guide Logo" class="h-[86px] w-auto">
+            <img src="assets/logo.png" alt="Grow2Guide Logo" class="h-[69px] w-auto">
           </a>
           <div class="hidden lg:flex items-center gap-12">
-            <a href="#professionals" id="nav-link-prof" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Professionals</a>
-            <a href="#products" id="nav-link-prod" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Programs</a>
+            <a href="#products" id="nav-link-prod" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Products</a>
+            <a href="/services/" id="nav-link-services" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Services</a>
             <a href="#how-it-works" id="nav-link-how" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">How it works</a>
             <a href="#about" id="nav-link-about" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">About</a>
             <a href="/handbook/" id="nav-link-handbook" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Handbook</a>
           </div>
         </div>
-        <a href="mailto:grow2guide@gmail.com" id="nav-contact-btn" class="bg-[#0F766E] text-white px-8 py-3.5 rounded-full text-sm font-bold shadow-md shadow-[#0F766E]/20 btn-active transition-all hover:bg-[#0B5F59] hover:shadow-xl">Contact</a>
+        <div class="flex items-center gap-3">
+          <a href="#" data-g2g-mailto="" id="nav-contact-btn" class="hidden sm:flex bg-[#0F766E] text-white px-8 py-3.5 rounded-full text-sm font-bold shadow-md shadow-[#0F766E]/20 btn-active transition-all hover:bg-[#0B5F59] hover:shadow-xl">Contact</a>
+          <button type="button" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu" class="lg:hidden w-12 h-12 flex items-center justify-center rounded-full border border-[#0F766E]/15 text-[#0F766E] bg-white/70 btn-active">
+            <iconify-icon id="menu-icon-open" icon="lucide:menu" class="text-2xl"></iconify-icon>
+            <iconify-icon id="menu-icon-close" icon="lucide:x" class="text-2xl hidden"></iconify-icon>
+          </button>
+        </div>
+      </div>
+      <div id="mobile-menu" class="hidden lg:hidden border-t border-[#0F766E]/10 bg-[#F5F8F4]">
+        <div class="container-custom py-6 flex flex-col gap-1">
+          <a href="#products" class="mobile-nav-link text-[16px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Products</a>
+          <a href="/services/" class="mobile-nav-link text-[16px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Services</a>
+          <a href="#how-it-works" class="mobile-nav-link text-[16px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">How it works</a>
+          <a href="#about" class="mobile-nav-link text-[16px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">About</a>
+          <a href="/handbook/" class="mobile-nav-link text-[16px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Handbook</a>
+          <a href="#" data-g2g-mailto="" class="mobile-nav-link mt-4 bg-[#0F766E] text-white h-[52px] flex items-center justify-center rounded-full font-bold text-base">Contact</a>
+        </div>
       </div>
     </nav>
 
     <main id="main" class="flex-1">
-      
+
       <!-- Hero Section -->
       <section class="pt-56 pb-32">
-        <div class="container-custom flex flex-col lg:flex-row items-center gap-24">
-          <div class="flex-1 space-y-10">
-            <div class="flex flex-wrap items-center gap-3">
-              <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase">Tier 1 · Mentoring</span>
-              <span class="bg-[#F5F8F4] border border-[#0F766E]/10 text-[#5A6A63] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase">For Professionals</span>
-            </div>
-            <h1 class="text-5xl xl:text-6xl font-bold leading-[1.08] tracking-[-0.03em] text-[#12201C]">
-              Foundations for <br class="hidden xl:block">Professionals.
-            </h1>
-            <p class="text-xl text-[#5A6A63] leading-[1.55] max-w-xl">
-              Individual clinical mentoring for practitioners — staff development frameworks, Nevada licensure navigation, and practical guidance from a working clinician-operator.
-            </p>
-            <div class="flex flex-wrap items-center gap-5">
-              <a href="/quiz/tier-1/" id="hero-cta-book" class="btn-active bg-[#0F766E] text-white h-[56px] px-10 flex items-center justify-center rounded-full font-bold text-base shadow-lg shadow-[#0F766E]/20 hover:bg-[#0B5F59] transition-all">Start intake quiz</a>
-              <a href="#professionals" id="hero-cta-secondary" class="btn-active bg-white border border-[#0F766E]/30 text-[#0F766E] h-[56px] px-10 flex items-center justify-center rounded-full font-bold text-base hover:bg-[#D8F0EA] transition-all">See Tiers</a>
-            </div>
-            <div class="space-y-4 pt-4">
-              <div class="flex items-center gap-3 text-[#5A6A63] font-medium">
-                <iconify-icon icon="lucide:check" class="text-[#0F766E] text-xl"></iconify-icon>
-                <span>Individual clinical mentoring for practitioners</span>
-              </div>
-              <div class="flex items-center gap-3 text-[#5A6A63] font-medium">
-                <iconify-icon icon="lucide:check" class="text-[#0F766E] text-xl"></iconify-icon>
-                <span>Staff development frameworks for direct-care</span>
-              </div>
-              <div class="flex items-center gap-3 text-[#5A6A63] font-medium">
-                <iconify-icon icon="lucide:check" class="text-[#0F766E] text-xl"></iconify-icon>
-                <span>Nevada-first licensure guidance</span>
-              </div>
-            </div>
+        <div class="container-custom max-w-3xl mx-auto text-center space-y-10">
+          <h1 class="text-5xl xl:text-6xl font-bold leading-[1.08] tracking-[-0.03em] text-[#12201C]">
+            You Know Where You Want to Go.<br class="hidden sm:block">
+            Let's Build the Path to Get There.
+          </h1>
+          <div class="space-y-5 text-xl text-[#5A6A63] leading-[1.55] max-w-2xl mx-auto">
+            <p>Behavioral health doesn't come with a handbook for everything.</p>
+            <p>Sometimes you need a practical resource to help you navigate your next step. Sometimes you already have the policies, materials, or systems&mdash;but they aren't quite working. And sometimes you need someone to build it with you from the ground up.</p>
+            <p class="font-bold text-[#12201C]">Grow2Guide offers practical resources and consulting for all three.</p>
           </div>
-          <div class="w-full max-w-md bg-[#EAF3EF] rounded-[24px] p-12 card-shadow border border-[#0F766E]/10 flex flex-col relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#0F766E]/5 to-transparent rounded-bl-full"></div>
-            <div class="text-[11px] font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-4">Mentoring Pathway</div>
-            <h2 class="text-3xl font-bold mb-5 leading-tight text-[#12201C]">Start with Foundations</h2>
-            <p class="text-[#5A6A63] text-base mb-10 leading-[1.55]">Book a discovery appointment to see if Tier 1 mentoring fits your practice goals. We tailor next steps individually after our conversation.</p>
-            <ul class="space-y-4 mb-12 flex-1">
-              <li class="flex items-start gap-3 text-sm text-[#12201C] font-semibold">
-                <iconify-icon icon="lucide:arrow-right" class="text-[#0F766E] mt-0.5"></iconify-icon>
-                <span>1:1 clinical mentoring</span>
-              </li>
-              <li class="flex items-start gap-3 text-sm text-[#12201C] font-semibold">
-                <iconify-icon icon="lucide:arrow-right" class="text-[#0F766E] mt-0.5"></iconify-icon>
-                <span>Direct-care development</span>
-              </li>
-              <li class="flex items-start gap-3 text-sm text-[#12201C] font-semibold">
-                <iconify-icon icon="lucide:arrow-right" class="text-[#0F766E] mt-0.5"></iconify-icon>
-                <span>Nevada licensure guidance</span>
-              </li>
-            </ul>
-            <a href="/quiz/tier-1/" id="hero-card-book" class="btn-active w-full bg-white text-[#0F766E] h-[52px] flex items-center justify-center rounded-full font-bold text-base hover:bg-[#D8F0EA] border border-[#0F766E]/10 transition-all">Start intake quiz</a>
+          <div class="flex flex-wrap items-center justify-center gap-3">
+            <a href="#path-guide" class="inline-flex items-center gap-2 bg-white border border-[#0F766E]/10 text-[#12201C] px-4 py-2 rounded-full text-sm font-semibold card-shadow hover:border-[#0F766E]/30 transition-colors">
+              <iconify-icon icon="lucide:book-open" class="text-[#0F766E]"></iconify-icon> A Guide
+            </a>
+            <a href="#path-strengthen" class="inline-flex items-center gap-2 bg-white border border-[#0F766E]/10 text-[#12201C] px-4 py-2 rounded-full text-sm font-semibold card-shadow hover:border-[#0F766E]/30 transition-colors">
+              <iconify-icon icon="lucide:search-check" class="text-[#0F766E]"></iconify-icon> Strengthen What You Have
+            </a>
+            <a href="#path-build" class="inline-flex items-center gap-2 bg-white border border-[#0F766E]/10 text-[#12201C] px-4 py-2 rounded-full text-sm font-semibold card-shadow hover:border-[#0F766E]/30 transition-colors">
+              <iconify-icon icon="lucide:hammer" class="text-[#0F766E]"></iconify-icon> Build It With You
+            </a>
+          </div>
+          <div class="flex flex-wrap items-center justify-center gap-5 pt-2">
+            <a href="#products" id="hero-cta-products" class="btn-active bg-[#0F766E] text-white h-[56px] px-10 flex items-center justify-center rounded-full font-bold text-base shadow-lg shadow-[#0F766E]/20 hover:bg-[#0B5F59] transition-all">Explore Products</a>
+            <a href="/services/" id="hero-cta-services" class="btn-active bg-white border border-[#0F766E]/30 text-[#0F766E] h-[56px] px-10 flex items-center justify-center rounded-full font-bold text-base hover:bg-[#D8F0EA] transition-all">Explore Services</a>
           </div>
         </div>
       </section>
 
-      <!-- Professionals Section -->
-      <section id="professionals" class="py-32 bg-white/50">
+      <!-- Start Where You Are Section -->
+      <section id="start-where-you-are" class="py-32 bg-white/50">
         <div class="container-custom">
-          <div class="max-w-3xl mb-20">
-            <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Professional Services</span>
-            <h2 class="text-4xl font-bold text-[#12201C] mb-6 tracking-tight">For Professionals</h2>
-            <p class="text-[#5A6A63] text-lg leading-[1.55]">
-              Clinical mentoring, training, and leadership development for behavioral health staff looking to elevate their clinical practice and operational effectiveness.
-            </p>
+          <div class="max-w-2xl mb-20 text-center mx-auto">
+            <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Start Where You Are</span>
+            <h2 class="text-4xl font-bold text-[#12201C] tracking-tight">Three ways to work with Grow2Guide</h2>
           </div>
 
-          <div class="grid lg:grid-cols-2 gap-10">
-            <!-- Tier 1 -->
-            <div class="bg-white rounded-[24px] p-12 card-shadow border border-[#0F766E]/5 flex flex-col hover:border-[#0F766E]/20 transition-colors group">
-              <div class="text-[11px] font-bold text-[#5A6A63] tracking-[0.06em] uppercase mb-8 group-hover:text-[#0F766E] transition-colors">Tier 1 • Mentoring</div>
-              <h3 class="text-2xl font-bold mb-6 text-[#12201C]">Foundations for Professionals</h3>
-              <ul class="space-y-5 mb-12 flex-1">
-                <li class="flex items-start gap-4 text-base text-[#5A6A63]">
-                  <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg"></iconify-icon>
-                  <span>Individual clinical mentoring for practitioners</span>
-                </li>
-                <li class="flex items-start gap-4 text-base text-[#5A6A63]">
-                  <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg"></iconify-icon>
-                  <span>Staff development frameworks for direct-care</span>
-                </li>
-                <li class="flex items-start gap-4 text-base text-[#5A6A63]">
-                  <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg"></iconify-icon>
-                  <span>Nevada licensure navigation and guidance</span>
-                </li>
-              </ul>
-              <a href="/quiz/tier-1/" id="tier1-btn" class="btn-active w-full border border-[#0F766E]/30 text-[#0F766E] h-[56px] flex items-center justify-center rounded-full font-bold text-base hover:bg-[#D8F0EA] transition-all">
-                Start intake quiz
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+            <!-- I Need a Guide -->
+            <div id="path-guide" class="scroll-mt-32 bg-white rounded-[24px] p-10 card-shadow border border-[#0F766E]/5 flex flex-col hover:border-[#0F766E]/20 hover:-translate-y-1 transition-all sm:col-span-2 lg:col-span-1">
+              <div class="w-14 h-14 rounded-full bg-[#D8F0EA] text-[#0F766E] flex items-center justify-center mb-8">
+                <iconify-icon icon="lucide:book-open" class="text-2xl"></iconify-icon>
+              </div>
+              <h3 class="text-2xl font-bold mb-4 text-[#12201C]">I Need a Guide.</h3>
+              <p class="text-[#5A6A63] text-base leading-[1.6] mb-10 flex-1">
+                For behavioral health professionals and supervisors looking for practical tools, guidance, and resources they can use in their work. Explore our downloadable guides designed to address the real-world questions that come with working in behavioral health.
+              </p>
+              <a href="#products" id="path-products-btn" class="group btn-active w-full border border-[#0F766E]/30 text-[#0F766E] h-[52px] flex items-center justify-center gap-2 rounded-full font-bold text-base hover:bg-[#D8F0EA] transition-all">
+                Explore Products <iconify-icon icon="lucide:arrow-right" class="transition-transform group-hover:translate-x-1"></iconify-icon>
               </a>
             </div>
 
-            <!-- Tier 2 -->
-            <div class="bg-[#EAF3EF] rounded-[24px] p-12 card-shadow border border-[#0F766E]/10 flex flex-col hover:border-[#0F766E]/30 transition-colors group">
-              <div class="text-[11px] font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-8">Tier 2 • Leadership</div>
-              <h3 class="text-2xl font-bold mb-6 text-[#12201C]">Advanced for Professionals</h3>
-              <ul class="space-y-5 mb-12 flex-1">
-                <li class="flex items-start gap-4 text-base text-[#5A6A63]">
-                  <iconify-icon icon="lucide:check-circle-2" class="text-[#0F766E] mt-0.5 text-lg"></iconify-icon>
-                  <span>Deeper cohort training for clinical directors</span>
-                </li>
-                <li class="flex items-start gap-4 text-base text-[#5A6A63]">
-                  <iconify-icon icon="lucide:check-circle-2" class="text-[#0F766E] mt-0.5 text-lg"></iconify-icon>
-                  <span>Supervision-ready leadership skills & audits</span>
-                </li>
-                <li class="flex items-start gap-4 text-base text-[#5A6A63]">
-                  <iconify-icon icon="lucide:check-circle-2" class="text-[#0F766E] mt-0.5 text-lg"></iconify-icon>
-                  <span>Operational efficiency for residential sites</span>
-                </li>
-                <li class="flex items-start gap-4 text-base text-[#5A6A63]">
-                  <iconify-icon icon="lucide:check-circle-2" class="text-[#0F766E] mt-0.5 text-lg"></iconify-icon>
-                  <span>Risk mitigation and compliance labs</span>
-                </li>
-              </ul>
-              <a href="/quiz/tier-2/" id="tier2-btn" class="btn-active w-full bg-[#0F766E] text-white h-[56px] flex items-center justify-center rounded-full font-bold text-base hover:bg-[#0B5F59] transition-all">
-                Start intake quiz
+            <!-- I Already Have Something -->
+            <div id="path-strengthen" class="scroll-mt-32 bg-[#EAF3EF] rounded-[24px] p-10 card-shadow border border-[#0F766E]/10 flex flex-col hover:border-[#0F766E]/30 hover:-translate-y-1 transition-all">
+              <div class="w-14 h-14 rounded-full bg-white text-[#0F766E] flex items-center justify-center mb-8">
+                <iconify-icon icon="lucide:search-check" class="text-2xl"></iconify-icon>
+              </div>
+              <h3 class="text-2xl font-bold mb-4 text-[#12201C]">I Already Have Something.</h3>
+              <p class="text-[#5A6A63] text-base leading-[1.6] mb-6 flex-1">
+                You have policies. Procedures. Forms. Training materials. Programs. Systems. But are they actually working? Grow2Guide helps organizations evaluate what they already have, identify gaps, and strengthen what needs to change.
+              </p>
+              <p class="text-[#12201C] font-bold text-sm mb-10">You don't always need to start over. Sometimes you need to know what to fix.</p>
+              <a href="/services/" id="path-tier2-btn" class="group btn-active w-full bg-[#0F766E] text-white h-[52px] flex items-center justify-center gap-2 rounded-full font-bold text-base hover:bg-[#0B5F59] transition-all">
+                Explore Tier 2 Services <iconify-icon icon="lucide:arrow-right" class="transition-transform group-hover:translate-x-1"></iconify-icon>
+              </a>
+            </div>
+
+            <!-- I Need Someone to Build It -->
+            <div id="path-build" class="scroll-mt-32 bg-white rounded-[24px] p-10 card-shadow border border-[#0F766E]/5 flex flex-col hover:border-[#0F766E]/20 hover:-translate-y-1 transition-all">
+              <div class="w-14 h-14 rounded-full bg-[#D8F0EA] text-[#0F766E] flex items-center justify-center mb-8">
+                <iconify-icon icon="lucide:hammer" class="text-2xl"></iconify-icon>
+              </div>
+              <h3 class="text-2xl font-bold mb-4 text-[#12201C]">I Need Someone to Build It.</h3>
+              <p class="text-[#5A6A63] text-base leading-[1.6] mb-6 flex-1">
+                Starting a behavioral health program or building organizational infrastructure from the ground up can be overwhelming. Whether you're preparing for state licensing, Department of Family Services (DFS) requirements, CARF accreditation, an initial survey, re-survey, program expansion, or simply need the systems and materials to get your program operational, Grow2Guide can help. From policies and procedures to workflows, forms, quality systems, documentation, staff resources, and implementation, we help build the infrastructure behind the program.
+              </p>
+              <p class="text-[#12201C] font-bold text-sm mb-10">From the first draft to a system your team can actually use&mdash;and maintain.</p>
+              <a href="/services/" id="path-tier3-btn" class="group btn-active w-full border border-[#0F766E]/30 text-[#0F766E] h-[52px] flex items-center justify-center gap-2 rounded-full font-bold text-base hover:bg-[#D8F0EA] transition-all">
+                Explore Tier 3 Services <iconify-icon icon="lucide:arrow-right" class="transition-transform group-hover:translate-x-1"></iconify-icon>
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Digital Programs Section -->
+      <!-- Digital Programs / Products Section -->
       <section id="products" class="py-32">
         <div class="container-custom">
           <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-20">
             <div class="max-w-2xl">
-              <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">For Organizations</span>
-              <h2 class="text-4xl font-bold text-[#12201C] tracking-tight">Digital learning programs</h2>
+              <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">For Professionals</span>
+              <h2 class="text-4xl font-bold text-[#12201C] tracking-tight">Practical guides for your next step</h2>
             </div>
             <p class="text-[#5A6A63] text-lg max-w-sm">
-              Practical resource bundles for busy clinical managers and organizational leaders.
+              Downloadable resources for busy clinical managers and behavioral health professionals.
             </p>
           </div>
 
@@ -298,7 +286,7 @@
                   <span>Plain-language compliance tips</span>
                 </div>
               </div>
-              <a href="mailto:grow2guide@gmail.com?subject=Order%20Learning%20Guide&body=I%20would%20like%20to%20order%20the%20$67%20Learning%20Guide." id="buy-guide-btn" class="btn-active w-full bg-[#0F766E] text-white h-[56px] flex items-center justify-center rounded-full font-bold text-base hover:bg-[#0B5F59] transition-all">
+              <a href="#" data-g2g-mailto="subject=Order%20Learning%20Guide&body=I%20would%20like%20to%20order%20the%20$67%20Learning%20Guide." id="buy-guide-btn" class="btn-active w-full bg-[#0F766E] text-white h-[56px] flex items-center justify-center rounded-full font-bold text-base hover:bg-[#0B5F59] transition-all">
                 Buy Guide — $67
               </a>
             </div>
@@ -323,7 +311,7 @@
                   <span>Operational gap analysis tool</span>
                 </div>
               </div>
-              <a href="mailto:grow2guide@gmail.com?subject=Order%20Checklist&body=I%20would%20like%20to%20order%20the%20$67%20Checklist." id="buy-checklist-btn" class="btn-active w-full bg-[#0F766E] text-white h-[56px] flex items-center justify-center rounded-full font-bold text-base hover:bg-[#0B5F59] transition-all">
+              <a href="#" data-g2g-mailto="subject=Order%20Checklist&body=I%20would%20like%20to%20order%20the%20$67%20Checklist." id="buy-checklist-btn" class="btn-active w-full bg-[#0F766E] text-white h-[56px] flex items-center justify-center rounded-full font-bold text-base hover:bg-[#0B5F59] transition-all">
                 Buy Checklist — $67
               </a>
             </div>
@@ -342,7 +330,7 @@
             </div>
             <div class="flex flex-col items-center lg:items-end gap-5">
               <span class="text-[#5A6A63]/60 text-2xl line-through font-medium">$134 separate</span>
-              <a href="mailto:grow2guide@gmail.com?subject=Order%20Bundle&body=I%20would%20like%20to%20order%20the%20$99%20Bundle." id="bundle-cta" class="btn-active bg-[#0F766E] text-white h-[64px] px-14 flex items-center justify-center rounded-full font-bold text-xl hover:bg-[#0B5F59] shadow-lg shadow-[#0F766E]/20 transition-all">
+              <a href="#" data-g2g-mailto="subject=Order%20Bundle&body=I%20would%20like%20to%20order%20the%20$99%20Bundle." id="bundle-cta" class="btn-active bg-[#0F766E] text-white h-[64px] px-14 flex items-center justify-center rounded-full font-bold text-xl hover:bg-[#0B5F59] shadow-lg shadow-[#0F766E]/20 transition-all">
                 Buy Bundle — $99
               </a>
             </div>
@@ -378,8 +366,45 @@
         </div>
       </section>
 
+      <!-- Built for the Real World Section -->
+      <section class="py-32">
+        <div class="container-custom max-w-4xl">
+          <h2 class="text-4xl font-bold text-[#12201C] tracking-tight mb-6 text-center">Built for the Real World of Behavioral Health&mdash;Across Inpatient and Outpatient Settings.</h2>
+          <p class="text-[#5A6A63] text-lg leading-[1.6] text-center max-w-2xl mx-auto mb-16">
+            Grow2Guide is grounded in the reality that behavioral health work happens in more than policies and plans.
+          </p>
+          <div class="flex flex-wrap justify-center gap-3 mb-16">
+            <span class="inline-flex items-center gap-2 bg-white rounded-full pl-4 pr-5 py-3 card-shadow border border-[#0F766E]/5 text-[#12201C] font-semibold text-sm">
+              <iconify-icon icon="lucide:message-circle" class="text-[#0F766E] text-lg"></iconify-icon> Conversations with employees
+            </span>
+            <span class="inline-flex items-center gap-2 bg-white rounded-full pl-4 pr-5 py-3 card-shadow border border-[#0F766E]/5 text-[#12201C] font-semibold text-sm">
+              <iconify-icon icon="lucide:file-text" class="text-[#0F766E] text-lg"></iconify-icon> Documentation
+            </span>
+            <span class="inline-flex items-center gap-2 bg-white rounded-full pl-4 pr-5 py-3 card-shadow border border-[#0F766E]/5 text-[#12201C] font-semibold text-sm">
+              <iconify-icon icon="lucide:workflow" class="text-[#0F766E] text-lg"></iconify-icon> Workflows
+            </span>
+            <span class="inline-flex items-center gap-2 bg-white rounded-full pl-4 pr-5 py-3 card-shadow border border-[#0F766E]/5 text-[#12201C] font-semibold text-sm">
+              <iconify-icon icon="lucide:scale" class="text-[#0F766E] text-lg"></iconify-icon> Difficult decisions
+            </span>
+            <span class="inline-flex items-center gap-2 bg-white rounded-full pl-4 pr-5 py-3 card-shadow border border-[#0F766E]/5 text-[#12201C] font-semibold text-sm">
+              <iconify-icon icon="lucide:sprout" class="text-[#0F766E] text-lg"></iconify-icon> Program development
+            </span>
+            <span class="inline-flex items-center gap-2 bg-white rounded-full pl-4 pr-5 py-3 card-shadow border border-[#0F766E]/5 text-[#12201C] font-semibold text-sm">
+              <iconify-icon icon="lucide:shield-check" class="text-[#0F766E] text-lg"></iconify-icon> Quality assurance
+            </span>
+            <span class="inline-flex items-center gap-2 bg-white rounded-full pl-4 pr-5 py-3 card-shadow border border-[#0F766E]/5 text-[#12201C] font-semibold text-sm">
+              <iconify-icon icon="lucide:users" class="text-[#0F766E] text-lg"></iconify-icon> The systems people rely on every day
+            </span>
+          </div>
+          <p class="text-[#5A6A63] text-lg text-center leading-[1.6]">
+            The goal isn't simply to create something that looks right on paper.<br>
+            <span class="font-bold text-[#12201C] text-xl">It's to create something that works.</span>
+          </p>
+        </div>
+      </section>
+
       <!-- About Section -->
-      <section id="about" class="py-32">
+      <section id="about" class="py-32 bg-white/50">
         <div class="container-custom grid lg:grid-cols-2 gap-24 items-center">
           <div class="space-y-10">
             <h2 class="text-4xl lg:text-5xl font-bold leading-[1.15] tracking-tight">Clinical insight.<br>Operational expertise.</h2>
@@ -410,7 +435,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="bg-white rounded-[32px] p-12 lg:p-16 card-shadow border border-[#0F766E]/5 relative">
             <div class="absolute -top-6 -right-6 w-24 h-24 bg-[#D8F0EA] rounded-full blur-3xl opacity-50"></div>
             <h3 class="text-2xl font-bold mb-10 text-[#12201C]">Who this is for</h3>
@@ -438,21 +463,54 @@
         </div>
       </section>
 
-      <!-- Final CTA Section -->
+      <!-- Where Do You Fit Section -->
+      <section class="py-32">
+        <div class="container-custom max-w-3xl">
+          <h2 class="text-4xl font-bold text-[#12201C] tracking-tight mb-16 text-center">Where Do You Fit?</h2>
+          <div class="space-y-6 mb-16">
+            <a href="#products" id="fit-products" class="group btn-active flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-white rounded-[20px] p-8 card-shadow border border-[#0F766E]/5 hover:border-[#0F766E]/20 transition-colors">
+              <span class="text-[#12201C] font-semibold text-lg">Looking for practical guidance?</span>
+              <span class="flex items-center gap-2 text-[#0F766E] font-bold">
+                Products <iconify-icon icon="lucide:arrow-right" class="transition-transform group-hover:translate-x-1"></iconify-icon>
+              </span>
+            </a>
+            <a href="/services/" id="fit-tier2" class="group btn-active flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-white rounded-[20px] p-8 card-shadow border border-[#0F766E]/5 hover:border-[#0F766E]/20 transition-colors">
+              <span class="text-[#12201C] font-semibold text-lg">Already have something that needs to be evaluated or strengthened?</span>
+              <span class="flex items-center gap-2 text-[#0F766E] font-bold shrink-0">
+                Tier 2 Consulting <iconify-icon icon="lucide:arrow-right" class="transition-transform group-hover:translate-x-1"></iconify-icon>
+              </span>
+            </a>
+            <a href="/services/" id="fit-tier3" class="group btn-active flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-white rounded-[20px] p-8 card-shadow border border-[#0F766E]/5 hover:border-[#0F766E]/20 transition-colors">
+              <span class="text-[#12201C] font-semibold text-lg">Need someone to build it for you?</span>
+              <span class="flex items-center gap-2 text-[#0F766E] font-bold shrink-0">
+                Tier 3 Consulting <iconify-icon icon="lucide:arrow-right" class="transition-transform group-hover:translate-x-1"></iconify-icon>
+              </span>
+            </a>
+          </div>
+          <div class="text-center">
+            <p class="text-[#5A6A63] text-lg">You don't have to know exactly what you need before you reach out.</p>
+            <p class="text-[#12201C] font-bold text-xl mt-3">Start with where you are. We'll help you figure out what's next.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final Tagline Band -->
       <section class="pb-32">
         <div class="container-custom">
-          <div class="bg-white rounded-[32px] p-24 text-center card-shadow border border-[#0F766E]/5 relative overflow-hidden">
+          <div class="bg-white rounded-[32px] p-16 lg:p-24 text-center card-shadow border border-[#0F766E]/5 relative overflow-hidden">
             <div class="absolute inset-0 opacity-[0.02] pointer-events-none" style="background-image: radial-gradient(#0F766E 2px, transparent 2px); background-size: 40px 40px;"></div>
-            <h2 class="text-5xl lg:text-6xl font-bold mb-8 tracking-tight text-[#12201C]">Ready to grow?</h2>
-            <p class="text-[#5A6A63] text-xl mb-14 max-w-2xl mx-auto leading-relaxed">
-              Take the guesswork out of behavioral health operations. Expert resources for survey-ready systems.
-            </p>
+            <img src="assets/logo.png" alt="Grow2Guide" class="h-[52px] w-auto mx-auto mb-8">
+            <p class="text-[#12201C] text-2xl lg:text-3xl font-bold mb-4 tracking-tight">Practical resources. Real-world consulting. Better behavioral health systems.</p>
+            <p class="text-[#0F766E] text-lg font-bold mb-14 tracking-[0.02em] uppercase">Learn. Strengthen. Build.</p>
             <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
-              <a href="mailto:grow2guide@gmail.com" id="footer-cta-email" class="btn-active bg-[#0F766E] text-white h-[60px] px-12 flex items-center justify-center rounded-full font-bold text-lg hover:bg-[#0B5F59] shadow-lg shadow-[#0F766E]/20 transition-all w-full sm:w-auto">
-                Email grow2guide@gmail.com
+              <a href="#products" id="tagline-cta-products" class="btn-active bg-[#0F766E] text-white h-[60px] px-12 flex items-center justify-center rounded-full font-bold text-lg hover:bg-[#0B5F59] shadow-lg shadow-[#0F766E]/20 transition-all w-full sm:w-auto">
+                Explore Products
               </a>
-              <a href="#products" id="footer-cta-back" class="btn-active bg-white border border-[#0F766E]/30 text-[#0F766E] h-[60px] px-12 flex items-center justify-center rounded-full font-bold text-lg hover:bg-[#D8F0EA] transition-all w-full sm:w-auto">
-                Back to products
+              <a href="/services/" id="tagline-cta-services" class="btn-active bg-white border border-[#0F766E]/30 text-[#0F766E] h-[60px] px-12 flex items-center justify-center rounded-full font-bold text-lg hover:bg-[#D8F0EA] transition-all w-full sm:w-auto">
+                Explore Services
+              </a>
+              <a href="#about" id="tagline-cta-about" class="btn-active bg-white border border-[#0F766E]/30 text-[#0F766E] h-[60px] px-12 flex items-center justify-center rounded-full font-bold text-lg hover:bg-[#D8F0EA] transition-all w-full sm:w-auto">
+                About Us
               </a>
             </div>
           </div>
@@ -471,21 +529,18 @@
               <img src="assets/logo.png" alt="Grow2Guide" class="h-[64px] w-auto">
             </a>
             <p class="text-[14px] leading-relaxed mb-6">
-              Nevada-first licensing, accreditation readiness, compliance, and workforce learning.
+              Practical resources and real-world consulting for behavioral health professionals and organizations.
             </p>
-            <a href="mailto:grow2guide@gmail.com" id="footer-email" class="text-[14px] font-semibold text-[#0F766E] hover:text-[#0B5F59] transition-colors">
-              grow2guide@gmail.com
-            </a>
+            <a href="#" data-g2g-mailto="" data-g2g-email-text id="footer-email" class="text-[14px] font-semibold text-[#0F766E] hover:text-[#0B5F59] transition-colors"></a>
           </div>
 
           <!-- Services -->
           <div class="lg:col-span-3">
             <h4 class="text-[#12201C] font-semibold text-[12px] tracking-[0.06em] uppercase mb-5">Services</h4>
             <ul class="space-y-3 text-[14px]">
-              <li><a href="#professionals" id="footer-tier1" class="hover:text-[#0F766E] transition-colors">Tier 1 · Foundations</a></li>
-              <li><a href="#professionals" id="footer-tier2" class="hover:text-[#0F766E] transition-colors">Tier 2 · Leadership</a></li>
-              <li><a href="/quiz/tier-1/" id="footer-quiz1" class="hover:text-[#0F766E] transition-colors">Tier 1 intake quiz</a></li>
-              <li><a href="/quiz/tier-2/" id="footer-quiz2" class="hover:text-[#0F766E] transition-colors">Tier 2 intake quiz</a></li>
+              <li><a href="/services/" id="footer-services" class="hover:text-[#0F766E] transition-colors">Services &amp; pricing</a></li>
+              <li><a href="/services/" id="footer-tier2" class="hover:text-[#0F766E] transition-colors">Tier 2 · Already have something</a></li>
+              <li><a href="/services/" id="footer-tier3" class="hover:text-[#0F766E] transition-colors">Tier 3 · Build it with you</a></li>
               <li><a href="#how-it-works" id="footer-how" class="hover:text-[#0F766E] transition-colors">How it works</a></li>
             </ul>
           </div>
@@ -507,7 +562,7 @@
             <h4 class="text-[#12201C] font-semibold text-[12px] tracking-[0.06em] uppercase mb-5">Company</h4>
             <ul class="space-y-3 text-[14px]">
               <li><a href="#about" id="footer-about" class="hover:text-[#0F766E] transition-colors">About</a></li>
-              <li><a href="mailto:grow2guide@gmail.com" id="footer-contact" class="hover:text-[#0F766E] transition-colors">Contact</a></li>
+              <li><a href="#" data-g2g-mailto="" id="footer-contact" class="hover:text-[#0F766E] transition-colors">Contact</a></li>
               <li><a href="/terms/" id="footer-terms" class="hover:text-[#0F766E] transition-colors">Terms</a></li>
               <li><a href="/privacy/" id="footer-privacy" class="hover:text-[#0F766E] transition-colors">Privacy</a></li>
               <li><a href="/refunds/" id="footer-refunds" class="hover:text-[#0F766E] transition-colors">Refunds</a></li>
@@ -527,5 +582,30 @@
       </div>
     </footer>
   </div>
+
+  <script>
+    (function () {
+      var btn = document.getElementById('mobile-menu-btn');
+      var menu = document.getElementById('mobile-menu');
+      var iconOpen = document.getElementById('menu-icon-open');
+      var iconClose = document.getElementById('menu-icon-close');
+      if (!btn || !menu) return;
+
+      function setOpen(open) {
+        menu.classList.toggle('hidden', !open);
+        btn.setAttribute('aria-expanded', String(open));
+        iconOpen.classList.toggle('hidden', open);
+        iconClose.classList.toggle('hidden', !open);
+      }
+
+      btn.addEventListener('click', function () {
+        setOpen(menu.classList.contains('hidden'));
+      });
+
+      menu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () { setOpen(false); });
+      });
+    })();
+  </script>
 </body>
 </html>
