@@ -37,31 +37,53 @@
     label.opt-wrap:has(input:checked) .check-card { border-color: var(--accent-teal); background: var(--accent-soft); color: var(--accent-teal-dark); }
     .req::after { content:' *'; color:#0F766E; }
     .err { color:#b91c1c; font-size:0.8rem; margin-top:0.5rem; display:none; }
+
+    a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visible, select:focus-visible, textarea:focus-visible, input:focus-visible {
+      outline: 2px solid #0F766E;
+      outline-offset: 3px;
+    }
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    .sr-only:focus, .focus\:not-sr-only:focus { position:absolute; width:auto; height:auto; padding:0.5rem 1rem; margin:0; overflow:visible; clip:auto; white-space:normal; }
   </style>
   <title>Request a Consultation — Grow2Guide</title>
   <meta name="description" content="Tell us about your organization before your Grow2Guide consultation, so we can prepare a focused discovery call." />
   <link rel="canonical" href="https://www.grow2guide.com/consultation/" />
 </head>
 <body>
+<a class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:px-4 focus:py-2 focus:rounded-full" href="#main">Skip to content</a>
+
   <div class="min-h-screen relative flex flex-col">
     <div class="atmosphere-glow"></div>
-    <nav class="fixed top-0 w-full z-50 glass-nav">
-      <div class="container-custom h-[100px] lg:h-[120px] flex items-center justify-between">
-        <div class="flex items-center gap-12 lg:gap-20">
-          <a href="/" class="flex shrink-0"><img src="../assets/logo.png" alt="Grow2Guide" class="h-[64px] lg:h-[86px] w-auto"></a>
-          <div class="hidden lg:flex items-center gap-12">
+        <nav class="fixed top-0 w-full z-50 glass-nav">
+      <div class="container-custom h-[68px] lg:h-[72px] flex items-center justify-between">
+        <div class="flex items-center gap-10 lg:gap-14">
+          <a href="/" class="flex shrink-0"><img src="../assets/logo.png" alt="Grow2Guide" class="h-[44px] lg:h-[52px] w-auto"></a>
+          <div class="hidden lg:flex items-center gap-10">
             <a href="/#products" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Products</a>
             <a href="/services/" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Services</a>
-            <a href="/#how-it-works" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">How it works</a>
             <a href="/#about" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">About</a>
             <a href="/handbook/" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Handbook</a>
           </div>
         </div>
-        <a href="/consultation/" class="bg-[#0F766E] text-white px-6 lg:px-8 py-3 rounded-full text-sm font-bold shadow-md shadow-[#0F766E]/20 hover:bg-[#0B5F59] transition-all">Contact</a>
+        <div class="flex items-center gap-3">
+          <a href="/consultation/" class="hidden sm:inline-flex bg-[#0F766E] text-white px-5 lg:px-6 py-2.5 rounded-full text-sm font-bold shadow-md shadow-[#0F766E]/20 hover:bg-[#0B5F59] transition-all">Request consultation</a>
+          <button type="button" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu" class="lg:hidden w-11 h-11 flex items-center justify-center rounded-full border-2 border-[#0F766E]/25 text-[#0F766E] bg-white/70">
+            <iconify-icon id="menu-icon-open" icon="ph:list-bold" class="text-2xl"></iconify-icon>
+            <iconify-icon id="menu-icon-close" icon="ph:x-bold" class="text-2xl hidden"></iconify-icon>
+          </button>
+        </div>
+      </div>
+      <div id="mobile-menu" class="hidden lg:hidden border-t border-[#0F766E]/10 bg-[#F5F8F4]">
+        <div class="container-custom py-5 flex flex-col gap-1">
+          <a href="/#products" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Products</a>
+          <a href="/services/" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Services</a>
+          <a href="/#about" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">About</a>
+          <a href="/consultation/" class="mt-4 bg-[#0F766E] text-white h-[48px] flex items-center justify-center rounded-full font-bold text-base">Request consultation</a>
+        </div>
       </div>
     </nav>
 
-    <main class="flex-1 pt-40 pb-24">
+    <main id="main" class="flex-1 pt-28 pb-24">
       <div class="container-custom max-w-3xl">
         <nav class="flex items-center gap-2 text-sm font-medium text-[#5A6A63] mb-10">
           <a href="/" class="hover:text-[#0F766E]">Home</a>
@@ -78,34 +100,47 @@
       </div>
 
       <div class="container-custom max-w-3xl mt-14">
+        
+        <div class="bg-[#F7FBF9] border border-[#0F766E]/10 rounded-[16px] px-5 py-4 mb-8 space-y-2">
+          <p class="text-sm font-semibold text-[#12201C]">About 3 minutes · 10 questions</p>
+          <p class="text-[13px] text-[#5A6A63] leading-relaxed">Submitting opens your email app with your answers ready to send to Grow2Guide. It will address grow2guide@gmail.com Nothing is transmitted until you send the email.</p>
+        </div>
         <form id="consult-form" novalidate class="bg-white rounded-[32px] p-8 md:p-12 card-shadow border border-[#0F766E]/5 space-y-10">
 
           <!-- Q1 -->
           <div>
             <label for="org-name" class="req block text-sm font-bold text-[#12201C] mb-3">1. Organization Name</label>
-            <input class="field" type="text" id="org-name" name="org-name" required />
-            <p class="err" data-for="org-name">Please enter your organization's name.</p>
+            <input class="field" type="text" id="org-name" name="org-name" required  aria-describedby="err-org-name"/>
+            <p id="err-org-name" class="err" role="alert" data-for="org-name">Please enter your organization's name.</p>
           </div>
 
           <!-- Q2 -->
           <div>
             <label for="contact-name" class="req block text-sm font-bold text-[#12201C] mb-3">2. Contact Name &amp; Title</label>
-            <input class="field" type="text" id="contact-name" name="contact-name" placeholder="e.g., Jane Doe, Program Director" required />
-            <p class="err" data-for="contact-name">Please enter your name and title.</p>
+            <input class="field" type="text" id="contact-name" name="contact-name" placeholder="e.g., Jane Doe, Program Director" required  aria-describedby="err-contact-name"/>
+            <p id="err-contact-name" class="err" role="alert" data-for="contact-name">Please enter your name and title.</p>
           </div>
 
           <!-- Q3 -->
-          <div>
-            <label for="contact-info" class="req block text-sm font-bold text-[#12201C] mb-3">3. Email &amp; Phone</label>
-            <input class="field" type="text" id="contact-info" name="contact-info" placeholder="e.g., jane@agency.org, (555) 123-4567" required />
-            <p class="err" data-for="contact-info">Please enter an email address and phone number.</p>
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label for="email" class="req block text-sm font-bold text-[#12201C] mb-3">3a. Email</label>
+              <input class="field" type="email" id="email" name="email" placeholder="jane@agency.org" required autocomplete="email" aria-describedby="err-email" />
+              <p class="err" id="err-email" data-for="email" role="alert">Please enter a valid email address.</p>
+            </div>
+            <div>
+              <label for="phone" class="req block text-sm font-bold text-[#12201C] mb-3">3b. Phone</label>
+              <input class="field" type="tel" id="phone" name="phone" placeholder="(555) 123-4567" required autocomplete="tel" aria-describedby="err-phone" />
+              <p class="err" id="err-phone" data-for="phone" role="alert">Please enter a phone number.</p>
+            </div>
           </div>
 
-          <!-- Q4 -->
+          <!-- Q4 --><!-- Q4 -->
           <div>
             <label for="state" class="req block text-sm font-bold text-[#12201C] mb-3">4. State</label>
-            <select class="field" id="state" name="state" required>
+            <select class="field" id="state" name="state" required aria-describedby="err-state">
               <option value="" disabled selected>Select your state</option>
+              <option>Nevada</option>
               <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
               <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
               <option>District of Columbia</option><option>Florida</option><option>Georgia</option><option>Hawaii</option>
@@ -113,7 +148,7 @@
               <option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option>
               <option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option>
               <option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option>
-              <option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option>
+              <option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option>
               <option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option>
               <option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option>
               <option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option>
@@ -121,14 +156,14 @@
               <option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option>
               <option>Other / outside the U.S.</option>
             </select>
-            <p class="err" data-for="state">Please select a state.</p>
+            <p id="err-state" class="err" role="alert" data-for="state">Please select a state.</p>
           </div>
 
           <!-- Q5 -->
           <div>
             <label for="org-type" class="req block text-sm font-bold text-[#12201C] mb-3">5. Type of Organization/Program</label>
-            <input class="field" type="text" id="org-type" name="org-type" placeholder="e.g., outpatient behavioral health clinic, residential program" required />
-            <p class="err" data-for="org-type">Please describe your organization or program type.</p>
+            <input class="field" type="text" id="org-type" name="org-type" placeholder="e.g., outpatient behavioral health clinic, residential program" required  aria-describedby="err-org-type"/>
+            <p id="err-org-type" class="err" role="alert" data-for="org-type">Please describe your organization or program type.</p>
           </div>
 
           <!-- Q6 -->
@@ -152,10 +187,13 @@
           <!-- Q7 -->
           <div>
             <label for="describe" class="req block text-sm font-bold text-[#12201C] mb-3">7. Briefly describe what you are currently working on or where you are experiencing challenges.</label>
-            <textarea class="field" id="describe" name="describe" rows="4" required></textarea>
-            <p class="err" data-for="describe">Please tell us a bit about what you're working on.</p>
+            <textarea class="field" id="describe" name="describe" rows="4" required aria-describedby="err-describe"></textarea>
+            <p id="err-describe" class="err" role="alert" data-for="describe">Please tell us a bit about what you're working on.</p>
           </div>
 
+          <details class="rounded-[16px] border border-[#0F766E]/10 bg-[#F7FBF9] px-5 py-4">
+            <summary class="cursor-pointer font-bold text-sm text-[#12201C]">Optional details <span class="font-normal text-[#5A6A63]">(timeline, current systems, anything else)</span></summary>
+            <div class="mt-6 space-y-10">
           <!-- Q8 -->
           <div>
             <p class="block text-sm font-bold text-[#12201C] mb-3">8. What do you currently have in place?</p>
@@ -170,8 +208,8 @@
           <!-- Q9 -->
           <div>
             <label for="accomplish" class="req block text-sm font-bold text-[#12201C] mb-3">9. What would you like to accomplish through consultation?</label>
-            <textarea class="field" id="accomplish" name="accomplish" rows="4" required></textarea>
-            <p class="err" data-for="accomplish">Please let us know what you'd like to accomplish.</p>
+            <textarea class="field" id="accomplish" name="accomplish" rows="4" required aria-describedby="err-accomplish"></textarea>
+            <p id="err-accomplish" class="err" role="alert" data-for="accomplish">Please let us know what you'd like to accomplish.</p>
           </div>
 
           <!-- Q10 -->
@@ -185,6 +223,8 @@
             <label for="anything-else" class="block text-sm font-bold text-[#12201C] mb-3">Anything else you'd like us to know before the consultation? <span class="font-normal text-[#5A6A63]">(optional)</span></label>
             <textarea class="field" id="anything-else" name="anything-else" rows="3"></textarea>
           </div>
+            </div>
+          </details>
 
           <div class="pt-4 border-t border-[#0F766E]/10">
             <div class="bg-[#F7FBF9] border border-[#0F766E]/10 rounded-[16px] px-5 py-4 mb-6 space-y-2 text-sm text-[#5A6A63] leading-relaxed">
@@ -194,15 +234,15 @@
             <button type="submit" class="btn-active w-full sm:w-auto bg-[#0F766E] text-white h-[56px] px-10 inline-flex items-center justify-center rounded-full font-bold text-base shadow-lg shadow-[#0F766E]/20 hover:bg-[#0B5F59] transition-all">
               Submit Request
             </button>
-            <p class="mt-5 text-[13px] text-[#5A6A63] leading-relaxed">Submitting opens your email client with your answers ready to send to Grow2Guide (grow2guide@gmail.com). Nothing is transmitted until you send the email.</p>
+            <p class="mt-5 text-[13px] text-[#5A6A63] leading-relaxed">This opens your email app — nothing is sent until you hit send.</p>
           </div>
         </form>
       </div>
     </main>
 
-    <footer class="bg-[#EAF3EF] text-[#5A6A63] py-24 border-t border-[#0F766E]/10">
+    <footer class="bg-[#EAF3EF] text-[#5A6A63] py-12 border-t border-[#0F766E]/10">
       <div class="container-custom">
-        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 mb-16">
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 mb-10">
           <div class="lg:col-span-4 space-y-6">
             <a href="/" class="inline-block"><img src="../assets/logo.png" alt="Grow2Guide" class="h-[86px] w-auto"></a>
             <p class="text-[15px] leading-relaxed max-w-sm">Nevada-first licensing, accreditation readiness, compliance, and workforce learning — practical systems that hold up.</p>
@@ -274,7 +314,7 @@
     function validate() {
       clearErrors();
       let ok = true;
-      ['org-name', 'contact-name', 'contact-info', 'org-type', 'describe', 'accomplish'].forEach(name => {
+      ['org-name', 'contact-name', 'email', 'phone', 'org-type', 'describe', 'accomplish'].forEach(name => {
         if (!val(name)) { showError(name); ok = false; }
       });
       if (!val('state')) { showError('state'); ok = false; }
@@ -297,7 +337,7 @@
         '',
         '1. Organization Name: ' + val('org-name'),
         '2. Contact Name & Title: ' + val('contact-name'),
-        '3. Email & Phone: ' + val('contact-info'),
+        "3. Email: " + val('email') + "\n   Phone: " + val('phone'),
         '4. State: ' + val('state'),
         '5. Type of Organization/Program: ' + val('org-type'),
         '6. What are you looking for help with: ' + (help.length ? help.join(', ') : '(none selected)'),
@@ -320,6 +360,28 @@
       const subject = encodeURIComponent('Consultation Request — ' + val('org-name'));
       const body = encodeURIComponent(lines.join('\n'));
       window.location.href = window.g2gMail.mailto('subject=' + subject + '&body=' + body);
+    });
+  })();
+  </script>
+
+  <script>
+  (function () {
+    var btn = document.getElementById('mobile-menu-btn');
+    var menu = document.getElementById('mobile-menu');
+    var iconOpen = document.getElementById('menu-icon-open');
+    var iconClose = document.getElementById('menu-icon-close');
+    if (!btn || !menu) return;
+    function setOpen(open) {
+      menu.classList.toggle('hidden', !open);
+      btn.setAttribute('aria-expanded', String(open));
+      if (iconOpen) iconOpen.classList.toggle('hidden', open);
+      if (iconClose) iconClose.classList.toggle('hidden', !open);
+    }
+    btn.addEventListener('click', function () {
+      setOpen(menu.classList.contains('hidden'));
+    });
+    menu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () { setOpen(false); });
     });
   })();
   </script>

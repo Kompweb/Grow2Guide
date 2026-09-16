@@ -135,10 +135,10 @@
 
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass-nav">
-      <div class="container-custom h-[120px] flex items-center justify-between">
+      <div class="container-custom h-[68px] lg:h-[72px] flex items-center justify-between">
         <div class="flex items-center gap-20">
           <a href="/" id="nav-logo-link" class="transition-transform hover:scale-[1.02] flex shrink-0">
-            <img src="assets/logo.png" alt="Grow2Guide Logo" class="h-[69px] w-auto">
+            <img src="assets/logo.png" alt="Grow2Guide Logo" class="h-[44px] lg:h-[52px] lg:h-[52px] w-auto">
           </a>
           <div class="hidden lg:flex items-center gap-12">
             <a href="#products" id="nav-link-prod" class="nav-link text-[20px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Products</a>
@@ -149,8 +149,8 @@
           </div>
         </div>
         <div class="flex items-center gap-3">
-          <a href="/consultation/" id="nav-contact-btn" class="hidden sm:flex bg-[#0F766E] text-white px-8 py-3.5 rounded-full text-sm font-bold shadow-md shadow-[#0F766E]/20 btn-active transition-all hover:bg-[#0B5F59] hover:shadow-xl">Contact</a>
-          <button type="button" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu" class="lg:hidden w-14 h-14 flex items-center justify-center rounded-full border-2 border-[#0F766E]/25 text-[#0F766E] bg-white/70 btn-active">
+          <a href="/consultation/" id="nav-contact-btn" class="hidden sm:flex bg-[#0F766E] text-white px-8 py-3.5 rounded-full text-sm font-bold shadow-md shadow-[#0F766E]/20 btn-active transition-all hover:bg-[#0B5F59] hover:shadow-xl">Request consultation</a>
+          <button type="button" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu" class="lg:hidden w-11 h-11 flex items-center justify-center rounded-full border-2 border-[#0F766E]/25 text-[#0F766E] bg-white/70 btn-active">
             <iconify-icon id="menu-icon-open" icon="ph:list-bold" class="text-3xl"></iconify-icon>
             <iconify-icon id="menu-icon-close" icon="ph:x-bold" class="text-3xl hidden"></iconify-icon>
           </button>
@@ -163,7 +163,7 @@
           <a href="#how-it-works" class="mobile-nav-link text-[20px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">How it works</a>
           <a href="#about" class="mobile-nav-link text-[20px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">About</a>
           <a href="/handbook/" class="mobile-nav-link text-[20px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Handbook</a>
-          <a href="/consultation/" class="mobile-nav-link mt-4 bg-[#0F766E] text-white h-[52px] flex items-center justify-center rounded-full font-bold text-base">Contact</a>
+          <a href="/consultation/" class="mobile-nav-link mt-4 bg-[#0F766E] text-white h-[52px] flex items-center justify-center rounded-full font-bold text-base">Request consultation</a>
         </div>
       </div>
     </nav>
@@ -171,7 +171,7 @@
     <main id="main" class="flex-1">
 
       <!-- Hero Section -->
-      <section class="pt-44 lg:pt-52 pb-24 lg:pb-32">
+      <section class="pt-28 lg:pt-32 pb-24 lg:pb-32">
         <div class="container-custom grid lg:grid-cols-[1.15fr_1fr] gap-14 lg:gap-16 items-center">
           <div>
             <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Practical Resources &amp; Consulting</span>
@@ -187,7 +187,7 @@
               <a href="#products" id="hero-cta-products" class="group btn-active bg-[#0F766E] text-white h-[56px] px-10 flex items-center justify-center gap-2 rounded-full font-bold text-base shadow-lg shadow-[#0F766E]/20 hover:bg-[#0B5F59] transition-all">
                 Explore Products <iconify-icon icon="lucide:arrow-right" class="transition-transform group-hover:translate-x-1"></iconify-icon>
               </a>
-              <a href="/services/" id="hero-cta-services" class="btn-active bg-white border border-[#0F766E]/30 text-[#0F766E] h-[56px] px-10 flex items-center justify-center rounded-full font-bold text-base hover:bg-[#D8F0EA] transition-all">Explore Services</a>
+              <a href="/services/#tier-2" id="hero-cta-services" class="btn-active bg-white border border-[#0F766E]/30 text-[#0F766E] h-[56px] px-10 flex items-center justify-center rounded-full font-bold text-base hover:bg-[#D8F0EA] transition-all">Explore Services</a>
             </div>
             <div class="flex items-center gap-2.5 text-sm font-semibold text-[#5A6A63]">
               <iconify-icon icon="lucide:shield-check" class="text-[#0F766E] text-lg"></iconify-icon>
@@ -216,11 +216,14 @@
       </section>
 
       <!-- Start Where You Are Section -->
-      <section id="start-where-you-are" class="py-32 bg-white/50">
+      <section id="start-where-you-are" class="py-20 lg:py-24 bg-white/50">
         <div class="container-custom">
           <div class="max-w-2xl mb-20 text-center mx-auto">
             <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Start Where You Are</span>
             <h2 class="text-4xl font-bold text-[#12201C] tracking-tight">Three ways to work with Grow2Guide</h2>
+
+        <p class="text-center text-sm font-medium text-[#5A6A63] tracking-wide mb-8">Nevada-first · Fixed-fee pathways · No outcome guarantees</p>
+
           </div>
 
           <div class="relative">
@@ -246,7 +249,7 @@
               </div>
 
               <!-- I Already Have Something -->
-              <div id="path-strengthen" class="scroll-mt-32 bg-[#EAF3EF] rounded-[24px] p-8 lg:p-9 card-shadow border border-[#0F766E]/10 flex flex-col hover:border-[#0F766E]/30 hover:-translate-y-1 transition-all">
+              <div id="path-strengthen" class="scroll-mt-32 bg-white rounded-[24px] p-8 lg:p-9 card-shadow border border-[#0F766E]/5 flex flex-col hover:border-[#0F766E]/20 hover:-translate-y-1 transition-all">
                 <div class="flex items-center gap-4 mb-6">
                   <div class="w-12 h-12 rounded-full bg-white text-[#0F766E] flex items-center justify-center shrink-0">
                     <iconify-icon icon="lucide:search-check" class="text-xl"></iconify-icon>
@@ -258,7 +261,7 @@
                   Policies. Procedures. Forms. Systems. But are they actually working? We help organizations evaluate what they have, identify gaps, and strengthen what needs to change.
                 </p>
                 <p class="text-[#12201C] font-bold text-sm mb-8">You don't always need to start over. Sometimes you need to know what to fix.</p>
-                <a href="/services/#tier-2" id="path-tier2-btn" class="group btn-active w-full bg-[#0F766E] text-white h-[52px] flex items-center justify-center gap-2 rounded-full font-bold text-base hover:bg-[#0B5F59] transition-all mt-auto">
+                <a href="/services/#tier-2" id="path-tier2-btn" class="group btn-active w-full border border-[#0F766E]/30 text-[#0F766E] h-[52px] flex items-center justify-center gap-2 rounded-full font-bold text-base hover:bg-[#D8F0EA] transition-all mt-auto">
                   Explore Tier 2 Services <iconify-icon icon="lucide:arrow-right" class="transition-transform group-hover:translate-x-1"></iconify-icon>
                 </a>
               </div>
@@ -286,12 +289,15 @@
       </section>
 
       <!-- Digital Programs / Products Section -->
-      <section id="products" class="py-32">
+      <section id="products" class="py-20 lg:py-24">
         <div class="container-custom">
           <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-20">
             <div class="max-w-2xl">
               <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">For Professionals</span>
               <h2 class="text-4xl font-bold text-[#12201C] tracking-tight">Practical guides for your next step</h2>
+
+        <p class="text-center text-sm font-medium text-[#5A6A63] tracking-wide mb-8">Nevada-first · Fixed-fee pathways · No outcome guarantees</p>
+
             </div>
             <p class="text-[#5A6A63] text-lg max-w-sm">
               Downloadable resources for busy clinical managers and behavioral health professionals.
@@ -322,6 +328,7 @@
               <a href="#" data-g2g-mailto="subject=Order%20Learning%20Guide&body=I%20would%20like%20to%20order%20the%20$67%20Learning%20Guide." id="buy-guide-btn" class="btn-active w-full bg-[#0F766E] text-white h-[56px] flex items-center justify-center rounded-full font-bold text-base hover:bg-[#0B5F59] transition-all">
                 Buy Guide — $67
               </a>
+              <p class="mt-3 text-center text-xs text-[#5A6A63]">Opens your email to request an invoice — nothing is charged until you confirm.</p>
             </div>
 
             <!-- Product 2 -->
@@ -347,6 +354,7 @@
               <a href="#" data-g2g-mailto="subject=Order%20Checklist&body=I%20would%20like%20to%20order%20the%20$67%20Checklist." id="buy-checklist-btn" class="btn-active w-full bg-[#0F766E] text-white h-[56px] flex items-center justify-center rounded-full font-bold text-base hover:bg-[#0B5F59] transition-all">
                 Buy Checklist — $67
               </a>
+              <p class="mt-3 text-center text-xs text-[#5A6A63]">Opens your email to request an invoice — nothing is charged until you confirm.</p>
             </div>
           </div>
         </div>
@@ -366,13 +374,14 @@
               <a href="#" data-g2g-mailto="subject=Order%20Bundle&body=I%20would%20like%20to%20order%20the%20$99%20Bundle." id="bundle-cta" class="btn-active bg-[#0F766E] text-white h-[64px] px-14 flex items-center justify-center rounded-full font-bold text-xl hover:bg-[#0B5F59] shadow-lg shadow-[#0F766E]/20 transition-all">
                 Buy Bundle — $99
               </a>
+              <p class="mt-3 text-center text-xs text-[#5A6A63]">Opens your email to request an invoice — nothing is charged until you confirm.</p>
             </div>
           </div>
         </div>
       </section>
 
       <!-- How It Works Section -->
-      <section id="how-it-works" class="py-32 bg-[#F5F8F4]">
+      <section id="how-it-works" class="py-20 lg:py-24 bg-[#F5F8F4]">
         <div class="container-custom">
           <div class="text-center mb-24">
             <h2 class="text-4xl font-bold mb-6 tracking-tight">How buying works</h2>
@@ -400,7 +409,7 @@
       </section>
 
       <!-- Built for the Real World Section -->
-      <section class="py-32">
+      <section class="py-20 lg:py-24">
         <div class="container-custom max-w-4xl">
           <h2 class="text-4xl font-bold text-[#12201C] tracking-tight mb-6 text-center">Built for the Real World of Behavioral Health&mdash;Across Inpatient and Outpatient Settings.</h2>
           <p class="text-[#5A6A63] text-lg leading-[1.6] text-center max-w-2xl mx-auto mb-16">
@@ -437,7 +446,7 @@
       </section>
 
       <!-- About Section -->
-      <section id="about" class="py-32 bg-white/50">
+      <section id="about" class="py-20 lg:py-24 bg-white/50">
         <div class="container-custom grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div class="order-2 lg:order-1 space-y-8">
             <h2 class="text-4xl lg:text-5xl font-bold leading-[1.15] tracking-tight">Clinical insight.<br>Operational expertise.</h2>
@@ -519,7 +528,7 @@
       </section>
 
       <!-- Where Do You Fit Section -->
-      <section class="py-32">
+      <section class="py-20 lg:py-24">
         <div class="container-custom max-w-3xl">
           <h2 class="text-4xl font-bold text-[#12201C] tracking-tight mb-16 text-center">Where Do You Fit?</h2>
           <div class="space-y-6 mb-16">
@@ -561,7 +570,7 @@
               <a href="#products" id="tagline-cta-products" class="btn-active bg-[#0F766E] text-white h-[60px] px-12 flex items-center justify-center rounded-full font-bold text-lg hover:bg-[#0B5F59] shadow-lg shadow-[#0F766E]/20 transition-all w-full sm:w-auto">
                 Explore Products
               </a>
-              <a href="/services/" id="tagline-cta-services" class="btn-active bg-white border border-[#0F766E]/30 text-[#0F766E] h-[60px] px-12 flex items-center justify-center rounded-full font-bold text-lg hover:bg-[#D8F0EA] transition-all w-full sm:w-auto">
+              <a href="/services/#tier-2" id="tagline-cta-services" class="btn-active bg-white border border-[#0F766E]/30 text-[#0F766E] h-[60px] px-12 flex items-center justify-center rounded-full font-bold text-lg hover:bg-[#D8F0EA] transition-all w-full sm:w-auto">
                 Explore Services
               </a>
               <a href="#about" id="tagline-cta-about" class="btn-active bg-white border border-[#0F766E]/30 text-[#0F766E] h-[60px] px-12 flex items-center justify-center rounded-full font-bold text-lg hover:bg-[#D8F0EA] transition-all w-full sm:w-auto">
@@ -575,7 +584,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-[#F7FBF9] text-[#5A6A63] border-t border-[#0F766E]/12">
+    <footer class="bg-[#F7FBF9] text-[#5A6A63] border-t border-[#0F766E]/12 py-12">
       <div class="container-custom py-16 lg:py-20">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-x-10 gap-y-12">
           <!-- Brand -->

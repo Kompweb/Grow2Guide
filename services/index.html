@@ -28,31 +28,101 @@
     .nav-link::after { content:''; position:absolute; bottom:-6px; left:0; width:0; height:2px; background:var(--accent-teal); transition:width .3s; }
     .nav-link:hover::after { width:100%; }
     .btn-active:active { transform: scale(0.98); }
+
+    a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visible {
+      outline: 2px solid var(--accent-teal, #0F766E);
+      outline-offset: 3px;
+    }
+    .services-subnav {
+      position: sticky; top: 68px; z-index: 40;
+      background: rgba(245,248,244,.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(15,118,110,.1);
+    }
+    @media (min-width: 1024px) { .services-subnav { top: 72px; } }
+    .services-subnav-inner {
+      max-width: 1120px; margin: 0 auto; padding: 0 24px;
+      display: flex; gap: .35rem; overflow-x: auto; -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .services-subnav-inner::-webkit-scrollbar { display: none; }
+    .services-subnav a {
+      flex: 0 0 auto; padding: .7rem .9rem; font-size: .8rem; font-weight: 700;
+      color: #5A6A63; text-decoration: none; border-bottom: 2px solid transparent;
+      white-space: nowrap;
+    }
+    .services-subnav a:hover { color: #0F766E; }
+    .pkg-acc { border: 1px solid rgba(15,118,110,.12); border-radius: 20px; background: #fff; margin-bottom: 1rem; overflow: hidden; }
+    .pkg-acc summary {
+      list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; padding: 1.15rem 1.35rem; font-weight: 700; color: #12201C; background: #F7FBF9;
+    }
+    .pkg-acc summary::-webkit-details-marker { display: none; }
+    .pkg-acc summary .chev { transition: transform .2s; color: #0F766E; font-size: 1.25rem; }
+    .pkg-acc[open] summary .chev { transform: rotate(180deg); }
+    .pkg-acc .pkg-acc-body { padding: 0 1rem 1rem; }
+    .sticky-consult {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 45;
+      background: rgba(255,255,255,.95); backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(15,118,110,.12);
+      padding: .75rem 1rem calc(.75rem + env(safe-area-inset-bottom));
+      box-shadow: 0 -8px 24px rgba(18,32,28,.08);
+    }
+    .sticky-consult-inner {
+      max-width: 1120px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    body { padding-bottom: 88px; }
+    .tier-summary-grid { display: grid; gap: 1rem; }
+    @media (min-width: 768px) { .tier-summary-grid { grid-template-columns: 1fr 1fr; } }
   </style>
   <title>Tier 2 & Tier 3 Services — Grow2Guide</title>
   <meta name="description" content="Tier 2 Organizational Gap Assessment and Tier 3 Become & Stay Ready infrastructure-building services from Grow2Guide." />
   <link rel="canonical" href="https://www.grow2guide.com/services/" />
 </head>
 <body>
+<a class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:px-4 focus:py-2 focus:rounded-full" href="#main">Skip to content</a>
+
   <div class="min-h-screen relative flex flex-col">
     <div class="atmosphere-glow"></div>
-    <nav class="fixed top-0 w-full z-50 glass-nav">
-      <div class="container-custom h-[100px] lg:h-[120px] flex items-center justify-between">
-        <div class="flex items-center gap-12 lg:gap-20">
-          <a href="/" class="flex shrink-0"><img src="../assets/logo.png" alt="Grow2Guide" class="h-[64px] lg:h-[86px] w-auto"></a>
-          <div class="hidden lg:flex items-center gap-12">
+        <nav class="fixed top-0 w-full z-50 glass-nav">
+      <div class="container-custom h-[68px] lg:h-[72px] flex items-center justify-between">
+        <div class="flex items-center gap-10 lg:gap-14">
+          <a href="/" class="flex shrink-0"><img src="../assets/logo.png" alt="Grow2Guide" class="h-[44px] lg:h-[52px] w-auto"></a>
+          <div class="hidden lg:flex items-center gap-10">
             <a href="/#products" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Products</a>
             <a href="/services/" class="nav-link text-[15px] font-semibold text-[#0F766E]">Services</a>
-            <a href="/#how-it-works" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">How it works</a>
             <a href="/#about" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">About</a>
             <a href="/handbook/" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Handbook</a>
           </div>
         </div>
-        <a href="/consultation/" class="bg-[#0F766E] text-white px-6 lg:px-8 py-3 rounded-full text-sm font-bold shadow-md shadow-[#0F766E]/20 hover:bg-[#0B5F59] transition-all">Contact</a>
+        <div class="flex items-center gap-3">
+          <a href="/consultation/" class="hidden sm:inline-flex bg-[#0F766E] text-white px-5 lg:px-6 py-2.5 rounded-full text-sm font-bold shadow-md shadow-[#0F766E]/20 hover:bg-[#0B5F59] transition-all">Request consultation</a>
+          <button type="button" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu" class="lg:hidden w-11 h-11 flex items-center justify-center rounded-full border-2 border-[#0F766E]/25 text-[#0F766E] bg-white/70">
+            <iconify-icon id="menu-icon-open" icon="ph:list-bold" class="text-2xl"></iconify-icon>
+            <iconify-icon id="menu-icon-close" icon="ph:x-bold" class="text-2xl hidden"></iconify-icon>
+          </button>
+        </div>
+      </div>
+      <div id="mobile-menu" class="hidden lg:hidden border-t border-[#0F766E]/10 bg-[#F5F8F4]">
+        <div class="container-custom py-5 flex flex-col gap-1">
+          <a href="/#products" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Products</a>
+          <a href="/services/" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Services</a>
+          <a href="/#about" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">About</a>
+          <a href="/consultation/" class="mt-4 bg-[#0F766E] text-white h-[48px] flex items-center justify-center rounded-full font-bold text-base">Request consultation</a>
+        </div>
       </div>
     </nav>
 
-    <main class="flex-1 pt-40 pb-24">
+    <div class="services-subnav" role="navigation" aria-label="Services sections">
+      <div class="services-subnav-inner">
+        <a href="#tier-2">Tier 2</a>
+        <a href="#tier-3">Tier 3</a>
+        <a href="#packages">Packages</a>
+        <a href="#process">Process</a>
+        <a href="/consultation/">Contact</a>
+      </div>
+    </div>
+
+    <main id="main" class="flex-1 pt-28 pb-24">
       <div class="container-custom max-w-3xl">
         <nav class="flex items-center gap-2 text-sm font-medium text-[#5A6A63] mb-10">
           <a href="/" class="hover:text-[#0F766E]">Home</a>
@@ -66,33 +136,25 @@
         </p>
       </div>
 
-      <!-- How we work -->
-      <div class="container-custom max-w-3xl mt-16">
-        <h2 class="text-sm font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-4">How engagements work</h2>
-        <p class="text-2xl font-bold text-[#12201C] mb-6 leading-tight">Fixed-fee packages matched to where you are today.</p>
-        <p class="text-[#5A6A63] text-base leading-[1.6] mb-6">
-          Whether you need clarity on gaps, help preparing an application, implementation support, survey readiness, or ongoing compliance partnership, Grow2Guide leads with clear, outcome-based packages. Hourly advisory is available for narrow needs when that fits better.
-        </p>
-        <div class="bg-[#EAF3EF] rounded-[16px] p-6 mb-10">
-          <h3 class="text-xs font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-2">What we deliver</h3>
-          <p class="text-[#12201C] font-semibold leading-relaxed">
-            Grow2Guide turns regulatory and accreditation requirements into practical policies, workflows, staff expectations, and evidence an agency can actually use.
-          </p>
+      
+      <!-- Tier overview cards -->
+      <div class="container-custom max-w-5xl mt-14">
+        <div class="tier-summary-grid">
+          <a href="#tier-2" class="bg-white rounded-[24px] p-7 border border-[#0F766E]/10 card-shadow hover:border-[#0F766E]/25 transition-colors block">
+            <span class="text-[11px] font-bold text-[#0F766E] tracking-[0.06em] uppercase">Tier 2</span>
+            <h2 class="text-xl font-bold text-[#12201C] mt-2 mb-2">Organizational Gap Assessment</h2>
+            <p class="text-[#5A6A63] text-sm leading-relaxed">You already have policies and systems. We assess what works, what’s missing, and what to prioritize next.</p>
+          </a>
+          <a href="#tier-3" class="bg-[#EAF3EF] rounded-[24px] p-7 border border-[#0F766E]/10 card-shadow hover:border-[#0F766E]/25 transition-colors block">
+            <span class="text-[11px] font-bold text-[#0F766E] tracking-[0.06em] uppercase">Tier 3</span>
+            <h2 class="text-xl font-bold text-[#12201C] mt-2 mb-2">Become &amp; Stay Ready</h2>
+            <p class="text-[#5A6A63] text-sm leading-relaxed">Don’t have the infrastructure yet? We build it with you—and help your team put it into practice.</p>
+          </a>
         </div>
-
-        <h3 class="text-lg font-bold text-[#12201C] mb-3">Clinical insight meets operational systems</h3>
-        <p class="text-[#5A6A63] text-base leading-[1.6] mb-10">
-          We bridge clinical services and organizational operations: policy development, compliance, quality assurance, program design, implementation, and staff learning—so requirements live in day-to-day practice, not only in a binder.
-        </p>
-
-        <h3 class="text-lg font-bold text-[#12201C] mb-3">About fees</h3>
-        <p class="text-[#5A6A63] text-base leading-[1.6]">
-          Every fixed fee assumes one legal entity, one primary program, and one location unless the proposal states otherwise. Package details and ranges appear below.
-        </p>
       </div>
 
-      <!-- TIER 2 -->
-      <div id="tier-2" class="container-custom max-w-5xl mt-20 scroll-mt-32">
+<!-- TIER 2 -->
+      <div id="tier-2" class="container-custom max-w-5xl mt-20 scroll-mt-32 scroll-mt-40">
         <div class="bg-white rounded-[32px] p-10 lg:p-16 card-shadow border border-[#0F766E]/5">
           <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Tier 2</span>
           <h2 class="text-3xl lg:text-4xl font-bold tracking-tight mb-4 text-[#12201C]">Organizational Gap Assessment</h2>
@@ -160,7 +222,7 @@
       </div>
 
       <!-- TIER 3 -->
-      <div id="tier-3" class="container-custom max-w-5xl mt-12 scroll-mt-32">
+      <div id="tier-3" class="container-custom max-w-5xl mt-12 scroll-mt-32 scroll-mt-40">
         <div class="bg-[#EAF3EF] rounded-[32px] p-10 lg:p-16 card-shadow border border-[#0F766E]/10">
           <span class="bg-white text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Tier 3</span>
           <h2 class="text-3xl lg:text-4xl font-bold tracking-tight mb-4 text-[#12201C]">Become & Stay Ready</h2>
@@ -241,18 +303,23 @@
       </div>
 
       <!-- Full Fee Schedule -->
-      <div class="container-custom max-w-3xl mt-24 mb-14">
+      <div id="packages" class="container-custom max-w-3xl mt-24 mb-10 scroll-mt-40">
         <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Detailed fee schedule</span>
         <h2 class="text-3xl lg:text-4xl font-bold tracking-tight text-[#12201C] mb-4">Every package, in full</h2>
         <p class="text-[#5A6A63] text-lg leading-[1.6]">Fixed fees assume one legal entity, one primary program, and one location unless a proposal states otherwise. State submission, accreditor, and approval timelines are outside Grow2Guide's control.</p>
       </div>
 
-      <!-- Service Track 01 -->
+      
       <div class="container-custom max-w-5xl mb-16">
-        <div class="mb-8">
-          <span class="text-[11px] font-bold text-[#0F766E] tracking-[0.06em] uppercase">Service Track 01</span>
-          <h3 class="text-2xl font-bold text-[#12201C] mt-2">State licensing packages sized to your complexity</h3>
-        </div>
+      <details class="pkg-acc" id="track-licensing" open>
+        <summary>
+          <span>
+            <span class="block text-[11px] font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-1">Licensing</span>
+            <span class="block text-lg lg:text-xl">State licensing packages sized to your complexity</span>
+          </span>
+          <span class="chev" aria-hidden="true">▾</span>
+        </summary>
+        <div class="pkg-acc-body">
         <div class="space-y-6">
           <div class="bg-[#EAF3EF] rounded-[20px] p-8 lg:p-10 border border-[#0F766E]/10">
             <div class="flex flex-wrap items-baseline justify-between gap-3 mb-2">
@@ -270,6 +337,9 @@
             </ul>
             <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Typical timeline:</strong> 2–3 weeks</p>
             <p class="text-[#5A6A63] text-sm italic"><strong class="text-[#12201C] not-italic">Scope note:</strong> Virtual; one program and one location. This is advisory and does not include application drafting or policy creation.</p>
+            <div class="mt-5 pt-4 border-t border-[#0F766E]/10">
+              <a href="/consultation/" class="inline-flex items-center justify-center h-[40px] px-5 rounded-full border border-[#0F766E]/30 text-[#0F766E] text-sm font-bold hover:bg-[#D8F0EA] transition-all">Request consult</a>
+            </div>
           </div>
 
           <div class="bg-white rounded-[20px] p-8 lg:p-10 border border-[#0F766E]/5 card-shadow">
@@ -290,6 +360,9 @@
             </ul>
             <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Typical timeline:</strong> 12–24 weeks, depending on readiness and agency timelines</p>
             <p class="text-[#5A6A63] text-sm italic"><strong class="text-[#12201C] not-italic">Scope note:</strong> Final fee depends on license type, service model, number of documents, location count, and starting readiness.</p>
+            <div class="mt-5 pt-4 border-t border-[#0F766E]/10">
+              <a href="/consultation/" class="inline-flex items-center justify-center h-[40px] px-5 rounded-full border border-[#0F766E]/30 text-[#0F766E] text-sm font-bold hover:bg-[#D8F0EA] transition-all">Request consult</a>
+            </div>
           </div>
 
           <div class="bg-[#EAF3EF] rounded-[20px] p-8 lg:p-10 border border-[#0F766E]/10">
@@ -308,17 +381,23 @@
             </ul>
             <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Typical timeline:</strong> 3–5 weeks per state</p>
             <p class="text-[#5A6A63] text-sm italic"><strong class="text-[#12201C] not-italic">Scope note:</strong> Roadmap only. Full application and implementation work is quoted after the state-specific review.</p>
+            <div class="mt-5 pt-4 border-t border-[#0F766E]/10">
+              <a href="/consultation/" class="inline-flex items-center justify-center h-[40px] px-5 rounded-full border border-[#0F766E]/30 text-[#0F766E] text-sm font-bold hover:bg-[#D8F0EA] transition-all">Request consult</a>
+            </div>
           </div>
         </div>
-      </div>
-
-      <!-- Service Track 02 -->
-      <div class="container-custom max-w-5xl mb-16">
-        <div class="mb-8">
-          <span class="text-[11px] font-bold text-[#0F766E] tracking-[0.06em] uppercase">Service Track 02</span>
-          <h3 class="text-2xl font-bold text-[#12201C] mt-2">CCBHC and DFS work require separate, state-specific scopes</h3>
-          <p class="text-[#5A6A63] text-sm mt-3 leading-relaxed">Certified Community Behavioral Health Clinic (CCBHC) certification readiness and Nevada Division of Child and Family Services (DFS) licensing are distinct from general facility licensing. Each engagement begins with discovery to confirm the governing pathway, responsible authority, program type, population, funding context, and current requirements.</p>
+      
         </div>
+      </details>
+      <details class="pkg-acc" id="track-ccbhc-dfs">
+        <summary>
+          <span>
+            <span class="block text-[11px] font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-1">CCBHC/DFS</span>
+            <span class="block text-lg lg:text-xl">CCBHC and DFS work require separate, state-specific scopes</span>
+          </span>
+          <span class="chev" aria-hidden="true">▾</span>
+        </summary>
+        <div class="pkg-acc-body">
         <div class="space-y-6">
           <div class="bg-[#EAF3EF] rounded-[20px] p-8 lg:p-10 border border-[#0F766E]/10">
             <div class="flex flex-wrap items-baseline justify-between gap-3 mb-2">
@@ -337,6 +416,9 @@
             </ul>
             <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Typical timeline:</strong> 4–9 months</p>
             <p class="text-[#5A6A63] text-sm italic"><strong class="text-[#12201C] not-italic">Scope note:</strong> State certification pathways and deadlines vary. Data-system builds, grant writing, actuarial work, and legal review are separately scoped.</p>
+            <div class="mt-5 pt-4 border-t border-[#0F766E]/10">
+              <a href="/consultation/" class="inline-flex items-center justify-center h-[40px] px-5 rounded-full border border-[#0F766E]/30 text-[#0F766E] text-sm font-bold hover:bg-[#D8F0EA] transition-all">Request consult</a>
+            </div>
           </div>
 
           <div class="bg-white rounded-[20px] p-8 lg:p-10 border border-[#0F766E]/5 card-shadow">
@@ -357,16 +439,23 @@
             </ul>
             <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Typical timeline:</strong> 16–28 weeks, depending on program and authority timelines</p>
             <p class="text-[#5A6A63] text-sm italic"><strong class="text-[#12201C] not-italic">Scope note:</strong> Requirements vary by program model and licensing authority. Facility design, fire, zoning, construction, legal, and clinical credential determinations remain with the appropriate professionals and agencies.</p>
+            <div class="mt-5 pt-4 border-t border-[#0F766E]/10">
+              <a href="/consultation/" class="inline-flex items-center justify-center h-[40px] px-5 rounded-full border border-[#0F766E]/30 text-[#0F766E] text-sm font-bold hover:bg-[#D8F0EA] transition-all">Request consult</a>
+            </div>
           </div>
         </div>
-      </div>
-
-      <!-- Service Track 03 -->
-      <div class="container-custom max-w-5xl mb-16">
-        <div class="mb-8">
-          <span class="text-[11px] font-bold text-[#0F766E] tracking-[0.06em] uppercase">Service Track 03</span>
-          <h3 class="text-2xl font-bold text-[#12201C] mt-2">CARF and Joint Commission readiness at the right depth</h3>
+      
         </div>
+      </details>
+      <details class="pkg-acc" id="track-accreditation">
+        <summary>
+          <span>
+            <span class="block text-[11px] font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-1">Accreditation</span>
+            <span class="block text-lg lg:text-xl">CARF and Joint Commission readiness at the right depth</span>
+          </span>
+          <span class="chev" aria-hidden="true">▾</span>
+        </summary>
+        <div class="pkg-acc-body">
         <div class="space-y-6">
           <div class="bg-[#EAF3EF] rounded-[20px] p-8 lg:p-10 border border-[#0F766E]/10">
             <div class="flex flex-wrap items-baseline justify-between gap-3 mb-2">
@@ -386,6 +475,9 @@
             </ul>
             <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Typical timeline:</strong> 4–8 months</p>
             <p class="text-[#5A6A63] text-sm italic"><strong class="text-[#12201C] not-italic">Scope note:</strong> One program and one location. Additional programs, sites, policy creation, onsite work, or accelerated timelines are priced separately.</p>
+            <div class="mt-5 pt-4 border-t border-[#0F766E]/10">
+              <a href="/consultation/" class="inline-flex items-center justify-center h-[40px] px-5 rounded-full border border-[#0F766E]/30 text-[#0F766E] text-sm font-bold hover:bg-[#D8F0EA] transition-all">Request consult</a>
+            </div>
           </div>
 
           <div class="bg-white rounded-[20px] p-8 lg:p-10 border border-[#0F766E]/5 card-shadow">
@@ -406,6 +498,9 @@
             </ul>
             <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Typical timeline:</strong> 6–12 months</p>
             <p class="text-[#5A6A63] text-sm italic"><strong class="text-[#12201C] not-italic">Scope note:</strong> One program and one location. Environment-of-care specialists, architectural review, life-safety engineering, legal advice, and accreditor fees are not included.</p>
+            <div class="mt-5 pt-4 border-t border-[#0F766E]/10">
+              <a href="/consultation/" class="inline-flex items-center justify-center h-[40px] px-5 rounded-full border border-[#0F766E]/30 text-[#0F766E] text-sm font-bold hover:bg-[#D8F0EA] transition-all">Request consult</a>
+            </div>
           </div>
 
           <div class="bg-[#EAF3EF] rounded-[20px] p-8 lg:p-10 border border-[#0F766E]/10">
@@ -425,6 +520,9 @@
             </ul>
             <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Typical timeline:</strong> 2–4 weeks</p>
             <p class="text-[#5A6A63] text-sm italic"><strong class="text-[#12201C] not-italic">Scope note:</strong> Up to one location and three programs; not a substitute for comprehensive readiness work.</p>
+            <div class="mt-5 pt-4 border-t border-[#0F766E]/10">
+              <a href="/consultation/" class="inline-flex items-center justify-center h-[40px] px-5 rounded-full border border-[#0F766E]/30 text-[#0F766E] text-sm font-bold hover:bg-[#D8F0EA] transition-all">Request consult</a>
+            </div>
           </div>
 
           <div class="bg-[#F7FBF9] border border-[#0F766E]/10 rounded-[16px] px-6 py-6">
@@ -438,15 +536,18 @@
             </ul>
           </div>
         </div>
-      </div>
-
-      <!-- Service Track 04 -->
-      <div class="container-custom max-w-5xl mb-16">
-        <div class="mb-8">
-          <span class="text-[11px] font-bold text-[#0F766E] tracking-[0.06em] uppercase">Service Track 04</span>
-          <h3 class="text-2xl font-bold text-[#12201C] mt-2">Workforce learning that reinforces your systems</h3>
-          <p class="text-[#5A6A63] text-sm mt-3 leading-relaxed">The Behavioral Health Policy Inventory &amp; Learning Guide introduces entry-level employees, students, direct-care staff, and emerging leaders to the policies, systems, and operational functions behind behavioral health services. It can stand alone or reinforce a licensing or accreditation engagement.</p>
+      
         </div>
+      </details>
+      <details class="pkg-acc" id="track-workforce">
+        <summary>
+          <span>
+            <span class="block text-[11px] font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-1">Workforce</span>
+            <span class="block text-lg lg:text-xl">Workforce learning that reinforces your systems</span>
+          </span>
+          <span class="chev" aria-hidden="true">▾</span>
+        </summary>
+        <div class="pkg-acc-body">
         <div class="space-y-6">
           <div class="bg-[#EAF3EF] rounded-[20px] p-8 lg:p-10 border border-[#0F766E]/10">
             <div class="flex flex-wrap items-baseline justify-between gap-3 mb-2">
@@ -462,6 +563,9 @@
             </ul>
             <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Typical timeline:</strong> Self-paced</p>
             <p class="text-[#5A6A63] text-sm italic"><strong class="text-[#12201C] not-italic">Scope note:</strong> Educational resource; not legal advice, certification, or a substitute for employer-specific training.</p>
+            <div class="mt-5 pt-4 border-t border-[#0F766E]/10">
+              <a href="/consultation/" class="inline-flex items-center justify-center h-[40px] px-5 rounded-full border border-[#0F766E]/30 text-[#0F766E] text-sm font-bold hover:bg-[#D8F0EA] transition-all">Request consult</a>
+            </div>
           </div>
 
           <div class="bg-white rounded-[20px] p-8 lg:p-10 border border-[#0F766E]/5 card-shadow">
@@ -480,6 +584,9 @@
             </ul>
             <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Typical timeline:</strong> Launch within 2 weeks</p>
             <p class="text-[#5A6A63] text-sm italic"><strong class="text-[#12201C] not-italic">Scope note:</strong> Final license terms should specify access duration, permitted copying, updates, and replacement-user rules.</p>
+            <div class="mt-5 pt-4 border-t border-[#0F766E]/10">
+              <a href="/consultation/" class="inline-flex items-center justify-center h-[40px] px-5 rounded-full border border-[#0F766E]/30 text-[#0F766E] text-sm font-bold hover:bg-[#D8F0EA] transition-all">Request consult</a>
+            </div>
           </div>
 
           <div class="bg-[#EAF3EF] rounded-[20px] p-8 lg:p-10 border border-[#0F766E]/10">
@@ -498,16 +605,23 @@
             </ul>
             <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Typical timeline:</strong> 2–4 weeks from booking</p>
             <p class="text-[#5A6A63] text-sm italic"><strong class="text-[#12201C] not-italic">Scope note:</strong> Up to 25 participants; employer-specific policy training remains the agency's responsibility.</p>
+            <div class="mt-5 pt-4 border-t border-[#0F766E]/10">
+              <a href="/consultation/" class="inline-flex items-center justify-center h-[40px] px-5 rounded-full border border-[#0F766E]/30 text-[#0F766E] text-sm font-bold hover:bg-[#D8F0EA] transition-all">Request consult</a>
+            </div>
           </div>
         </div>
-      </div>
-
-      <!-- Service Track 05 -->
-      <div class="container-custom max-w-5xl mb-16">
-        <div class="mb-8">
-          <span class="text-[11px] font-bold text-[#0F766E] tracking-[0.06em] uppercase">Service Track 05</span>
-          <h3 class="text-2xl font-bold text-[#12201C] mt-2">Ongoing compliance turns readiness into a management habit</h3>
+      
         </div>
+      </details>
+      <details class="pkg-acc" id="track-retainers">
+        <summary>
+          <span>
+            <span class="block text-[11px] font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-1">Retainers</span>
+            <span class="block text-lg lg:text-xl">Ongoing compliance turns readiness into a management habit</span>
+          </span>
+          <span class="chev" aria-hidden="true">▾</span>
+        </summary>
+        <div class="pkg-acc-body">
         <div class="space-y-6">
           <div class="bg-[#EAF3EF] rounded-[20px] p-8 lg:p-10 border border-[#0F766E]/10">
             <div class="flex flex-wrap items-baseline justify-between gap-3 mb-2">
@@ -525,6 +639,9 @@
             </ul>
             <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Typical timeline:</strong> 6-month minimum</p>
             <p class="text-[#5A6A63] text-sm italic"><strong class="text-[#12201C] not-italic">Scope note:</strong> Unused hours do not roll over. Audits, policy creation, applications, and survey support are separate projects.</p>
+            <div class="mt-5 pt-4 border-t border-[#0F766E]/10">
+              <a href="/consultation/" class="inline-flex items-center justify-center h-[40px] px-5 rounded-full border border-[#0F766E]/30 text-[#0F766E] text-sm font-bold hover:bg-[#D8F0EA] transition-all">Request consult</a>
+            </div>
           </div>
 
           <div class="bg-white rounded-[20px] p-8 lg:p-10 border border-[#0F766E]/5 card-shadow">
@@ -544,6 +661,9 @@
             </ul>
             <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Typical timeline:</strong> 6-month minimum</p>
             <p class="text-[#5A6A63] text-sm italic"><strong class="text-[#12201C] not-italic">Scope note:</strong> One legal entity and up to two programs. Additional locations, chart volume, or audit depth require a custom scope.</p>
+            <div class="mt-5 pt-4 border-t border-[#0F766E]/10">
+              <a href="/consultation/" class="inline-flex items-center justify-center h-[40px] px-5 rounded-full border border-[#0F766E]/30 text-[#0F766E] text-sm font-bold hover:bg-[#D8F0EA] transition-all">Request consult</a>
+            </div>
           </div>
 
           <div class="bg-[#EAF3EF] rounded-[20px] p-8 lg:p-10 border border-[#0F766E]/10">
@@ -563,12 +683,43 @@
             </ul>
             <p class="text-[#5A6A63] text-sm mb-2"><strong class="text-[#12201C]">Typical timeline:</strong> 6–12 month minimum</p>
             <p class="text-[#5A6A63] text-sm italic"><strong class="text-[#12201C] not-italic">Scope note:</strong> Not an employee role, legal counsel, or 24/7 on-call service. Authority and responsibilities must be defined in the agreement.</p>
+            <div class="mt-5 pt-4 border-t border-[#0F766E]/10">
+              <a href="/consultation/" class="inline-flex items-center justify-center h-[40px] px-5 rounded-full border border-[#0F766E]/30 text-[#0F766E] text-sm font-bold hover:bg-[#D8F0EA] transition-all">Request consult</a>
+            </div>
           </div>
         </div>
+      
+        </div>
+      </details>
+
+      </div>
+<!-- How we work -->
+      <div class="container-custom max-w-3xl mt-16">
+        <h2 class="text-sm font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-4">How engagements work</h2>
+        <p class="text-2xl font-bold text-[#12201C] mb-6 leading-tight">Fixed-fee packages matched to where you are today.</p>
+        <p class="text-[#5A6A63] text-base leading-[1.6] mb-6">
+          Whether you need clarity on gaps, help preparing an application, implementation support, survey readiness, or ongoing compliance partnership, Grow2Guide leads with clear, outcome-based packages. Hourly advisory is available for narrow needs when that fits better.
+        </p>
+        <div class="bg-[#EAF3EF] rounded-[16px] p-6 mb-10">
+          <h3 class="text-xs font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-2">What we deliver</h3>
+          <p class="text-[#12201C] font-semibold leading-relaxed">
+            Grow2Guide turns regulatory and accreditation requirements into practical policies, workflows, staff expectations, and evidence an agency can actually use.
+          </p>
+        </div>
+
+        <h3 class="text-lg font-bold text-[#12201C] mb-3">Clinical insight meets operational systems</h3>
+        <p class="text-[#5A6A63] text-base leading-[1.6] mb-10">
+          We bridge clinical services and organizational operations: policy development, compliance, quality assurance, program design, implementation, and staff learning—so requirements live in day-to-day practice, not only in a binder.
+        </p>
+
+        <h3 class="text-lg font-bold text-[#12201C] mb-3">About fees</h3>
+        <p class="text-[#5A6A63] text-base leading-[1.6]">
+          Every fixed fee assumes one legal entity, one primary program, and one location unless the proposal states otherwise. Package details and ranges appear below.
+        </p>
       </div>
 
       <!-- Client Experience -->
-      <div class="container-custom max-w-3xl mb-8">
+      <div id="process" class="container-custom max-w-3xl mb-8 scroll-mt-40">
         <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Client experience</span>
         <h2 class="text-3xl lg:text-4xl font-bold tracking-tight text-[#12201C]">A seven-stage process makes complex work manageable</h2>
       </div>
@@ -649,9 +800,16 @@
       </div>
     </main>
 
-    <footer class="bg-[#EAF3EF] text-[#5A6A63] py-24 border-t border-[#0F766E]/10">
+
+    <div class="sticky-consult" id="sticky-consult" role="complementary" aria-label="Schedule a consultation">
+      <div class="sticky-consult-inner">
+        <p class="text-sm font-semibold text-[#12201C] hidden sm:block">Questions about fit or scope?</p>
+        <a href="/consultation/" class="inline-flex bg-[#0F766E] text-white h-[44px] px-6 items-center justify-center rounded-full font-bold text-sm shadow-md shadow-[#0F766E]/20 hover:bg-[#0B5F59] transition-all w-full sm:w-auto">Schedule a consultation</a>
+      </div>
+    </div>
+    <footer class="bg-[#EAF3EF] text-[#5A6A63] py-12 border-t border-[#0F766E]/10">
       <div class="container-custom">
-        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 mb-16">
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 mb-10">
           <div class="lg:col-span-4 space-y-6">
             <a href="/" class="inline-block"><img src="../assets/logo.png" alt="Grow2Guide" class="h-[86px] w-auto"></a>
             <p class="text-[15px] leading-relaxed max-w-sm">Nevada-first licensing, accreditation readiness, compliance, and workforce learning — practical systems that hold up.</p>
@@ -698,5 +856,27 @@
       </div>
     </footer>
   </div>
+
+  <script>
+  (function () {
+    var btn = document.getElementById('mobile-menu-btn');
+    var menu = document.getElementById('mobile-menu');
+    var iconOpen = document.getElementById('menu-icon-open');
+    var iconClose = document.getElementById('menu-icon-close');
+    if (!btn || !menu) return;
+    function setOpen(open) {
+      menu.classList.toggle('hidden', !open);
+      btn.setAttribute('aria-expanded', String(open));
+      if (iconOpen) iconOpen.classList.toggle('hidden', open);
+      if (iconClose) iconClose.classList.toggle('hidden', !open);
+    }
+    btn.addEventListener('click', function () {
+      setOpen(menu.classList.contains('hidden'));
+    });
+    menu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () { setOpen(false); });
+    });
+  })();
+  </script>
 </body>
 </html>
