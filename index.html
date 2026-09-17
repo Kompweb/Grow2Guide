@@ -86,6 +86,20 @@
       box-shadow: 0 16px 40px rgba(18, 32, 28, 0.08);
     }
 
+    .path-leaf-icon {
+      display: block;
+      width: 64px;
+      height: 64px;
+      flex: 0 0 64px;
+      background-image: url('/assets/path-leaf-icons.png');
+      background-repeat: no-repeat;
+      background-size: 300% 100%;
+    }
+
+    .path-leaf-icon--guide { background-position: left center; }
+    .path-leaf-icon--strengthen { background-position: center center; }
+    .path-leaf-icon--build { background-position: right center; }
+
     .btn-active:active {
       transform: scale(0.98);
     }
@@ -268,9 +282,7 @@
               <!-- I Need a Guide -->
               <div id="path-guide" class="scroll-mt-32 bg-white rounded-[24px] p-8 lg:p-9 card-shadow border border-[#0F766E]/5 flex flex-col hover:border-[#0F766E]/20 hover:-translate-y-1 transition-all sm:col-span-2 lg:col-span-1">
                 <div class="flex items-center gap-4 mb-6">
-                  <div class="w-12 h-12 rounded-full bg-[#D8F0EA] text-[#0F766E] flex items-center justify-center shrink-0">
-                    <iconify-icon icon="lucide:book-open" class="text-xl"></iconify-icon>
-                  </div>
+                  <span class="path-leaf-icon path-leaf-icon--guide" role="img" aria-label="One leaf"></span>
                   <span class="text-[11px] font-bold text-[#5A6A63] tracking-[0.06em] uppercase">For Professionals</span>
                 </div>
                 <h3 class="text-2xl font-bold mb-3 text-[#12201C]">I Need a Guide.</h3>
@@ -286,9 +298,7 @@
               <!-- I Already Have Something -->
               <div id="path-strengthen" class="scroll-mt-32 bg-white rounded-[24px] p-8 lg:p-9 card-shadow border border-[#0F766E]/5 flex flex-col hover:border-[#0F766E]/20 hover:-translate-y-1 transition-all">
                 <div class="flex items-center gap-4 mb-6">
-                  <div class="w-12 h-12 rounded-full bg-white text-[#0F766E] flex items-center justify-center shrink-0">
-                    <iconify-icon icon="lucide:search-check" class="text-xl"></iconify-icon>
-                  </div>
+                  <span class="path-leaf-icon path-leaf-icon--strengthen" role="img" aria-label="Two leaves"></span>
                   <span class="text-[11px] font-bold text-[#0F766E] tracking-[0.06em] uppercase">Tier 2 &middot; For Organizations</span>
                 </div>
                 <h3 class="text-2xl font-bold mb-3 text-[#12201C]">I Already Have Something.</h3>
@@ -304,9 +314,7 @@
               <!-- I Need Someone to Build It -->
               <div id="path-build" class="scroll-mt-32 bg-white rounded-[24px] p-8 lg:p-9 card-shadow border border-[#0F766E]/5 flex flex-col hover:border-[#0F766E]/20 hover:-translate-y-1 transition-all">
                 <div class="flex items-center gap-4 mb-6">
-                  <div class="w-12 h-12 rounded-full bg-[#D8F0EA] text-[#0F766E] flex items-center justify-center shrink-0">
-                    <iconify-icon icon="lucide:hammer" class="text-xl"></iconify-icon>
-                  </div>
+                  <span class="path-leaf-icon path-leaf-icon--build" role="img" aria-label="Three leaves"></span>
                   <span class="text-[11px] font-bold text-[#5A6A63] tracking-[0.06em] uppercase">Tier 3 &middot; For Organizations</span>
                 </div>
                 <h3 class="text-2xl font-bold mb-3 text-[#12201C]">I Need Someone to Build It.</h3>
@@ -342,7 +350,12 @@
           <div class="grid lg:grid-cols-2 gap-10">
             <!-- Product 1 -->
             <div class="bg-white rounded-[24px] p-12 card-shadow border border-[#0F766E]/5 flex flex-col">
-              <span class="text-[11px] font-bold text-[#5A6A63] tracking-[0.06em] uppercase mb-8 inline-block">PDF 1 • Foundations</span>
+              <div class="flex items-center gap-4 mb-8">
+                <div class="w-16 h-16 shrink-0 rounded-2xl bg-[#F1F3F2] text-[#6B7370] flex items-center justify-center">
+                  <iconify-icon icon="lucide:file-text" class="text-[45.6px]"></iconify-icon>
+                </div>
+                <span class="text-[11px] font-bold text-[#5A6A63] tracking-[0.06em] uppercase">PDF 1 • Foundations</span>
+              </div>
               <h3 class="text-2xl font-bold mb-5 leading-snug text-[#12201C]">Behavioral Health Policy Inventory & Learning Guide</h3>
               <p class="text-[#5A6A63] text-base mb-10 leading-[1.55] flex-1">
                 A structured breakdown of 69 critical policy areas from HR to Risk Management. Essential for agencies auditing existing systems.
@@ -365,7 +378,12 @@
 
             <!-- Product 2 -->
             <div class="bg-white rounded-[24px] p-12 card-shadow border border-[#0F766E]/5 flex flex-col">
-              <span class="text-[11px] font-bold text-[#5A6A63] tracking-[0.06em] uppercase mb-8 inline-block">PDF 2 • Readiness</span>
+              <div class="flex items-center gap-4 mb-8">
+                <div class="w-16 h-16 shrink-0 rounded-2xl bg-[#F1F3F2] text-[#6B7370] flex items-center justify-center">
+                  <iconify-icon icon="lucide:file-text" class="text-[45.6px]"></iconify-icon>
+                </div>
+                <span class="text-[11px] font-bold text-[#5A6A63] tracking-[0.06em] uppercase">PDF 2 • Readiness</span>
+              </div>
               <h3 class="text-2xl font-bold mb-5 leading-snug text-[#12201C]">Accreditation Starter Checklist</h3>
               <p class="text-[#5A6A63] text-base mb-10 leading-[1.55] flex-1">
                 Practical preparation guide for CARF, Joint Commission, or Licensure surveys. Identify and close operational gaps before the survey.
