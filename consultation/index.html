@@ -10,9 +10,9 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
     :root {
-      --bg-paper: #F5F1EB; --surface: #FFFFFF; --surface-soft: #EFEAE4;
-      --ink-primary: #1A1612; --ink-muted: #5C534C;
-      --accent-teal: #14522B; --accent-teal-dark: #0E3D20; --accent-soft: #E6EDE7;
+      --bg-paper: #F5F8F4; --surface: #FFFFFF; --surface-soft: #EAF3EF;
+      --ink-primary: #12201C; --ink-muted: #5A6A63;
+      --accent-teal: #0F766E; --accent-teal-dark: #0B5F59; --accent-soft: #D8F0EA;
     }
     body { font-family: Inter, system-ui, -apple-system, sans-serif; color: var(--ink-primary); margin: 0; background: var(--bg-paper); }
     .atmosphere-glow {
@@ -21,25 +21,25 @@
         radial-gradient(1000px 420px at 0% -10%, rgba(223,245,239,.5) 0%, transparent 55%),
         radial-gradient(800px 360px at 100% 0%, rgba(238,242,248,.6) 0%, transparent 48%);
     }
-    .glass-nav { background: rgba(245, 241, 235,.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(20, 82, 43,.08); }
-    .card-shadow { box-shadow: 0 16px 40px rgba(26, 22, 18,.08); }
+    .glass-nav { background: rgba(245,248,244,.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(15,118,110,.08); }
+    .card-shadow { box-shadow: 0 16px 40px rgba(18,32,28,.08); }
     .container-custom { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
     .nav-link { position: relative; }
     .nav-link::after { content:''; position:absolute; bottom:-6px; left:0; width:0; height:2px; background:var(--accent-teal); transition:width .3s; }
     .nav-link:hover::after { width:100%; }
     .btn-active:active { transform: scale(0.98); }
-    .field { width:100%; background:#F5F1EB; border:1px solid rgba(20, 82, 43,.12); padding:0.9rem 1.1rem; border-radius:0.9rem; font:inherit; color:inherit; }
-    .field:focus { outline: none; box-shadow: 0 0 0 3px rgba(20, 82, 43,.2); }
-    .check-card { display:flex; align-items:center; gap:0.85rem; padding:0.9rem 1.1rem; border-radius:14px; border:2px solid transparent; background:#F5F1EB; color:#5C534C; font-weight:600; font-size:0.9rem; cursor:pointer; transition:all .15s; }
-    .check-card:hover { background:#EFEAE4; }
+    .field { width:100%; background:#F5F8F4; border:1px solid rgba(15,118,110,.12); padding:0.9rem 1.1rem; border-radius:0.9rem; font:inherit; color:inherit; }
+    .field:focus { outline: none; box-shadow: 0 0 0 3px rgba(15,118,110,.2); }
+    .check-card { display:flex; align-items:center; gap:0.85rem; padding:0.9rem 1.1rem; border-radius:14px; border:2px solid transparent; background:#F5F8F4; color:#5A6A63; font-weight:600; font-size:0.9rem; cursor:pointer; transition:all .15s; }
+    .check-card:hover { background:#EAF3EF; }
     label.opt-wrap { display:block; }
     label.opt-wrap input { position:absolute; opacity:0; pointer-events:none; }
     label.opt-wrap:has(input:checked) .check-card { border-color: var(--accent-teal); background: var(--accent-soft); color: var(--accent-teal-dark); }
-    .req::after { content:' *'; color:#14522B; }
+    .req::after { content:' *'; color:#0F766E; }
     .err { color:#b91c1c; font-size:0.8rem; margin-top:0.5rem; display:none; }
 
     a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visible, select:focus-visible, textarea:focus-visible, input:focus-visible {
-      outline: 2px solid #14522B;
+      outline: 2px solid #0F766E;
       outline-offset: 3px;
     }
     .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
@@ -59,65 +59,65 @@
         <div class="flex items-center gap-10 lg:gap-14">
           <a href="/" class="flex shrink-0"><img src="../assets/logo.png" alt="Grow2Guide" class="h-[44px] lg:h-[52px] w-auto"></a>
           <div class="hidden lg:flex items-center gap-10">
-            <a href="/#products" class="nav-link text-[15px] font-semibold text-[#5C534C] hover:text-[#14522B]">Products</a>
-            <a href="/services/" class="nav-link text-[15px] font-semibold text-[#5C534C] hover:text-[#14522B]">Services</a>
-            <a href="/#about" class="nav-link text-[15px] font-semibold text-[#5C534C] hover:text-[#14522B]">About</a>
-            <a href="/handbook/" class="nav-link text-[15px] font-semibold text-[#5C534C] hover:text-[#14522B]">Handbook</a>
+            <a href="/#products" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Products</a>
+            <a href="/services/" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Services</a>
+            <a href="/#about" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">About</a>
+            <a href="/handbook/" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Handbook</a>
           </div>
         </div>
         <div class="flex items-center gap-3">
-          <a href="/consultation/" class="hidden sm:inline-flex bg-[#14522B] text-white px-5 lg:px-6 py-2.5 rounded-full text-sm font-bold shadow-md shadow-[#14522B]/20 hover:bg-[#0E3D20] transition-all">Request consultation</a>
-          <button type="button" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu" class="lg:hidden w-11 h-11 flex items-center justify-center rounded-full border-2 border-[#4E3524]/40 text-[#4E3524] bg-white/70">
+          <a href="/consultation/" class="hidden sm:inline-flex bg-[#0F766E] text-white px-5 lg:px-6 py-2.5 rounded-full text-sm font-bold shadow-md shadow-[#0F766E]/20 hover:bg-[#0B5F59] transition-all">Request consultation</a>
+          <button type="button" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu" class="lg:hidden w-11 h-11 flex items-center justify-center rounded-full border-2 border-[#0F766E]/25 text-[#0F766E] bg-white/70">
             <iconify-icon id="menu-icon-open" icon="ph:list-bold" class="text-2xl"></iconify-icon>
             <iconify-icon id="menu-icon-close" icon="ph:x-bold" class="text-2xl hidden"></iconify-icon>
           </button>
         </div>
       </div>
-      <div id="mobile-menu" class="hidden lg:hidden border-t border-[#14522B]/10 bg-[#F5F1EB]">
+      <div id="mobile-menu" class="hidden lg:hidden border-t border-[#0F766E]/10 bg-[#F5F8F4]">
         <div class="container-custom py-5 flex flex-col gap-1">
-          <a href="/#products" class="text-[18px] font-semibold text-[#1A1612] py-3 border-b border-[#14522B]/8">Products</a>
-          <a href="/services/" class="text-[18px] font-semibold text-[#1A1612] py-3 border-b border-[#14522B]/8">Services</a>
-          <a href="/#about" class="text-[18px] font-semibold text-[#1A1612] py-3 border-b border-[#14522B]/8">About</a>
-          <a href="/handbook/" class="text-[18px] font-semibold text-[#1A1612] py-3 border-b border-[#14522B]/8">Handbook</a>
-          <a href="/consultation/" class="mt-4 bg-[#14522B] text-white h-[48px] flex items-center justify-center rounded-full font-bold text-base">Request consultation</a>
+          <a href="/#products" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Products</a>
+          <a href="/services/" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Services</a>
+          <a href="/#about" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">About</a>
+          <a href="/handbook/" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Handbook</a>
+          <a href="/consultation/" class="mt-4 bg-[#0F766E] text-white h-[48px] flex items-center justify-center rounded-full font-bold text-base">Request consultation</a>
         </div>
       </div>
     </nav>
 
     <main id="main" class="flex-1 pt-28 pb-24">
       <div class="container-custom max-w-3xl">
-        <nav class="flex items-center gap-2 text-sm font-medium text-[#5C534C] mb-10">
-          <a href="/" class="hover:text-[#14522B]">Home</a>
+        <nav class="flex items-center gap-2 text-sm font-medium text-[#5A6A63] mb-10">
+          <a href="/" class="hover:text-[#0F766E]">Home</a>
           <span class="opacity-40">/</span>
-          <a href="/services/" class="hover:text-[#14522B]">Services</a>
+          <a href="/services/" class="hover:text-[#0F766E]">Services</a>
           <span class="opacity-40">/</span>
-          <span class="text-[#1A1612]">Consultation Request</span>
+          <span class="text-[#12201C]">Consultation Request</span>
         </nav>
-        <span class="bg-[#E6EDE7] text-[#14522B] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Before we talk</span>
+        <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Before we talk</span>
         <h1 class="text-4xl lg:text-5xl font-bold tracking-tight mb-6 leading-[1.1]">Grow2Guide Consultation Request</h1>
-        <p class="text-[#5C534C] text-lg leading-[1.6]">
+        <p class="text-[#5A6A63] text-lg leading-[1.6]">
           Please complete the following form so we can better understand your organization and what you are looking for before our consultation.
         </p>
       </div>
 
       <div class="container-custom max-w-3xl mt-14">
         
-        <div class="bg-[#F5F1EB] border border-[#14522B]/10 rounded-[16px] px-5 py-4 mb-8 space-y-2">
-          <p class="text-sm font-semibold text-[#1A1612]">About 3 minutes · 10 questions</p>
-          <p class="text-[13px] text-[#5C534C] leading-relaxed">Submitting opens your email app with your answers ready to send to Grow2Guide. It will be addressed to grow2guide@gmail.com. Nothing is transmitted until you send the email.</p>
+        <div class="bg-[#F7FBF9] border border-[#0F766E]/10 rounded-[16px] px-5 py-4 mb-8 space-y-2">
+          <p class="text-sm font-semibold text-[#12201C]">About 3 minutes · 10 questions</p>
+          <p class="text-[13px] text-[#5A6A63] leading-relaxed">Submitting opens your email app with your answers ready to send to Grow2Guide. It will be addressed to grow2guide@gmail.com. Nothing is transmitted until you send the email.</p>
         </div>
-        <form id="consult-form" novalidate class="bg-white rounded-[32px] p-8 md:p-12 card-shadow border border-[#14522B]/5 space-y-10">
+        <form id="consult-form" novalidate class="bg-white rounded-[32px] p-8 md:p-12 card-shadow border border-[#0F766E]/5 space-y-10">
 
           <!-- Q1 -->
           <div>
-            <label for="org-name" class="req block text-sm font-bold text-[#1A1612] mb-3">1. Organization Name</label>
+            <label for="org-name" class="req block text-sm font-bold text-[#12201C] mb-3">1. Organization Name</label>
             <input class="field" type="text" id="org-name" name="org-name" required  aria-describedby="err-org-name"/>
             <p id="err-org-name" class="err" role="alert" data-for="org-name">Please enter your organization's name.</p>
           </div>
 
           <!-- Q2 -->
           <div>
-            <label for="contact-name" class="req block text-sm font-bold text-[#1A1612] mb-3">2. Contact Name &amp; Title</label>
+            <label for="contact-name" class="req block text-sm font-bold text-[#12201C] mb-3">2. Contact Name &amp; Title</label>
             <input class="field" type="text" id="contact-name" name="contact-name" placeholder="e.g., Jane Doe, Program Director" required  aria-describedby="err-contact-name"/>
             <p id="err-contact-name" class="err" role="alert" data-for="contact-name">Please enter your name and title.</p>
           </div>
@@ -125,12 +125,12 @@
           <!-- Q3 -->
           <div class="grid sm:grid-cols-2 gap-5">
             <div>
-              <label for="email" class="req block text-sm font-bold text-[#1A1612] mb-3">3a. Email</label>
+              <label for="email" class="req block text-sm font-bold text-[#12201C] mb-3">3a. Email</label>
               <input class="field" type="email" id="email" name="email" placeholder="jane@agency.org" required autocomplete="email" aria-describedby="err-email" />
               <p class="err" id="err-email" data-for="email" role="alert">Please enter a valid email address.</p>
             </div>
             <div>
-              <label for="phone" class="req block text-sm font-bold text-[#1A1612] mb-3">3b. Phone</label>
+              <label for="phone" class="req block text-sm font-bold text-[#12201C] mb-3">3b. Phone</label>
               <input class="field" type="tel" id="phone" name="phone" placeholder="(555) 123-4567" required autocomplete="tel" aria-describedby="err-phone" />
               <p class="err" id="err-phone" data-for="phone" role="alert">Please enter a phone number.</p>
             </div>
@@ -138,7 +138,7 @@
 
           <!-- Q4 --><!-- Q4 -->
           <div>
-            <label for="state" class="req block text-sm font-bold text-[#1A1612] mb-3">4. State</label>
+            <label for="state" class="req block text-sm font-bold text-[#12201C] mb-3">4. State</label>
             <select class="field" id="state" name="state" required aria-describedby="err-state">
               <option value="" disabled selected>Select your state</option>
               <option>Nevada</option>
@@ -162,14 +162,14 @@
 
           <!-- Q5 -->
           <div>
-            <label for="org-type" class="req block text-sm font-bold text-[#1A1612] mb-3">5. Type of Organization/Program</label>
+            <label for="org-type" class="req block text-sm font-bold text-[#12201C] mb-3">5. Type of Organization/Program</label>
             <input class="field" type="text" id="org-type" name="org-type" placeholder="e.g., outpatient behavioral health clinic, residential program" required  aria-describedby="err-org-type"/>
             <p id="err-org-type" class="err" role="alert" data-for="org-type">Please describe your organization or program type.</p>
           </div>
 
           <!-- Q6 -->
           <div>
-            <p class="block text-sm font-bold text-[#1A1612] mb-3">6. What are you looking for help with?</p>
+            <p class="block text-sm font-bold text-[#12201C] mb-3">6. What are you looking for help with?</p>
             <div class="grid sm:grid-cols-2 gap-3">
               <label class="opt-wrap"><input type="checkbox" name="help" value="Policy & procedure development/review" /><div class="check-card"><iconify-icon icon="lucide:check" class="text-lg"></iconify-icon><span>Policy &amp; procedure development/review</span></div></label>
               <label class="opt-wrap"><input type="checkbox" name="help" value="Program development or startup" /><div class="check-card"><iconify-icon icon="lucide:check" class="text-lg"></iconify-icon><span>Program development or startup</span></div></label>
@@ -180,24 +180,24 @@
               <label class="opt-wrap"><input type="checkbox" name="help" value="Staff/leadership systems" /><div class="check-card"><iconify-icon icon="lucide:check" class="text-lg"></iconify-icon><span>Staff/leadership systems</span></div></label>
             </div>
             <div class="mt-3">
-              <label for="help-other" class="block text-xs font-bold text-[#5C534C] uppercase mb-2">Other</label>
+              <label for="help-other" class="block text-xs font-bold text-[#5A6A63] uppercase mb-2">Other</label>
               <input class="field" type="text" id="help-other" name="help-other" placeholder="Tell us what else you need help with" />
             </div>
           </div>
 
           <!-- Q7 -->
           <div>
-            <label for="describe" class="req block text-sm font-bold text-[#1A1612] mb-3">7. Briefly describe what you are currently working on or where you are experiencing challenges.</label>
+            <label for="describe" class="req block text-sm font-bold text-[#12201C] mb-3">7. Briefly describe what you are currently working on or where you are experiencing challenges.</label>
             <textarea class="field" id="describe" name="describe" rows="4" required aria-describedby="err-describe"></textarea>
             <p id="err-describe" class="err" role="alert" data-for="describe">Please tell us a bit about what you're working on.</p>
           </div>
 
-          <details class="rounded-[16px] border border-[#14522B]/10 bg-[#F5F1EB] px-5 py-4">
-            <summary class="cursor-pointer font-bold text-sm text-[#1A1612]">Optional details <span class="font-normal text-[#5C534C]">(timeline, current systems, anything else)</span></summary>
+          <details class="rounded-[16px] border border-[#0F766E]/10 bg-[#F7FBF9] px-5 py-4">
+            <summary class="cursor-pointer font-bold text-sm text-[#12201C]">Optional details <span class="font-normal text-[#5A6A63]">(timeline, current systems, anything else)</span></summary>
             <div class="mt-6 space-y-10">
           <!-- Q8 -->
           <div>
-            <p class="block text-sm font-bold text-[#1A1612] mb-3">8. What do you currently have in place?</p>
+            <p class="block text-sm font-bold text-[#12201C] mb-3">8. What do you currently have in place?</p>
             <div class="grid gap-3">
               <label class="opt-wrap"><input type="radio" name="in-place" value="Nothing yet" /><div class="check-card"><span>Nothing yet</span></div></label>
               <label class="opt-wrap"><input type="radio" name="in-place" value="Some materials/systems" /><div class="check-card"><span>Some materials/systems</span></div></label>
@@ -208,40 +208,40 @@
 
           <!-- Q9 -->
           <div>
-            <label for="accomplish" class="req block text-sm font-bold text-[#1A1612] mb-3">9. What would you like to accomplish through consultation?</label>
+            <label for="accomplish" class="req block text-sm font-bold text-[#12201C] mb-3">9. What would you like to accomplish through consultation?</label>
             <textarea class="field" id="accomplish" name="accomplish" rows="4" required aria-describedby="err-accomplish"></textarea>
             <p id="err-accomplish" class="err" role="alert" data-for="accomplish">Please let us know what you'd like to accomplish.</p>
           </div>
 
           <!-- Q10 -->
           <div>
-            <label for="timeframe" class="block text-sm font-bold text-[#1A1612] mb-3">10. Is there a specific deadline, licensing/accreditation survey, program opening, or other timeframe we should know about? <span class="font-normal text-[#5C534C]">(optional)</span></label>
+            <label for="timeframe" class="block text-sm font-bold text-[#12201C] mb-3">10. Is there a specific deadline, licensing/accreditation survey, program opening, or other timeframe we should know about? <span class="font-normal text-[#5A6A63]">(optional)</span></label>
             <input class="field" type="text" id="timeframe" name="timeframe" />
           </div>
 
           <!-- Anything else -->
           <div>
-            <label for="anything-else" class="block text-sm font-bold text-[#1A1612] mb-3">Anything else you'd like us to know before the consultation? <span class="font-normal text-[#5C534C]">(optional)</span></label>
+            <label for="anything-else" class="block text-sm font-bold text-[#12201C] mb-3">Anything else you'd like us to know before the consultation? <span class="font-normal text-[#5A6A63]">(optional)</span></label>
             <textarea class="field" id="anything-else" name="anything-else" rows="3"></textarea>
           </div>
             </div>
           </details>
 
-          <div class="pt-4 border-t border-[#14522B]/10">
-            <div class="bg-[#F5F1EB] border border-[#14522B]/10 rounded-[16px] px-5 py-4 mb-6 space-y-2 text-sm text-[#5C534C] leading-relaxed">
-              <p><strong class="text-[#1A1612]">Please note:</strong> Assessment and readiness support do <strong class="text-[#1A1612]">not guarantee</strong> licensure, accreditation, certification, or audit outcomes.</p>
-              <p>Grow2Guide provides educational consulting — <strong class="text-[#1A1612]">not legal advice</strong>.</p>
+          <div class="pt-4 border-t border-[#0F766E]/10">
+            <div class="bg-[#F7FBF9] border border-[#0F766E]/10 rounded-[16px] px-5 py-4 mb-6 space-y-2 text-sm text-[#5A6A63] leading-relaxed">
+              <p><strong class="text-[#12201C]">Please note:</strong> Assessment and readiness support do <strong class="text-[#12201C]">not guarantee</strong> licensure, accreditation, certification, or audit outcomes.</p>
+              <p>Grow2Guide provides educational consulting — <strong class="text-[#12201C]">not legal advice</strong>.</p>
             </div>
-            <button type="submit" class="btn-active w-full sm:w-auto bg-[#14522B] text-white h-[56px] px-10 inline-flex items-center justify-center rounded-full font-bold text-base shadow-lg shadow-[#14522B]/20 hover:bg-[#0E3D20] transition-all">
+            <button type="submit" class="btn-active w-full sm:w-auto bg-[#0F766E] text-white h-[56px] px-10 inline-flex items-center justify-center rounded-full font-bold text-base shadow-lg shadow-[#0F766E]/20 hover:bg-[#0B5F59] transition-all">
               Submit Request
             </button>
-            <p class="mt-5 text-[13px] text-[#5C534C] leading-relaxed">This opens your email app — nothing is sent until you hit send.</p>
+            <p class="mt-5 text-[13px] text-[#5A6A63] leading-relaxed">This opens your email app — nothing is sent until you hit send.</p>
           </div>
         </form>
       </div>
     </main>
 
-    <footer class="bg-[#EFEAE4] text-[#5C534C] py-12 border-t border-[#14522B]/10">
+    <footer class="bg-[#EAF3EF] text-[#5A6A63] py-12 border-t border-[#0F766E]/10">
       <div class="container-custom">
         <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 mb-10">
           <div class="lg:col-span-4 space-y-6">
@@ -250,28 +250,28 @@
             <p class="text-[13px]">Educational consulting — not legal advice.</p>
           </div>
           <div class="lg:col-span-4 space-y-5">
-            <h4 class="text-[#1A1612] font-bold text-[11px] tracking-[0.08em] uppercase">Services</h4>
+            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Services</h4>
             <ul class="space-y-3.5 text-[15px] font-medium">
-              <li><a href="/services/" class="hover:text-[#14522B]">Services & pricing</a></li>
-              <li><a href="/consultation/" class="hover:text-[#14522B]">Request a consultation</a></li>
-              <li><a href="/#products" class="hover:text-[#14522B]">Guides &amp; Bundle — $67–$99</a></li>
-              <li><a href="https://www.grow2guide.com/handbook/" class="hover:text-[#14522B]">Parents' Handbook</a></li>
+              <li><a href="/services/" class="hover:text-[#0F766E]">Services & pricing</a></li>
+              <li><a href="/consultation/" class="hover:text-[#0F766E]">Request a consultation</a></li>
+              <li><a href="/#products" class="hover:text-[#0F766E]">Guides &amp; Bundle — $67–$99</a></li>
+              <li><a href="https://www.grow2guide.com/handbook/" class="hover:text-[#0F766E]">Parents' Handbook</a></li>
             </ul>
           </div>
           <div class="lg:col-span-4 space-y-5">
-            <h4 class="text-[#1A1612] font-bold text-[11px] tracking-[0.08em] uppercase">Company</h4>
+            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Company</h4>
             <ul class="space-y-3.5 text-[15px] font-medium">
-              <li><a href="/#about" class="hover:text-[#14522B]">About Sara Tudor</a></li>
-              <li><a href="/consultation/" class="hover:text-[#14522B]">Contact</a></li>
+              <li><a href="/#about" class="hover:text-[#0F766E]">About Sara Tudor</a></li>
+              <li><a href="/consultation/" class="hover:text-[#0F766E]">Contact</a></li>
             </ul>
           </div>
         </div>
-        <div class="pt-10 border-t border-[#14522B]/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+        <div class="pt-10 border-t border-[#0F766E]/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
           <p class="text-[12px] leading-relaxed max-w-2xl">© 2026 Grow2Guide. Resources are for educational purposes only and do not constitute legal advice. Licensure is not guaranteed.</p>
           <div class="flex items-center gap-4 text-[13px] font-semibold">
-            <a href="/terms/" class="hover:text-[#14522B]">Terms</a>
-            <a href="/privacy/" class="hover:text-[#14522B]">Privacy</a>
-            <a href="/refunds/" class="hover:text-[#14522B]">Refunds</a>
+            <a href="/terms/" class="hover:text-[#0F766E]">Terms</a>
+            <a href="/privacy/" class="hover:text-[#0F766E]">Privacy</a>
+            <a href="/refunds/" class="hover:text-[#0F766E]">Refunds</a>
           </div>
         </div>
       </div>
