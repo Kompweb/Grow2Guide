@@ -48,20 +48,35 @@
   <div class="min-h-screen relative flex flex-col">
     <div class="atmosphere-glow"></div>
     <nav class="fixed top-0 w-full z-50 glass-nav">
-      <div class="container-custom h-[100px] lg:h-[120px] flex items-center justify-between">
-        <div class="flex items-center gap-12 lg:gap-20">
-          <a href="/" class="flex shrink-0"><img src="../../assets/logo.png" alt="Grow2Guide" class="h-[64px] lg:h-[86px] w-auto"></a>
-          <div class="hidden lg:flex items-center gap-12">
-            <a href="/#professionals" class="text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Professionals</a>
-            <a href="/#products" class="text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Programs</a>
-            <a href="/#how-it-works" class="text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">How it works</a>
+      <div class="container-custom h-[68px] lg:h-[72px] flex items-center justify-between">
+        <div class="flex items-center gap-10 lg:gap-14">
+          <a href="/" class="flex shrink-0"><img src="../../assets/logo.png" alt="Grow2Guide" class="h-[44px] lg:h-[52px] w-auto"></a>
+          <div class="hidden lg:flex items-center gap-10">
+            <a href="/#products" class="text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Products</a>
+            <a href="/services/" class="text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Services</a>
             <a href="/#about" class="text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">About</a>
+            <a href="/handbook/" class="text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Handbook</a>
           </div>
         </div>
-        <a href="#" data-g2g-mailto="" class="bg-[#0F766E] text-white px-6 lg:px-8 py-3 rounded-full text-sm font-bold shadow-md hover:bg-[#0B5F59] transition-all">Contact</a>
+        <div class="flex items-center gap-3">
+          <a href="/consultation/" class="hidden sm:inline-flex bg-[#0F766E] text-white px-5 lg:px-6 py-2.5 rounded-full text-sm font-bold shadow-md shadow-[#0F766E]/20 hover:bg-[#0B5F59] transition-all">Request consultation</a>
+          <button type="button" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu" class="lg:hidden w-11 h-11 flex items-center justify-center rounded-full border-2 border-[#0F766E]/25 text-[#0F766E] bg-white/70">
+            <iconify-icon id="menu-icon-open" icon="ph:list-bold" class="text-2xl"></iconify-icon>
+            <iconify-icon id="menu-icon-close" icon="ph:x-bold" class="text-2xl hidden"></iconify-icon>
+          </button>
+        </div>
+      </div>
+      <div id="mobile-menu" class="hidden lg:hidden border-t border-[#0F766E]/10 bg-[#F5F8F4]">
+        <div class="container-custom py-5 flex flex-col gap-1">
+          <a href="/#products" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Products</a>
+          <a href="/services/" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Services</a>
+          <a href="/#about" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">About</a>
+          <a href="/handbook/" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Handbook</a>
+          <a href="/consultation/" class="mt-4 bg-[#0F766E] text-white h-[48px] flex items-center justify-center rounded-full font-bold text-base">Request consultation</a>
+        </div>
       </div>
     </nav>
-    <main class="flex-1 pt-40 lg:pt-48 pb-24">
+    <main class="flex-1 pt-28 pb-24">
       <div class="container-custom max-w-3xl">
         <div class="mb-10 text-center">
           <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-4 inline-block">Tier 1 Foundations</span>
@@ -69,7 +84,7 @@
           <p class="text-[#5A6A63] text-lg leading-relaxed">Help us understand your clinical focus so we can tailor our initial conversation.</p>
         </div>
 
-        <div class="sticky top-28 z-40 bg-white/95 border border-[#0F766E]/10 rounded-full px-6 py-4 mb-10 shadow-sm backdrop-blur-md flex items-center justify-between gap-4">
+        <div class="sticky top-20 z-40 bg-white/95 border border-[#0F766E]/10 rounded-full px-6 py-4 mb-10 shadow-sm backdrop-blur-md flex items-center justify-between gap-4">
           <span id="step-label" class="text-sm font-bold text-[#0F766E] whitespace-nowrap">Step 1 of 5</span>
           <div class="flex-1 h-1.5 bg-[#EAF3EF] rounded-full overflow-hidden">
             <div id="progress-bar" class="h-full bg-[#0F766E] rounded-full transition-all duration-500" style="width:20%"></div>
@@ -341,6 +356,28 @@
     });
     form.addEventListener('submit', (e) => { e.preventDefault(); btnNext.click(); });
     showStep(0);
+  })();
+  </script>
+
+  <script>
+  (function () {
+    var btn = document.getElementById('mobile-menu-btn');
+    var menu = document.getElementById('mobile-menu');
+    var iconOpen = document.getElementById('menu-icon-open');
+    var iconClose = document.getElementById('menu-icon-close');
+    if (!btn || !menu) return;
+    function setOpen(open) {
+      menu.classList.toggle('hidden', !open);
+      btn.setAttribute('aria-expanded', String(open));
+      if (iconOpen) iconOpen.classList.toggle('hidden', open);
+      if (iconClose) iconClose.classList.toggle('hidden', !open);
+    }
+    btn.addEventListener('click', function () {
+      setOpen(menu.classList.contains('hidden'));
+    });
+    menu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () { setOpen(false); });
+    });
   })();
   </script>
 </body>

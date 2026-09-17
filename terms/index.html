@@ -140,19 +140,34 @@
 
     <!-- Navigation (Persistent) -->
     <nav class="sticky top-0 w-full z-50 glass-nav" style="view-transition-name: main-nav">
-      <div class="container-custom h-[120px] flex items-center justify-between">
-        <div class="flex items-center gap-20">
+      <div class="container-custom h-[68px] lg:h-[72px] flex items-center justify-between">
+        <div class="flex items-center gap-10 lg:gap-14">
           <a href="/" id="nav-logo-link" class="transition-transform hover:scale-[1.02] flex shrink-0">
-            <img src="../assets/logo.png" alt="Grow2Guide Logo" class="h-[86px] w-auto">
+            <img src="../assets/logo.png" alt="Grow2Guide Logo" class="h-[44px] lg:h-[52px] w-auto">
           </a>
-          <div class="hidden lg:flex items-center gap-12">
-            <a href="/#professionals" id="nav-link-prof" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Professionals</a>
-            <a href="/#products" id="nav-link-prod" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Programs</a>
-            <a href="/#how-it-works" id="nav-link-how" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">How it works</a>
+          <div class="hidden lg:flex items-center gap-10">
+            <a href="/#products" id="nav-link-prod" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Products</a>
+            <a href="/services/" id="nav-link-services" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Services</a>
             <a href="/#about" id="nav-link-about" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">About</a>
+            <a href="/handbook/" id="nav-link-handbook" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Handbook</a>
           </div>
         </div>
-        <a href="#" data-g2g-mailto="" id="nav-contact-btn" class="bg-[#0F766E] text-white px-8 py-3.5 rounded-full text-sm font-bold shadow-md shadow-[#0F766E]/20 transition-all hover:bg-[#0B5F59] hover:shadow-xl active:scale-95">Contact</a>
+        <div class="flex items-center gap-3">
+          <a href="/consultation/" id="nav-contact-btn" class="hidden sm:inline-flex bg-[#0F766E] text-white px-5 lg:px-6 py-2.5 rounded-full text-sm font-bold shadow-md shadow-[#0F766E]/20 transition-all hover:bg-[#0B5F59] hover:shadow-xl">Request consultation</a>
+          <button type="button" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu" class="lg:hidden w-11 h-11 flex items-center justify-center rounded-full border-2 border-[#0F766E]/25 text-[#0F766E] bg-white/70">
+            <iconify-icon id="menu-icon-open" icon="ph:list-bold" class="text-2xl"></iconify-icon>
+            <iconify-icon id="menu-icon-close" icon="ph:x-bold" class="text-2xl hidden"></iconify-icon>
+          </button>
+        </div>
+      </div>
+      <div id="mobile-menu" class="hidden lg:hidden border-t border-[#0F766E]/10 bg-[#F5F8F4]">
+        <div class="container-custom py-5 flex flex-col gap-1">
+          <a href="/#products" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Products</a>
+          <a href="/services/" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Services</a>
+          <a href="/#about" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">About</a>
+          <a href="/handbook/" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Handbook</a>
+          <a href="/consultation/" class="mt-4 bg-[#0F766E] text-white h-[48px] flex items-center justify-center rounded-full font-bold text-base">Request consultation</a>
+        </div>
       </div>
     </nav>
 
@@ -266,7 +281,7 @@
             </p>
           </div>
 
-          <div class="lg:col-span-2 space-y-5">
+          <div class="lg:col-span-4 space-y-5">
             <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Navigation</h4>
             <ul class="space-y-3.5 text-[15px] font-medium">
               <li><a href="/" id="footer-nav-home" class="hover:text-[#0F766E] transition-colors">Home</a></li>
@@ -276,20 +291,10 @@
             </ul>
           </div>
 
-          <div class="lg:col-span-3 space-y-5">
-            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Legal Documents</h4>
-            <ul class="space-y-3.5 text-[15px] font-medium">
-              <li><a href="/terms/" id="footer-legal-terms" class="text-[#0F766E] font-bold">Terms & Conditions</a></li>
-              <li><a href="/privacy/" id="footer-legal-privacy" class="hover:text-[#0F766E] transition-colors">Privacy Policy</a></li>
-              <li><a href="/refunds/" id="footer-legal-refunds" class="hover:text-[#0F766E] transition-colors">Refunds</a></li>
-              <li><a href="/#disclaimer" id="footer-legal-disclaimer" class="hover:text-[#0F766E] transition-colors">Educational Disclaimer</a></li>
-            </ul>
-          </div>
-
-          <div class="lg:col-span-3 space-y-5">
+          <div class="lg:col-span-4 space-y-5">
             <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Support</h4>
             <p class="text-[15px] text-[#5A6A63]">For inquiries regarding our terms or services:</p>
-            <a href="#" data-g2g-mailto="" data-g2g-email-text id="footer-support-email" class="block font-semibold text-[#0F766E] hover:text-[#0B5F59] transition-colors"></a>
+            <a href="/consultation/" id="footer-support-contact" class="block font-semibold text-[#0F766E] hover:text-[#0B5F59] transition-colors">Contact us</a>
           </div>
         </div>
 
@@ -297,6 +302,12 @@
           <p class="text-[12px] leading-relaxed max-w-2xl text-center md:text-left">
             © 2026 Grow2Guide. Resources are for educational purposes only and do not constitute legal advice. Licensure is not guaranteed.
           </p>
+          <div class="flex flex-wrap items-center gap-4 text-[13px] font-semibold">
+            <a href="/terms/" id="footer-legal-terms" class="hover:text-[#0F766E] transition-colors">Terms</a>
+            <a href="/privacy/" id="footer-legal-privacy" class="hover:text-[#0F766E] transition-colors">Privacy</a>
+            <a href="/refunds/" id="footer-legal-refunds" class="hover:text-[#0F766E] transition-colors">Refunds</a>
+            <a href="/#disclaimer" id="footer-legal-disclaimer" class="hover:text-[#0F766E] transition-colors">Educational Disclaimer</a>
+          </div>
           <div class="flex items-center gap-6 text-2xl text-[#0F766E]">
             <a href="#ig" id="footer-social-ig" class="hover:scale-110 transition-transform"><iconify-icon icon="mdi:instagram"></iconify-icon></a>
             <a href="#li" id="footer-social-li" class="hover:scale-110 transition-transform"><iconify-icon icon="mdi:linkedin"></iconify-icon></a>
@@ -305,5 +316,27 @@
       </div>
     </footer>
   </div>
+
+  <script>
+  (function () {
+    var btn = document.getElementById('mobile-menu-btn');
+    var menu = document.getElementById('mobile-menu');
+    var iconOpen = document.getElementById('menu-icon-open');
+    var iconClose = document.getElementById('menu-icon-close');
+    if (!btn || !menu) return;
+    function setOpen(open) {
+      menu.classList.toggle('hidden', !open);
+      btn.setAttribute('aria-expanded', String(open));
+      if (iconOpen) iconOpen.classList.toggle('hidden', open);
+      if (iconClose) iconClose.classList.toggle('hidden', !open);
+    }
+    btn.addEventListener('click', function () {
+      setOpen(menu.classList.contains('hidden'));
+    });
+    menu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () { setOpen(false); });
+    });
+  })();
+  </script>
 </body>
 </html>

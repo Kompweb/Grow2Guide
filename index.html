@@ -136,34 +136,32 @@
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass-nav">
       <div class="container-custom h-[68px] lg:h-[72px] flex items-center justify-between">
-        <div class="flex items-center gap-20">
+        <div class="flex items-center gap-10 lg:gap-14">
           <a href="/" id="nav-logo-link" class="transition-transform hover:scale-[1.02] flex shrink-0">
-            <img src="assets/logo.png" alt="Grow2Guide Logo" class="h-[44px] lg:h-[52px] lg:h-[52px] w-auto">
+            <img src="assets/logo.png" alt="Grow2Guide Logo" class="h-[44px] lg:h-[52px] w-auto">
           </a>
-          <div class="hidden lg:flex items-center gap-12">
-            <a href="#products" id="nav-link-prod" class="nav-link text-[20px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Products</a>
-            <a href="/services/" id="nav-link-services" class="nav-link text-[20px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Services</a>
-            <a href="#how-it-works" id="nav-link-how" class="nav-link text-[20px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">How it works</a>
-            <a href="#about" id="nav-link-about" class="nav-link text-[20px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">About</a>
-            <a href="/handbook/" id="nav-link-handbook" class="nav-link text-[20px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Handbook</a>
+          <div class="hidden lg:flex items-center gap-10">
+            <a href="#products" id="nav-link-prod" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Products</a>
+            <a href="/services/" id="nav-link-services" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Services</a>
+            <a href="#about" id="nav-link-about" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">About</a>
+            <a href="/handbook/" id="nav-link-handbook" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Handbook</a>
           </div>
         </div>
         <div class="flex items-center gap-3">
-          <a href="/consultation/" id="nav-contact-btn" class="hidden sm:flex bg-[#0F766E] text-white px-8 py-3.5 rounded-full text-sm font-bold shadow-md shadow-[#0F766E]/20 btn-active transition-all hover:bg-[#0B5F59] hover:shadow-xl">Request consultation</a>
+          <a href="/consultation/" id="nav-contact-btn" class="hidden sm:inline-flex bg-[#0F766E] text-white px-5 lg:px-6 py-2.5 rounded-full text-sm font-bold shadow-md shadow-[#0F766E]/20 btn-active transition-all hover:bg-[#0B5F59] hover:shadow-xl">Request consultation</a>
           <button type="button" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu" class="lg:hidden w-11 h-11 flex items-center justify-center rounded-full border-2 border-[#0F766E]/25 text-[#0F766E] bg-white/70 btn-active">
-            <iconify-icon id="menu-icon-open" icon="ph:list-bold" class="text-3xl"></iconify-icon>
-            <iconify-icon id="menu-icon-close" icon="ph:x-bold" class="text-3xl hidden"></iconify-icon>
+            <iconify-icon id="menu-icon-open" icon="ph:list-bold" class="text-2xl"></iconify-icon>
+            <iconify-icon id="menu-icon-close" icon="ph:x-bold" class="text-2xl hidden"></iconify-icon>
           </button>
         </div>
       </div>
       <div id="mobile-menu" class="hidden lg:hidden border-t border-[#0F766E]/10 bg-[#F5F8F4]">
-        <div class="container-custom py-6 flex flex-col gap-1">
-          <a href="#products" class="mobile-nav-link text-[20px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Products</a>
-          <a href="/services/" class="mobile-nav-link text-[20px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Services</a>
-          <a href="#how-it-works" class="mobile-nav-link text-[20px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">How it works</a>
-          <a href="#about" class="mobile-nav-link text-[20px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">About</a>
-          <a href="/handbook/" class="mobile-nav-link text-[20px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Handbook</a>
-          <a href="/consultation/" class="mobile-nav-link mt-4 bg-[#0F766E] text-white h-[52px] flex items-center justify-center rounded-full font-bold text-base">Request consultation</a>
+        <div class="container-custom py-5 flex flex-col gap-1">
+          <a href="#products" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Products</a>
+          <a href="/services/" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Services</a>
+          <a href="#about" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">About</a>
+          <a href="/handbook/" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Handbook</a>
+          <a href="/consultation/" class="mt-4 bg-[#0F766E] text-white h-[48px] flex items-center justify-center rounded-full font-bold text-base">Request consultation</a>
         </div>
       </div>
     </nav>
@@ -380,34 +378,6 @@
         </div>
       </section>
 
-      <!-- How It Works Section -->
-      <section id="how-it-works" class="py-20 lg:py-24 bg-[#F5F8F4]">
-        <div class="container-custom">
-          <div class="text-center mb-24">
-            <h2 class="text-4xl font-bold mb-6 tracking-tight">How buying works</h2>
-            <p class="text-[#5A6A63] text-lg max-w-xl mx-auto">A simple, human-led process from order to digital delivery.</p>
-          </div>
-          <div class="grid md:grid-cols-3 gap-12 relative">
-            <div class="hidden md:block absolute top-12 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#0F766E]/10 to-transparent z-0"></div>
-            <div class="relative z-10 bg-white p-10 rounded-[24px] border border-[#0F766E]/5 card-shadow">
-              <div class="w-14 h-14 rounded-full bg-[#D8F0EA] text-[#0F766E] flex items-center justify-center font-bold text-2xl mb-8">01</div>
-              <h3 class="font-bold text-xl mb-4">Secure Checkout</h3>
-              <p class="text-[#5A6A63] text-base leading-relaxed">Click a buy button to open Stripe checkout. Pay securely with any major credit or debit card.</p>
-            </div>
-            <div class="relative z-10 bg-white p-10 rounded-[24px] border border-[#0F766E]/5 card-shadow">
-              <div class="w-14 h-14 rounded-full bg-[#D8F0EA] text-[#0F766E] flex items-center justify-center font-bold text-2xl mb-8">02</div>
-              <h3 class="font-bold text-xl mb-4">Confirm Purchase</h3>
-              <p class="text-[#5A6A63] text-base leading-relaxed">Complete checkout on Stripe. You’ll get an email receipt right away.</p>
-            </div>
-            <div class="relative z-10 bg-white p-10 rounded-[24px] border border-[#0F766E]/5 card-shadow">
-              <div class="w-14 h-14 rounded-full bg-[#D8F0EA] text-[#0F766E] flex items-center justify-center font-bold text-2xl mb-8">03</div>
-              <h3 class="font-bold text-xl mb-4">Get PDFs</h3>
-              <p class="text-[#5A6A63] text-base leading-relaxed">Once confirmed, your digital guides are emailed to your inbox within 24 hours.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <!-- Built for the Real World Section -->
       <section class="py-20 lg:py-24">
         <div class="container-custom max-w-4xl">
@@ -417,25 +387,25 @@
           </p>
           <div class="flex flex-wrap justify-center gap-3 mb-16">
             <span class="inline-flex items-center gap-2 bg-white rounded-full pl-4 pr-5 py-3 card-shadow border border-[#0F766E]/5 text-[#12201C] font-semibold text-sm">
-              <iconify-icon icon="lucide:message-circle" class="text-[#0F766E] text-lg"></iconify-icon> Conversations with employees
+              <iconify-icon icon="lucide:file-text" class="text-[#0F766E] text-lg"></iconify-icon> Policies &amp; Procedures
             </span>
             <span class="inline-flex items-center gap-2 bg-white rounded-full pl-4 pr-5 py-3 card-shadow border border-[#0F766E]/5 text-[#12201C] font-semibold text-sm">
-              <iconify-icon icon="lucide:file-text" class="text-[#0F766E] text-lg"></iconify-icon> Documentation
+              <iconify-icon icon="lucide:book-open" class="text-[#0F766E] text-lg"></iconify-icon> Program Manuals
             </span>
             <span class="inline-flex items-center gap-2 bg-white rounded-full pl-4 pr-5 py-3 card-shadow border border-[#0F766E]/5 text-[#12201C] font-semibold text-sm">
-              <iconify-icon icon="lucide:workflow" class="text-[#0F766E] text-lg"></iconify-icon> Workflows
+              <iconify-icon icon="lucide:workflow" class="text-[#0F766E] text-lg"></iconify-icon> Clinical &amp; Operational Workflows
             </span>
             <span class="inline-flex items-center gap-2 bg-white rounded-full pl-4 pr-5 py-3 card-shadow border border-[#0F766E]/5 text-[#12201C] font-semibold text-sm">
-              <iconify-icon icon="lucide:scale" class="text-[#0F766E] text-lg"></iconify-icon> Difficult decisions
+              <iconify-icon icon="lucide:shield-check" class="text-[#0F766E] text-lg"></iconify-icon> QA/QI Systems
             </span>
             <span class="inline-flex items-center gap-2 bg-white rounded-full pl-4 pr-5 py-3 card-shadow border border-[#0F766E]/5 text-[#12201C] font-semibold text-sm">
-              <iconify-icon icon="lucide:sprout" class="text-[#0F766E] text-lg"></iconify-icon> Program development
+              <iconify-icon icon="lucide:scale" class="text-[#0F766E] text-lg"></iconify-icon> Compliance &amp; Risk Management
             </span>
             <span class="inline-flex items-center gap-2 bg-white rounded-full pl-4 pr-5 py-3 card-shadow border border-[#0F766E]/5 text-[#12201C] font-semibold text-sm">
-              <iconify-icon icon="lucide:shield-check" class="text-[#0F766E] text-lg"></iconify-icon> Quality assurance
+              <iconify-icon icon="lucide:users" class="text-[#0F766E] text-lg"></iconify-icon> Staff Training &amp; Competency
             </span>
             <span class="inline-flex items-center gap-2 bg-white rounded-full pl-4 pr-5 py-3 card-shadow border border-[#0F766E]/5 text-[#12201C] font-semibold text-sm">
-              <iconify-icon icon="lucide:users" class="text-[#0F766E] text-lg"></iconify-icon> The systems people rely on every day
+              <iconify-icon icon="lucide:search-check" class="text-[#0F766E] text-lg"></iconify-icon> Audit &amp; Monitoring Systems
             </span>
           </div>
           <p class="text-[#5A6A63] text-lg text-center leading-[1.6]">
@@ -588,59 +558,50 @@
       <div class="container-custom py-16 lg:py-20">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-x-10 gap-y-12">
           <!-- Brand -->
-          <div class="lg:col-span-4 max-w-sm">
+          <div class="lg:col-span-5 max-w-sm">
             <a href="/" id="footer-logo-link" class="inline-block mb-5">
               <img src="assets/logo.png" alt="Grow2Guide" class="h-[64px] w-auto">
             </a>
             <p class="text-[14px] leading-relaxed mb-6">
               Practical resources and real-world consulting for behavioral health professionals and organizations.
             </p>
-            <a href="#" data-g2g-mailto="" data-g2g-email-text id="footer-email" class="text-[14px] font-semibold text-[#0F766E] hover:text-[#0B5F59] transition-colors"></a>
+            <div class="flex items-center gap-3">
+              <a href="https://www.instagram.com/grow2guide/" id="footer-ig" class="w-9 h-9 flex items-center justify-center rounded-full bg-white border border-[#0F766E]/10 text-[#0F766E] hover:bg-[#D8F0EA] hover:text-[#0B5F59] transition-colors" aria-label="Instagram" rel="noopener noreferrer" target="_blank"><iconify-icon icon="mdi:instagram" class="text-[18px]"></iconify-icon></a>
+              <a href="https://www.facebook.com/Grow2Guide" id="footer-fb" class="w-9 h-9 flex items-center justify-center rounded-full bg-white border border-[#0F766E]/10 text-[#0F766E] hover:bg-[#D8F0EA] hover:text-[#0B5F59] transition-colors" aria-label="Facebook" rel="noopener noreferrer" target="_blank"><iconify-icon icon="mdi:facebook" class="text-[18px]"></iconify-icon></a>
+            </div>
           </div>
 
           <!-- Services -->
-          <div class="lg:col-span-3">
+          <div class="lg:col-span-4">
             <h4 class="text-[#12201C] font-semibold text-[12px] tracking-[0.06em] uppercase mb-5">Services</h4>
             <ul class="space-y-3 text-[14px]">
               <li><a href="/services/" id="footer-services" class="hover:text-[#0F766E] transition-colors">Services &amp; pricing</a></li>
               <li><a href="/services/#tier-2" id="footer-tier2" class="hover:text-[#0F766E] transition-colors">Tier 2 · Already have something</a></li>
               <li><a href="/services/#tier-3" id="footer-tier3" class="hover:text-[#0F766E] transition-colors">Tier 3 · Build it with you</a></li>
-              <li><a href="#how-it-works" id="footer-how" class="hover:text-[#0F766E] transition-colors">How it works</a></li>
-            </ul>
-          </div>
-
-          <!-- Products -->
-          <div class="lg:col-span-3">
-            <h4 class="text-[#12201C] font-semibold text-[12px] tracking-[0.06em] uppercase mb-5">Products</h4>
-            <ul class="space-y-3 text-[14px]">
-              <li><a href="#products" id="footer-guide" class="hover:text-[#0F766E] transition-colors">Learning Guide</a></li>
-              <li><a href="#products" id="footer-checklist" class="hover:text-[#0F766E] transition-colors">Accreditation Checklist</a></li>
-              <li><a href="#products" id="footer-bundle" class="hover:text-[#0F766E] transition-colors">Bundle</a></li>
+              <li><a href="#products" id="footer-guides" class="hover:text-[#0F766E] transition-colors">Guides &amp; Bundle — $67–$99</a></li>
               <li><a href="/handbook/" id="footer-handbook" class="hover:text-[#0F766E] transition-colors">Parents’ Handbook</a></li>
               <li><a href="/handbook/programs/" id="footer-programs" class="hover:text-[#0F766E] transition-colors">Programs</a></li>
             </ul>
           </div>
 
           <!-- Company -->
-          <div class="lg:col-span-2">
+          <div class="lg:col-span-3">
             <h4 class="text-[#12201C] font-semibold text-[12px] tracking-[0.06em] uppercase mb-5">Company</h4>
             <ul class="space-y-3 text-[14px]">
               <li><a href="#about" id="footer-about" class="hover:text-[#0F766E] transition-colors">About</a></li>
               <li><a href="/consultation/" id="footer-contact" class="hover:text-[#0F766E] transition-colors">Contact</a></li>
-              <li><a href="/terms/" id="footer-terms" class="hover:text-[#0F766E] transition-colors">Terms</a></li>
-              <li><a href="/privacy/" id="footer-privacy" class="hover:text-[#0F766E] transition-colors">Privacy</a></li>
-              <li><a href="/refunds/" id="footer-refunds" class="hover:text-[#0F766E] transition-colors">Refunds</a></li>
             </ul>
           </div>
         </div>
 
-        <div class="mt-14 pt-8 border-t border-[#0F766E]/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+        <div class="mt-14 pt-8 border-t border-[#0F766E]/10 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-4">
           <p id="disclaimer" class="text-[12px] leading-relaxed text-[#5A6A63]/90 max-w-xl">
             © 2026 Grow2Guide. Educational resources only — not legal advice. Licensure is not guaranteed.
           </p>
-          <div class="flex items-center gap-4 text-[#0F766E]">
-            <a href="https://www.instagram.com/grow2guide/" id="footer-ig" class="hover:text-[#0B5F59] transition-colors" aria-label="Instagram" rel="noopener noreferrer" target="_blank"><iconify-icon icon="mdi:instagram" class="text-[22px]"></iconify-icon></a>
-            <a href="https://www.facebook.com/Grow2Guide" id="footer-fb" class="hover:text-[#0B5F59] transition-colors" aria-label="Facebook" rel="noopener noreferrer" target="_blank"><iconify-icon icon="mdi:facebook" class="text-[22px]"></iconify-icon></a>
+          <div class="flex items-center gap-5 text-[13px] font-semibold">
+            <a href="/terms/" id="footer-terms" class="hover:text-[#0F766E] transition-colors">Terms</a>
+            <a href="/privacy/" id="footer-privacy" class="hover:text-[#0F766E] transition-colors">Privacy</a>
+            <a href="/refunds/" id="footer-refunds" class="hover:text-[#0F766E] transition-colors">Refunds</a>
           </div>
         </div>
         <p class="mt-6 text-center text-[11px] text-[#5A6A63]/70"><a href="https://www.kompweb.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#0F766E] transition-colors">KOMPWEB Studios</a></p>
