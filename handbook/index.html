@@ -77,6 +77,10 @@
   </nav>
 
   <main id="main" class="pt-[68px] lg:pt-[72px]">
+    <div id="hb-purchase-success" class="hb-purchase-success" hidden role="status">
+      Payment received — thank you. We’ll mail your handbook to the shipping address from checkout.
+    </div>
+
     <section class="hb-hero" aria-labelledby="hb-title">
       <div class="hb-hero-copy">
         <p class="eyebrow">Parents’ Handbook | Grow2Guide</p>
@@ -124,9 +128,12 @@
         <li>Language and tools that help kids recognize the good and become their best selves</li>
       </ul>
       <div class="hb-price-row">
-        <a class="button" href="#" data-g2g-mailto="subject=Parents%27%20Handbook%20inquiry&amp;body=Hi%2C%0A%0AI%27d%20like%20to%20learn%20more%20about%20the%20Parents%27%20Handbook.%0A%0AName%3A%0AEmail%3A%0A">Contact about the handbook</a>
+        <p class="hb-price"><span class="hb-price-amount">$12</span> <span class="hb-price-note">USD · physical book · shipped to you</span></p>
+        <p class="hb-price-local">Local list price was 678 den · shipping included for now</p>
+        <a class="button" href="https://buy.stripe.com/6oUbJ1d689iFadw8Ke4Ja03">Buy the handbook</a>
+        <a class="button button-ghost" href="#" data-g2g-mailto="subject=Parents%27%20Handbook%20question&amp;body=Hi%2C%0A%0AI%20have%20a%20question%20about%20the%20Parents%27%20Handbook.%0A%0AName%3A%0AEmail%3A%0A">Questions? Email us</a>
       </div>
-    </section>
+</section>
 
     <aside class="hb-reassurance" aria-label="Reassurance">
       <p>
@@ -147,8 +154,9 @@
 
     <section class="hb-cta-band" aria-labelledby="cta-heading">
       <h2 id="cta-heading">Ready to start from the beginning?</h2>
-      <p>Email us to order the handbook or ask a question. We’ll take it from there.</p>
-      <a class="button button-light" href="#" data-g2g-mailto="">Email Us</a>
+      <p>Pay securely with Stripe. We mail the physical handbook to your shipping address.</p>
+      <a class="button button-light" href="https://buy.stripe.com/6oUbJ1d689iFadw8Ke4Ja03">Buy the handbook — $12</a>
+      <a class="button button-ghost" href="#" data-g2g-mailto="">Email a question</a>
     </section>
 
     <aside class="hb-teaser" aria-label="Programs teaser">
@@ -231,5 +239,15 @@
     });
   })();
   </script>
+
+  <script>
+    (function () {
+      if (new URLSearchParams(location.search).get("purchase") === "success") {
+        var el = document.getElementById("hb-purchase-success");
+        if (el) el.hidden = false;
+      }
+    })();
+  </script>
+
 </body>
 </html>
