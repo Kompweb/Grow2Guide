@@ -13,7 +13,9 @@
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
   <script src="/assets/mail-protect.js" defer></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+    .g2g-wordmark { font-family: "Playfair Display", Georgia, serif; }
+
 
     :root {
       --bg-paper: #F5F8F4;
@@ -137,8 +139,17 @@
     <nav class="fixed top-0 w-full z-50 glass-nav">
       <div class="container-custom h-[80px] lg:h-[88px] flex items-center justify-between">
         <div class="flex items-center gap-10 lg:gap-14">
-          <a href="/" id="nav-logo-link" class="transition-transform hover:scale-[1.02] flex shrink-0">
-            <img src="assets/logo.png" alt="Grow2Guide Logo" class="h-[56px] lg:h-[68px] w-auto bg-transparent">
+          <a href="/" id="nav-logo-link" class="flex items-center gap-2.5 shrink-0 bg-transparent">
+            <img src="assets/logo-mark.png" alt="" width="48" height="48"
+                 class="h-10 w-10 lg:h-12 lg:w-12 bg-transparent" aria-hidden="true" />
+            <span class="flex flex-col leading-none">
+              <span class="g2g-wordmark text-[17px] lg:text-[20px] font-bold tracking-tight">
+                <span class="text-[#0F5D3A]">Grow</span>
+                <span class="text-[#5A3E2B]"> 2 </span>
+                <span class="text-[#0F5D3A]">Guide</span>
+              </span>
+              <span class="mt-1 text-[9px] lg:text-[10px] font-semibold tracking-[0.16em] uppercase text-[#5A3E2B]/85">Elevate Your Knowledge</span>
+            </span>
           </a>
           <div class="hidden lg:flex items-center gap-10">
             <a href="/services/" id="nav-link-services" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Services</a>
@@ -524,7 +535,7 @@
         <div class="container-custom">
           <div class="bg-white rounded-[32px] p-16 lg:p-24 text-center card-shadow border border-[#0F766E]/5 relative overflow-hidden">
             <div class="absolute inset-0 opacity-[0.02] pointer-events-none" style="background-image: radial-gradient(#0F766E 2px, transparent 2px); background-size: 40px 40px;"></div>
-            <img src="assets/logo.png" alt="Grow2Guide" class="h-[52px] w-auto mx-auto mb-8 bg-transparent">
+            <img src="assets/logo-mark.png" alt="Grow2Guide" class="h-[52px] w-auto mx-auto mb-8 bg-transparent">
             <p class="text-[#12201C] text-2xl lg:text-3xl font-bold mb-4 tracking-tight">Practical resources. Real-world consulting. Better behavioral health systems.</p>
             <p class="text-[#0F766E] text-lg font-bold mb-14 tracking-[0.02em] uppercase">Learn. Strengthen. Build.</p>
             <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
@@ -550,8 +561,17 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-x-10 gap-y-12">
           <!-- Brand -->
           <div class="lg:col-span-5 max-w-sm">
-            <a href="/" id="footer-logo-link" class="inline-block mb-5">
-              <img src="assets/logo.png" alt="Grow2Guide" class="h-[64px] w-auto bg-transparent">
+            <a href="/" id="footer-logo-link" class="flex items-center gap-2.5 shrink-0 bg-transparent mb-5">
+              <img src="assets/logo-mark.png" alt="" width="48" height="48"
+                   class="h-10 w-10 lg:h-12 lg:w-12 bg-transparent" aria-hidden="true" />
+              <span class="flex flex-col leading-none">
+                <span class="g2g-wordmark text-[17px] lg:text-[20px] font-bold tracking-tight">
+                  <span class="text-[#0F5D3A]">Grow</span>
+                  <span class="text-[#5A3E2B]"> 2 </span>
+                  <span class="text-[#0F5D3A]">Guide</span>
+                </span>
+                <span class="mt-1 text-[9px] lg:text-[10px] font-semibold tracking-[0.16em] uppercase text-[#5A3E2B]/85">Elevate Your Knowledge</span>
+              </span>
             </a>
             <p class="text-[14px] leading-relaxed mb-6">
               Practical resources and real-world consulting for behavioral health professionals and organizations.

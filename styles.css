@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
+.g2g-wordmark { font-family: "Playfair Display", Georgia, serif; }
+
 :root {
   --bg: #f3f6f2;
   --ink: #12201c;

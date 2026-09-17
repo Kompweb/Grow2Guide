@@ -10,7 +10,9 @@
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
   <script src="/assets/mail-protect.js" defer></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+    .g2g-wordmark { font-family: "Playfair Display", Georgia, serif; }
+
     :root {
       --bg-paper: #F5F8F4; --surface: #FFFFFF; --surface-soft: #EAF3EF;
       --ink-primary: #12201C; --ink-muted: #5A6A63;
@@ -51,7 +53,18 @@
     <nav class="fixed top-0 w-full z-50 glass-nav">
       <div class="container-custom h-[80px] lg:h-[88px] flex items-center justify-between">
         <div class="flex items-center gap-10 lg:gap-14">
-          <a href="/" class="flex shrink-0"><img src="../../assets/logo.png" alt="Grow2Guide" class="h-[56px] lg:h-[68px] w-auto bg-transparent"></a>
+          <a href="/" id="nav-logo-link" class="flex items-center gap-2.5 shrink-0 bg-transparent">
+            <img src="../../assets/logo-mark.png" alt="" width="48" height="48"
+                 class="h-10 w-10 lg:h-12 lg:w-12 bg-transparent" aria-hidden="true" />
+            <span class="flex flex-col leading-none">
+              <span class="g2g-wordmark text-[17px] lg:text-[20px] font-bold tracking-tight">
+                <span class="text-[#0F5D3A]">Grow</span>
+                <span class="text-[#5A3E2B]"> 2 </span>
+                <span class="text-[#0F5D3A]">Guide</span>
+              </span>
+              <span class="mt-1 text-[9px] lg:text-[10px] font-semibold tracking-[0.16em] uppercase text-[#5A3E2B]/85">Elevate Your Knowledge</span>
+            </span>
+          </a>
           <div class="hidden lg:flex items-center gap-10">
             <a href="/#products" class="text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Products</a>
             <a href="/services/" class="text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Services</a>
@@ -254,7 +267,18 @@
     <footer class="bg-white text-[#5A6A63] py-16 border-t border-[#0F766E]/10">
       <div class="container-custom flex flex-col md:flex-row justify-between items-center gap-8">
         <div class="text-center md:text-left">
-          <a href="/"><img src="../../assets/logo.png" alt="Grow2Guide" class="h-[64px] w-auto mx-auto md:mx-0 mb-4 bg-transparent"></a>
+          <a href="/" id="footer-logo-link" class="flex items-center gap-2.5 shrink-0 bg-transparent mx-auto md:mx-0 mb-4">
+            <img src="../../assets/logo-mark.png" alt="" width="48" height="48"
+                 class="h-10 w-10 lg:h-12 lg:w-12 bg-transparent" aria-hidden="true" />
+            <span class="flex flex-col leading-none">
+              <span class="g2g-wordmark text-[17px] lg:text-[20px] font-bold tracking-tight">
+                <span class="text-[#0F5D3A]">Grow</span>
+                <span class="text-[#5A3E2B]"> 2 </span>
+                <span class="text-[#0F5D3A]">Guide</span>
+              </span>
+              <span class="mt-1 text-[9px] lg:text-[10px] font-semibold tracking-[0.16em] uppercase text-[#5A3E2B]/85">Elevate Your Knowledge</span>
+            </span>
+          </a>
           <p class="text-sm">Educational consulting — not legal advice / not a guarantee of licensure.</p>
         </div>
         <div class="flex flex-wrap justify-center gap-6 text-sm font-semibold">
