@@ -15,6 +15,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
   <script src="/assets/mail-protect.js" defer></script>
+  <script src="/assets/nav-scroll.js" defer></script>
   <style>
 
     .g2g-wordmark { /* = .brand-name */
@@ -29,6 +30,15 @@
     .g2g-wordmark .g2g-number,
     .g2g-wordmark .number {
       color: #4b3021;
+    }
+    .g2g-logo-mark {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+    }
+    #nav-logo-link .g2g-wordmark,
+    #footer-logo-link .g2g-wordmark {
+      font-size: clamp(26px, 3.2vw, 44px);
     }
     .g2g-tagline { /* = .tagline */
       margin-top: 8px; /* proportional to his 22px at smaller size */
@@ -99,6 +109,85 @@
     .path-leaf-icon--guide { background-position: left center; }
     .path-leaf-icon--strengthen { background-position: center center; }
     .path-leaf-icon--build { background-position: right center; }
+
+    .capability-track,
+    .capability-set {
+      display: flex;
+    }
+
+    .capability-set {
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .capability-set[aria-hidden="true"] {
+      display: none;
+    }
+
+    @keyframes capability-scroll {
+      to { transform: translateX(calc(-50% - 6px)); }
+    }
+
+    @media (min-width: 1024px) {
+      .capability-marquee {
+        overflow: hidden;
+        padding: 18px 0;
+        margin-top: -18px;
+        margin-bottom: 46px;
+        -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+        mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+      }
+
+      .capability-track {
+        width: max-content;
+        gap: 12px;
+        animation: capability-scroll 28s linear infinite;
+        will-change: transform;
+      }
+
+      .capability-set {
+        width: max-content;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+      }
+
+      .capability-set[aria-hidden="true"] {
+        display: flex;
+      }
+
+      .capability-set > span {
+        white-space: nowrap;
+      }
+
+      .capability-marquee:hover .capability-track {
+        animation-play-state: paused;
+      }
+    }
+
+    @media (min-width: 1024px) and (prefers-reduced-motion: reduce) {
+      .capability-marquee {
+        overflow: visible;
+        -webkit-mask-image: none;
+        mask-image: none;
+      }
+
+      .capability-track {
+        width: 100%;
+        animation: none;
+      }
+
+      .capability-set {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .capability-set[aria-hidden="true"] {
+        display: none;
+      }
+    }
 
     .btn-active:active {
       transform: scale(0.98);
@@ -188,7 +277,7 @@
         <div class="flex items-center gap-10 lg:gap-14">
           <a href="/" id="nav-logo-link" class="flex items-center gap-3 shrink-0 bg-transparent">
             <img src="assets/logo-mark.png" alt="" width="72" height="72"
-                 class="h-[72px] w-[72px] bg-transparent" aria-hidden="true" />
+                 class="g2g-logo-mark bg-transparent" aria-hidden="true" />
             <span class="flex flex-col leading-none">
               <span class="g2g-wordmark">Grow <span class="g2g-number">2</span> Guide</span>
               <span class="g2g-tagline">Elevate Your Knowledge</span>
@@ -434,7 +523,9 @@
           <p class="text-[#5A6A63] text-lg leading-[1.6] text-center max-w-2xl mx-auto mb-16">
             Grow2Guide is grounded in the reality that behavioral health work happens in more than policies and plans.
           </p>
-          <div class="flex flex-wrap justify-center gap-3 mb-16">
+          <div class="capability-marquee mb-16" aria-label="Behavioral health systems and resources">
+            <div class="capability-track">
+              <div class="capability-set">
             <span class="inline-flex items-center gap-2 bg-white rounded-full pl-4 pr-5 py-3 card-shadow border border-[#0F766E]/5 text-[#12201C] font-semibold text-sm">
               <iconify-icon icon="lucide:file-text" class="text-[#0F766E] text-lg"></iconify-icon> Policies &amp; Procedures
             </span>
@@ -456,6 +547,8 @@
             <span class="inline-flex items-center gap-2 bg-white rounded-full pl-4 pr-5 py-3 card-shadow border border-[#0F766E]/5 text-[#12201C] font-semibold text-sm">
               <iconify-icon icon="lucide:search-check" class="text-[#0F766E] text-lg"></iconify-icon> Audit &amp; Monitoring Systems
             </span>
+              </div>
+            </div>
           </div>
           <p class="text-[#5A6A63] text-lg text-center leading-[1.6]">
             The goal isn't simply to create something that looks right on paper.<br>
@@ -481,7 +574,7 @@
                 <p class="font-bold text-[#12201C] text-2xl mb-1">Sara Tudor, LMSW, CSW-I, CADC-I</p>
                 <p class="text-[#5A6A63]">Founder &amp; Consultant</p>
                 <div class="mt-3 flex items-center gap-4 text-[#0F766E] text-xl">
-                  <a href="https://www.linkedin.com/in/sara-tudor" id="about-li" class="hover:text-[#0B5F59] transition-transform hover:scale-110" aria-label="LinkedIn" rel="noopener noreferrer" target="_blank"><iconify-icon icon="mdi:linkedin"></iconify-icon></a>
+                  <a href="https://www.linkedin.com/in/sara-tudor" id="about-li" class="hover:text-[#0B5F59] transition-transform hover:scale-110" aria-label="LinkedIn" rel="noopener noreferrer" target="_blank"><iconify-icon icon="mdi:linkedin" class="text-[32.4px]"></iconify-icon></a>
                 </div>
               </div>
             </div>
@@ -581,7 +674,7 @@
         <div class="container-custom">
           <div class="bg-white rounded-[32px] p-16 lg:p-24 text-center card-shadow border border-[#0F766E]/5 relative overflow-hidden">
             <div class="absolute inset-0 opacity-[0.02] pointer-events-none" style="background-image: radial-gradient(#0F766E 2px, transparent 2px); background-size: 40px 40px;"></div>
-            <img src="assets/logo-mark.png" alt="Grow2Guide" class="h-[52px] w-auto mx-auto mb-8 bg-transparent">
+            <img src="assets/logo-mark.png" alt="Grow2Guide" width="72" height="72" class="g2g-logo-mark mx-auto mb-8 bg-transparent">
             <p class="text-[#12201C] text-2xl lg:text-3xl font-bold mb-4 tracking-tight">Practical resources. Real-world consulting. Better behavioral health systems.</p>
             <p class="text-[#0F766E] text-lg font-bold mb-14 tracking-[0.02em] uppercase">Learn. Strengthen. Build.</p>
             <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
@@ -609,7 +702,7 @@
           <div class="lg:col-span-5 max-w-sm">
             <a href="/" id="footer-logo-link" class="flex items-center gap-3 shrink-0 bg-transparent">
             <img src="assets/logo-mark.png" alt="" width="72" height="72"
-                 class="h-[72px] w-[72px] bg-transparent" aria-hidden="true" />
+                 class="g2g-logo-mark bg-transparent" aria-hidden="true" />
             <span class="flex flex-col leading-none">
               <span class="g2g-wordmark">Grow <span class="g2g-number">2</span> Guide</span>
               <span class="g2g-tagline">Elevate Your Knowledge</span>
@@ -619,8 +712,8 @@
               Practical resources and real-world consulting for behavioral health professionals and organizations.
             </p>
             <div class="flex items-center gap-3">
-              <a href="https://www.instagram.com/grow2guide/" id="footer-ig" class="w-9 h-9 flex items-center justify-center rounded-full bg-white border border-[#0F766E]/10 text-[#0F766E] hover:bg-[#D8F0EA] hover:text-[#0B5F59] transition-colors" aria-label="Instagram" rel="noopener noreferrer" target="_blank"><iconify-icon icon="mdi:instagram" class="text-[18px]"></iconify-icon></a>
-              <a href="https://www.facebook.com/Grow2Guide" id="footer-fb" class="w-9 h-9 flex items-center justify-center rounded-full bg-white border border-[#0F766E]/10 text-[#0F766E] hover:bg-[#D8F0EA] hover:text-[#0B5F59] transition-colors" aria-label="Facebook" rel="noopener noreferrer" target="_blank"><iconify-icon icon="mdi:facebook" class="text-[18px]"></iconify-icon></a>
+              <a href="https://www.instagram.com/grow2guide/" id="footer-ig" class="w-9 h-9 flex items-center justify-center rounded-full bg-white border border-[#0F766E]/10 text-[#0F766E] hover:bg-[#D8F0EA] hover:text-[#0B5F59] transition-colors" aria-label="Instagram" rel="noopener noreferrer" target="_blank"><iconify-icon icon="mdi:instagram" class="text-[29.16px]"></iconify-icon></a>
+              <a href="https://www.facebook.com/Grow2Guide" id="footer-fb" class="w-9 h-9 flex items-center justify-center rounded-full bg-white border border-[#0F766E]/10 text-[#0F766E] hover:bg-[#D8F0EA] hover:text-[#0B5F59] transition-colors" aria-label="Facebook" rel="noopener noreferrer" target="_blank"><iconify-icon icon="mdi:facebook" class="text-[29.16px]"></iconify-icon></a>
             </div>
           </div>
 
@@ -687,34 +780,15 @@
     })();
 
     (function () {
-      var nav = document.querySelector('nav.glass-nav');
-      var mobileMenu = document.getElementById('mobile-menu');
-      if (!nav) return;
+      var track = document.querySelector('.capability-track');
+      var set = track && track.querySelector('.capability-set');
+      if (!track || !set || track.querySelector('[aria-hidden="true"]')) return;
 
-      var lastY = window.scrollY;
-      var ticking = false;
-
-      function onScroll() {
-        var y = window.scrollY;
-        var menuOpen = mobileMenu && !mobileMenu.classList.contains('hidden');
-        if (menuOpen) {
-          nav.classList.remove('nav-hidden');
-        } else if (y > lastY && y > 160) {
-          nav.classList.add('nav-hidden');
-        } else if (y < lastY) {
-          nav.classList.remove('nav-hidden');
-        }
-        lastY = y;
-        ticking = false;
-      }
-
-      window.addEventListener('scroll', function () {
-        if (!ticking) {
-          window.requestAnimationFrame(onScroll);
-          ticking = true;
-        }
-      }, { passive: true });
+      var duplicate = set.cloneNode(true);
+      duplicate.setAttribute('aria-hidden', 'true');
+      track.appendChild(duplicate);
     })();
+
   </script>
 </body>
 </html>

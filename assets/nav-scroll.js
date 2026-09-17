@@ -59,6 +59,20 @@
     }).observe(mobileMenuButton, { attributes: true, attributeFilter: ['aria-expanded'] });
   }
 
+  document.addEventListener('pointerdown', function (event) {
+    if (!mobileMenuButton || !menuIsOpen()) return;
+    if (!window.matchMedia('(max-width: 1023px)').matches) return;
+    if (nav.contains(event.target)) return;
+
+    mobileMenuButton.click();
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key !== 'Escape' || !mobileMenuButton || !menuIsOpen()) return;
+    mobileMenuButton.click();
+    mobileMenuButton.focus();
+  });
+
   window.addEventListener('pageshow', function () {
     lastY = Math.max(window.scrollY, 0);
     showNav();
