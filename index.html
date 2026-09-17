@@ -30,6 +30,9 @@
     .g2g-wordmark .number {
       color: #4b3021;
     }
+    #nav-logo-link .g2g-wordmark {
+      font-size: clamp(26px, 3.2vw, 44px);
+    }
     .g2g-tagline { /* = .tagline */
       margin-top: 8px; /* proportional to his 22px at smaller size */
       font-family: "Montserrat", Arial, sans-serif;
@@ -253,13 +256,13 @@
           </div>
 
           <div class="relative">
-            <div class="hidden lg:block absolute top-[52px] left-0 w-full h-px bg-gradient-to-r from-transparent via-[#0F766E]/15 to-transparent z-0"></div>
+            <div class="hidden lg:block absolute top-[52px] left-0 w-full h-px bg-gradient-to-r from-transparent via-[#174d35]/20 to-transparent z-0"></div>
 
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 relative z-10">
               <!-- I Need a Guide -->
               <div id="path-guide" class="scroll-mt-32 bg-white rounded-[24px] p-8 lg:p-9 card-shadow border border-[#0F766E]/5 flex flex-col hover:border-[#0F766E]/20 hover:-translate-y-1 transition-all sm:col-span-2 lg:col-span-1">
                 <div class="flex items-center gap-4 mb-6">
-                  <div class="w-12 h-12 rounded-full bg-[#D8F0EA] text-[#0F766E] flex items-center justify-center shrink-0">
+                  <div class="w-12 h-12 rounded-full bg-[rgba(23,77,53,0.08)] text-[#174d35] flex items-center justify-center shrink-0">
                     <iconify-icon icon="lucide:book-open" class="text-xl"></iconify-icon>
                   </div>
                   <span class="text-[11px] font-bold text-[#5A6A63] tracking-[0.06em] uppercase">For Professionals</span>
@@ -277,10 +280,10 @@
               <!-- I Already Have Something -->
               <div id="path-strengthen" class="scroll-mt-32 bg-white rounded-[24px] p-8 lg:p-9 card-shadow border border-[#0F766E]/5 flex flex-col hover:border-[#0F766E]/20 hover:-translate-y-1 transition-all">
                 <div class="flex items-center gap-4 mb-6">
-                  <div class="w-12 h-12 rounded-full bg-white text-[#0F766E] flex items-center justify-center shrink-0">
+                  <div class="w-12 h-12 rounded-full bg-[rgba(75,48,33,0.08)] text-[#4b3021] flex items-center justify-center shrink-0">
                     <iconify-icon icon="lucide:search-check" class="text-xl"></iconify-icon>
                   </div>
-                  <span class="text-[11px] font-bold text-[#0F766E] tracking-[0.06em] uppercase">Tier 2 &middot; For Organizations</span>
+                  <span class="text-[11px] font-bold text-[#4b3021] tracking-[0.06em] uppercase">Tier 2 &middot; For Organizations</span>
                 </div>
                 <h3 class="text-2xl font-bold mb-3 text-[#12201C]">I Already Have Something.</h3>
                 <p class="text-[#5A6A63] text-base leading-[1.6] mb-6 flex-1">
@@ -295,7 +298,7 @@
               <!-- I Need Someone to Build It -->
               <div id="path-build" class="scroll-mt-32 bg-white rounded-[24px] p-8 lg:p-9 card-shadow border border-[#0F766E]/5 flex flex-col hover:border-[#0F766E]/20 hover:-translate-y-1 transition-all">
                 <div class="flex items-center gap-4 mb-6">
-                  <div class="w-12 h-12 rounded-full bg-[#D8F0EA] text-[#0F766E] flex items-center justify-center shrink-0">
+                  <div class="w-12 h-12 rounded-full bg-[rgba(23,77,53,0.08)] text-[#174d35] flex items-center justify-center shrink-0">
                     <iconify-icon icon="lucide:hammer" class="text-xl"></iconify-icon>
                   </div>
                   <span class="text-[11px] font-bold text-[#5A6A63] tracking-[0.06em] uppercase">Tier 3 &middot; For Organizations</span>
@@ -333,7 +336,12 @@
           <div class="grid lg:grid-cols-2 gap-10">
             <!-- Product 1 -->
             <div class="bg-white rounded-[24px] p-12 card-shadow border border-[#0F766E]/5 flex flex-col">
-              <span class="text-[11px] font-bold text-[#5A6A63] tracking-[0.06em] uppercase mb-8 inline-block">PDF 1 • Foundations</span>
+              <div class="flex items-center gap-4 mb-8">
+                <div class="w-14 h-14 shrink-0 rounded-2xl bg-[#D8F0EA] text-[#0F766E] flex items-center justify-center">
+                  <iconify-icon icon="mdi:file-pdf-box" class="text-3xl"></iconify-icon>
+                </div>
+                <span class="text-[11px] font-bold text-[#5A6A63] tracking-[0.06em] uppercase">PDF 1 • Foundations</span>
+              </div>
               <h3 class="text-2xl font-bold mb-5 leading-snug text-[#12201C]">Behavioral Health Policy Inventory & Learning Guide</h3>
               <p class="text-[#5A6A63] text-base mb-10 leading-[1.55] flex-1">
                 A structured breakdown of 69 critical policy areas from HR to Risk Management. Essential for agencies auditing existing systems.
@@ -356,7 +364,12 @@
 
             <!-- Product 2 -->
             <div class="bg-white rounded-[24px] p-12 card-shadow border border-[#0F766E]/5 flex flex-col">
-              <span class="text-[11px] font-bold text-[#5A6A63] tracking-[0.06em] uppercase mb-8 inline-block">PDF 2 • Readiness</span>
+              <div class="flex items-center gap-4 mb-8">
+                <div class="w-14 h-14 shrink-0 rounded-2xl bg-[#D8F0EA] text-[#0F766E] flex items-center justify-center">
+                  <iconify-icon icon="mdi:file-pdf-box" class="text-3xl"></iconify-icon>
+                </div>
+                <span class="text-[11px] font-bold text-[#5A6A63] tracking-[0.06em] uppercase">PDF 2 • Readiness</span>
+              </div>
               <h3 class="text-2xl font-bold mb-5 leading-snug text-[#12201C]">Accreditation Starter Checklist</h3>
               <p class="text-[#5A6A63] text-base mb-10 leading-[1.55] flex-1">
                 Practical preparation guide for CARF, Joint Commission, or Licensure surveys. Identify and close operational gaps before the survey.
@@ -554,7 +567,7 @@
         <div class="container-custom">
           <div class="bg-white rounded-[32px] p-16 lg:p-24 text-center card-shadow border border-[#0F766E]/5 relative overflow-hidden">
             <div class="absolute inset-0 opacity-[0.02] pointer-events-none" style="background-image: radial-gradient(#0F766E 2px, transparent 2px); background-size: 40px 40px;"></div>
-            <img src="assets/logo-mark.png" alt="Grow2Guide" class="h-[52px] w-auto mx-auto mb-8 bg-transparent">
+            <img src="assets/logo-mark.png" alt="Grow2Guide" class="h-[72px] w-auto mx-auto mb-8 bg-transparent">
             <p class="text-[#12201C] text-2xl lg:text-3xl font-bold mb-4 tracking-tight">Practical resources. Real-world consulting. Better behavioral health systems.</p>
             <p class="text-[#0F766E] text-lg font-bold mb-14 tracking-[0.02em] uppercase">Learn. Strengthen. Build.</p>
             <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
