@@ -6,30 +6,33 @@
   <title>Tier 1 Intake Quiz — Grow2Guide</title>
   <meta name="description" content="Tier 1 Foundations intake quiz for clinical mentoring with Grow2Guide." />
   <link rel="icon" href="../../assets/logo-square.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
   <script src="/assets/mail-protect.js" defer></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap');
     :root {
-      --bg-paper: #F5F1EB; --surface: #FFFFFF; --surface-soft: #EFEAE4;
-      --ink-primary: #1A1612; --ink-muted: #5C534C;
-      --accent-teal: #14522B; --accent-teal-dark: #0E3D20; --accent-soft: #E6EDE7;
+      --bg-paper: #FAF8F1; --surface: #FFFFFF; --surface-soft: #F3EEE4;
+      --ink-primary: #1C1712; --ink-muted: #5A524A;
+      --accent-teal: #0F5D3A; --accent-teal-dark: #0A452B; --accent-soft: #F3F0E8;
     }
     body { font-family: Inter, system-ui, -apple-system, sans-serif; color: var(--ink-primary); margin: 0; background: var(--bg-paper); }
     .atmosphere-glow {
       position: fixed; inset: 0; pointer-events: none; z-index: -1;
       background:
-        radial-gradient(1000px 420px at 0% -10%, rgba(223,245,239,.4) 0%, transparent 55%),
-        radial-gradient(800px 360px at 100% 0%, rgba(238,242,248,.5) 0%, transparent 48%);
+        radial-gradient(1000px 420px at 0% -10%, rgba(240, 235, 227,.4) 0%, transparent 55%),
+        radial-gradient(800px 360px at 100% 0%, rgba(243, 238, 228,.5) 0%, transparent 48%);
     }
-    .glass-nav { background: rgba(245, 241, 235,.95); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(20, 82, 43,.08); }
-    .card-shadow { box-shadow: 0 16px 40px rgba(26, 22, 18,.08); }
+    .glass-nav { background: rgba(250, 248, 241,.95); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(15, 93, 58,.08); }
+    .card-shadow { box-shadow: 0 16px 40px rgba(28, 23, 18,.08); }
     .container-custom { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
     .quiz-step { display: none; }
     .quiz-step.active { display: block; }
-    .option-card { display:flex; align-items:center; gap:1rem; padding:1.15rem 1.25rem; border-radius:20px; border:2px solid transparent; background:#F5F1EB; color:#5C534C; font-weight:600; cursor:pointer; transition:all .15s; }
-    .option-card:hover { background:#EFEAE4; }
+    .option-card { display:flex; align-items:center; gap:1rem; padding:1.15rem 1.25rem; border-radius:20px; border:2px solid transparent; background:#FAF8F1; color:#5A524A; font-weight:600; cursor:pointer; transition:all .15s; }
+    .option-card:hover { background:#F3EEE4; }
     .option-card:has(input:checked), input[type=radio]:checked + .option-card {
       border-color: var(--accent-teal); background: var(--accent-soft); color: var(--accent-teal-dark);
     }
@@ -38,11 +41,20 @@
     label.option-wrap:has(input:checked) .option-card {
       border-color: var(--accent-teal); background: var(--accent-soft); color: var(--accent-teal-dark);
     }
-    .field { width:100%; background:#F5F1EB; border:1px solid rgba(20, 82, 43,.1); padding:1rem; border-radius:1rem; font:inherit; color:inherit; }
-    .field:focus { outline: none; box-shadow: 0 0 0 3px rgba(20, 82, 43,.2); }
+    .field { width:100%; background:#FAF8F1; border:1px solid rgba(15, 93, 58,.1); padding:1rem; border-radius:1rem; font:inherit; color:inherit; }
+    .field:focus { outline: none; box-shadow: 0 0 0 3px rgba(15, 93, 58,.2); }
     .btn-active:active { transform: scale(0.98); }
     .err { color:#b91c1c; font-size:0.875rem; margin-top:0.5rem; display:none; }
-</style>
+
+    /* DD3 typography overrides (win over Tailwind preflight) */
+    body, button, input, select, textarea, nav, a, .btn-active {
+      font-family: "Montserrat", system-ui, -apple-system, sans-serif !important;
+    }
+    h1, h2, h3, .hero-title {
+      font-family: "Playfair Display", Georgia, serif !important;
+      font-weight: 700;
+    }
+  </style>
 </head>
 <body>
   <div class="min-h-screen relative flex flex-col">
@@ -52,52 +64,52 @@
         <div class="flex items-center gap-10 lg:gap-14">
           <a href="/" class="flex shrink-0"><img src="../../assets/logo.png" alt="Grow2Guide" class="h-[44px] lg:h-[52px] w-auto"></a>
           <div class="hidden lg:flex items-center gap-10">
-            <a href="/#products" class="text-[15px] font-semibold text-[#5C534C] hover:text-[#14522B]">Products</a>
-            <a href="/services/" class="text-[15px] font-semibold text-[#5C534C] hover:text-[#14522B]">Services</a>
-            <a href="/#about" class="text-[15px] font-semibold text-[#5C534C] hover:text-[#14522B]">About</a>
-            <a href="/handbook/" class="text-[15px] font-semibold text-[#5C534C] hover:text-[#14522B]">Handbook</a>
+            <a href="/#products" class="text-[15px] font-semibold text-[#5A524A] hover:text-[#0F5D3A]">Products</a>
+            <a href="/services/" class="text-[15px] font-semibold text-[#5A524A] hover:text-[#0F5D3A]">Services</a>
+            <a href="/#about" class="text-[15px] font-semibold text-[#5A524A] hover:text-[#0F5D3A]">About</a>
+            <a href="/handbook/" class="text-[15px] font-semibold text-[#5A524A] hover:text-[#0F5D3A]">Handbook</a>
           </div>
         </div>
         <div class="flex items-center gap-3">
-          <a href="/consultation/" class="hidden sm:inline-flex bg-[#14522B] text-white px-5 lg:px-6 py-2.5 rounded-full text-sm font-bold shadow-md shadow-[#14522B]/20 hover:bg-[#0E3D20] transition-all">Request consultation</a>
-          <button type="button" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu" class="lg:hidden w-11 h-11 flex items-center justify-center rounded-full border-2 border-[#4E3524]/40 text-[#4E3524] bg-white/70">
+          <a href="/consultation/" class="hidden sm:inline-flex bg-[#0F5D3A] text-white px-5 lg:px-6 py-2.5 rounded-full text-sm font-bold shadow-md shadow-[#0F5D3A]/20 hover:bg-[#0A452B] transition-all">Request consultation</a>
+          <button type="button" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu" class="lg:hidden w-11 h-11 flex items-center justify-center rounded-full border-2 border-[#5A3E2B]/40 text-[#5A3E2B] bg-white/70">
             <iconify-icon id="menu-icon-open" icon="ph:list-bold" class="text-2xl"></iconify-icon>
             <iconify-icon id="menu-icon-close" icon="ph:x-bold" class="text-2xl hidden"></iconify-icon>
           </button>
         </div>
       </div>
-      <div id="mobile-menu" class="hidden lg:hidden border-t border-[#14522B]/10 bg-[#F5F1EB]">
+      <div id="mobile-menu" class="hidden lg:hidden border-t border-[#0F5D3A]/10 bg-[#FAF8F1]">
         <div class="container-custom py-5 flex flex-col gap-1">
-          <a href="/#products" class="text-[18px] font-semibold text-[#1A1612] py-3 border-b border-[#14522B]/8">Products</a>
-          <a href="/services/" class="text-[18px] font-semibold text-[#1A1612] py-3 border-b border-[#14522B]/8">Services</a>
-          <a href="/#about" class="text-[18px] font-semibold text-[#1A1612] py-3 border-b border-[#14522B]/8">About</a>
-          <a href="/handbook/" class="text-[18px] font-semibold text-[#1A1612] py-3 border-b border-[#14522B]/8">Handbook</a>
-          <a href="/consultation/" class="mt-4 bg-[#14522B] text-white h-[48px] flex items-center justify-center rounded-full font-bold text-base">Request consultation</a>
+          <a href="/#products" class="text-[18px] font-semibold text-[#1C1712] py-3 border-b border-[#0F5D3A]/8">Products</a>
+          <a href="/services/" class="text-[18px] font-semibold text-[#1C1712] py-3 border-b border-[#0F5D3A]/8">Services</a>
+          <a href="/#about" class="text-[18px] font-semibold text-[#1C1712] py-3 border-b border-[#0F5D3A]/8">About</a>
+          <a href="/handbook/" class="text-[18px] font-semibold text-[#1C1712] py-3 border-b border-[#0F5D3A]/8">Handbook</a>
+          <a href="/consultation/" class="mt-4 bg-[#0F5D3A] text-white h-[48px] flex items-center justify-center rounded-full font-bold text-base">Request consultation</a>
         </div>
       </div>
     </nav>
     <main class="flex-1 pt-28 pb-24">
       <div class="container-custom max-w-3xl">
         <div class="mb-10 text-center">
-          <span class="bg-[#E6EDE7] text-[#14522B] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-4 inline-block">Tier 1 Foundations</span>
-          <h1 class="text-4xl font-bold tracking-tight text-[#1A1612] mb-4">Clinical Intake Quiz</h1>
-          <p class="text-[#5C534C] text-lg leading-relaxed">Help us understand your clinical focus so we can tailor our initial conversation.</p>
+          <span class="bg-[#F3F0E8] text-[#6B8F3E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-4 inline-block">Tier 1 Foundations</span>
+          <h1 class="text-4xl font-bold tracking-tight text-[#1C1712] mb-4">Clinical Intake Quiz</h1>
+          <p class="text-[#5A524A] text-lg leading-relaxed">Help us understand your clinical focus so we can tailor our initial conversation.</p>
         </div>
 
-        <div class="sticky top-20 z-40 bg-white/95 border border-[#14522B]/10 rounded-full px-6 py-4 mb-10 shadow-sm backdrop-blur-md flex items-center justify-between gap-4">
-          <span id="step-label" class="text-sm font-bold text-[#14522B] whitespace-nowrap">Step 1 of 5</span>
-          <div class="flex-1 h-1.5 bg-[#EFEAE4] rounded-full overflow-hidden">
-            <div id="progress-bar" class="h-full bg-[#14522B] rounded-full transition-all duration-500" style="width:20%"></div>
+        <div class="sticky top-20 z-40 bg-white/95 border border-[#0F5D3A]/10 rounded-full px-6 py-4 mb-10 shadow-sm backdrop-blur-md flex items-center justify-between gap-4">
+          <span id="step-label" class="text-sm font-bold text-[#0F5D3A] whitespace-nowrap">Step 1 of 5</span>
+          <div class="flex-1 h-1.5 bg-[#F3EEE4] rounded-full overflow-hidden">
+            <div id="progress-bar" class="h-full bg-[#0F5D3A] rounded-full transition-all duration-500" style="width:20%"></div>
           </div>
-          <span id="step-name" class="text-xs font-bold text-[#5C534C] uppercase tracking-wider whitespace-nowrap hidden sm:inline">Role</span>
+          <span id="step-name" class="text-xs font-bold text-[#5A524A] uppercase tracking-wider whitespace-nowrap hidden sm:inline">Role</span>
         </div>
 
-        <div class="bg-white rounded-[32px] p-8 md:p-12 card-shadow border border-[#14522B]/5">
+        <div class="bg-white rounded-[32px] p-8 md:p-12 card-shadow border border-[#0F5D3A]/5">
           <form id="quiz-form" novalidate>
             <!-- Step 1 -->
             <div class="quiz-step active" data-step="0">
               <fieldset>
-                <legend class="text-2xl font-bold text-[#1A1612] leading-tight mb-8">Which best describes your current professional role?</legend>
+                <legend class="text-2xl font-bold text-[#1C1712] leading-tight mb-8">Which best describes your current professional role?</legend>
                 <div class="grid sm:grid-cols-2 gap-4">
               <label class="option-wrap">
                 <input type="radio" name="role" value="Clinician" />
@@ -123,7 +135,7 @@
             <!-- Step 2 -->
             <div class="quiz-step" data-step="1">
               <fieldset>
-                <legend class="text-2xl font-bold text-[#1A1612] leading-tight mb-8">What is your primary focus right now?</legend>
+                <legend class="text-2xl font-bold text-[#1C1712] leading-tight mb-8">What is your primary focus right now?</legend>
                 <div class="grid gap-4">
               <label class="option-wrap">
                 <input type="radio" name="focus" value="Clinical mentoring" />
@@ -149,7 +161,7 @@
             <!-- Step 3 -->
             <div class="quiz-step" data-step="2">
               <fieldset>
-                <legend class="text-2xl font-bold text-[#1A1612] leading-tight mb-8">Where do you primarily practice?</legend>
+                <legend class="text-2xl font-bold text-[#1C1712] leading-tight mb-8">Where do you primarily practice?</legend>
                 <div class="grid sm:grid-cols-2 gap-4">
               <label class="option-wrap">
                 <input type="radio" name="setting" value="Outpatient" />
@@ -179,7 +191,7 @@
             <!-- Step 4 -->
             <div class="quiz-step" data-step="3">
               <fieldset>
-                <legend class="text-2xl font-bold text-[#1A1612] leading-tight mb-8">What would make this mentoring most useful?</legend>
+                <legend class="text-2xl font-bold text-[#1C1712] leading-tight mb-8">What would make this mentoring most useful?</legend>
                 <div class="grid gap-4">
               <label class="option-wrap">
                 <input type="radio" name="goal" value="Confidence in practice" />
@@ -199,7 +211,7 @@
               </label>
                 </div>
                 <div class="mt-8">
-                  <label class="block text-sm font-bold text-[#5C534C] uppercase mb-2" for="notes">Anything else we should know? (optional)</label>
+                  <label class="block text-sm font-bold text-[#5A524A] uppercase mb-2" for="notes">Anything else we should know? (optional)</label>
                   <textarea id="notes" name="notes" rows="3" class="field" placeholder="Brief context is helpful"></textarea>
                 </div>
                 <p class="err" data-for="goal">Please select a goal.</p>
@@ -209,32 +221,32 @@
             <!-- Step 5 -->
             <div class="quiz-step" data-step="4">
               <fieldset>
-                <legend class="text-2xl font-bold text-[#1A1612] leading-tight mb-8">How should we reach you?</legend>
+                <legend class="text-2xl font-bold text-[#1C1712] leading-tight mb-8">How should we reach you?</legend>
                 <div class="grid gap-5">
                   <div>
-                    <label class="block text-xs font-bold text-[#5C534C] uppercase mb-2" for="name">Full name</label>
+                    <label class="block text-xs font-bold text-[#5A524A] uppercase mb-2" for="name">Full name</label>
                     <input class="field" type="text" id="name" name="name" required autocomplete="name" />
                   </div>
                   <div>
-                    <label class="block text-xs font-bold text-[#5C534C] uppercase mb-2" for="email">Email</label>
+                    <label class="block text-xs font-bold text-[#5A524A] uppercase mb-2" for="email">Email</label>
                     <input class="field" type="email" id="email" name="email" required autocomplete="email" />
                   </div>
                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label class="block text-xs font-bold text-[#5C534C] uppercase mb-2" for="organization">Organization (optional)</label>
+                      <label class="block text-xs font-bold text-[#5A524A] uppercase mb-2" for="organization">Organization (optional)</label>
                       <input class="field" type="text" id="organization" name="organization" autocomplete="organization" />
                     </div>
                     <div>
-                      <label class="block text-xs font-bold text-[#5C534C] uppercase mb-2" for="phone">Phone (optional)</label>
+                      <label class="block text-xs font-bold text-[#5A524A] uppercase mb-2" for="phone">Phone (optional)</label>
                       <input class="field" type="tel" id="phone" name="phone" autocomplete="tel" />
                     </div>
                   </div>
                   <div>
-                    <label class="block text-xs font-bold text-[#5C534C] uppercase mb-2" for="window">Preferred appointment window</label>
+                    <label class="block text-xs font-bold text-[#5A524A] uppercase mb-2" for="window">Preferred appointment window</label>
                     <textarea class="field" id="window" name="window" rows="2" placeholder="e.g., Tuesday mornings, or after 3pm next week"></textarea>
                   </div>
                   <div>
-                    <label class="block text-xs font-bold text-[#5C534C] uppercase mb-2" for="message">Message (optional)</label>
+                    <label class="block text-xs font-bold text-[#5A524A] uppercase mb-2" for="message">Message (optional)</label>
                     <textarea class="field" id="message" name="message" rows="3" placeholder="Anything else we should know before the call?"></textarea>
                   </div>
                 </div>
@@ -242,9 +254,9 @@
               </fieldset>
             </div>
 
-            <div class="flex items-center justify-between pt-10 mt-4 border-t border-[#14522B]/10">
-              <button type="button" id="btn-back" class="px-6 py-3 text-[#5C534C] font-bold hover:text-[#14522B] transition-colors disabled:opacity-40" disabled>Back</button>
-              <button type="button" id="btn-next" class="btn-active bg-[#14522B] text-white px-10 py-4 rounded-full font-bold shadow-lg shadow-[#14522B]/20 hover:bg-[#0E3D20] transition-all inline-flex items-center gap-2">
+            <div class="flex items-center justify-between pt-10 mt-4 border-t border-[#0F5D3A]/10">
+              <button type="button" id="btn-back" class="px-6 py-3 text-[#5A524A] font-bold hover:text-[#0F5D3A] transition-colors disabled:opacity-40" disabled>Back</button>
+              <button type="button" id="btn-next" class="btn-active bg-[#0F5D3A] text-white px-10 py-4 rounded-full font-bold shadow-lg shadow-[#0F5D3A]/20 hover:bg-[#0A452B] transition-all inline-flex items-center gap-2">
                 <span id="btn-next-label">Continue</span>
                 <iconify-icon icon="lucide:arrow-right"></iconify-icon>
               </button>
@@ -252,24 +264,24 @@
           </form>
         </div>
 
-        <p class="mt-10 text-center text-[13px] text-[#5C534C] max-w-md mx-auto">Privacy note: Your responses are only used to route your appointment request and prepare for our discovery call. Submitting opens your email client to send answers to <span data-g2g-email-text></span>.</p>
+        <p class="mt-10 text-center text-[13px] text-[#5A524A] max-w-md mx-auto">Privacy note: Your responses are only used to route your appointment request and prepare for our discovery call. Submitting opens your email client to send answers to <span data-g2g-email-text></span>.</p>
       </div>
     </main>
-    <footer class="bg-[#EFEAE4] text-[#5C534C] py-16 border-t border-[#14522B]/10">
+    <footer class="bg-[#F3EEE4] text-[#5A524A] py-16 border-t border-[#0F5D3A]/10">
       <div class="container-custom flex flex-col md:flex-row justify-between items-center gap-8">
         <div class="text-center md:text-left">
           <a href="/"><img src="../../assets/logo.png" alt="Grow2Guide" class="h-[64px] w-auto mx-auto md:mx-0 mb-4"></a>
           <p class="text-sm">Educational consulting — not legal advice.</p>
         </div>
         <div class="flex flex-wrap justify-center gap-6 text-sm font-semibold">
-          <a href="/quiz/tier-1/" class="hover:text-[#14522B]">Tier 1 quiz</a>
-          <a href="/quiz/tier-2/" class="hover:text-[#14522B]">Tier 2 quiz</a>
-          <a href="/terms/" class="hover:text-[#14522B]">Terms</a>
-          <a href="/privacy/" class="hover:text-[#14522B]">Privacy</a>
-          <a href="#" data-g2g-mailto="" class="hover:text-[#14522B]">Contact</a>
+          <a href="/quiz/tier-1/" class="hover:text-[#0F5D3A]">Tier 1 quiz</a>
+          <a href="/quiz/tier-2/" class="hover:text-[#0F5D3A]">Tier 2 quiz</a>
+          <a href="/terms/" class="hover:text-[#0F5D3A]">Terms</a>
+          <a href="/privacy/" class="hover:text-[#0F5D3A]">Privacy</a>
+          <a href="#" data-g2g-mailto="" class="hover:text-[#0F5D3A]">Contact</a>
         </div>
       </div>
-      <p class="container-custom mt-10 pt-8 border-t border-[#14522B]/10 text-[12px] text-center">© 2026 Grow2Guide. Resources are for educational purposes only and do not constitute legal advice. Licensure is not guaranteed.</p>
+      <p class="container-custom mt-10 pt-8 border-t border-[#0F5D3A]/10 text-[12px] text-center">© 2026 Grow2Guide. Resources are for educational purposes only and do not constitute legal advice. Licensure is not guaranteed.</p>
     </footer>
   </div>
   <script>

@@ -4,39 +4,51 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="../assets/logo-square.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
   <script src="/assets/mail-protect.js" defer></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap');
     :root {
-      --bg-paper: #F5F1EB; --surface: #FFFFFF; --surface-soft: #EFEAE4;
-      --ink-primary: #1A1612; --ink-muted: #5C534C;
-      --accent-teal: #14522B; --accent-teal-dark: #0E3D20; --accent-soft: #E6EDE7;
+      --bg-paper: #FAF8F1; --surface: #FFFFFF; --surface-soft: #F3EEE4;
+      --ink-primary: #1C1712; --ink-muted: #5A524A;
+      --accent-teal: #0F5D3A; --accent-teal-dark: #0A452B; --accent-soft: #F3F0E8;
     }
     body { font-family: Inter, system-ui, -apple-system, sans-serif; color: var(--ink-primary); margin: 0; background: var(--bg-paper); }
     .atmosphere-glow {
       position: fixed; inset: 0; pointer-events: none; z-index: -1;
       background:
-        radial-gradient(1000px 420px at 0% -10%, rgba(223,245,239,.5) 0%, transparent 55%),
-        radial-gradient(800px 360px at 100% 0%, rgba(238,242,248,.6) 0%, transparent 48%);
+        radial-gradient(1000px 420px at 0% -10%, rgba(240, 235, 227,.5) 0%, transparent 55%),
+        radial-gradient(800px 360px at 100% 0%, rgba(243, 238, 228,.6) 0%, transparent 48%);
     }
-    .glass-nav { background: rgba(245, 241, 235,.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(20, 82, 43,.08); }
-    .card-shadow { box-shadow: 0 16px 40px rgba(26, 22, 18,.08); }
+    .glass-nav { background: rgba(250, 248, 241,.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(15, 93, 58,.08); }
+    .card-shadow { box-shadow: 0 16px 40px rgba(28, 23, 18,.08); }
     .container-custom { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
     .nav-link { position: relative; }
     .nav-link::after { content:''; position:absolute; bottom:-6px; left:0; width:0; height:2px; background:var(--accent-teal); transition:width .3s; }
     .nav-link:hover::after { width:100%; }
-    .legal-content h2 { font-size:28px; font-weight:700; color:#1A1612; margin:48px 0 16px; letter-spacing:-0.02em; }
-    .legal-content p { font-size:16px; line-height:1.6; color:#5C534C; margin-bottom:16px; }
+    .legal-content h2 { font-size:28px; font-weight:700; color:#1C1712; margin:48px 0 16px; letter-spacing:-0.02em; }
+    .legal-content p { font-size:16px; line-height:1.6; color:#5A524A; margin-bottom:16px; }
     .legal-content ul { margin-bottom:24px; list-style:none; padding:0; }
-    .legal-content li { position:relative; padding-left:24px; margin-bottom:12px; color:#5C534C; }
-    .legal-content li::before { content:""; position:absolute; left:0; top:10px; width:6px; height:6px; border-radius:50%; background:#14522B; }
+    .legal-content li { position:relative; padding-left:24px; margin-bottom:12px; color:#5A524A; }
+    .legal-content li::before { content:""; position:absolute; left:0; top:10px; width:6px; height:6px; border-radius:50%; background:#0F5D3A; }
     .quiz-step { display:none; }
     .quiz-step.active { display:block; }
     input[type="radio"]:checked + label,
     .option-card:has(input:checked) { border-color: var(--accent-teal) !important; background: var(--accent-soft) !important; color: var(--accent-teal-dark); }
     .btn-active:active { transform: scale(0.98); }
+  
+    /* DD3 typography overrides (win over Tailwind preflight) */
+    body, button, input, select, textarea, nav, a, .btn-active {
+      font-family: "Montserrat", system-ui, -apple-system, sans-serif !important;
+    }
+    h1, h2, h3, .hero-title {
+      font-family: "Playfair Display", Georgia, serif !important;
+      font-weight: 700;
+    }
   </style>
   <title>Refunds — Grow2Guide</title>
   <meta name="description" content="Grow2Guide refund practices for digital products and consulting." />
@@ -49,40 +61,40 @@
         <div class="flex items-center gap-10 lg:gap-14">
           <a href="/" class="flex shrink-0"><img src="../assets/logo.png" alt="Grow2Guide" class="h-[44px] lg:h-[52px] w-auto"></a>
           <div class="hidden lg:flex items-center gap-10">
-            <a href="/#products" class="nav-link text-[15px] font-semibold text-[#5C534C] hover:text-[#14522B]">Products</a>
-            <a href="/services/" class="nav-link text-[15px] font-semibold text-[#5C534C] hover:text-[#14522B]">Services</a>
-            <a href="/#about" class="nav-link text-[15px] font-semibold text-[#5C534C] hover:text-[#14522B]">About</a>
-            <a href="/handbook/" class="nav-link text-[15px] font-semibold text-[#5C534C] hover:text-[#14522B]">Handbook</a>
+            <a href="/#products" class="nav-link text-[15px] font-semibold text-[#5A524A] hover:text-[#0F5D3A]">Products</a>
+            <a href="/services/" class="nav-link text-[15px] font-semibold text-[#5A524A] hover:text-[#0F5D3A]">Services</a>
+            <a href="/#about" class="nav-link text-[15px] font-semibold text-[#5A524A] hover:text-[#0F5D3A]">About</a>
+            <a href="/handbook/" class="nav-link text-[15px] font-semibold text-[#5A524A] hover:text-[#0F5D3A]">Handbook</a>
           </div>
         </div>
         <div class="flex items-center gap-3">
-          <a href="/consultation/" class="hidden sm:inline-flex bg-[#14522B] text-white px-5 lg:px-6 py-2.5 rounded-full text-sm font-bold shadow-md shadow-[#14522B]/20 hover:bg-[#0E3D20] transition-all">Request consultation</a>
-          <button type="button" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu" class="lg:hidden w-11 h-11 flex items-center justify-center rounded-full border-2 border-[#4E3524]/40 text-[#4E3524] bg-white/70">
+          <a href="/consultation/" class="hidden sm:inline-flex bg-[#0F5D3A] text-white px-5 lg:px-6 py-2.5 rounded-full text-sm font-bold shadow-md shadow-[#0F5D3A]/20 hover:bg-[#0A452B] transition-all">Request consultation</a>
+          <button type="button" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu" class="lg:hidden w-11 h-11 flex items-center justify-center rounded-full border-2 border-[#5A3E2B]/40 text-[#5A3E2B] bg-white/70">
             <iconify-icon id="menu-icon-open" icon="ph:list-bold" class="text-2xl"></iconify-icon>
             <iconify-icon id="menu-icon-close" icon="ph:x-bold" class="text-2xl hidden"></iconify-icon>
           </button>
         </div>
       </div>
-      <div id="mobile-menu" class="hidden lg:hidden border-t border-[#14522B]/10 bg-[#F5F1EB]">
+      <div id="mobile-menu" class="hidden lg:hidden border-t border-[#0F5D3A]/10 bg-[#FAF8F1]">
         <div class="container-custom py-5 flex flex-col gap-1">
-          <a href="/#products" class="text-[18px] font-semibold text-[#1A1612] py-3 border-b border-[#14522B]/8">Products</a>
-          <a href="/services/" class="text-[18px] font-semibold text-[#1A1612] py-3 border-b border-[#14522B]/8">Services</a>
-          <a href="/#about" class="text-[18px] font-semibold text-[#1A1612] py-3 border-b border-[#14522B]/8">About</a>
-          <a href="/handbook/" class="text-[18px] font-semibold text-[#1A1612] py-3 border-b border-[#14522B]/8">Handbook</a>
-          <a href="/consultation/" class="mt-4 bg-[#14522B] text-white h-[48px] flex items-center justify-center rounded-full font-bold text-base">Request consultation</a>
+          <a href="/#products" class="text-[18px] font-semibold text-[#1C1712] py-3 border-b border-[#0F5D3A]/8">Products</a>
+          <a href="/services/" class="text-[18px] font-semibold text-[#1C1712] py-3 border-b border-[#0F5D3A]/8">Services</a>
+          <a href="/#about" class="text-[18px] font-semibold text-[#1C1712] py-3 border-b border-[#0F5D3A]/8">About</a>
+          <a href="/handbook/" class="text-[18px] font-semibold text-[#1C1712] py-3 border-b border-[#0F5D3A]/8">Handbook</a>
+          <a href="/consultation/" class="mt-4 bg-[#0F5D3A] text-white h-[48px] flex items-center justify-center rounded-full font-bold text-base">Request consultation</a>
         </div>
       </div>
     </nav>
     <main class="flex-1 pt-28 pb-24">
       <div class="container-custom max-w-3xl">
-        <nav class="flex items-center gap-2 text-sm font-medium text-[#5C534C] mb-10">
-          <a href="/" class="hover:text-[#14522B]">Home</a>
+        <nav class="flex items-center gap-2 text-sm font-medium text-[#5A524A] mb-10">
+          <a href="/" class="hover:text-[#0F5D3A]">Home</a>
           <span class="opacity-40">/</span>
-          <span class="text-[#1A1612]">Refunds</span>
+          <span class="text-[#1C1712]">Refunds</span>
         </nav>
         <h1 class="text-4xl font-bold tracking-tight mb-4">Refunds</h1>
-        <p class="text-[#5C534C] font-medium mb-12">Last updated: September 2026</p>
-        <div class="bg-white rounded-[24px] p-8 lg:p-12 card-shadow border border-[#14522B]/5 legal-content">
+        <p class="text-[#5A524A] font-medium mb-12">Last updated: September 2026</p>
+        <div class="bg-white rounded-[24px] p-8 lg:p-12 card-shadow border border-[#0F5D3A]/5 legal-content">
           <p>Digital PDF products are delivered by email after payment. Because files can be copied once delivered, refunds are reviewed case by case.</p>
           <h2>Digital products</h2>
           <ul>
@@ -96,12 +108,12 @@
             <li>Unused prepaid sessions may be rescheduled with reasonable notice.</li>
           </ul>
           <h2>How to request</h2>
-          <p>Email <a class="text-[#14522B] font-bold" href="#" data-g2g-mailto="subject=Refund%20request" data-g2g-email-text></a> with your name, order details, and reason. We aim to respond within two business days.</p>
+          <p>Email <a class="text-[#0F5D3A] font-bold" href="#" data-g2g-mailto="subject=Refund%20request" data-g2g-email-text></a> with your name, order details, and reason. We aim to respond within two business days.</p>
           <p class="text-sm mt-8">This page is a concise site stub aligned with our Terms. Counsel may refine language before final publication.</p>
         </div>
       </div>
     </main>
-    <footer class="bg-[#EFEAE4] text-[#5C534C] py-24 border-t border-[#14522B]/10">
+    <footer class="bg-[#F3EEE4] text-[#5A524A] py-24 border-t border-[#0F5D3A]/10">
       <div class="container-custom">
         <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 mb-16">
           <div class="lg:col-span-4 space-y-6">
@@ -110,33 +122,33 @@
             <p class="text-[13px]">Educational consulting — not legal advice.</p>
           </div>
           <div class="lg:col-span-4 space-y-5">
-            <h4 class="text-[#1A1612] font-bold text-[11px] tracking-[0.08em] uppercase">Services</h4>
+            <h4 class="text-[#1C1712] font-bold text-[11px] tracking-[0.08em] uppercase">Services</h4>
             <ul class="space-y-3.5 text-[15px] font-medium">
-              <li><a href="/#professionals" class="hover:text-[#14522B]">Tier 1 · Foundations</a></li>
-              <li><a href="/#professionals" class="hover:text-[#14522B]">Tier 2 · Leadership</a></li>
-              <li><a href="/quiz/tier-1/" class="hover:text-[#14522B]">Tier 1 intake quiz</a></li>
-              <li><a href="/quiz/tier-2/" class="hover:text-[#14522B]">Tier 2 intake quiz</a></li>
-              <li><a href="/#products" class="hover:text-[#14522B]">Guides &amp; Bundle — $67–$99</a></li>
-              <li><a href="https://www.grow2guide.com/handbook/" class="hover:text-[#14522B]">Parents’ Handbook</a></li>
-              <li><a href="https://www.grow2guide.com/handbook/programs/" class="hover:text-[#14522B]">Programs</a></li>
+              <li><a href="/#professionals" class="hover:text-[#0F5D3A]">Tier 1 · Foundations</a></li>
+              <li><a href="/#professionals" class="hover:text-[#0F5D3A]">Tier 2 · Leadership</a></li>
+              <li><a href="/quiz/tier-1/" class="hover:text-[#0F5D3A]">Tier 1 intake quiz</a></li>
+              <li><a href="/quiz/tier-2/" class="hover:text-[#0F5D3A]">Tier 2 intake quiz</a></li>
+              <li><a href="/#products" class="hover:text-[#0F5D3A]">Guides &amp; Bundle — $67–$99</a></li>
+              <li><a href="https://www.grow2guide.com/handbook/" class="hover:text-[#0F5D3A]">Parents’ Handbook</a></li>
+              <li><a href="https://www.grow2guide.com/handbook/programs/" class="hover:text-[#0F5D3A]">Programs</a></li>
             </ul>
           </div>
           <div class="lg:col-span-4 space-y-5">
-            <h4 class="text-[#1A1612] font-bold text-[11px] tracking-[0.08em] uppercase">Company</h4>
+            <h4 class="text-[#1C1712] font-bold text-[11px] tracking-[0.08em] uppercase">Company</h4>
             <ul class="space-y-3.5 text-[15px] font-medium">
-              <li><a href="/#about" class="hover:text-[#14522B]">About Sara Tudor</a></li>
-              <li><a href="#" data-g2g-mailto="subject=Book%20appointment" class="hover:text-[#14522B]">Book appointment</a></li>
-              <li><a href="#" data-g2g-mailto="" class="hover:text-[#14522B]">Contact</a></li>
+              <li><a href="/#about" class="hover:text-[#0F5D3A]">About Sara Tudor</a></li>
+              <li><a href="#" data-g2g-mailto="subject=Book%20appointment" class="hover:text-[#0F5D3A]">Book appointment</a></li>
+              <li><a href="#" data-g2g-mailto="" class="hover:text-[#0F5D3A]">Contact</a></li>
             </ul>
           </div>
         </div>
-        <div class="pt-10 border-t border-[#14522B]/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+        <div class="pt-10 border-t border-[#0F5D3A]/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
           <p id="disclaimer" class="text-[12px] leading-relaxed max-w-2xl">© 2026 Grow2Guide. Resources are for educational purposes only and do not constitute legal advice. Licensure is not guaranteed.</p>
           <div class="flex flex-wrap items-center gap-4 text-[13px] font-semibold">
-            <a href="/terms/" class="hover:text-[#14522B]">Terms</a>
-            <a href="/privacy/" class="hover:text-[#14522B]">Privacy</a>
-            <a href="/refunds/" class="hover:text-[#14522B]">Refunds</a>
-            <a href="/#disclaimer" class="hover:text-[#14522B]">Educational disclaimer</a>
+            <a href="/terms/" class="hover:text-[#0F5D3A]">Terms</a>
+            <a href="/privacy/" class="hover:text-[#0F5D3A]">Privacy</a>
+            <a href="/refunds/" class="hover:text-[#0F5D3A]">Refunds</a>
+            <a href="/#disclaimer" class="hover:text-[#0F5D3A]">Educational disclaimer</a>
           </div>
         </div>
       </div>
