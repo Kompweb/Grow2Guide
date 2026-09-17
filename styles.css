@@ -1,6 +1,6 @@
 :root {
   --olive: #6b8f3e;
-  --gold-beige: #d9c08b;
+  --gold-beige: #d9cdbb;
   --bg: #faf8f1;
   --ink: #1c1712;
   --muted: #5a524a;
@@ -784,21 +784,13 @@ h1, h2, h3, .hero-title, .display {
 
 .accent-panel-soft {
   background: #f0ebe3;
-  border: 1px solid #d9c08b;
+  border: 1px solid #d9cdbb;
 }
 .accent-olive { color: #6b8f3e; }
 .chip-success {
   background: #f3f0e8;
   color: #6b8f3e;
 }
-
-.gold-wash {
-  background: rgba(217, 192, 139, 0.28);
-}
-.olive-wash {
-  background: rgba(107, 143, 62, 0.14);
-}
-
 
 .hb-price-amount { font-size: 1.75rem; font-weight: 700; color: var(--ink, #1a1a1a); }
 .hb-price-note { font-size: 0.95rem; color: var(--muted, #5a524a); font-weight: 500; }
