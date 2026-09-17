@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tier 1 Intake Quiz — Grow2Guide</title>
@@ -10,6 +13,29 @@
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
   <script src="/assets/mail-protect.js" defer></script>
   <style>
+
+    .g2g-wordmark {
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(24px, 2.4vw, 36px);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: #174d35;
+    }
+    .g2g-wordmark .g2g-number,
+    .g2g-wordmark .number {
+      color: #4b3021;
+    }
+    .g2g-tagline {
+      margin-top: 8px;
+      font-family: "Montserrat", Arial, sans-serif;
+      font-weight: 500;
+      font-size: clamp(10px, 0.9vw, 13px);
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: #4b3021;
+    }
+
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap');
 :root {
       --bg-paper: #F5F8F4; --surface: #FFFFFF; --surface-soft: #EAF3EF;
@@ -48,11 +74,11 @@
   <div class="min-h-screen relative flex flex-col">
     <div class="atmosphere-glow"></div>
     <nav class="fixed top-0 w-full z-50 glass-nav">
-      <div class="container-custom h-[104px] lg:h-[108px] flex items-center justify-between">
+      <div class="container-custom h-[120px] lg:h-[124px] flex items-center justify-between">
         <div class="flex items-center gap-10 lg:gap-14">
           <a href="/" id="nav-logo-link" class="flex items-center gap-3 shrink-0 bg-transparent">
-            <img src="../../assets/logo-mark.png" alt="" width="86" height="86"
-                 class="h-[86px] w-[86px] bg-transparent" aria-hidden="true" />
+            <img src="../../assets/logo-mark.png" alt="" width="100" height="100"
+                 class="h-[100px] w-[100px] bg-transparent" aria-hidden="true" />
             <span class="flex flex-col leading-none">
               <span class="g2g-wordmark">Grow <span class="g2g-number">2</span> Guide</span>
               <span class="g2g-tagline">Elevate Your Knowledge</span>
@@ -266,8 +292,8 @@
       <div class="container-custom flex flex-col md:flex-row justify-between items-center gap-8">
         <div class="text-center md:text-left">
           <a href="/" id="footer-logo-link" class="flex items-center gap-3 shrink-0 bg-transparent">
-            <img src="../../assets/logo-mark.png" alt="" width="86" height="86"
-                 class="h-[86px] w-[86px] bg-transparent" aria-hidden="true" />
+            <img src="../../assets/logo-mark.png" alt="" width="100" height="100"
+                 class="h-[100px] w-[100px] bg-transparent" aria-hidden="true" />
             <span class="flex flex-col leading-none">
               <span class="g2g-wordmark">Grow <span class="g2g-number">2</span> Guide</span>
               <span class="g2g-tagline">Elevate Your Knowledge</span>
