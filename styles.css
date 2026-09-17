@@ -787,3 +787,9 @@ h1 {
   color: var(--muted, #5A524A);
 }
 .hb-shipping-note strong { color: var(--ink, #1a1a1a); }
+
+/* Transparent backdrop behind PNG logos (avoids glass-nav dark fringe) */
+img[src$="logo.png"],
+img[src$="logo-square.png"] {
+  background: transparent;
+}
