@@ -22,10 +22,11 @@
   <script src="/assets/mail-protect.js" defer></script>
   <style>
 
-    .g2g-wordmark {
+    .g2g-wordmark { /* = .brand-name */
+      margin: 0;
       font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(22px, 2.5vw, 34px); /* header-scaled from his clamp(48px, 8vw, 110px) */
       font-weight: 500;
-      font-size: clamp(24px, 2.4vw, 36px);
       line-height: 1;
       letter-spacing: -0.03em;
       color: #174d35;
@@ -34,11 +35,11 @@
     .g2g-wordmark .number {
       color: #4b3021;
     }
-    .g2g-tagline {
-      margin-top: 8px;
+    .g2g-tagline { /* = .tagline */
+      margin-top: 8px; /* proportional to his 22px at smaller size */
       font-family: "Montserrat", Arial, sans-serif;
+      font-size: clamp(10px, 0.95vw, 14px); /* header-scaled from his clamp(14px, 2vw, 28px) */
       font-weight: 500;
-      font-size: clamp(10px, 0.9vw, 13px);
       letter-spacing: 0.10em;
       text-transform: uppercase;
       color: #4b3021;
