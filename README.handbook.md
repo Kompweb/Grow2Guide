@@ -4,13 +4,13 @@ Static English handbook routes for Grow2Guide (GitHub Pages).
 
 ## Routes
 - `/handbook/` — handbook home (`handbook/index.html`)
-- `/handbook/programs/` — programs overview (`handbook/programs/index.html`)
+- `/handbook/programs/` — archived notice; programs are not currently offered (`handbook/programs/index.html`)
 - Main home nav: “Parents’ Handbook” → `/handbook/`
 
 ## Asset paths
 - From `/handbook/`: `../assets/...`, `../styles.css`
 - From `/handbook/programs/`: `../../assets/...`, `../../styles.css`
-- Cover: `assets/parents-handbook-cover.png`
+- Cover: `handbook/parents-handbook-cover.png`
 - Logos: `assets/logo.png`, `assets/logo-square.png` (transparent; no `#000` logo background)
 
 ## Contact

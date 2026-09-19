@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":
+  new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
+  "https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,"script","dataLayer","GTM-WLRZD726");</script>
+  <!-- End Google Tag Manager -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <script src="/assets/mail-protect.js" defer></script>
+  <script src="/assets/nav-scroll.js" defer></script>
+  <style>
+
+    .g2g-wordmark { /* = .brand-name */
+      margin: 0;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(22px, 2.5vw, 34px); /* header-scaled from his clamp(48px, 8vw, 110px) */
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: #174d35;
+    }
+    .g2g-wordmark .g2g-number,
+    .g2g-wordmark .number {
+      color: #4b3021;
+    }
+    .g2g-logo-mark {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+    }
+    #footer-logo-link .g2g-wordmark {
+      font-size: clamp(24px, 2.7vw, 38px);
+    }
+    #nav-logo-link > span,
+    #footer-logo-link > span {
+      align-items: stretch;
+      text-align: center;
+    }
+    #nav-logo-link .g2g-wordmark { font-size: clamp(28px, 4vw, 38px); }
+    #nav-logo-link .g2g-tagline { font-size: clamp(10.5px, 1.5vw, 14px); transform: scaleX(.9); }
+    @media (max-width: 370px) {
+      #nav-logo-link .g2g-wordmark { font-size: 24px; }
+      #nav-logo-link .g2g-tagline { font-size: 9px; }
+      #nav-logo-link .g2g-logo-mark { width: 60px; height: 60px; }
+      #nav-logo-link { gap: 8px; }
+    }
+    .g2g-tagline { /* = .tagline */
+      margin-top: 2px;
+      font-family: "Montserrat", Arial, sans-serif;
+      font-size: 12px; /* header-scaled from his clamp(14px, 2vw, 28px) */
+      font-weight: 500;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      color: #4b3021;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap');
+:root {
+      --bg-paper: #F5F8F4; --surface: #FFFFFF; --surface-soft: #EAF3EF;
+      --ink-primary: #12201C; --ink-muted: #5A6A63;
+      --accent-teal: #0F766E; --accent-teal-dark: #0B5F59; --accent-soft: #D8F0EA;
+    }
+    body { font-family: Inter, system-ui, -apple-system, sans-serif; color: var(--ink-primary); margin: 0; background: var(--bg-paper); }
+    .atmosphere-glow {
+      position: fixed; inset: 0; pointer-events: none; z-index: -1;
+      background:
+        radial-gradient(1000px 420px at 0% -10%, rgba(223,245,239,.5) 0%, transparent 55%),
+        radial-gradient(800px 360px at 100% 0%, rgba(238,242,248,.6) 0%, transparent 48%);
+    }
+    .glass-nav { background: rgba(245,248,244,.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(15,118,110,.08); }
+    .card-shadow { box-shadow: 0 16px 40px rgba(18,32,28,.08); }
+    .container-custom { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .nav-link { position: relative; }
+    .nav-link::after { content:''; position:absolute; bottom:-6px; left:0; width:0; height:2px; background:var(--accent-teal); transition:width .3s; }
+    .nav-link:hover::after { width:100%; }
+    .btn-active:active { transform: scale(0.98); }
+
+    a:focus-visible, button:focus-visible, summary:focus-visible {
+      outline: 2px solid var(--accent-teal, #0F766E);
+      outline-offset: 3px;
+    }
+
+    .faq-jump { display:flex; flex-wrap:wrap; gap:.5rem; transition:opacity .15s ease; }
+    .faq-jump a {
+      display:inline-flex; align-items:center; padding:.5rem 1rem; border-radius:9999px;
+      font-size:.8rem; font-weight:700; color:#5A6A63; background:#fff;
+      border:1px solid rgba(15,118,110,.12); text-decoration:none; transition:color .2s ease, border-color .2s ease, background-color .2s ease;
+    }
+    .faq-jump a:hover { color:#0F766E; border-color:rgba(15,118,110,.3); background:#D8F0EA; }
+    .faq-jump.is-searching { opacity:.35; pointer-events:none; }
+
+    .faq-search { position:relative; margin-bottom: 1.75rem; }
+    .faq-search-icon {
+      position:absolute; left:1.15rem; top:50%; transform:translateY(-50%);
+      color:#5A6A63; font-size:1.2rem; pointer-events:none;
+    }
+    .faq-search input {
+      width:100%; background:#fff; border:1px solid rgba(15,118,110,.15); border-radius:9999px;
+      padding:.95rem 3rem; font:inherit; font-size:.95rem; color:#12201C;
+      box-shadow: 0 4px 14px rgba(18,32,28,.05);
+    }
+    .faq-search input::placeholder { color:#94A3A0; }
+    .faq-search input:focus {
+      outline:none; border-color:#0F766E; box-shadow:0 0 0 3px rgba(15,118,110,.15);
+    }
+    .faq-search input::-webkit-search-cancel-button,
+    .faq-search input::-webkit-search-decoration { -webkit-appearance:none; appearance:none; }
+    .faq-search-clear {
+      position:absolute; right:.5rem; top:50%; transform:translateY(-50%);
+      width:2.1rem; height:2.1rem; display:none; align-items:center; justify-content:center;
+      background:#F5F8F4; border:none; border-radius:9999px; color:#5A6A63; cursor:pointer; font-size:1.1rem;
+    }
+    .faq-search-clear:hover { background:#EAF3EF; color:#0F766E; }
+    .faq-search-clear.show { display:flex; }
+    .faq-search-count { margin:.65rem .25rem 0; font-size:.8rem; font-weight:600; color:#5A6A63; }
+
+    .faq-no-results {
+      display:none; text-align:center; padding:3rem 1.5rem; color:#5A6A63;
+      background:#fff; border-radius:24px; border:1px solid rgba(15,118,110,.08); margin-bottom:2rem;
+    }
+    .faq-no-results.show { display:block; }
+    .faq-no-results p:first-child { font-weight:700; color:#12201C; margin-bottom:.35rem; }
+
+    .faq-item.faq-hidden { display:none; }
+    .faq-group.faq-hidden { display:none; }
+
+    .faq-group { scroll-margin-top: 120px; }
+    .faq-group h2 { font-size:1.5rem; font-weight:700; color:#12201C; letter-spacing:-0.01em; margin:0 0 4px; }
+    .faq-group > p.faq-group-note { color:#5A6A63; font-size:.95rem; margin:0 0 1.5rem; }
+
+    .faq-item { border-bottom: 1px solid rgba(15,118,110,.08); }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-item summary {
+      cursor:pointer; list-style:none; display:flex; align-items:center; justify-content:space-between;
+      gap:1rem; padding:1.25rem 0; font-weight:700; color:#12201C; font-size:1rem; line-height:1.4;
+    }
+    .faq-item summary::-webkit-details-marker { display:none; }
+    .faq-item .faq-icon { transition: transform .2s ease; color:#0F766E; flex:0 0 auto; font-size:1.35rem; }
+    .faq-item[open] .faq-icon { transform: rotate(180deg); }
+    .faq-item .faq-answer { color:#5A6A63; font-size:.95rem; line-height:1.65; padding:0 0 1.5rem; margin:0; }
+    .faq-item .faq-answer a { color:#0F766E; font-weight:700; text-decoration:underline; }
+  </style>
+  <title>FAQ — Grow2Guide</title>
+  <meta name="description" content="Answers to common questions about Grow2Guide's organizational services, digital guides, Start from scratch, payments, refunds, and privacy." />
+  <link rel="canonical" href="https://www.grow2guide.com/faq/" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"What is Grow2Guide?","acceptedAnswer":{"@type":"Answer","text":"Grow2Guide is a Nevada-based consulting practice founded by Sara Tudor, LMSW, CSW-I, CADC-I. Our focus is behavioral health agencies and programs — start-up programs, compliance, and workforce learning. We also offer practical resources for employees and staff in inpatient and outpatient services to grow as individuals and professionals. For professionals who support families and young people, we offer a strengths-based handbook that supports reflection, connection, and breaking generational cycles."}},
+      {"@type":"Question","name":"Who is Grow2Guide for?","acceptedAnswer":{"@type":"Answer","text":"Three audiences: behavioral health agencies and programs needing an organizational assessment or infrastructure built from the ground up; individual employees — such as case managers, BHTs, MHTs, and support staff — looking for practical guides and growth opportunities; and professionals, caregivers, and program teams looking for a strengths-based approach to supporting families and young people."}},
+      {"@type":"Question","name":"Is Grow2Guide's work legal advice?","acceptedAnswer":{"@type":"Answer","text":"No. Grow2Guide provides educational consulting and implementation support, not legal advice. Licensure, accreditation, certification, and audit outcomes are never guaranteed."}},
+      {"@type":"Question","name":"What's the difference between Tier 2 and Tier 3 services?","acceptedAnswer":{"@type":"Answer","text":"Tier 2, the Organizational Gap Assessment, is for organizations that already have policies, procedures, and systems in place — we assess what's working, what's missing, and what to prioritize next toward growth, licensing, and/or accreditation. Tier 3, Build, Maintain, Support, is for organizations building infrastructure from the ground up — we build the policies, workflows, forms, and staff resources, and help you implement them."}},
+      {"@type":"Question","name":"Does a Tier 2 or Tier 3 engagement guarantee licensure or accreditation?","acceptedAnswer":{"@type":"Answer","text":"No. Scope varies by organization, program, jurisdiction, and applicable requirements. Assessment or build-out support does not guarantee licensure, accreditation, certification, or audit outcomes."}},
+      {"@type":"Question","name":"What happens during a consultation?","acceptedAnswer":{"@type":"Answer","text":"Three steps: review Tier 2 and Tier 3 to see which matches where your organization is today, schedule a consultation to discuss your program, timeline, and goals, then decide together whether — and how — we're the right fit."}},
+      {"@type":"Question","name":"What are the downloadable guides?","acceptedAnswer":{"@type":"Answer","text":"Two PDF guides for behavioral health professionals: the Behavioral Health Policy Inventory & Learning Guide, and the Supervisor/Manager inventory, toolkit, and reflection guide, each $67. Buying both together as a bundle is $99."}},
+      {"@type":"Question","name":"How do I receive my guide after purchase?","acceptedAnswer":{"@type":"Answer","text":"Payment is processed securely via Stripe, and the PDF is emailed to you after purchase. If you haven't received it within 48 hours of confirmed payment, email us and we'll resend or resolve it promptly."}},
+      {"@type":"Question","name":"What is Start from scratch?","acceptedAnswer":{"@type":"Answer","text":"\"Start from scratch\" is a short, strengths-focused and culturally responsive handbook for professionals who support parents, caregivers, and young people. It offers practical language, reflection prompts, and tools for support conversations."}},
+      {"@type":"Question","name":"How much is Start from scratch and how is it delivered?","acceptedAnswer":{"@type":"Answer","text":"Final pricing and delivery details will match the live Amazon listing once it is ready."}},
+      {"@type":"Question","name":"What is the refund policy for digital products?","acceptedAnswer":{"@type":"Answer","text":"Because files can be copied once delivered, refunds are reviewed case by case. Refunds for duplicate purchases or delivery failures are typically honored; requests after a successful download may be declined, except where required by law."}},
+      {"@type":"Question","name":"How do I request a refund or ask a billing question?","acceptedAnswer":{"@type":"Answer","text":"Email us with your name, order details, and reason. We aim to respond within two business days."}}
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WLRZD726"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <a class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:px-4 focus:py-2 focus:rounded-full" href="#main">Skip to content</a>
+
+  <div class="min-h-screen relative flex flex-col">
+    <div class="atmosphere-glow"></div>
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+      <div class="container-custom h-[96px] lg:h-[100px] flex items-center justify-between">
+        <div class="flex items-center gap-10 lg:gap-14">
+          <a href="/" id="nav-logo-link" class="flex items-center gap-3 shrink-0 bg-transparent">
+            <img src="../assets/logo-mark.png" alt="" width="72" height="72"
+                 class="g2g-logo-mark bg-transparent" aria-hidden="true" />
+            <span class="flex flex-col leading-none">
+              <span class="g2g-wordmark">Grow <span class="g2g-number">2</span> Guide</span>
+              <span class="g2g-tagline">Elevate Your Knowledge</span>
+            </span>
+          </a>
+          <div class="hidden lg:flex items-center gap-10">
+            <a href="/services/" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Services</a>
+            <a href="/#about" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">About</a>
+            <a href="/handbook/" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Handbook</a>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <a href="/consultation/" class="hidden sm:inline-flex bg-[#4b3021] text-white px-5 lg:px-6 py-2.5 rounded-full text-sm font-bold shadow-md shadow-[#4b3021]/20 hover:bg-[#3a2519] transition-all">Request consultation</a>
+          <button type="button" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu" class="lg:hidden w-14 h-14 flex items-center justify-center rounded-full border-2 border-[#4b3021]/25 text-[#4b3021] bg-white/70">
+            <iconify-icon id="menu-icon-open" icon="ph:list-bold" class="text-3xl"></iconify-icon>
+            <iconify-icon id="menu-icon-close" icon="ph:x-bold" class="text-3xl hidden"></iconify-icon>
+          </button>
+        </div>
+      </div>
+      <div id="mobile-menu" class="hidden lg:hidden border-t border-[#0F766E]/10 bg-[#F5F8F4]">
+        <div class="container-custom py-5 flex flex-col gap-1">
+          <a href="/services/" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Services</a>
+          <a href="/#about" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">About</a>
+          <a href="/handbook/" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Handbook</a>
+          <a href="/consultation/" class="mt-4 bg-[#4b3021] text-white h-[48px] flex items-center justify-center rounded-full font-bold text-base">Request consultation</a>
+        </div>
+      </div>
+    </nav>
+
+    <main id="main" class="flex-1 pt-28 pb-24">
+      <div class="container-custom max-w-3xl">
+        <nav class="flex items-center gap-2 text-sm font-medium text-[#5A6A63] mb-10">
+          <a href="/" class="hover:text-[#0F766E]">Home</a>
+          <span class="opacity-40">/</span>
+          <span class="text-[#12201C]">FAQ</span>
+        </nav>
+
+        <div class="flex flex-col sm:flex-row sm:items-center gap-8 mb-10">
+          <div class="flex-1">
+            <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Frequently Asked Questions</span>
+            <h1 class="text-4xl lg:text-5xl font-bold tracking-tight mb-4">Have a question? Start here.</h1>
+            <p class="text-[#5A6A63] text-lg leading-[1.6] max-w-2xl">
+              Answers about organizational services, digital guides, Start from scratch, payments, and privacy. Can't find what you need? <a href="/consultation/" class="text-[#0F766E] font-bold underline">Request a consultation</a> or email us.
+            </p>
+          </div>
+          <div class="relative shrink-0 mx-auto sm:mx-0 w-[150px] sm:w-[170px]">
+            <div class="absolute -top-4 -right-4 w-20 h-20 bg-[#D8F0EA] rounded-full blur-2xl opacity-60 pointer-events-none"></div>
+            <div class="relative rounded-[24px] overflow-hidden card-shadow border border-[#0F766E]/10 bg-white">
+              <img src="../assets/sara-about.png" alt="Sara Tudor, Grow2Guide founder" width="800" height="1000" class="w-full h-auto object-cover object-center" loading="lazy" />
+            </div>
+            <p class="text-center text-[11px] font-bold text-[#5A6A63] tracking-[0.04em] uppercase mt-2">Sara Tudor, Founder</p>
+          </div>
+        </div>
+
+        <div class="faq-search">
+          <label for="faq-search-input" class="sr-only">Search frequently asked questions</label>
+          <iconify-icon icon="lucide:search" class="faq-search-icon" aria-hidden="true"></iconify-icon>
+          <input type="search" id="faq-search-input" autocomplete="off"
+                 placeholder="Search questions — e.g. refund, Tier 3, pricing" />
+          <button type="button" id="faq-search-clear" class="faq-search-clear" aria-label="Clear search">
+            <iconify-icon icon="lucide:x" aria-hidden="true"></iconify-icon>
+          </button>
+          <p id="faq-search-count" class="faq-search-count" role="status" aria-live="polite"></p>
+        </div>
+
+        <nav class="faq-jump mb-14" aria-label="FAQ categories">
+          <a href="#general">General</a>
+          <a href="#org-services">Organization services</a>
+          <a href="#guides">Digital guides</a>
+          <a href="#handbook">Start from scratch</a>
+          <a href="#payments">Payments &amp; refunds</a>
+          <a href="#privacy-legal">Privacy &amp; legal</a>
+        </nav>
+
+        <div id="faq-no-results" class="faq-no-results">
+          <p>No questions matched your search.</p>
+          <p class="text-sm">Try a different word, or <a href="/consultation/" class="text-[#0F766E] font-bold underline">request a consultation</a> and ask us directly.</p>
+        </div>
+
+        <!-- General -->
+        <section id="general" class="faq-group bg-white rounded-[24px] p-8 lg:p-10 card-shadow border border-[#0F766E]/5 mb-8">
+          <h2>General</h2>
+          <p class="faq-group-note">The basics about who we are and who we work with.</p>
+
+          <details class="faq-item">
+            <summary>What is Grow2Guide?<iconify-icon icon="lucide:chevron-down" class="faq-icon"></iconify-icon></summary>
+            <p class="faq-answer">Grow2Guide is a Nevada-based consulting practice founded by Sara Tudor, LMSW, CSW-I, CADC-I. Our focus is behavioral health agencies and programs — start-up programs, compliance, and workforce learning. We also offer practical resources for employees and staff in inpatient and outpatient services to grow as individuals and professionals. For professionals who support families and young people, we offer a strengths-based handbook that supports reflection, connection, and breaking generational cycles.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Who is Grow2Guide for?<iconify-icon icon="lucide:chevron-down" class="faq-icon"></iconify-icon></summary>
+            <p class="faq-answer">Three audiences: behavioral health agencies and programs that need an organizational assessment or infrastructure built from the ground up (<a href="/services/">Services</a>); individual employees — such as case managers, BHTs, MHTs, and support staff — looking for practical guides and growth opportunities (<a href="/#products">Guides</a>); and professionals, caregivers, and program teams looking for a strengths-based approach to supporting families and young people (<a href="/handbook/">Start from scratch</a>).</p>
+          </details>
+          <details class="faq-item">
+            <summary>Is Grow2Guide's work legal advice?<iconify-icon icon="lucide:chevron-down" class="faq-icon"></iconify-icon></summary>
+            <p class="faq-answer">No. Grow2Guide provides educational consulting and implementation support — not legal advice. Licensure, accreditation, certification, and audit outcomes are never guaranteed.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Where is Grow2Guide based?<iconify-icon icon="lucide:chevron-down" class="faq-icon"></iconify-icon></summary>
+            <p class="faq-answer">Grow2Guide is founded and based in Nevada, and we deliver services nationwide — tailoring our guidance to match each state's local licensing and regulatory requirements.</p>
+          </details>
+        </section>
+
+        <!-- Organization services -->
+        <section id="org-services" class="faq-group bg-white rounded-[24px] p-8 lg:p-10 card-shadow border border-[#0F766E]/5 mb-8">
+          <h2>Organization services</h2>
+          <p class="faq-group-note">Tier 2 assessments, Tier 3 build-out, and how a consultation works.</p>
+
+          <details class="faq-item">
+            <summary>What's the difference between Tier 2 and Tier 3?<iconify-icon icon="lucide:chevron-down" class="faq-icon"></iconify-icon></summary>
+            <p class="faq-answer"><strong>Tier 2 (Organizational Gap Assessment)</strong> is for organizations that already have policies, procedures, and systems in place — we assess what's working, what's missing, and what to prioritize next toward growth, licensing, and/or accreditation. <strong>Tier 3 (Build, Maintain, Support)</strong> is for organizations building infrastructure from the ground up — we build the policies, workflows, forms, and staff resources, and help you put them into practice. See the full breakdown on the <a href="/services/">Services page</a>.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What does a Tier 2 assessment include?<iconify-icon icon="lucide:chevron-down" class="faq-icon"></iconify-icon></summary>
+            <p class="faq-answer">You provide your existing policies, procedures, forms, workflows, and organizational materials, and we assess where you stand against licensing and accreditation requirements, whether policies reflect day-to-day operations, documentation and compliance gaps, and what to prioritize before your next survey or renewal. You receive a customized evaluation and prioritized roadmap.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What does Tier 3 build?<iconify-icon icon="lucide:chevron-down" class="faq-icon"></iconify-icon></summary>
+            <p class="faq-answer">Building your program or agency from the ground up — which can include hiring support, policies &amp; procedures, program manuals, forms &amp; documentation, clinical &amp; operational workflows, QA/CQI and KPI systems, staff training structures, audits, risk management, and licensing &amp; accreditation readiness — plus support putting it all into day-to-day practice.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Does an assessment or build-out guarantee licensure or accreditation?<iconify-icon icon="lucide:chevron-down" class="faq-icon"></iconify-icon></summary>
+            <p class="faq-answer">No. Scope varies by organization, program, jurisdiction, and applicable requirements. This work does not guarantee licensure, accreditation, certification, or audit outcomes.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What happens during a consultation?<iconify-icon icon="lucide:chevron-down" class="faq-icon"></iconify-icon></summary>
+            <p class="faq-answer">Three steps: review Tier 2 and Tier 3 to see which matches where your organization is today, <a href="/consultation/">schedule a consultation</a> to discuss your program, timeline, and goals, then decide together whether — and how — we're the right fit to work together.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What is the intake quiz for?<iconify-icon icon="lucide:chevron-down" class="faq-icon"></iconify-icon></summary>
+            <p class="faq-answer">The short intake quiz helps us understand your role, focus area, and practice setting ahead of time, so our initial conversation is more focused and useful for you.</p>
+          </details>
+        </section>
+
+        <!-- Digital guides -->
+        <section id="guides" class="faq-group bg-white rounded-[24px] p-8 lg:p-10 card-shadow border border-[#0F766E]/5 mb-8">
+          <h2>Digital guides</h2>
+          <p class="faq-group-note">Downloadable PDFs for clinicians, new managers, and direct-care staff.</p>
+
+          <details class="faq-item">
+            <summary>What are the downloadable guides?<iconify-icon icon="lucide:chevron-down" class="faq-icon"></iconify-icon></summary>
+            <p class="faq-answer">Two PDF guides: the <strong>Behavioral Health Policy Inventory &amp; Learning Guide</strong> and the <strong>Supervisor/Manager inventory, toolkit, and reflection guide</strong> — each $67. See details on the <a href="/#products">homepage</a>.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can I buy both guides together?<iconify-icon icon="lucide:chevron-down" class="faq-icon"></iconify-icon></summary>
+            <p class="faq-answer">Yes — the bundle is $99 (versus $134 separately) and includes both PDFs.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How do I receive my guide after purchase?<iconify-icon icon="lucide:chevron-down" class="faq-icon"></iconify-icon></summary>
+            <p class="faq-answer">Payment is processed securely via Stripe, and the PDF is emailed to you after purchase.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What if I don't receive my PDF?<iconify-icon icon="lucide:chevron-down" class="faq-icon"></iconify-icon></summary>
+            <p class="faq-answer">If you haven't received your PDF within 48 hours of confirmed payment, email us and we'll resend or resolve it promptly.</p>
+          </details>
+        </section>
+
+        <!-- Start from scratch -->
+        <section id="handbook" class="faq-group bg-white rounded-[24px] p-8 lg:p-10 card-shadow border border-[#0F766E]/5 mb-8">
+          <h2>Start from scratch</h2>
+          <p class="faq-group-note">A strengths-focused, culturally responsive handbook for professionals who support families and young people.</p>
+
+          <details class="faq-item">
+            <summary>What is Start from scratch?<iconify-icon icon="lucide:chevron-down" class="faq-icon"></iconify-icon></summary>
+            <p class="faq-answer">"<a href="/handbook/">Start from scratch</a>" is a short, strengths-focused and culturally responsive handbook for professionals who support parents, caregivers, and young people. It offers practical language, reflection prompts, and tools for support conversations.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How much does it cost and how is it delivered?<iconify-icon icon="lucide:chevron-down" class="faq-icon"></iconify-icon></summary>
+            <p class="faq-answer">Final pricing and delivery details will match the live Amazon listing once it is ready.</p>
+          </details>
+        </section>
+
+        <!-- Payments & refunds -->
+        <section id="payments" class="faq-group bg-white rounded-[24px] p-8 lg:p-10 card-shadow border border-[#0F766E]/5 mb-8">
+          <h2>Payments &amp; refunds</h2>
+          <p class="faq-group-note">How billing, cancellations, and refund requests work.</p>
+
+          <details class="faq-item">
+            <summary>What's the refund policy for digital products?<iconify-icon icon="lucide:chevron-down" class="faq-icon"></iconify-icon></summary>
+            <p class="faq-answer">Because files can be copied once delivered, refunds are reviewed case by case. Refunds for duplicate purchases or delivery failures are typically honored; requests after a successful download may be declined, except where required by law. Full policy on the <a href="/refunds/">Refunds page</a>.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What about consulting deposits and session fees?<iconify-icon icon="lucide:chevron-down" class="faq-icon"></iconify-icon></summary>
+            <p class="faq-answer">The initial consultation is a free 30-minute call — no deposits or fees required. If you move forward with an engagement, deposits and session fees follow the written agreement for that work, and unused prepaid sessions may be rescheduled with reasonable notice.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How do I request a refund or ask a billing question?<iconify-icon icon="lucide:chevron-down" class="faq-icon"></iconify-icon></summary>
+            <p class="faq-answer">Email <a href="#" data-g2g-mailto="subject=Billing%20question" data-g2g-email-text></a> with your name, order details, and reason. We aim to respond within two business days.</p>
+          </details>
+        </section>
+
+        <!-- Privacy & legal -->
+        <section id="privacy-legal" class="faq-group bg-white rounded-[24px] p-8 lg:p-10 card-shadow border border-[#0F766E]/5">
+          <h2>Privacy &amp; legal</h2>
+          <p class="faq-group-note">Where to find our full policies.</p>
+
+          <details class="faq-item">
+            <summary>Is my information kept private?<iconify-icon icon="lucide:chevron-down" class="faq-icon"></iconify-icon></summary>
+            <p class="faq-answer">See our <a href="/privacy/">Privacy page</a> for full details on what we collect and how it's used. For agencies engaging Tier 2 or Tier 3 services, a mutual NDA is signed at the time of contracting.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Where can I read the full Terms &amp; Conditions?<iconify-icon icon="lucide:chevron-down" class="faq-icon"></iconify-icon></summary>
+            <p class="faq-answer">See our <a href="/terms/">Terms &amp; Conditions page</a>.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Still have a question?<iconify-icon icon="lucide:chevron-down" class="faq-icon"></iconify-icon></summary>
+            <p class="faq-answer"><a href="/consultation/">Request a consultation</a> or email <a href="#" data-g2g-mailto="" data-g2g-email-text></a> — we're happy to help figure out where you fit.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <footer class="bg-[#EAF3EF] text-[#5A6A63] py-12 border-t border-[#0F766E]/10">
+      <div class="container-custom">
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 mb-10">
+          <div class="lg:col-span-4 space-y-6">
+            <a href="/" id="footer-logo-link" class="flex items-center gap-3 shrink-0 bg-transparent">
+            <img src="../assets/logo-mark.png" alt="" width="72" height="72"
+                 class="g2g-logo-mark bg-transparent" aria-hidden="true" />
+            <span class="flex flex-col leading-none">
+              <span class="g2g-wordmark">Grow <span class="g2g-number">2</span> Guide</span>
+              <span class="g2g-tagline">Elevate Your Knowledge</span>
+            </span>
+          </a>
+            <p class="text-[15px] leading-relaxed max-w-sm">Nevada-first licensing, accreditation readiness, compliance, and workforce learning — practical systems that hold up.</p>
+            <p class="text-[13px]">Educational consulting — not legal advice.</p>
+          </div>
+          <div class="lg:col-span-4 space-y-5">
+            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Services</h4>
+            <ul class="space-y-3.5 text-[15px] font-medium">
+              <li><a href="/services/" class="hover:text-[#0F766E]">Services &amp; pricing</a></li>
+              <li><a href="/services/#tier-2" class="hover:text-[#0F766E]">Tier 2 · Already have something</a></li>
+              <li><a href="/services/#tier-3" class="hover:text-[#0F766E]">Tier 3 · Build it with you</a></li>
+              <li><a href="/#products" class="hover:text-[#0F766E]">Guides &amp; Bundle — $67–$99</a></li>
+              <li><a href="https://www.grow2guide.com/handbook/" class="hover:text-[#0F766E]">Start from scratch</a></li>
+            </ul>
+          </div>
+          <div class="lg:col-span-4 space-y-5">
+            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Company</h4>
+            <ul class="space-y-3.5 text-[15px] font-medium">
+              <li><a href="/#about" class="hover:text-[#0F766E]">About Sara Tudor</a></li>
+              <li><a href="/consultation/" class="hover:text-[#0F766E]">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="pt-10 border-t border-[#0F766E]/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+          <p class="text-[12px] leading-relaxed max-w-2xl">© 2026 Grow2Guide. Resources are for educational purposes only and do not constitute legal advice. Licensure is not guaranteed.</p>
+          <div class="flex flex-wrap items-center gap-4 text-[13px] font-semibold">
+            <a href="/faq/" class="hover:text-[#0F766E]">FAQ</a>
+            <a href="/terms/" class="hover:text-[#0F766E]">Terms</a>
+            <a href="/privacy/" class="hover:text-[#0F766E]">Privacy</a>
+            <a href="/refunds/" class="hover:text-[#0F766E]">Refunds</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+  (function () {
+    var btn = document.getElementById('mobile-menu-btn');
+    var menu = document.getElementById('mobile-menu');
+    var iconOpen = document.getElementById('menu-icon-open');
+    var iconClose = document.getElementById('menu-icon-close');
+    if (!btn || !menu) return;
+    function setOpen(open) {
+      menu.classList.toggle('hidden', !open);
+      btn.setAttribute('aria-expanded', String(open));
+      if (iconOpen) iconOpen.classList.toggle('hidden', open);
+      if (iconClose) iconClose.classList.toggle('hidden', !open);
+    }
+    btn.addEventListener('click', function () {
+      setOpen(menu.classList.contains('hidden'));
+    });
+    menu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () { setOpen(false); });
+    });
+  })();
+
+  (function () {
+    var input = document.getElementById('faq-search-input');
+    var clearBtn = document.getElementById('faq-search-clear');
+    var countEl = document.getElementById('faq-search-count');
+    var noResults = document.getElementById('faq-no-results');
+    var jumpNav = document.querySelector('.faq-jump');
+    var groups = Array.from(document.querySelectorAll('.faq-group'));
+    var items = Array.from(document.querySelectorAll('.faq-item'));
+    if (!input || !items.length) return;
+
+    items.forEach(function (item) {
+      item.dataset.faqDefaultOpen = item.hasAttribute('open') ? '1' : '0';
+    });
+
+    function reset() {
+      items.forEach(function (item) {
+        item.classList.remove('faq-hidden');
+        item.open = item.dataset.faqDefaultOpen === '1';
+      });
+      groups.forEach(function (g) { g.classList.remove('faq-hidden'); });
+      if (jumpNav) jumpNav.classList.remove('is-searching');
+      noResults.classList.remove('show');
+      countEl.textContent = '';
+      clearBtn.classList.remove('show');
+    }
+
+    function runSearch() {
+      var q = input.value.trim().toLowerCase();
+      clearBtn.classList.toggle('show', q.length > 0);
+      if (!q) { reset(); return; }
+      if (jumpNav) jumpNav.classList.add('is-searching');
+
+      var matchCount = 0;
+      groups.forEach(function (group) {
+        var groupHasMatch = false;
+        group.querySelectorAll('.faq-item').forEach(function (item) {
+          var match = item.textContent.toLowerCase().indexOf(q) !== -1;
+          item.classList.toggle('faq-hidden', !match);
+          item.open = match;
+          if (match) { groupHasMatch = true; matchCount++; }
+        });
+        group.classList.toggle('faq-hidden', !groupHasMatch);
+      });
+
+      noResults.classList.toggle('show', matchCount === 0);
+      countEl.textContent = matchCount === 0 ? '' : matchCount + ' question' + (matchCount === 1 ? '' : 's') + ' found';
+    }
+
+    input.addEventListener('input', runSearch);
+    clearBtn.addEventListener('click', function () {
+      input.value = '';
+      reset();
+      input.focus();
+    });
+  })();
+  </script>
+</body>
+</html>

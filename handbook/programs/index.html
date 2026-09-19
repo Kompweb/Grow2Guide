@@ -13,11 +13,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Programs | Parents’ Handbook | Grow2Guide</title>
-  <meta name="description" content="Grow2Guide programs: mentoring for young people (12–18), Start from the beginning for parents of adolescents, and Grow training for professionals." />
+  <title>Programs Archived | Grow2Guide</title>
+  <meta name="description" content="Grow2Guide programs are not currently being offered. Explore current services, consultation options, and Start from scratch." />
+  <meta name="robots" content="noindex" />
   <meta name="theme-color" content="#0f766e" />
-  <meta property="og:title" content="Programs | Grow2Guide" />
-  <meta property="og:description" content="Mentoring, parent training, and professional development from Grow2Guide." />
+  <meta property="og:title" content="Programs Archived | Grow2Guide" />
+  <meta property="og:description" content="Grow2Guide programs are not currently being offered." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.grow2guide.com/handbook/programs/" />
   <meta property="og:image" content="https://www.grow2guide.com/assets/logo-square.png" />
@@ -43,20 +44,23 @@
     .g2g-wordmark .number {
       color: #4b3021;
     }
-    #nav-logo-link .g2g-wordmark,
-    #footer-logo-link .g2g-wordmark {
-      font-size: clamp(24px, 2.7vw, 38px);
+    .g2g-logo-mark {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
     }
     #nav-logo-link > span,
     #footer-logo-link > span {
       align-items: stretch;
       text-align: center;
     }
-    #nav-logo-link .g2g-wordmark { font-size: clamp(28px, 4vw, 38px); }
-    #nav-logo-link .g2g-tagline { font-size: clamp(10.5px, 1.5vw, 14px); transform: scaleX(.9); }
+    #nav-logo-link .g2g-wordmark,
+    #footer-logo-link .g2g-wordmark { font-size: clamp(28px, 4vw, 38px); }
+    #nav-logo-link .g2g-tagline,
+    #footer-logo-link .g2g-tagline { font-size: clamp(12px, 1.5vw, 14px); transform: scaleX(.9); }
     @media (max-width: 370px) {
       #nav-logo-link .g2g-wordmark { font-size: 24px; }
-      #nav-logo-link .g2g-tagline { font-size: 9px; }
+      #nav-logo-link .g2g-tagline { font-size: 12px; }
       #nav-logo-link .g2g-logo-mark { width: 60px; height: 60px; }
       #nav-logo-link { gap: 8px; }
     }
@@ -73,7 +77,8 @@
     .glass-nav { background: rgba(245,248,244,.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(15,118,110,.08); }
     .glass-nav, .glass-nav * { box-sizing: border-box; }
     nav.glass-nav { display: block; gap: 0; flex-wrap: nowrap; }
-    nav.glass-nav a { font-size: inherit; font-weight: inherit; color: inherit; }
+    nav.glass-nav a { text-decoration: none; }
+    nav.glass-nav a.text-white { color: #fff; }
     .container-custom { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
     .nav-link { position: relative; }
     .nav-link::after { content:''; position:absolute; bottom:-6px; left:0; width:0; height:2px; background:#0F766E; transition:width .3s; }
@@ -90,90 +95,93 @@
   <a class="skip-link" href="#main">Skip to content</a>
 
   <nav class="fixed top-0 w-full z-50 glass-nav">
-    <div class="container-custom h-[68px] lg:h-[72px] flex items-center justify-between">
+    <div class="container-custom h-[96px] lg:h-[100px] flex items-center justify-between">
       <div class="flex items-center gap-10 lg:gap-14">
         <a href="/" id="nav-logo-link" class="flex items-center gap-3 shrink-0 bg-transparent">
             <img src="../../assets/logo-mark.png" alt="" width="72" height="72"
-                 class="h-[72px] w-[72px] bg-transparent" aria-hidden="true" />
+                 class="g2g-logo-mark bg-transparent" aria-hidden="true" />
             <span class="flex flex-col leading-none">
               <span class="g2g-wordmark">Grow <span class="g2g-number">2</span> Guide</span>
               <span class="g2g-tagline">Elevate Your Knowledge</span>
             </span>
           </a>
         <div class="hidden lg:flex items-center gap-10">
-          <a href="/#products" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Products</a>
           <a href="/services/" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Services</a>
           <a href="/#about" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">About</a>
           <a href="/handbook/" class="nav-link text-[15px] font-semibold text-[#0F766E]" aria-current="page">Handbook</a>
+          <a href="/faq/" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">FAQ</a>
         </div>
       </div>
       <div class="flex items-center gap-3">
-        <a href="/consultation/" class="hidden sm:inline-flex bg-[#4b3021] text-white px-5 lg:px-6 py-2.5 rounded-full text-sm font-bold shadow-md shadow-[#4b3021]/20 hover:bg-[#3a2519] transition-all">Request consultation</a>
-        <button type="button" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu" class="lg:hidden w-11 h-11 flex items-center justify-center rounded-full border-2 border-[#4b3021]/25 text-[#4b3021] bg-white/70">
-          <iconify-icon id="menu-icon-open" icon="ph:list-bold" class="text-2xl"></iconify-icon>
-          <iconify-icon id="menu-icon-close" icon="ph:x-bold" class="text-2xl hidden"></iconify-icon>
+        <a href="/consultation/" id="nav-contact-btn" class="hidden sm:inline-flex bg-[#4b3021] text-white px-5 lg:px-6 py-2.5 rounded-full text-sm font-bold shadow-md shadow-[#4b3021]/20 btn-active transition-all hover:bg-[#3a2519] hover:shadow-xl">Request consultation</a>
+        <button type="button" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu" class="lg:hidden w-14 h-14 flex items-center justify-center rounded-full border-2 border-[#4b3021]/25 text-[#4b3021] bg-white/70 btn-active">
+          <iconify-icon id="menu-icon-open" icon="ph:list-bold" class="text-3xl"></iconify-icon>
+          <iconify-icon id="menu-icon-close" icon="ph:x-bold" class="text-3xl hidden"></iconify-icon>
         </button>
       </div>
     </div>
     <div id="mobile-menu" class="hidden lg:hidden border-t border-[#0F766E]/10 bg-[#F5F8F4]">
       <div class="container-custom py-5 flex flex-col gap-1">
-        <a href="/#products" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Products</a>
         <a href="/services/" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Services</a>
         <a href="/#about" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">About</a>
-        <a href="/handbook/" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Parents' Handbook</a>
-        <a href="/handbook/programs/" class="text-[18px] font-semibold text-[#0F766E] py-3 border-b border-[#0F766E]/8" aria-current="page">Handbook Programs</a>
+        <a href="/handbook/" class="text-[18px] font-semibold text-[#0F766E] py-3 border-b border-[#0F766E]/8" aria-current="page">Handbook</a>
+        <a href="/faq/" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">FAQ</a>
         <a href="/consultation/" class="mt-4 bg-[#4b3021] text-white h-[48px] flex items-center justify-center rounded-full font-bold text-base">Request consultation</a>
       </div>
     </div>
   </nav>
 
-  <main id="main" class="pt-[68px] lg:pt-[72px]">
+  <main id="main" class="pt-[96px] lg:pt-[100px]">
     <section class="section" style="margin-top:0.5rem;">
       <div class="section-head">
         <div>
           <p class="eyebrow">Grow2Guide</p>
-          <h2>Programs</h2>
+          <h2>Programs are not currently offered</h2>
         </div>
       </div>
       <p class="lede" style="margin-bottom:1.5rem;">
-        Beyond the handbook — mentoring and training for young people, caregivers, and professionals.
+        This page is archived for now. Grow2Guide is not offering separate mentoring or training programs at this moment.
       </p>
 
       <div class="hb-program-grid">
         <article class="hb-program-card">
-          <p class="tag">Youth</p>
-          <h3>Mentoring for young people</h3>
+          <p class="tag">Current focus</p>
+          <h3>Organizational services</h3>
           <p>
-            A 10-week mentoring program for ages 12–18, once a week for 90 minutes.
+            Consulting, assessment, compliance support, and workforce learning remain available through Grow2Guide services.
           </p>
+          <a class="button button-ghost" href="/services/">View services</a>
         </article>
 
         <article class="hb-program-card">
-          <p class="tag">Parents &amp; caregivers</p>
-          <h3>Start from the beginning</h3>
+          <p class="tag">Resource</p>
+          <h3>Start from scratch</h3>
           <p>
-            Program for parents and caregivers of adolescents (12–18) with virtual training on handling behavior.
+            The handbook remains available as a professional resource for people supporting families and young people.
           </p>
+          <a class="button button-ghost" href="/handbook/">View handbook</a>
         </article>
 
         <article class="hb-program-card">
-          <p class="tag">Professionals</p>
-          <h3>Grow</h3>
+          <p class="tag">Questions</p>
+          <h3>Request a consultation</h3>
           <p>
-            Training for social workers, psychologists, teachers, and anyone who wants to deepen their knowledge.
+            If you are looking for support for an organization or team, send a consultation request.
           </p>
+          <a class="button button-ghost" href="/consultation/">Request consultation</a>
         </article>
       </div>
     </section>
 
     <section class="hb-cta-band" aria-labelledby="prog-cta">
-      <h2 id="prog-cta">Interested in a program?</h2>
-      <p>Tell us which program you’re curious about and we’ll follow up with details.</p>
-      <a class="button button-light" href="#" data-g2g-mailto="subject=Programs%20inquiry">Email Us</a>
+      <h2 id="prog-cta">Looking for current support?</h2>
+      <p>Start with current services or request a consultation so we can point you in the right direction.</p>
+      <a class="button button-light" href="/services/">View services</a>
+      <a class="button button-ghost" href="/consultation/">Request consultation</a>
     </section>
 
     <p class="hb-back">
-      <a class="button button-ghost" href="/handbook/">← Back to Parents’ Handbook</a>
+      <a class="button button-ghost" href="/handbook/">Back to Start from scratch</a>
     </p>
   </main>
 
@@ -183,7 +191,7 @@
         <div class="lg:col-span-5 space-y-6">
           <a href="/" id="footer-logo-link" class="flex items-center gap-3 shrink-0 bg-transparent">
             <img src="../../assets/logo-mark.png" alt="" width="72" height="72"
-                 class="h-[72px] w-[72px] bg-transparent" aria-hidden="true" />
+                 class="g2g-logo-mark bg-transparent" aria-hidden="true" />
             <span class="flex flex-col leading-none">
               <span class="g2g-wordmark">Grow <span class="g2g-number">2</span> Guide</span>
               <span class="g2g-tagline">Elevate Your Knowledge</span>
@@ -197,16 +205,15 @@
           </div>
         </div>
         <div class="lg:col-span-4 space-y-5">
-          <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Services</h4>
+          <h4 class="text-[#12201C] font-bold text-[14px] tracking-[0.08em] uppercase">Services</h4>
           <ul class="space-y-3.5 text-[15px] font-medium">
             <li><a href="/services/" class="hover:text-[#0F766E]">Services &amp; pricing</a></li>
             <li><a href="/consultation/" class="hover:text-[#0F766E]">Request a consultation</a></li>
-            <li><a href="/handbook/" class="hover:text-[#0F766E]">Parents' Handbook</a></li>
-            <li><a href="/handbook/programs/" class="hover:text-[#0F766E]">Programs</a></li>
+            <li><a href="/handbook/" class="hover:text-[#0F766E]">Start from scratch</a></li>
           </ul>
         </div>
         <div class="lg:col-span-3 space-y-5">
-          <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Company</h4>
+          <h4 class="text-[#12201C] font-bold text-[14px] tracking-[0.08em] uppercase">Company</h4>
           <ul class="space-y-3.5 text-[15px] font-medium">
             <li><a href="/#about" class="hover:text-[#0F766E]">About Sara Tudor</a></li>
             <li><a href="/consultation/" class="hover:text-[#0F766E]">Contact</a></li>
@@ -216,12 +223,13 @@
       <div class="pt-10 border-t border-[#0F766E]/10 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-4">
         <p class="text-[12px] leading-relaxed max-w-2xl">© 2026 Grow2Guide. Resources are for educational purposes only and do not constitute legal advice. Licensure is not guaranteed.</p>
         <div class="flex items-center gap-5 text-[13px] font-semibold">
+          <a href="/faq/" class="hover:text-[#0F766E] transition-colors">FAQ</a>
           <a href="/terms/" class="hover:text-[#0F766E] transition-colors">Terms</a>
           <a href="/privacy/" class="hover:text-[#0F766E] transition-colors">Privacy</a>
           <a href="/refunds/" class="hover:text-[#0F766E] transition-colors">Refunds</a>
         </div>
       </div>
-      <p class="relative z-10 mt-6 text-center lg:text-left text-[11px] text-[#5A6A63]/70"><a href="https://www.kompweb.com" target="_blank" rel="noopener noreferrer" class="relative z-10 inline-flex items-center gap-2 hover:text-[#0F766E] transition-colors"><img src="/assets/kompweb-logo-small.png" alt="" width="24" height="24" class="relative z-10 block w-6 h-6 shrink-0 object-contain opacity-100" aria-hidden="true">KOMPWEB Studios</a></p>
+      <p class="relative z-10 mt-6 text-center lg:text-left text-[12px] text-[#5A6A63]/70"><a href="https://www.kompweb.com" target="_blank" rel="noopener noreferrer" class="relative z-10 inline-flex items-center gap-2 hover:text-[#0F766E] transition-colors"><img src="/assets/kompweb-logo-small.png" alt="" width="24" height="24" class="relative z-10 block w-6 h-6 shrink-0 object-contain opacity-20" aria-hidden="true">KOMPWEB Studios</a></p>
     </div>
   </footer>
 

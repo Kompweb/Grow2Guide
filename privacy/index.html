@@ -33,20 +33,23 @@
     .g2g-wordmark .number {
       color: #4b3021;
     }
-    #nav-logo-link .g2g-wordmark,
-    #footer-logo-link .g2g-wordmark {
-      font-size: clamp(24px, 2.7vw, 38px);
+    .g2g-logo-mark {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
     }
     #nav-logo-link > span,
     #footer-logo-link > span {
       align-items: stretch;
       text-align: center;
     }
-    #nav-logo-link .g2g-wordmark { font-size: clamp(28px, 4vw, 38px); }
-    #nav-logo-link .g2g-tagline { font-size: clamp(10.5px, 1.5vw, 14px); transform: scaleX(.9); }
+    #nav-logo-link .g2g-wordmark,
+    #footer-logo-link .g2g-wordmark { font-size: clamp(28px, 4vw, 38px); }
+    #nav-logo-link .g2g-tagline,
+    #footer-logo-link .g2g-tagline { font-size: clamp(12px, 1.5vw, 14px); transform: scaleX(.9); }
     @media (max-width: 370px) {
       #nav-logo-link .g2g-wordmark { font-size: 24px; }
-      #nav-logo-link .g2g-tagline { font-size: 9px; }
+      #nav-logo-link .g2g-tagline { font-size: 12px; }
       #nav-logo-link .g2g-logo-mark { width: 60px; height: 60px; }
       #nav-logo-link { gap: 8px; }
     }
@@ -105,7 +108,7 @@
         <div class="flex items-center gap-10 lg:gap-14">
           <a href="/" id="nav-logo-link" class="flex items-center gap-3 shrink-0 bg-transparent">
             <img src="../assets/logo-mark.png" alt="" width="72" height="72"
-                 class="h-[72px] w-[72px] bg-transparent" aria-hidden="true" />
+                 class="g2g-logo-mark bg-transparent" aria-hidden="true" />
             <span class="flex flex-col leading-none">
               <span class="g2g-wordmark">Grow <span class="g2g-number">2</span> Guide</span>
               <span class="g2g-tagline">Elevate Your Knowledge</span>
@@ -116,6 +119,7 @@
             <a href="/services/" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Services</a>
             <a href="/#about" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">About</a>
             <a href="/handbook/" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Handbook</a>
+            <a href="/faq/" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">FAQ</a>
           </div>
         </div>
         <div class="flex items-center gap-3">
@@ -132,6 +136,7 @@
           <a href="/services/" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Services</a>
           <a href="/#about" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">About</a>
           <a href="/handbook/" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Handbook</a>
+          <a href="/faq/" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">FAQ</a>
           <a href="/consultation/" class="mt-4 bg-[#4b3021] text-white h-[48px] flex items-center justify-center rounded-full font-bold text-base">Request consultation</a>
         </div>
       </div>
@@ -171,7 +176,7 @@
           <div class="lg:col-span-4 space-y-6">
             <a href="/" id="footer-logo-link" class="flex items-center gap-3 shrink-0 bg-transparent">
             <img src="../assets/logo-mark.png" alt="" width="72" height="72"
-                 class="h-[72px] w-[72px] bg-transparent" aria-hidden="true" />
+                 class="g2g-logo-mark bg-transparent" aria-hidden="true" />
             <span class="flex flex-col leading-none">
               <span class="g2g-wordmark">Grow <span class="g2g-number">2</span> Guide</span>
               <span class="g2g-tagline">Elevate Your Knowledge</span>
@@ -181,7 +186,7 @@
             <p class="text-[13px]">Educational consulting — not legal advice.</p>
           </div>
           <div class="lg:col-span-4 space-y-5">
-            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Services</h4>
+            <h4 class="text-[#12201C] font-bold text-[14px] tracking-[0.08em] uppercase">Services</h4>
             <ul class="space-y-3.5 text-[15px] font-medium">
               <li><a href="/#professionals" class="hover:text-[#0F766E]">Tier 1 · Foundations</a></li>
               <li><a href="/#professionals" class="hover:text-[#0F766E]">Tier 2 · Leadership</a></li>
@@ -189,11 +194,10 @@
               <li><a href="/quiz/tier-2/" class="hover:text-[#0F766E]">Tier 2 intake quiz</a></li>
               <li><a href="/#products" class="hover:text-[#0F766E]">Guides &amp; Bundle — $67–$99</a></li>
               <li><a href="https://www.grow2guide.com/handbook/" class="hover:text-[#0F766E]">Parents’ Handbook</a></li>
-              <li><a href="https://www.grow2guide.com/handbook/programs/" class="hover:text-[#0F766E]">Programs</a></li>
             </ul>
           </div>
           <div class="lg:col-span-4 space-y-5">
-            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Company</h4>
+            <h4 class="text-[#12201C] font-bold text-[14px] tracking-[0.08em] uppercase">Company</h4>
             <ul class="space-y-3.5 text-[15px] font-medium">
               <li><a href="/#about" class="hover:text-[#0F766E]">About Sara Tudor</a></li>
               <li><a href="#" data-g2g-mailto="subject=Book%20appointment" class="hover:text-[#0F766E]">Book appointment</a></li>
@@ -204,12 +208,14 @@
         <div class="pt-10 border-t border-[#0F766E]/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
           <p id="disclaimer" class="text-[12px] leading-relaxed max-w-2xl">© 2026 Grow2Guide. Resources are for educational purposes only and do not constitute legal advice. Licensure is not guaranteed.</p>
           <div class="flex flex-wrap items-center gap-4 text-[13px] font-semibold">
+            <a href="/faq/" class="hover:text-[#0F766E]">FAQ</a>
             <a href="/terms/" class="hover:text-[#0F766E]">Terms</a>
             <a href="/privacy/" class="hover:text-[#0F766E]">Privacy</a>
             <a href="/refunds/" class="hover:text-[#0F766E]">Refunds</a>
             <a href="/#disclaimer" class="hover:text-[#0F766E]">Educational disclaimer</a>
           </div>
         </div>
+        <p class="relative z-10 mt-6 text-center lg:text-left text-[12px] text-[#5A6A63]/70"><a href="https://www.kompweb.com" target="_blank" rel="noopener noreferrer" class="relative z-10 inline-flex items-center gap-2 hover:text-[#0F766E] transition-colors"><img src="/assets/kompweb-logo-small.png" alt="" width="24" height="24" class="relative z-10 block w-6 h-6 shrink-0 object-contain opacity-20" aria-hidden="true">KOMPWEB Studios</a></p>
       </div>
     </footer>
   </div>
