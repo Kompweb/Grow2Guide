@@ -1,0 +1,60 @@
+<!--
+  Archived: 2026-09-19
+  Source: services/index.html — two pieces:
+  1) The "About fees" h3/p, which sat inside the "Clinical insight meets
+     operational systems" div (right after that paragraph).
+  2) The whole "Client Experience" section, id="process" ("A seven-stage
+     process makes complex work manageable" — Fit check through Readiness
+     and closeout).
+  Reason: removed from the services page at the user's request.
+  Restore by:
+  - Pasting the "About fees" h3/p back into the "Clinical insight meets
+    operational systems" div, right after its closing </p>.
+  - Pasting the "Client Experience" div(s) back into <main>, between that
+    same div and the closing "Not sure which tier fits?" CTA block.
+  - Re-adding the "Process" link to the services subnav
+    (<a href="#process">Process</a>), which was removed alongside this.
+-->
+
+<h3 class="text-lg font-bold text-[#12201C] mb-3">About fees</h3>
+<p class="text-[#5A6A63] text-base leading-[1.6]">
+  Every fixed fee assumes one legal entity, one primary program, and one location unless the proposal states otherwise. Ask us for full package details and ranges at your consultation.
+</p>
+
+<!-- Client Experience -->
+<div id="process" class="container-custom max-w-3xl mb-8 scroll-mt-40">
+  <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Client experience</span>
+  <h2 class="text-3xl lg:text-4xl font-bold tracking-tight text-[#12201C]">A seven-stage process makes complex work manageable</h2>
+</div>
+<div class="container-custom max-w-3xl mb-24">
+  <div class="space-y-4">
+    <div class="flex gap-5 bg-white rounded-[16px] p-6 card-shadow border border-[#0F766E]/5">
+      <span class="shrink-0 w-9 h-9 rounded-full bg-[#0F766E] text-white text-sm font-bold flex items-center justify-center">1</span>
+      <div><p class="font-bold text-[#12201C] mb-1">Fit check</p><p class="text-[#5A6A63] text-sm leading-relaxed">A 20-minute call confirms the program, target authority, stage, timeline, decision-makers, and immediate risks. The call does not provide detailed regulatory advice.</p></div>
+    </div>
+    <div class="flex gap-5 bg-white rounded-[16px] p-6 card-shadow border border-[#0F766E]/5">
+      <span class="shrink-0 w-9 h-9 rounded-full bg-[#0F766E] text-white text-sm font-bold flex items-center justify-center">2</span>
+      <div><p class="font-bold text-[#12201C] mb-1">Paid discovery</p><p class="text-[#5A6A63] text-sm leading-relaxed">The Strategy Intensive or Readiness Assessment establishes the right pathway when scope is unclear.</p></div>
+    </div>
+    <div class="flex gap-5 bg-white rounded-[16px] p-6 card-shadow border border-[#0F766E]/5">
+      <span class="shrink-0 w-9 h-9 rounded-full bg-[#0F766E] text-white text-sm font-bold flex items-center justify-center">3</span>
+      <div><p class="font-bold text-[#12201C] mb-1">Scope and agreement</p><p class="text-[#5A6A63] text-sm leading-relaxed">Grow2Guide defines outcomes, deliverables, assumptions, exclusions, timeline, client responsibilities, milestones, and fee.</p></div>
+    </div>
+    <div class="flex gap-5 bg-white rounded-[16px] p-6 card-shadow border border-[#0F766E]/5">
+      <span class="shrink-0 w-9 h-9 rounded-full bg-[#0F766E] text-white text-sm font-bold flex items-center justify-center">4</span>
+      <div><p class="font-bold text-[#12201C] mb-1">Secure onboarding</p><p class="text-[#5A6A63] text-sm leading-relaxed">The client names a project lead, provides requested materials, grants approved access, and confirms meeting cadence.</p></div>
+    </div>
+    <div class="flex gap-5 bg-white rounded-[16px] p-6 card-shadow border border-[#0F766E]/5">
+      <span class="shrink-0 w-9 h-9 rounded-full bg-[#0F766E] text-white text-sm font-bold flex items-center justify-center">5</span>
+      <div><p class="font-bold text-[#12201C] mb-1">Assessment and roadmap</p><p class="text-[#5A6A63] text-sm leading-relaxed">Requirements are mapped to current documents, workflows, staffing, evidence, and operational practice. Priorities are ranked by risk and dependency.</p></div>
+    </div>
+    <div class="flex gap-5 bg-white rounded-[16px] p-6 card-shadow border border-[#0F766E]/5">
+      <span class="shrink-0 w-9 h-9 rounded-full bg-[#0F766E] text-white text-sm font-bold flex items-center justify-center">6</span>
+      <div><p class="font-bold text-[#12201C] mb-1">Build and implement</p><p class="text-[#5A6A63] text-sm leading-relaxed">Grow2Guide drafts or refines agreed materials, coaches leaders, tracks decisions, and tests whether policies are being used in practice.</p></div>
+    </div>
+    <div class="flex gap-5 bg-white rounded-[16px] p-6 card-shadow border border-[#0F766E]/5">
+      <span class="shrink-0 w-9 h-9 rounded-full bg-[#0F766E] text-white text-sm font-bold flex items-center justify-center">7</span>
+      <div><p class="font-bold text-[#12201C] mb-1">Readiness and closeout</p><p class="text-[#5A6A63] text-sm leading-relaxed">A mock review, findings debrief, and sustainability plan identify remaining ownership, deadlines, and recommended ongoing support.</p></div>
+    </div>
+  </div>
+</div>
