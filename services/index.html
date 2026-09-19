@@ -86,11 +86,12 @@
       outline-offset: 3px;
     }
     .services-subnav {
-      position: sticky; top: 68px; z-index: 40;
+      position: sticky; top: 96px; z-index: 40;
       background: rgba(245,248,244,.92); backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(15,118,110,.1);
+      box-shadow: 0 8px 20px rgba(18,32,28,.04);
     }
-    @media (min-width: 1024px) { .services-subnav { top: 72px; } }
+    @media (min-width: 1024px) { .services-subnav { top: 100px; } }
     .services-subnav-inner {
       max-width: 1120px; margin: 0 auto; padding: 0 24px;
       display: flex; gap: .35rem; overflow-x: auto; -webkit-overflow-scrolling: touch;
@@ -103,6 +104,24 @@
       white-space: nowrap;
     }
     .services-subnav a:hover { color: #0F766E; }
+    .services-subnav a.is-active {
+      color: #0F766E;
+      border-bottom-color: #0F766E;
+    }
+    @media (min-width: 1024px) {
+      .services-subnav-inner { justify-content: flex-start; padding-top: .45rem; padding-bottom: .45rem; }
+      .services-subnav a {
+        padding: .65rem 1.1rem; font-size: .875rem; border: 0; border-radius: 9999px;
+        transition: color .2s ease, background-color .2s ease, border-color .2s ease;
+      }
+      .services-subnav a:hover { background: rgba(15,118,110,.07); }
+      .services-subnav a.is-active { background: #D8F0EA; }
+      .services-subnav a.subnav-contact {
+        margin-left: .65rem; color: #4b3021; border: 1px solid rgba(75,48,33,.22);
+        background: rgba(255,255,255,.72);
+      }
+      .services-subnav a.subnav-contact:hover { color: #3a2519; background: rgba(75,48,33,.08); }
+    }
     .pkg-acc { border: 1px solid rgba(15,118,110,.12); border-radius: 20px; background: #fff; margin-bottom: 1rem; overflow: hidden; }
     .pkg-acc summary {
       list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between;
@@ -180,7 +199,7 @@
         <a href="#tier-3">Tier 3</a>
         <a href="#packages">Packages</a>
         <a href="#process">Process</a>
-        <a href="/consultation/">Contact</a>
+        <a href="/consultation/" class="subnav-contact">Contact</a>
       </div>
     </div>
 
@@ -931,6 +950,53 @@
     menu.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () { setOpen(false); });
     });
+  })();
+
+  (function () {
+    var links = Array.from(document.querySelectorAll('.services-subnav a[href^="#"]'));
+    var sections = links.map(function (link) {
+      return document.querySelector(link.getAttribute('href'));
+    }).filter(Boolean);
+    if (!links.length || !sections.length) return;
+
+    var ticking = false;
+
+    function updateActiveSection() {
+      var marker = window.scrollY + 190;
+      var activeId = '';
+
+      sections.forEach(function (section) {
+        if (section.offsetTop <= marker) activeId = section.id;
+      });
+
+      links.forEach(function (link) {
+        var active = link.getAttribute('href') === '#' + activeId;
+        link.classList.toggle('is-active', active);
+        if (active) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(updateActiveSection);
+    }, { passive: true });
+
+    links.forEach(function (link) {
+      link.addEventListener('click', function () {
+        links.forEach(function (item) {
+          item.classList.remove('is-active');
+          item.removeAttribute('aria-current');
+        });
+        link.classList.add('is-active');
+        link.setAttribute('aria-current', 'location');
+      });
+    });
+
+    updateActiveSection();
   })();
   </script>
 </body>
