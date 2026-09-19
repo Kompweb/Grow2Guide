@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":
+  new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
+  "https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,"script","dataLayer","GTM-WLRZD726");</script>
+  <!-- End Google Tag Manager -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
@@ -17,7 +24,7 @@
       margin: 0;
       font-family: "Playfair Display", Georgia, serif;
       font-size: clamp(22px, 2.5vw, 34px); /* header-scaled from his clamp(48px, 8vw, 110px) */
-      font-weight: 500;
+      font-weight: 600;
       line-height: 1;
       letter-spacing: -0.03em;
       color: #174d35;
@@ -28,14 +35,27 @@
     }
     #nav-logo-link .g2g-wordmark,
     #footer-logo-link .g2g-wordmark {
-      font-size: clamp(26px, 3.2vw, 44px);
+      font-size: clamp(24px, 2.7vw, 38px);
+    }
+    #nav-logo-link > span,
+    #footer-logo-link > span {
+      align-items: stretch;
+      text-align: center;
+    }
+    #nav-logo-link .g2g-wordmark { font-size: clamp(28px, 4vw, 38px); }
+    #nav-logo-link .g2g-tagline { font-size: clamp(10.5px, 1.5vw, 14px); transform: scaleX(.9); }
+    @media (max-width: 370px) {
+      #nav-logo-link .g2g-wordmark { font-size: 24px; }
+      #nav-logo-link .g2g-tagline { font-size: 9px; }
+      #nav-logo-link .g2g-logo-mark { width: 60px; height: 60px; }
+      #nav-logo-link { gap: 8px; }
     }
     .g2g-tagline { /* = .tagline */
-      margin-top: 8px; /* proportional to his 22px at smaller size */
+      margin-top: 2px;
       font-family: "Montserrat", Arial, sans-serif;
       font-size: 12px; /* header-scaled from his clamp(14px, 2vw, 28px) */
       font-weight: 500;
-      letter-spacing: 0.10em;
+      letter-spacing: 0;
       text-transform: uppercase;
       color: #4b3021;
     }
@@ -111,6 +131,10 @@
   <link rel="canonical" href="https://www.grow2guide.com/services/" />
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WLRZD726"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 <a class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:px-4 focus:py-2 focus:rounded-full" href="#main">Skip to content</a>
 
   <div class="min-h-screen relative flex flex-col">

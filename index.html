@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":
+  new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
+  "https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,"script","dataLayer","GTM-WLRZD726");</script>
+  <!-- End Google Tag Manager -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
@@ -22,7 +29,7 @@
       margin: 0;
       font-family: "Playfair Display", Georgia, serif;
       font-size: clamp(22px, 2.5vw, 34px); /* header-scaled from his clamp(48px, 8vw, 110px) */
-      font-weight: 500;
+      font-weight: 600;
       line-height: 1;
       letter-spacing: -0.03em;
       color: #174d35;
@@ -38,14 +45,27 @@
     }
     #nav-logo-link .g2g-wordmark,
     #footer-logo-link .g2g-wordmark {
-      font-size: clamp(26px, 3.2vw, 44px);
+      font-size: clamp(24px, 2.7vw, 38px);
+    }
+    #nav-logo-link > span,
+    #footer-logo-link > span {
+      align-items: stretch;
+      text-align: center;
+    }
+    #nav-logo-link .g2g-wordmark { font-size: clamp(28px, 4vw, 38px); }
+    #nav-logo-link .g2g-tagline { font-size: clamp(10.5px, 1.5vw, 14px); transform: scaleX(.9); }
+    @media (max-width: 370px) {
+      #nav-logo-link .g2g-wordmark { font-size: 24px; }
+      #nav-logo-link .g2g-tagline { font-size: 9px; }
+      #nav-logo-link .g2g-logo-mark { width: 60px; height: 60px; }
+      #nav-logo-link { gap: 8px; }
     }
     .g2g-tagline { /* = .tagline */
-      margin-top: 8px; /* proportional to his 22px at smaller size */
+      margin-top: 2px;
       font-family: "Montserrat", Arial, sans-serif;
       font-size: 12px; /* header-scaled from his clamp(14px, 2vw, 28px) */
       font-weight: 500;
-      letter-spacing: 0.10em;
+      letter-spacing: 0;
       text-transform: uppercase;
       color: #4b3021;
     }
@@ -98,9 +118,9 @@
 
     .path-leaf-icon {
       display: block;
-      width: 64px;
-      height: 64px;
-      flex: 0 0 64px;
+      width: 76.8px;
+      height: 76.8px;
+      flex: 0 0 76.8px;
       background-image: url('/assets/path-leaf-icons.png');
       background-repeat: no-repeat;
       background-size: 300% 100%;
@@ -267,6 +287,10 @@
   </style>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WLRZD726"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <a class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:px-4 focus:py-2 focus:rounded-full" href="#main">Skip to content</a>
   <div class="min-h-screen relative flex flex-col overflow-x-hidden">
     <div class="atmosphere-glow"></div>
@@ -333,7 +357,7 @@
             </div>
           </div>
 
-          <div class="relative">
+          <div class="relative w-full max-w-[414px] mx-auto">
             <div class="absolute -top-6 -right-6 w-36 h-36 bg-[#D8F0EA] rounded-full blur-3xl opacity-70 pointer-events-none"></div>
             <div class="absolute -bottom-8 -left-8 w-28 h-28 bg-[#EAF3EF] rounded-full blur-3xl opacity-80 pointer-events-none"></div>
             <div class="relative rounded-[28px] overflow-hidden card-shadow border border-[#0F766E]/10 bg-white">
@@ -342,7 +366,7 @@
                 alt="Sara Tudor, founder of Grow2Guide"
                 width="720"
                 height="761"
-                class="w-full h-auto object-cover object-center max-h-[520px] lg:max-h-none"
+                class="w-full max-w-[414px] h-auto object-cover object-center max-h-[520px] lg:max-h-none"
                 loading="eager"
               />
             </div>
@@ -438,10 +462,10 @@
 
           <div class="grid lg:grid-cols-2 gap-10">
             <!-- Product 1 -->
-            <div class="bg-white rounded-[24px] p-12 card-shadow border border-[#0F766E]/5 flex flex-col">
+            <div class="w-full max-w-[414px] mx-auto bg-white rounded-[24px] p-12 card-shadow border border-[#0F766E]/5 flex flex-col">
               <div class="flex items-center gap-4 mb-8">
-                <div class="w-16 h-16 shrink-0 rounded-2xl bg-[#F1F3F2] text-[#6B7370] flex items-center justify-center">
-                  <iconify-icon icon="lucide:file-text" class="text-[45.6px]"></iconify-icon>
+                <div class="w-[76.8px] h-[76.8px] shrink-0 rounded-2xl bg-[#FFF1F1] text-[#EC1C24] flex items-center justify-center">
+                  <iconify-icon icon="simple-icons:adobeacrobatreader" class="text-[54.72px]"></iconify-icon>
                 </div>
                 <span class="text-[11px] font-bold text-[#5A6A63] tracking-[0.06em] uppercase">PDF 1 • Foundations</span>
               </div>
@@ -466,10 +490,10 @@
             </div>
 
             <!-- Product 2 -->
-            <div class="bg-white rounded-[24px] p-12 card-shadow border border-[#0F766E]/5 flex flex-col">
+            <div class="w-full max-w-[414px] mx-auto bg-white rounded-[24px] p-12 card-shadow border border-[#0F766E]/5 flex flex-col">
               <div class="flex items-center gap-4 mb-8">
-                <div class="w-16 h-16 shrink-0 rounded-2xl bg-[#F1F3F2] text-[#6B7370] flex items-center justify-center">
-                  <iconify-icon icon="lucide:file-text" class="text-[45.6px]"></iconify-icon>
+                <div class="w-[76.8px] h-[76.8px] shrink-0 rounded-2xl bg-[#FFF1F1] text-[#EC1C24] flex items-center justify-center">
+                  <iconify-icon icon="simple-icons:adobeacrobatreader" class="text-[54.72px]"></iconify-icon>
                 </div>
                 <span class="text-[11px] font-bold text-[#5A6A63] tracking-[0.06em] uppercase">PDF 2 • Readiness</span>
               </div>
@@ -574,7 +598,11 @@
                 <p class="font-bold text-[#12201C] text-2xl mb-1">Sara Tudor, LMSW, CSW-I, CADC-I</p>
                 <p class="text-[#5A6A63]">Founder &amp; Consultant</p>
                 <div class="mt-3 flex items-center gap-4 text-[#0F766E] text-xl">
-                  <a href="https://www.linkedin.com/in/sara-tudor" id="about-li" class="hover:text-[#0B5F59] transition-transform hover:scale-110" aria-label="LinkedIn" rel="noopener noreferrer" target="_blank"><iconify-icon icon="mdi:linkedin" class="text-[32.4px]"></iconify-icon></a>
+                  <a href="https://www.linkedin.com/in/sara-tudor" id="about-li" class="text-[#0A66C2] hover:text-[#004182] transition-transform hover:scale-110" aria-label="LinkedIn" rel="noopener noreferrer" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" viewBox="0 0 24 24" aria-hidden="true">
+                      <path fill="currentColor" d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37z" />
+                    </svg>
+                  </a>
                 </div>
               </div>
             </div>
@@ -612,7 +640,7 @@
             </div>
           </div>
 
-          <div class="order-1 lg:order-2 relative">
+          <div class="order-1 lg:order-2 relative w-full max-w-[414px] mx-auto">
             <div class="absolute -top-6 -left-6 w-32 h-32 bg-[#D8F0EA] rounded-full blur-3xl opacity-60 pointer-events-none"></div>
             <div class="relative rounded-[28px] overflow-hidden card-shadow border border-[#0F766E]/10 bg-white">
               <img
@@ -620,7 +648,7 @@
                 alt="Sara Tudor in her office"
                 width="800"
                 height="1000"
-                class="w-full h-auto object-cover object-center"
+                class="w-full max-w-[414px] h-auto object-cover object-center"
                 loading="lazy"
               />
             </div>
@@ -750,7 +778,7 @@
             <a href="/refunds/" id="footer-refunds" class="hover:text-[#0F766E] transition-colors">Refunds</a>
           </div>
         </div>
-        <p class="mt-6 text-center lg:text-left text-[11px] text-[#5A6A63]/70"><a href="https://www.kompweb.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#0F766E] transition-colors">KOMPWEB Studios</a></p>
+        <p class="mt-6 text-center lg:text-left text-[11px] text-[#5A6A63]/70"><a href="https://www.kompweb.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 hover:text-[#0F766E] transition-colors"><img src="/assets/kompweb-logo-small.png" alt="" width="24" height="24" class="w-6 h-6 p-1 bg-[#12201C] object-contain" aria-hidden="true" loading="lazy">KOMPWEB Studios</a></p>
       </div>
     </footer>
   </div>
