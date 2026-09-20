@@ -583,12 +583,75 @@ h1 {
   padding: clamp(1rem, 3vw, 1.65rem);
 }
 
-.hb-cover {
+.hb-book-stage {
+  position: relative;
   width: 100%;
-  max-width: 360px;
-  border-radius: 16px;
+  max-width: 280px;
+  margin: 1rem auto 2.5rem;
+  perspective: 1600px;
+}
+
+.hb-book {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 409 / 638;
+  transform-style: preserve-3d;
+  transform: rotateY(-34deg) rotateX(4deg);
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+.hb-book-stage:hover .hb-book {
+  transform: rotateY(-22deg) rotateX(4deg);
+}
+
+.hb-cover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  box-shadow: 0 22px 46px rgba(18, 32, 28, 0.16);
+  border-radius: 1px 6px 6px 1px;
+  backface-visibility: hidden;
+}
+
+.hb-book::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 1px 6px 6px 1px;
+  box-shadow:
+    inset 7px 0 14px rgba(12, 22, 19, 0.22),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+  pointer-events: none;
+}
+
+.hb-book-spine {
+  position: absolute;
+  top: 0.5%;
+  bottom: 0.5%;
+  left: -28px;
+  width: 28px;
+  background: linear-gradient(
+    90deg,
+    #7fa89e 0%,
+    #52716a 40%,
+    #34473f 78%,
+    #263531 100%
+  );
+  border-radius: 2px 0 0 2px;
+  transform-origin: right center;
+  transform: rotateY(-90deg);
+  box-shadow: inset -6px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.hb-book-shadow {
+  position: absolute;
+  left: 2%;
+  right: -14%;
+  bottom: -20px;
+  height: 30px;
+  background: radial-gradient(ellipse at center, rgba(18, 32, 28, 0.45), rgba(18, 32, 28, 0) 72%);
+  filter: blur(4px);
 }
 
 .hb-cover-caption {

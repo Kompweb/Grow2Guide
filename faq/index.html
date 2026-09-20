@@ -17,7 +17,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
   <script src="/assets/mail-protect.js" defer></script>
+  <script src="/assets/mobile-menu.js" defer></script>
   <script src="/assets/nav-scroll.js" defer></script>
+  <script src="/assets/faq.js" defer></script>
   <style>
 
     .g2g-wordmark { /* = .brand-name */
@@ -135,8 +137,15 @@
     .faq-group.faq-hidden { display:none; }
 
     .faq-group { scroll-margin-top: 120px; }
-    .faq-group h2 { font-size:1.5rem; font-weight:700; color:#12201C; letter-spacing:-0.01em; margin:0 0 4px; }
-    .faq-group > p.faq-group-note { color:#5A6A63; font-size:.95rem; margin:0 0 1.5rem; }
+    .faq-group h2 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size:clamp(1.9rem, 3vw, 2.4rem); font-weight:600; color:#4b3021; letter-spacing:-0.02em; margin:0 0 4px;
+    }
+    .faq-group > p.faq-group-note {
+      font-family: "Montserrat", Arial, sans-serif;
+      font-size:12px; font-weight:500; letter-spacing:0; text-transform:uppercase;
+      color:#0F766E; margin:0 0 1.5rem;
+    }
 
     .faq-item { border-bottom: 1px solid rgba(15,118,110,.08); }
     .faq-item:last-child { border-bottom: none; }
@@ -173,6 +182,7 @@
     ]
   }
   </script>
+  <link rel="stylesheet" href="/assets/footer.css" />
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -197,7 +207,6 @@
           <div class="hidden lg:flex items-center gap-10">
             <a href="/services/" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Services</a>
             <a href="/#about" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">About</a>
-            <a href="/handbook/" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Handbook</a>
           </div>
         </div>
         <div class="flex items-center gap-3">
@@ -212,7 +221,6 @@
         <div class="container-custom py-5 flex flex-col gap-1">
           <a href="/services/" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Services</a>
           <a href="/#about" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">About</a>
-          <a href="/handbook/" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Handbook</a>
           <a href="/consultation/" class="mt-4 bg-[#4b3021] text-white h-[48px] flex items-center justify-center rounded-full font-bold text-base">Request consultation</a>
         </div>
       </div>
@@ -226,7 +234,7 @@
           <span class="text-[#12201C]">FAQ</span>
         </nav>
 
-        <div class="flex flex-col sm:flex-row sm:items-center gap-8 mb-10">
+        <div class="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-12 mb-10">
           <div class="flex-1">
             <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Frequently Asked Questions</span>
             <h1 class="text-4xl lg:text-5xl font-bold tracking-tight mb-4">Have a question? Start here.</h1>
@@ -234,8 +242,8 @@
               Answers about organizational services, digital guides, Start from scratch, payments, and privacy. Can't find what you need? <a href="/consultation/" class="text-[#0F766E] font-bold underline">Request a consultation</a> or email us.
             </p>
           </div>
-          <div class="relative shrink-0 mx-auto sm:mx-0 w-[150px] sm:w-[170px]">
-            <div class="absolute -top-4 -right-4 w-20 h-20 bg-[#D8F0EA] rounded-full blur-2xl opacity-60 pointer-events-none"></div>
+          <div class="relative shrink-0 w-full max-w-[414px] mx-auto lg:mx-0 lg:w-[414px]">
+            <div class="absolute -top-6 -left-6 w-28 h-28 bg-[#D8F0EA] rounded-full blur-3xl opacity-60 pointer-events-none"></div>
             <div class="relative rounded-[24px] overflow-hidden card-shadow border border-[#0F766E]/10 bg-white">
               <img src="../assets/sara-about.png" alt="Sara Tudor, Grow2Guide founder" width="800" height="1000" class="w-full h-auto object-cover object-center" loading="lazy" />
             </div>
@@ -279,7 +287,7 @@
           </details>
           <details class="faq-item">
             <summary>Who is Grow2Guide for?<iconify-icon icon="lucide:chevron-down" class="faq-icon"></iconify-icon></summary>
-            <p class="faq-answer">Three audiences: behavioral health agencies and programs that need an organizational assessment or infrastructure built from the ground up (<a href="/services/">Services</a>); individual employees — such as case managers, BHTs, MHTs, and support staff — looking for practical guides and growth opportunities (<a href="/#products">Guides</a>); and professionals, caregivers, and program teams looking for a strengths-based approach to supporting families and young people (<a href="/handbook/">Start from scratch</a>).</p>
+            <p class="faq-answer">Three audiences: behavioral health agencies and programs that need an organizational assessment or infrastructure built from the ground up (<a href="/services/">Services</a>); individual employees — such as case managers, BHTs, MHTs, and support staff — looking for practical guides and growth opportunities (<a href="/services/#products">Guides</a>); and professionals, caregivers, and program teams looking for a strengths-based approach to supporting families and young people (<a href="/handbook/">Start from scratch</a>).</p>
           </details>
           <details class="faq-item">
             <summary>Is Grow2Guide's work legal advice?<iconify-icon icon="lucide:chevron-down" class="faq-icon"></iconify-icon></summary>
@@ -329,7 +337,7 @@
 
           <details class="faq-item">
             <summary>What are the downloadable guides?<iconify-icon icon="lucide:chevron-down" class="faq-icon"></iconify-icon></summary>
-            <p class="faq-answer">Two PDF guides: the <strong>Behavioral Health Policy Inventory &amp; Learning Guide</strong> and the <strong>Supervisor/Manager inventory, toolkit, and reflection guide</strong> — each $67. See details on the <a href="/#products">homepage</a>.</p>
+            <p class="faq-answer">Two PDF guides: the <strong>Behavioral Health Policy Inventory &amp; Learning Guide</strong> and the <strong>Supervisor/Manager inventory, toolkit, and reflection guide</strong> — each $67. See details on the <a href="/services/#products">services page</a>.</p>
           </details>
           <details class="faq-item">
             <summary>Can I buy both guides together?<iconify-icon icon="lucide:chevron-down" class="faq-icon"></iconify-icon></summary>
@@ -400,128 +408,61 @@
       </div>
     </main>
 
-    <footer class="bg-[#EAF3EF] text-[#5A6A63] py-12 border-t border-[#0F766E]/10">
-      <div class="container-custom">
-        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 mb-10">
-          <div class="lg:col-span-4 space-y-6">
+    <footer id="site-footer" class="bg-[#F7FBF9] text-[#5A6A63] border-t border-[#0F766E]/12 py-12">
+      <div class="container-custom py-16 lg:py-20">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-x-10 gap-y-12">
+          <!-- Brand -->
+          <div class="lg:col-span-5 max-w-sm">
             <a href="/" id="footer-logo-link" class="flex items-center gap-3 shrink-0 bg-transparent">
-            <img src="../assets/logo-mark.png" alt="" width="72" height="72"
+            <img src="/assets/logo-mark.png" alt="" width="72" height="72"
                  class="g2g-logo-mark bg-transparent" aria-hidden="true" />
             <span class="flex flex-col leading-none">
               <span class="g2g-wordmark">Grow <span class="g2g-number">2</span> Guide</span>
               <span class="g2g-tagline">Elevate Your Knowledge</span>
             </span>
           </a>
-            <p class="text-[15px] leading-relaxed max-w-sm">Nevada-first licensing, accreditation readiness, compliance, and workforce learning — practical systems that hold up.</p>
-            <p class="text-[13px]">Educational consulting — not legal advice.</p>
+            <p class="text-[15px] leading-relaxed mb-6">
+              Practical resources and real-world consulting for behavioral health professionals and organizations.
+            </p>
+            <div class="flex items-center gap-3">
+              <a href="https://www.instagram.com/grow2guide/" id="footer-ig" class="w-9 h-9 flex items-center justify-center rounded-full bg-white border border-[#0F766E]/10 text-[#0F766E] hover:bg-[#D8F0EA] hover:text-[#0B5F59] transition-colors" aria-label="Instagram" rel="noopener noreferrer" target="_blank"><iconify-icon icon="mdi:instagram" class="text-[29.16px]"></iconify-icon></a>
+              <a href="https://www.facebook.com/Grow2Guide" id="footer-fb" class="w-9 h-9 flex items-center justify-center rounded-full bg-white border border-[#0F766E]/10 text-[#0F766E] hover:bg-[#D8F0EA] hover:text-[#0B5F59] transition-colors" aria-label="Facebook" rel="noopener noreferrer" target="_blank"><iconify-icon icon="mdi:facebook" class="text-[29.16px]"></iconify-icon></a>
+            </div>
           </div>
-          <div class="lg:col-span-4 space-y-5">
-            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Services</h4>
-            <ul class="space-y-3.5 text-[15px] font-medium">
-              <li><a href="/services/" class="hover:text-[#0F766E]">Services &amp; pricing</a></li>
-              <li><a href="/services/#tier-2" class="hover:text-[#0F766E]">Tier 2 · Already have something</a></li>
-              <li><a href="/services/#tier-3" class="hover:text-[#0F766E]">Tier 3 · Build it with you</a></li>
-              <li><a href="/#products" class="hover:text-[#0F766E]">Guides &amp; Bundle — $67–$99</a></li>
-              <li><a href="https://www.grow2guide.com/handbook/" class="hover:text-[#0F766E]">Start from scratch</a></li>
+
+          <!-- Services -->
+          <div class="lg:col-span-4">
+            <h4 class="text-[#12201C] font-semibold text-[12px] tracking-[0.06em] uppercase mb-5">Services</h4>
+            <ul class="space-y-3 text-[14px]">
+              <li><a href="/services/#tier-2" id="footer-tier2" class="hover:text-[#0F766E] transition-colors">Tier 2 · Already have something</a></li>
+              <li><a href="/services/#tier-3" id="footer-tier3" class="hover:text-[#0F766E] transition-colors">Tier 3 · Build it with you</a></li>
             </ul>
           </div>
-          <div class="lg:col-span-4 space-y-5">
-            <h4 class="text-[#12201C] font-bold text-[11px] tracking-[0.08em] uppercase">Company</h4>
-            <ul class="space-y-3.5 text-[15px] font-medium">
-              <li><a href="/#about" class="hover:text-[#0F766E]">About Sara Tudor</a></li>
-              <li><a href="/consultation/" class="hover:text-[#0F766E]">Contact</a></li>
+
+          <!-- Company -->
+          <div class="lg:col-span-3">
+            <h4 class="text-[#12201C] font-semibold text-[12px] tracking-[0.06em] uppercase mb-5">Company</h4>
+            <ul class="space-y-3 text-[14px]">
+              <li><a href="/#about" id="footer-about" class="hover:text-[#0F766E] transition-colors">About</a></li>
+              <li><a href="/consultation/" id="footer-contact" class="hover:text-[#0F766E] transition-colors">Contact</a></li>
             </ul>
           </div>
         </div>
-        <div class="pt-10 border-t border-[#0F766E]/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
-          <p class="text-[12px] leading-relaxed max-w-2xl">© 2026 Grow2Guide. Resources are for educational purposes only and do not constitute legal advice. Licensure is not guaranteed.</p>
-          <div class="flex flex-wrap items-center gap-4 text-[13px] font-semibold">
-            <a href="/faq/" class="hover:text-[#0F766E]">FAQ</a>
-            <a href="/terms/" class="hover:text-[#0F766E]">Terms</a>
-            <a href="/privacy/" class="hover:text-[#0F766E]">Privacy</a>
-            <a href="/refunds/" class="hover:text-[#0F766E]">Refunds</a>
+
+        <div class="mt-14 pt-8 border-t border-[#0F766E]/10 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-4">
+          <p id="disclaimer" class="text-[12px] leading-relaxed text-[#5A6A63]/90 max-w-xl">
+            © 2026 Grow2Guide. Educational resources only — not legal advice. Licensure is not guaranteed.
+          </p>
+          <div class="flex flex-wrap items-center gap-5 text-[13px] font-semibold">
+            <a href="/faq/" id="footer-faq" class="hover:text-[#0F766E] transition-colors">FAQ</a>
+            <a href="/terms/" id="footer-terms" class="hover:text-[#0F766E] transition-colors">Terms</a>
+            <a href="/privacy/" id="footer-privacy" class="hover:text-[#0F766E] transition-colors">Privacy</a>
+            <a href="/refunds/" id="footer-refunds" class="hover:text-[#0F766E] transition-colors">Refunds</a>
           </div>
         </div>
+        <p class="relative z-10 mt-6 text-center lg:text-left text-[12px] text-[#5A6A63]/70"><a href="https://www.kompweb.com" target="_blank" rel="noopener noreferrer" class="relative z-10 inline-flex items-center gap-2 hover:text-[#0F766E] transition-colors"><img src="/assets/kompweb-logo-small.png" alt="" width="24" height="24" class="relative z-10 block w-6 h-6 shrink-0 object-contain opacity-20" aria-hidden="true">KOMPWEB Studios</a></p>
       </div>
     </footer>
   </div>
-
-  <script>
-  (function () {
-    var btn = document.getElementById('mobile-menu-btn');
-    var menu = document.getElementById('mobile-menu');
-    var iconOpen = document.getElementById('menu-icon-open');
-    var iconClose = document.getElementById('menu-icon-close');
-    if (!btn || !menu) return;
-    function setOpen(open) {
-      menu.classList.toggle('hidden', !open);
-      btn.setAttribute('aria-expanded', String(open));
-      if (iconOpen) iconOpen.classList.toggle('hidden', open);
-      if (iconClose) iconClose.classList.toggle('hidden', !open);
-    }
-    btn.addEventListener('click', function () {
-      setOpen(menu.classList.contains('hidden'));
-    });
-    menu.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () { setOpen(false); });
-    });
-  })();
-
-  (function () {
-    var input = document.getElementById('faq-search-input');
-    var clearBtn = document.getElementById('faq-search-clear');
-    var countEl = document.getElementById('faq-search-count');
-    var noResults = document.getElementById('faq-no-results');
-    var jumpNav = document.querySelector('.faq-jump');
-    var groups = Array.from(document.querySelectorAll('.faq-group'));
-    var items = Array.from(document.querySelectorAll('.faq-item'));
-    if (!input || !items.length) return;
-
-    items.forEach(function (item) {
-      item.dataset.faqDefaultOpen = item.hasAttribute('open') ? '1' : '0';
-    });
-
-    function reset() {
-      items.forEach(function (item) {
-        item.classList.remove('faq-hidden');
-        item.open = item.dataset.faqDefaultOpen === '1';
-      });
-      groups.forEach(function (g) { g.classList.remove('faq-hidden'); });
-      if (jumpNav) jumpNav.classList.remove('is-searching');
-      noResults.classList.remove('show');
-      countEl.textContent = '';
-      clearBtn.classList.remove('show');
-    }
-
-    function runSearch() {
-      var q = input.value.trim().toLowerCase();
-      clearBtn.classList.toggle('show', q.length > 0);
-      if (!q) { reset(); return; }
-      if (jumpNav) jumpNav.classList.add('is-searching');
-
-      var matchCount = 0;
-      groups.forEach(function (group) {
-        var groupHasMatch = false;
-        group.querySelectorAll('.faq-item').forEach(function (item) {
-          var match = item.textContent.toLowerCase().indexOf(q) !== -1;
-          item.classList.toggle('faq-hidden', !match);
-          item.open = match;
-          if (match) { groupHasMatch = true; matchCount++; }
-        });
-        group.classList.toggle('faq-hidden', !groupHasMatch);
-      });
-
-      noResults.classList.toggle('show', matchCount === 0);
-      countEl.textContent = matchCount === 0 ? '' : matchCount + ' question' + (matchCount === 1 ? '' : 's') + ' found';
-    }
-
-    input.addEventListener('input', runSearch);
-    clearBtn.addEventListener('click', function () {
-      input.value = '';
-      reset();
-      input.focus();
-    });
-  })();
-  </script>
 </body>
 </html>

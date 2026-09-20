@@ -1,0 +1,22 @@
+#site-footer {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+#site-footer > .container-custom {
+  max-width: 1120px;
+  margin-inline: auto;
+  padding: 64px 24px;
+}
+
+#site-footer #footer-logo-link .g2g-wordmark {
+  font-size: clamp(28px, 4vw, 38px);
+}
+
+#site-footer #footer-logo-link .g2g-tagline {
+  font-size: clamp(12px, 1.5vw, 14px);
+  transform: scaleX(.9);
+}
+
+@media (min-width: 1024px) {
+  #site-footer > .container-custom { padding-block: 80px; }
+}

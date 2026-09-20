@@ -17,7 +17,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
   <script src="/assets/mail-protect.js" defer></script>
+  <script src="/assets/mobile-menu.js" defer></script>
   <script src="/assets/nav-scroll.js" defer></script>
+  <script src="/assets/services.js" defer></script>
   <style>
 
     .g2g-wordmark { /* = .brand-name */
@@ -28,6 +30,42 @@
       line-height: 1;
       letter-spacing: -0.03em;
       color: #174d35;
+    }
+    .hero-path-text {
+      color: #0F766E;
+    }
+    @supports (background-clip: text) or (-webkit-background-clip: text) {
+      .hero-path-text {
+        background-image: linear-gradient(110deg, #0F766E 20%, #0F766E 40%, #8CF0CE 50%, #0F766E 60%, #0F766E 80%);
+        background-size: 250% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        animation: hero-path-shimmer 4.5s ease-in-out infinite;
+      }
+    }
+    @keyframes hero-path-shimmer {
+      0%, 40% { background-position: 180% 0; }
+      85%, 100% { background-position: -80% 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-path-text {
+        animation: none;
+        background-position: 50% 0;
+      }
+    }
+
+    .service-tagline {
+      font-family: "Montserrat", Arial, sans-serif;
+      font-weight: 500;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+    .service-title {
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 600;
+      letter-spacing: -0.03em;
     }
     .g2g-wordmark .g2g-number,
     .g2g-wordmark .number {
@@ -82,6 +120,35 @@
     .nav-link { position: relative; }
     .nav-link::after { content:''; position:absolute; bottom:-6px; left:0; width:0; height:2px; background:var(--accent-teal); transition:width .3s; }
     .nav-link:hover::after { width:100%; }
+    .cta-gloss {
+      background-color: #f0e8df;
+      background-image:
+        linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.75) 44%, transparent 65%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.4) 48%, rgba(213, 196, 178, 0.25) 51%, rgba(255, 255, 255, 0.55) 100%);
+      background-size: 220% 100%, 100% 100%;
+      background-position: 100% 0, 0 0;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(75, 48, 33, 0.08), 0 4px 10px rgba(75, 48, 33, 0.1);
+      transition: background-position 650ms ease, background-color 250ms ease, box-shadow 250ms ease, transform 150ms ease;
+    }
+
+    .cta-gloss:hover,
+    .cta-gloss:focus-visible {
+      background-color: #e7dbcc;
+      background-position: 0 0, 0 0;
+      box-shadow: inset 0 1px 0 #fff, inset 0 -2px 4px rgba(75, 48, 33, 0.08), 0 6px 16px rgba(75, 48, 33, 0.16);
+    }
+
+    .cta-gloss:focus-visible {
+      outline: 3px solid #0F766E;
+      outline-offset: 4px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cta-gloss {
+        transition: none;
+      }
+    }
+
     .btn-active:active { transform: scale(0.98); }
 
     a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visible {
@@ -102,7 +169,7 @@
     }
     .services-subnav-inner::-webkit-scrollbar { display: none; }
     .services-subnav a {
-      flex: 0 0 auto; padding: .7rem .9rem; font-size: .8rem; font-weight: 700;
+      flex: 0 0 auto; padding: .7rem .9rem; font-size: 1rem; font-weight: 700;
       color: #5A6A63; text-decoration: none; border-bottom: 2px solid transparent;
       white-space: nowrap;
     }
@@ -114,7 +181,7 @@
     @media (min-width: 1024px) {
       .services-subnav-inner { justify-content: flex-start; padding-top: .45rem; padding-bottom: .45rem; }
       .services-subnav a {
-        padding: .65rem 1.1rem; font-size: .875rem; border: 0; border-radius: 9999px;
+        padding: .65rem 1.1rem; font-size: 1.125rem; border: 0; border-radius: 9999px;
         transition: color .2s ease, background-color .2s ease, border-color .2s ease;
       }
       .services-subnav a:hover { background: rgba(15,118,110,.07); }
@@ -172,6 +239,7 @@
   <title>Tier 2 & Tier 3 Services — Grow2Guide</title>
   <meta name="description" content="Tier 2 Organizational Gap Assessment and Tier 3 Become & Stay Ready infrastructure-building services from Grow2Guide." />
   <link rel="canonical" href="https://www.grow2guide.com/services/" />
+  <link rel="stylesheet" href="/assets/footer.css" />
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -196,7 +264,6 @@
           <div class="hidden lg:flex items-center gap-10">
             <a href="/services/" class="nav-link text-[15px] font-semibold text-[#0F766E]">Services</a>
             <a href="/#about" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">About</a>
-            <a href="/handbook/" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Handbook</a>
             <a href="/faq/" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">FAQ</a>
           </div>
         </div>
@@ -212,7 +279,6 @@
         <div class="container-custom py-5 flex flex-col gap-1">
           <a href="/services/" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Services</a>
           <a href="/#about" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">About</a>
-          <a href="/handbook/" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Handbook</a>
           <a href="/faq/" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">FAQ</a>
           <a href="/consultation/" class="mt-4 bg-[#4b3021] text-white h-[48px] flex items-center justify-center rounded-full font-bold text-base">Request consultation</a>
         </div>
@@ -236,7 +302,7 @@
         </nav>
         <div class="max-w-2xl">
           <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[14px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Two ways to engage</span>
-          <h1 class="text-4xl lg:text-5xl font-bold tracking-tight mb-6 leading-[1.1]">Strengthen what you have, or build what you don't.</h1>
+          <h1 class="text-[3.5rem] sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-[1.1]"><span class="hero-path-text">Strengthen</span> what you have, or <span class="hero-path-text">build</span> what you don't.</h1>
           <p class="text-[#5A6A63] text-lg leading-[1.6]">
             Grow2Guide offers two consulting tiers, depending on where your organization is today: evaluating what already exists, or building the infrastructure from the ground up.
           </p>
@@ -247,7 +313,7 @@
           <a href="#tier-2" class="group bg-white rounded-[24px] p-7 border border-[#0F766E]/10 card-shadow hover:border-[#0F766E]/25 transition-colors flex flex-col">
             <span class="path-leaf-icon path-leaf-icon--strengthen mb-5" role="img" aria-label="Two leaves"></span>
             <span class="text-[14px] font-bold text-[#0F766E] tracking-[0.06em] uppercase">Tier 2 &middot; For Organizations</span>
-            <h2 class="text-xl font-bold text-[#12201C] mt-2 mb-2">Organizational Gap Assessment</h2>
+            <h2 class="service-title text-2xl sm:text-3xl text-[#12201C] mt-2 mb-2">Organizational Gap Assessment</h2>
             <p class="text-[#5A6A63] text-[15px] leading-relaxed mb-6 flex-1">You already have policies and systems—maybe you're even halfway to licensing or accreditation, but feel stuck. We assess what works, what's missing, and what to prioritize next.</p>
             <span class="inline-flex items-center gap-1.5 text-sm font-bold text-[#0F766E]">
               View Tier 2 details
@@ -262,7 +328,7 @@
           <a href="#tier-3" class="group bg-[#EAF3EF] rounded-[24px] p-7 border border-[#0F766E]/10 card-shadow hover:border-[#0F766E]/25 transition-colors flex flex-col">
             <span class="path-leaf-icon path-leaf-icon--build mb-5" role="img" aria-label="Three leaves"></span>
             <span class="text-[14px] font-bold text-[#0F766E] tracking-[0.06em] uppercase">Tier 3 &middot; For Organizations</span>
-            <h2 class="text-xl font-bold text-[#12201C] mt-2 mb-2">Become &amp; Stay Ready</h2>
+            <h2 class="service-title text-2xl sm:text-3xl text-[#12201C] mt-2 mb-2">Become &amp; Stay Ready</h2>
             <p class="text-[#5A6A63] text-[15px] leading-relaxed mb-6 flex-1">Don't have the infrastructure yet? We build it with you—and help your team put it into practice.</p>
             <span class="inline-flex items-center gap-1.5 text-sm font-bold text-[#0F766E]">
               View Tier 3 details
@@ -274,10 +340,10 @@
 
 <!-- TIER 2 -->
       <div id="tier-2" class="container-custom max-w-5xl mt-20 scroll-mt-32 scroll-mt-40">
-        <div class="bg-white rounded-[32px] p-10 lg:p-16 card-shadow border border-[#0F766E]/5">
+        <div class="bg-white rounded-[32px] p-6 sm:p-10 lg:p-16 card-shadow border border-[#0F766E]/5">
           <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[14px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Tier 2</span>
-          <h2 class="text-3xl lg:text-4xl font-bold tracking-tight mb-4 text-[#12201C]">Organizational Gap Assessment</h2>
-          <p class="text-[#0F766E] font-bold text-lg mb-8">You Have the Pieces. We'll Find What's Missing.</p>
+          <h2 class="service-title text-4xl lg:text-5xl mb-4 text-[#12201C]">Organizational Gap Assessment</h2>
+          <p class="service-tagline text-[#0F766E] text-base sm:text-lg leading-relaxed mb-8">You Have the Pieces. We'll Find What's Missing.</p>
           <p class="text-[#5A6A63] text-base leading-[1.6] mb-3">
             You provide your existing policies, procedures, forms, workflows, and organizational materials. <strong class="text-[#12201C]">We assess what you have—and how well it actually works in practice.</strong>
           </p>
@@ -358,14 +424,17 @@
             <p class="text-[#5A6A63] text-xs italic mt-4">Ask us for full package details and timelines at <a href="/consultation/" class="underline hover:text-[#0F766E]">your consultation</a>.</p>
           </div>
 
-          <div class="border-t border-[#0F766E]/10 pt-8">
-            <p class="text-[#12201C] font-bold text-lg mb-2">You provide the materials. We provide the clarity.</p>
-            <p class="text-[#5A6A63] text-base leading-[1.6] mb-8">Before someone else finds the gaps—find them first.</p>
-
-            <a href="/consultation/" class="btn-active inline-flex bg-[#4b3021] text-white h-[56px] px-10 items-center justify-center rounded-full font-bold text-base shadow-lg shadow-[#4b3021]/20 hover:bg-[#3a2519] transition-all mb-6">
-              Schedule a Consultation
+          <section aria-labelledby="assessment-next-step" class="bg-[#EAF3EF] border border-[#0F766E]/15 rounded-[24px] p-5 sm:p-8 mb-6">
+            <h3 id="assessment-next-step" class="service-title text-2xl sm:text-3xl leading-[1.25] text-[#12201C] mb-4">
+              <span class="block">You provide the materials.</span>
+              <span class="block text-[#0F766E] mt-1">We provide the clarity.</span>
+            </h3>
+            <p class="text-[#5A6A63] text-base leading-relaxed max-w-lg mb-6">Before someone else finds the gaps—find them first.</p>
+            <a href="/consultation/" class="btn-active flex sm:inline-flex w-full sm:w-auto min-h-[56px] px-4 sm:px-8 py-3 items-center justify-center gap-3 rounded-full bg-[#4b3021] text-white text-center font-semibold text-base leading-snug shadow-md shadow-[#4b3021]/10 hover:bg-[#3a2519] transition-colors">
+              <span>Schedule a Consultation</span>
+              <iconify-icon icon="lucide:arrow-right" class="shrink-0 text-xl" aria-hidden="true"></iconify-icon>
             </a>
-          </div>
+          </section>
           <div class="bg-[#F7FBF9] border border-[#0F766E]/10 rounded-[16px] px-5 py-4 space-y-2 text-sm text-[#5A6A63] leading-relaxed">
             <p><strong class="text-[#12201C]">Please note:</strong> Assessment scope varies by organization, program, jurisdiction, and applicable requirements. An assessment does <strong class="text-[#12201C]">not guarantee</strong> licensure, accreditation, certification, or audit outcomes.</p>
             <p>Grow2Guide provides educational consulting and implementation support — <strong class="text-[#12201C]">not legal advice</strong>.</p>
@@ -377,7 +446,7 @@
       <div id="tier-3" class="container-custom max-w-5xl mt-12 scroll-mt-32 scroll-mt-40">
         <div class="bg-[#EAF3EF] rounded-[32px] p-10 lg:p-16 card-shadow border border-[#0F766E]/10">
           <span class="bg-white text-[#0F766E] px-3.5 py-1.5 rounded-full text-[14px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Tier 3</span>
-          <h2 class="text-3xl lg:text-4xl font-bold tracking-tight mb-4 text-[#12201C]">Become & Stay Ready</h2>
+          <h2 class="service-title text-4xl lg:text-5xl mb-4 text-[#12201C]">Become & Stay Ready</h2>
           <p class="text-[#0F766E] font-bold text-lg mb-8">Don't Have the Infrastructure? We'll Build It—and Show You How to Use It.</p>
           <p class="text-[#5A6A63] text-base leading-[1.6] mb-3">
             Starting or rebuilding a behavioral health or aging-services organization requires more than policies on paper.
@@ -529,6 +598,100 @@
           Request a Consultation
         </a>
       </div>
+
+      <!-- Digital Programs / Products Section -->
+      <section id="products" class="py-20 lg:py-24 scroll-mt-40">
+        <div class="container-custom">
+          <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-20">
+            <div class="max-w-2xl">
+              <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[14px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">For Professionals</span>
+              <h2 class="text-4xl font-bold text-[#12201C] tracking-tight">Practical guides for your next step</h2>
+            </div>
+            <p class="text-[#5A6A63] text-lg max-w-sm">
+              Downloadable resources for busy clinical managers and behavioral health professionals.
+            </p>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-10">
+            <!-- Product 1 -->
+            <div class="w-full max-w-[414px] mx-auto bg-white rounded-[24px] p-6 sm:p-12 card-shadow border border-[#0F766E]/5 flex flex-col">
+              <div class="flex items-center gap-4 mb-8">
+                <div class="w-[76.8px] h-[76.8px] shrink-0 rounded-2xl bg-[#FFF1F1] text-[#EC1C24] flex items-center justify-center">
+                  <iconify-icon icon="simple-icons:adobeacrobatreader" class="text-[54.72px]"></iconify-icon>
+                </div>
+                <span class="text-[14px] font-bold text-[#5A6A63] tracking-[0.06em] uppercase">PDF 1 • Foundations</span>
+              </div>
+              <h3 class="text-2xl font-bold mb-5 leading-snug text-[#12201C]">Behavioral Health Policy Inventory & Learning Guide</h3>
+              <p class="text-[#5A6A63] text-base mb-10 leading-[1.55] flex-1">
+                Understanding policies and systems, and recognizing how they apply to you as a case manager, BHT, or direct care staff. The questions you have are now answered.
+              </p>
+              <div class="space-y-4 mb-12">
+                <div class="flex items-center gap-3 text-[#12201C] font-semibold text-lg">
+                  <iconify-icon icon="lucide:shield-check" class="text-[#0F766E] text-lg"></iconify-icon>
+                  <span>69 Policy topic inventory</span>
+                </div>
+                <div class="flex items-center gap-3 text-[#12201C] font-semibold text-lg">
+                  <iconify-icon icon="lucide:file-text" class="text-[#0F766E] text-lg"></iconify-icon>
+                  <span>What does it have to do with me?</span>
+                </div>
+              </div>
+              <a href="https://buy.stripe.com/cNibJ16HKgL75XgaSm4Ja02" id="buy-guide-btn" class="btn-active cta-gloss border-2 border-[#4b3021]/30 text-[#4b3021] w-full h-[56px] flex items-center justify-center rounded-full font-bold text-base transition-all">
+                Buy Guide — $67
+              </a>
+              <p class="mt-3 text-center text-xs text-[#5A6A63]">Pay securely — PDF emailed after purchase.</p>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="w-full max-w-[414px] mx-auto bg-white rounded-[24px] p-6 sm:p-12 card-shadow border border-[#0F766E]/5 flex flex-col">
+              <div class="flex items-center gap-4 mb-8">
+                <div class="w-[76.8px] h-[76.8px] shrink-0 rounded-2xl bg-[#FFF1F1] text-[#EC1C24] flex items-center justify-center">
+                  <iconify-icon icon="simple-icons:adobeacrobatreader" class="text-[54.72px]"></iconify-icon>
+                </div>
+                <span class="text-[14px] font-bold text-[#5A6A63] tracking-[0.06em] uppercase">PDF 2 • Readiness</span>
+              </div>
+              <h3 class="text-2xl font-bold mb-5 leading-snug text-[#12201C]">Supervisor &amp; Manager, toolkit, and reflection</h3>
+              <p class="text-[#5A6A63] text-base mb-10 leading-[1.55] flex-1">
+                Am I becoming the supervisor or manager I envisioned? How do I grow from here? Everything I need to know when I become a supervisor or when I'm already a supervisor or manager who takes responsibility for own growth.
+              </p>
+              <div class="space-y-4 mb-12">
+                <div class="flex items-center gap-3 text-[#12201C] font-semibold text-lg">
+                  <iconify-icon icon="lucide:clipboard-check" class="text-[#0F766E] text-lg"></iconify-icon>
+                  <span>Real life scenarios</span>
+                </div>
+                <div class="flex items-center gap-3 text-[#12201C] font-semibold text-lg">
+                  <iconify-icon icon="lucide:search" class="text-[#0F766E] text-lg"></iconify-icon>
+                  <span>Skills and tools</span>
+                </div>
+              </div>
+              <a href="https://buy.stripe.com/bJecN57LO0M9gBU9Oi4Ja01" id="buy-checklist-btn" class="btn-active cta-gloss border-2 border-[#4b3021]/30 text-[#4b3021] w-full h-[56px] flex items-center justify-center rounded-full font-bold text-base transition-all">
+                Buy Checklist — $67
+              </a>
+              <p class="mt-3 text-center text-xs text-[#5A6A63]">Pay securely — PDF emailed after purchase.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bundle Offer -->
+      <section class="py-16">
+        <div class="container-custom">
+          <div class="bg-[#EAF3EF] rounded-[32px] p-6 sm:p-12 lg:p-16 card-shadow flex flex-col lg:flex-row items-center justify-between text-[#12201C] border border-[#0F766E]/10">
+            <div class="space-y-4 text-center lg:text-left mb-10 lg:mb-0">
+              <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[14px] font-bold tracking-[0.06em] uppercase inline-block">Best Value Offer</span>
+              <h2 class="text-4xl lg:text-5xl font-bold tracking-tight">Bundle both for $99</h2>
+              <p class="text-[#5A6A63] text-xl">Full Foundation inventory + Readiness checklist.</p>
+            </div>
+            <div class="flex flex-col items-center lg:items-end gap-5">
+              <span class="text-[#5A6A63]/60 text-2xl line-through font-medium">$134 separate</span>
+              <a href="https://buy.stripe.com/6oU4gz3vyeCZ0CW2lQ4Ja00" id="bundle-cta" class="btn-active cta-gloss border-2 border-[#4b3021]/30 text-[#4b3021] h-[64px] px-6 sm:px-14 flex items-center justify-center rounded-full font-bold text-xl transition-all">
+                Buy Bundle — $99
+              </a>
+              <p class="mt-3 text-center text-xs text-[#5A6A63]">Pay securely — PDF emailed after purchase.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </main>
 
 
@@ -538,120 +701,61 @@
         <a href="/consultation/" class="inline-flex bg-[#4b3021] text-white h-[44px] px-6 items-center justify-center rounded-full font-bold text-sm shadow-md shadow-[#4b3021]/20 hover:bg-[#3a2519] transition-all w-full sm:w-auto">Schedule a consultation</a>
       </div>
     </div>
-    <footer class="bg-[#EAF3EF] text-[#5A6A63] py-12 border-t border-[#0F766E]/10">
-      <div class="container-custom">
-        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 mb-10">
-          <div class="lg:col-span-4 space-y-6">
+    <footer id="site-footer" class="bg-[#F7FBF9] text-[#5A6A63] border-t border-[#0F766E]/12 py-12">
+      <div class="container-custom py-16 lg:py-20">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-x-10 gap-y-12">
+          <!-- Brand -->
+          <div class="lg:col-span-5 max-w-sm">
             <a href="/" id="footer-logo-link" class="flex items-center gap-3 shrink-0 bg-transparent">
-            <img src="../assets/logo-mark.png" alt="" width="72" height="72"
+            <img src="/assets/logo-mark.png" alt="" width="72" height="72"
                  class="g2g-logo-mark bg-transparent" aria-hidden="true" />
             <span class="flex flex-col leading-none">
               <span class="g2g-wordmark">Grow <span class="g2g-number">2</span> Guide</span>
               <span class="g2g-tagline">Elevate Your Knowledge</span>
             </span>
           </a>
-            <p class="text-[15px] leading-relaxed max-w-sm">Nevada-first licensing, accreditation readiness, compliance, and workforce learning — practical systems that hold up.</p>
-            <p class="text-[13px]">Educational consulting — not legal advice.</p>
+            <p class="text-[15px] leading-relaxed mb-6">
+              Practical resources and real-world consulting for behavioral health professionals and organizations.
+            </p>
+            <div class="flex items-center gap-3">
+              <a href="https://www.instagram.com/grow2guide/" id="footer-ig" class="w-9 h-9 flex items-center justify-center rounded-full bg-white border border-[#0F766E]/10 text-[#0F766E] hover:bg-[#D8F0EA] hover:text-[#0B5F59] transition-colors" aria-label="Instagram" rel="noopener noreferrer" target="_blank"><iconify-icon icon="mdi:instagram" class="text-[29.16px]"></iconify-icon></a>
+              <a href="https://www.facebook.com/Grow2Guide" id="footer-fb" class="w-9 h-9 flex items-center justify-center rounded-full bg-white border border-[#0F766E]/10 text-[#0F766E] hover:bg-[#D8F0EA] hover:text-[#0B5F59] transition-colors" aria-label="Facebook" rel="noopener noreferrer" target="_blank"><iconify-icon icon="mdi:facebook" class="text-[29.16px]"></iconify-icon></a>
+            </div>
           </div>
-          <div class="lg:col-span-4 space-y-5">
-            <h4 class="text-[#12201C] font-bold text-[14px] tracking-[0.08em] uppercase">Services</h4>
-            <ul class="space-y-3.5 text-[15px] font-medium">
-              <li><a href="/services/" class="hover:text-[#0F766E]">Services & pricing</a></li>
-              <li><a href="/services/#tier-2" class="hover:text-[#0F766E]">Tier 2 · Already have something</a></li>
-              <li><a href="/services/#tier-3" class="hover:text-[#0F766E]">Tier 3 · Build it with you</a></li>
-              <li><a href="/#products" class="hover:text-[#0F766E]">Guides &amp; Bundle — $67–$99</a></li>
-              <li><a href="https://www.grow2guide.com/handbook/" class="hover:text-[#0F766E]">Parents' Handbook</a></li>
+
+          <!-- Services -->
+          <div class="lg:col-span-4">
+            <h4 class="text-[#12201C] font-semibold text-[12px] tracking-[0.06em] uppercase mb-5">Services</h4>
+            <ul class="space-y-3 text-[14px]">
+              <li><a href="/services/#tier-2" id="footer-tier2" class="hover:text-[#0F766E] transition-colors">Tier 2 · Already have something</a></li>
+              <li><a href="/services/#tier-3" id="footer-tier3" class="hover:text-[#0F766E] transition-colors">Tier 3 · Build it with you</a></li>
             </ul>
           </div>
-          <div class="lg:col-span-4 space-y-5">
-            <h4 class="text-[#12201C] font-bold text-[14px] tracking-[0.08em] uppercase">Company</h4>
-            <ul class="space-y-3.5 text-[15px] font-medium">
-              <li><a href="/#about" class="hover:text-[#0F766E]">About Sara Tudor</a></li>
-              <li><a href="/consultation/" class="hover:text-[#0F766E]">Contact</a></li>
+
+          <!-- Company -->
+          <div class="lg:col-span-3">
+            <h4 class="text-[#12201C] font-semibold text-[12px] tracking-[0.06em] uppercase mb-5">Company</h4>
+            <ul class="space-y-3 text-[14px]">
+              <li><a href="/#about" id="footer-about" class="hover:text-[#0F766E] transition-colors">About</a></li>
+              <li><a href="/consultation/" id="footer-contact" class="hover:text-[#0F766E] transition-colors">Contact</a></li>
             </ul>
           </div>
         </div>
-        <div class="pt-10 border-t border-[#0F766E]/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
-          <p class="text-[12px] leading-relaxed max-w-2xl">© 2026 Grow2Guide. Resources are for educational purposes only and do not constitute legal advice. Licensure is not guaranteed.</p>
-          <div class="flex items-center gap-4 text-[13px] font-semibold">
-            <a href="/faq/" class="hover:text-[#0F766E]">FAQ</a>
-            <a href="/terms/" class="hover:text-[#0F766E]">Terms</a>
-            <a href="/privacy/" class="hover:text-[#0F766E]">Privacy</a>
-            <a href="/refunds/" class="hover:text-[#0F766E]">Refunds</a>
+
+        <div class="mt-14 pt-8 border-t border-[#0F766E]/10 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-4">
+          <p id="disclaimer" class="text-[12px] leading-relaxed text-[#5A6A63]/90 max-w-xl">
+            © 2026 Grow2Guide. Educational resources only — not legal advice. Licensure is not guaranteed.
+          </p>
+          <div class="flex flex-wrap items-center gap-5 text-[13px] font-semibold">
+            <a href="/faq/" id="footer-faq" class="hover:text-[#0F766E] transition-colors">FAQ</a>
+            <a href="/terms/" id="footer-terms" class="hover:text-[#0F766E] transition-colors">Terms</a>
+            <a href="/privacy/" id="footer-privacy" class="hover:text-[#0F766E] transition-colors">Privacy</a>
+            <a href="/refunds/" id="footer-refunds" class="hover:text-[#0F766E] transition-colors">Refunds</a>
           </div>
         </div>
         <p class="relative z-10 mt-6 text-center lg:text-left text-[12px] text-[#5A6A63]/70"><a href="https://www.kompweb.com" target="_blank" rel="noopener noreferrer" class="relative z-10 inline-flex items-center gap-2 hover:text-[#0F766E] transition-colors"><img src="/assets/kompweb-logo-small.png" alt="" width="24" height="24" class="relative z-10 block w-6 h-6 shrink-0 object-contain opacity-20" aria-hidden="true">KOMPWEB Studios</a></p>
       </div>
     </footer>
   </div>
-
-  <script>
-  (function () {
-    var btn = document.getElementById('mobile-menu-btn');
-    var menu = document.getElementById('mobile-menu');
-    var iconOpen = document.getElementById('menu-icon-open');
-    var iconClose = document.getElementById('menu-icon-close');
-    if (!btn || !menu) return;
-    function setOpen(open) {
-      menu.classList.toggle('hidden', !open);
-      btn.setAttribute('aria-expanded', String(open));
-      if (iconOpen) iconOpen.classList.toggle('hidden', open);
-      if (iconClose) iconClose.classList.toggle('hidden', !open);
-    }
-    btn.addEventListener('click', function () {
-      setOpen(menu.classList.contains('hidden'));
-    });
-    menu.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () { setOpen(false); });
-    });
-  })();
-
-  (function () {
-    var links = Array.from(document.querySelectorAll('.services-subnav a[href^="#"]'));
-    var sections = links.map(function (link) {
-      return document.querySelector(link.getAttribute('href'));
-    }).filter(Boolean);
-    if (!links.length || !sections.length) return;
-
-    var ticking = false;
-
-    function updateActiveSection() {
-      var marker = window.scrollY + 190;
-      var activeId = '';
-
-      sections.forEach(function (section) {
-        if (section.offsetTop <= marker) activeId = section.id;
-      });
-
-      links.forEach(function (link) {
-        var active = link.getAttribute('href') === '#' + activeId;
-        link.classList.toggle('is-active', active);
-        if (active) link.setAttribute('aria-current', 'location');
-        else link.removeAttribute('aria-current');
-      });
-
-      ticking = false;
-    }
-
-    window.addEventListener('scroll', function () {
-      if (ticking) return;
-      ticking = true;
-      window.requestAnimationFrame(updateActiveSection);
-    }, { passive: true });
-
-    links.forEach(function (link) {
-      link.addEventListener('click', function () {
-        links.forEach(function (item) {
-          item.classList.remove('is-active');
-          item.removeAttribute('aria-current');
-        });
-        link.classList.add('is-active');
-        link.setAttribute('aria-current', 'location');
-      });
-    });
-
-    updateActiveSection();
-  })();
-  </script>
 </body>
 </html>

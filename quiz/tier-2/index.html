@@ -19,7 +19,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
   <script src="/assets/mail-protect.js" defer></script>
+  <script src="/assets/mobile-menu.js" defer></script>
   <script src="/assets/nav-scroll.js" defer></script>
+  <script src="/assets/quiz-tier-2.js" defer></script>
   <style>
 
     .g2g-wordmark { /* = .brand-name */
@@ -99,6 +101,7 @@
       border-color: var(--accent-teal); background: var(--accent-soft); color: var(--accent-teal-dark);
     }
 </style>
+  <link rel="stylesheet" href="/assets/footer.css" />
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -119,10 +122,9 @@
             </span>
           </a>
           <div class="hidden lg:flex items-center gap-10">
-            <a href="/#products" class="text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Products</a>
+            <a href="/services/#products" class="text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Products</a>
             <a href="/services/" class="text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Services</a>
             <a href="/#about" class="text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">About</a>
-            <a href="/handbook/" class="text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Handbook</a>
             <a href="/faq/" class="text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">FAQ</a>
           </div>
         </div>
@@ -136,10 +138,9 @@
       </div>
       <div id="mobile-menu" class="hidden lg:hidden border-t border-[#0F766E]/10 bg-[#F5F8F4]">
         <div class="container-custom py-5 flex flex-col gap-1">
-          <a href="/#products" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Products</a>
+          <a href="/services/#products" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Products</a>
           <a href="/services/" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Services</a>
           <a href="/#about" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">About</a>
-          <a href="/handbook/" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Handbook</a>
           <a href="/faq/" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">FAQ</a>
           <a href="/consultation/" class="mt-4 bg-[#4b3021] text-white h-[48px] flex items-center justify-center rounded-full font-bold text-base">Request consultation</a>
         </div>
@@ -319,142 +320,60 @@
         </form>
       </div>
     </main>
-    <footer class="bg-white text-[#5A6A63] py-16 border-t border-[#0F766E]/10">
-      <div class="container-custom flex flex-col md:flex-row justify-between items-center gap-8">
-        <div class="text-center md:text-left">
-          <a href="/" id="footer-logo-link" class="flex items-center gap-3 shrink-0 bg-transparent">
-            <img src="../../assets/logo-mark.png" alt="" width="72" height="72"
+    <footer id="site-footer" class="bg-[#F7FBF9] text-[#5A6A63] border-t border-[#0F766E]/12 py-12">
+      <div class="container-custom py-16 lg:py-20">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-x-10 gap-y-12">
+          <!-- Brand -->
+          <div class="lg:col-span-5 max-w-sm">
+            <a href="/" id="footer-logo-link" class="flex items-center gap-3 shrink-0 bg-transparent">
+            <img src="/assets/logo-mark.png" alt="" width="72" height="72"
                  class="g2g-logo-mark bg-transparent" aria-hidden="true" />
             <span class="flex flex-col leading-none">
               <span class="g2g-wordmark">Grow <span class="g2g-number">2</span> Guide</span>
               <span class="g2g-tagline">Elevate Your Knowledge</span>
             </span>
           </a>
-          <p class="text-sm">Educational consulting — not legal advice / not a guarantee of licensure.</p>
+            <p class="text-[15px] leading-relaxed mb-6">
+              Practical resources and real-world consulting for behavioral health professionals and organizations.
+            </p>
+            <div class="flex items-center gap-3">
+              <a href="https://www.instagram.com/grow2guide/" id="footer-ig" class="w-9 h-9 flex items-center justify-center rounded-full bg-white border border-[#0F766E]/10 text-[#0F766E] hover:bg-[#D8F0EA] hover:text-[#0B5F59] transition-colors" aria-label="Instagram" rel="noopener noreferrer" target="_blank"><iconify-icon icon="mdi:instagram" class="text-[29.16px]"></iconify-icon></a>
+              <a href="https://www.facebook.com/Grow2Guide" id="footer-fb" class="w-9 h-9 flex items-center justify-center rounded-full bg-white border border-[#0F766E]/10 text-[#0F766E] hover:bg-[#D8F0EA] hover:text-[#0B5F59] transition-colors" aria-label="Facebook" rel="noopener noreferrer" target="_blank"><iconify-icon icon="mdi:facebook" class="text-[29.16px]"></iconify-icon></a>
+            </div>
+          </div>
+
+          <!-- Services -->
+          <div class="lg:col-span-4">
+            <h4 class="text-[#12201C] font-semibold text-[12px] tracking-[0.06em] uppercase mb-5">Services</h4>
+            <ul class="space-y-3 text-[14px]">
+              <li><a href="/services/#tier-2" id="footer-tier2" class="hover:text-[#0F766E] transition-colors">Tier 2 · Already have something</a></li>
+              <li><a href="/services/#tier-3" id="footer-tier3" class="hover:text-[#0F766E] transition-colors">Tier 3 · Build it with you</a></li>
+            </ul>
+          </div>
+
+          <!-- Company -->
+          <div class="lg:col-span-3">
+            <h4 class="text-[#12201C] font-semibold text-[12px] tracking-[0.06em] uppercase mb-5">Company</h4>
+            <ul class="space-y-3 text-[14px]">
+              <li><a href="/#about" id="footer-about" class="hover:text-[#0F766E] transition-colors">About</a></li>
+              <li><a href="/consultation/" id="footer-contact" class="hover:text-[#0F766E] transition-colors">Contact</a></li>
+            </ul>
+          </div>
         </div>
-        <div class="flex flex-wrap justify-center gap-6 text-sm font-semibold">
-          <a href="/quiz/tier-1/" class="hover:text-[#0F766E]">Tier 1 quiz</a>
-          <a href="/quiz/tier-2/" class="hover:text-[#0F766E]">Tier 2 quiz</a>
-          <a href="/faq/" class="hover:text-[#0F766E]">FAQ</a>
-          <a href="/terms/" class="hover:text-[#0F766E]">Terms</a>
-          <a href="/privacy/" class="hover:text-[#0F766E]">Privacy</a>
-          <a href="#" data-g2g-mailto="" class="hover:text-[#0F766E]">Contact</a>
+
+        <div class="mt-14 pt-8 border-t border-[#0F766E]/10 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-4">
+          <p id="disclaimer" class="text-[12px] leading-relaxed text-[#5A6A63]/90 max-w-xl">
+            © 2026 Grow2Guide. Educational resources only — not legal advice. Licensure is not guaranteed.
+          </p>
+          <div class="flex flex-wrap items-center gap-5 text-[13px] font-semibold">
+            <a href="/faq/" id="footer-faq" class="hover:text-[#0F766E] transition-colors">FAQ</a>
+            <a href="/terms/" id="footer-terms" class="hover:text-[#0F766E] transition-colors">Terms</a>
+            <a href="/privacy/" id="footer-privacy" class="hover:text-[#0F766E] transition-colors">Privacy</a>
+            <a href="/refunds/" id="footer-refunds" class="hover:text-[#0F766E] transition-colors">Refunds</a>
+          </div>
         </div>
+        <p class="relative z-10 mt-6 text-center lg:text-left text-[12px] text-[#5A6A63]/70"><a href="https://www.kompweb.com" target="_blank" rel="noopener noreferrer" class="relative z-10 inline-flex items-center gap-2 hover:text-[#0F766E] transition-colors"><img src="/assets/kompweb-logo-small.png" alt="" width="24" height="24" class="relative z-10 block w-6 h-6 shrink-0 object-contain opacity-20" aria-hidden="true">KOMPWEB Studios</a></p>
       </div>
-      <p class="container-custom mt-10 pt-8 border-t border-[#0F766E]/5 text-[12px] text-center opacity-70">© 2026 Grow2Guide. All rights reserved. NV Clinician-Operator Expertise.</p>
-      <p class="container-custom relative z-10 mt-4 text-center text-[12px] text-[#5A6A63]/70"><a href="https://www.kompweb.com" target="_blank" rel="noopener noreferrer" class="relative z-10 inline-flex items-center justify-center gap-2 hover:text-[#0F766E] transition-colors"><img src="/assets/kompweb-logo-small.png" alt="" width="24" height="24" class="relative z-10 block w-6 h-6 shrink-0 object-contain opacity-20" aria-hidden="true">KOMPWEB Studios</a></p>
     </footer>
-  </div>
-  <script>
-  (function () {
-    const TOTAL = 3;
-    const names = ['Role & Pathway', 'Status & Scope', 'Final Details'];
-    let step = 0;
-    const form = document.getElementById('quiz-form');
-    const steps = [...form.querySelectorAll('.quiz-step')];
-    const bar = document.getElementById('progress-bar');
-    const stepLabel = document.getElementById('step-label');
-    const stepName = document.getElementById('step-name');
-    const btnBack = document.getElementById('btn-back');
-    const btnNext = document.getElementById('btn-next');
-    const btnNextLabel = document.getElementById('btn-next-label');
-
-    function showStep(i) {
-      steps.forEach((el, idx) => el.classList.toggle('active', idx === i));
-      step = i;
-      bar.style.width = ((i + 1) / TOTAL * 100) + '%';
-      stepLabel.textContent = 'Step ' + (i + 1) + ' of ' + TOTAL;
-      stepName.textContent = names[i];
-      btnBack.disabled = i === 0;
-      btnNextLabel.textContent = i === TOTAL - 1 ? 'Submit via email' : 'Continue';
-      form.querySelectorAll('.err').forEach(e => e.style.display = 'none');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function val(name) {
-      const el = form.querySelector('[name="' + name + '"]:checked');
-      return el ? el.value : '';
-    }
-    function text(name) {
-      const el = form.querySelector('[name="' + name + '"]');
-      return el ? el.value.trim() : '';
-    }
-
-    function validate() {
-      form.querySelectorAll('.err').forEach(e => e.style.display = 'none');
-      if (step === 0) {
-        if (!val('role')) { form.querySelector('[data-for=role]').style.display = 'block'; return false; }
-        if (!text('pathway')) { form.querySelector('[data-for=pathway]').style.display = 'block'; return false; }
-      }
-      if (step === 1) {
-        if (!val('stage')) { form.querySelector('[data-for=stage]').style.display = 'block'; return false; }
-        if (!val('scope')) { form.querySelector('[data-for=scope]').style.display = 'block'; return false; }
-      }
-      if (step === 2) {
-        const name = text('name');
-        const email = text('email');
-        if (!name || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-          form.querySelector('[data-for=contact]').style.display = 'block';
-          return false;
-        }
-      }
-      return true;
-    }
-
-    function submitMailto() {
-      const lines = [
-        'Tier 2 Leadership — Intake Quiz',
-        '',
-        'Role: ' + val('role'),
-        'Pathway: ' + text('pathway'),
-        'Stage: ' + val('stage'),
-        'Scope: ' + val('scope'),
-        '',
-        'Name: ' + text('name'),
-        'Organization: ' + (text('organization') || '(none)'),
-        'Email: ' + text('email'),
-        'Phone: ' + (text('phone') || '(none)'),
-        'Preferred window: ' + (text('window') || '(none)'),
-        'Message: ' + (text('message') || '(none)'),
-        '',
-        'Submitted from grow2guide.com/quiz/tier-2/'
-      ];
-      const subject = encodeURIComponent('Tier 2 Intake Quiz — ' + text('name'));
-      const body = encodeURIComponent(lines.join('\n'));
-      window.location.href = window.g2gMail.mailto('subject=' + subject + '&body=' + body);
-    }
-
-    btnBack.addEventListener('click', () => { if (step > 0) showStep(step - 1); });
-    btnNext.addEventListener('click', () => {
-      if (!validate()) return;
-      if (step < TOTAL - 1) showStep(step + 1);
-      else submitMailto();
-    });
-    form.addEventListener('submit', (e) => { e.preventDefault(); btnNext.click(); });
-    showStep(0);
-  })();
-  </script>
-
-  <script>
-  (function () {
-    var btn = document.getElementById('mobile-menu-btn');
-    var menu = document.getElementById('mobile-menu');
-    var iconOpen = document.getElementById('menu-icon-open');
-    var iconClose = document.getElementById('menu-icon-close');
-    if (!btn || !menu) return;
-    function setOpen(open) {
-      menu.classList.toggle('hidden', !open);
-      btn.setAttribute('aria-expanded', String(open));
-      if (iconOpen) iconOpen.classList.toggle('hidden', open);
-      if (iconClose) iconClose.classList.toggle('hidden', !open);
-    }
-    btn.addEventListener('click', function () {
-      setOpen(menu.classList.contains('hidden'));
-    });
-    menu.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () { setOpen(false); });
-    });
-  })();
-  </script>
-</body>
+  </div></body>
 </html>
