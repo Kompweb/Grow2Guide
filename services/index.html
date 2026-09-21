@@ -82,11 +82,11 @@
       text-align: center;
     }
     #nav-logo-link .g2g-wordmark,
-    #footer-logo-link .g2g-wordmark { font-size: clamp(28px, 4vw, 38px); }
+    #footer-logo-link .g2g-wordmark { font-size: clamp(32px, 4.6vw, 44px); }
     #nav-logo-link .g2g-tagline,
     #footer-logo-link .g2g-tagline { font-size: clamp(12px, 1.5vw, 14px); transform: scaleX(.9); }
     @media (max-width: 370px) {
-      #nav-logo-link .g2g-wordmark { font-size: 24px; }
+      #nav-logo-link .g2g-wordmark { font-size: 28px; }
       #nav-logo-link .g2g-tagline { font-size: 12px; }
       #nav-logo-link .g2g-logo-mark { width: 60px; height: 60px; }
       #nav-logo-link { gap: 8px; }
@@ -211,17 +211,24 @@
       border: 1px solid rgba(15,118,110,.15); border-radius: 9999px;
     }
     @media (min-width: 768px) { .tier-divider { padding: 1.5rem 0; } }
+    .roadmap-steps { display: flex; flex-direction: column; align-items: flex-start; gap: .5rem; }
+    @media (min-width: 640px) {
+      .roadmap-steps { flex-direction: row; flex-wrap: wrap; align-items: center; gap: .5rem .35rem; }
+    }
     .roadmap-step {
-      display: inline-flex; align-items: center; gap: .5rem;
+      display: inline-flex; align-items: center; gap: .4rem;
       background: #fff; border: 1px solid rgba(15,118,110,.15); border-radius: 9999px;
-      padding: .35rem .9rem .35rem .35rem; font-weight: 700; font-size: .8rem; color: #12201C;
+      padding: .3rem .75rem .3rem .3rem; font-weight: 700; font-size: .8rem; color: #12201C;
     }
     .roadmap-num {
       display: flex; align-items: center; justify-content: center; flex: 0 0 auto;
       width: 1.4rem; height: 1.4rem; border-radius: 9999px;
       background: #0F766E; color: #fff; font-size: .7rem; font-weight: 700;
     }
-    .roadmap-arrow { color: rgba(15,118,110,.35); font-size: 1rem; flex: 0 0 auto; margin: 0 .35rem; }
+    .roadmap-arrow { display: none; color: rgba(15,118,110,.35); font-size: 1rem; flex: 0 0 auto; }
+    @media (min-width: 640px) {
+      .roadmap-arrow { display: inline-flex; margin: 0 .1rem; }
+    }
     .sticky-consult {
       position: fixed; bottom: 0; left: 0; right: 0; z-index: 45;
       background: rgba(255,255,255,.95); backdrop-filter: blur(12px);
@@ -304,7 +311,7 @@
           <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[14px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Two ways to engage</span>
           <h1 class="text-[3.5rem] sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-[1.1]"><span class="hero-path-text">Strengthen</span> what you have, or <span class="hero-path-text">build</span> what you don't.</h1>
           <p class="text-[#5A6A63] text-lg leading-[1.6]">
-            Grow2Guide offers two consulting tiers, depending on where your organization is today: evaluating what already exists, or building the infrastructure from the ground up.
+            <a href="/" class="font-bold text-[#0F766E] hover:underline">Grow2Guide</a> offers two consulting tiers, depending on where your organization is today: evaluating what already exists, or building the infrastructure from the ground up.
           </p>
         </div>
 
@@ -387,12 +394,12 @@
             Our assessments may consider applicable <strong class="text-[#12201C]">state licensing, health department requirements, adult and aging services, CARF, The Joint Commission, regulatory audits, payer reviews,</strong> and other oversight requirements.
           </p>
 
-          <div class="bg-[#F5F8F4] rounded-[20px] p-8 mb-8">
+          <div class="bg-[#F5F8F4] rounded-[20px] px-4 py-6 sm:p-8 mb-8">
             <h3 class="text-sm font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-5">What You Receive</h3>
             <p class="text-[#5A6A63] text-base leading-[1.6] mb-6">
               A <strong class="text-[#12201C]">customized evaluation and prioritized roadmap</strong>, staged step by step:
             </p>
-            <div class="flex flex-wrap items-center gap-y-3">
+            <div class="roadmap-steps">
               <span class="roadmap-step"><span class="roadmap-num">1</span>What you have</span>
               <iconify-icon icon="lucide:chevron-right" class="roadmap-arrow"></iconify-icon>
               <span class="roadmap-step"><span class="roadmap-num">2</span>What's working</span>
@@ -638,7 +645,7 @@
               <a href="https://buy.stripe.com/cNibJ16HKgL75XgaSm4Ja02" id="buy-guide-btn" class="btn-active cta-gloss border-2 border-[#4b3021]/30 text-[#4b3021] w-full h-[56px] flex items-center justify-center rounded-full font-bold text-base transition-all">
                 Buy Guide — $67
               </a>
-              <p class="mt-3 text-center text-xs text-[#5A6A63]">Pay securely — PDF emailed after purchase.</p>
+              <p class="mt-3 text-center text-xs text-[#5A6A63]">Pay securely — unlocks instantly, plus a copy by email.</p>
             </div>
 
             <!-- Product 2 -->
@@ -666,7 +673,7 @@
               <a href="https://buy.stripe.com/bJecN57LO0M9gBU9Oi4Ja01" id="buy-checklist-btn" class="btn-active cta-gloss border-2 border-[#4b3021]/30 text-[#4b3021] w-full h-[56px] flex items-center justify-center rounded-full font-bold text-base transition-all">
                 Buy Checklist — $67
               </a>
-              <p class="mt-3 text-center text-xs text-[#5A6A63]">Pay securely — PDF emailed after purchase.</p>
+              <p class="mt-3 text-center text-xs text-[#5A6A63]">Pay securely — unlocks instantly, plus a copy by email.</p>
             </div>
           </div>
         </div>
@@ -686,7 +693,7 @@
               <a href="https://buy.stripe.com/6oU4gz3vyeCZ0CW2lQ4Ja00" id="bundle-cta" class="btn-active cta-gloss border-2 border-[#4b3021]/30 text-[#4b3021] h-[64px] px-6 sm:px-14 flex items-center justify-center rounded-full font-bold text-xl transition-all">
                 Buy Bundle — $99
               </a>
-              <p class="mt-3 text-center text-xs text-[#5A6A63]">Pay securely — PDF emailed after purchase.</p>
+              <p class="mt-3 text-center text-xs text-[#5A6A63]">Pay securely — unlocks instantly, plus a copy by email.</p>
             </div>
           </div>
         </div>

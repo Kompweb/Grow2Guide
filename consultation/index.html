@@ -19,6 +19,7 @@
   <script src="/assets/mail-protect.js" defer></script>
   <script src="/assets/mobile-menu.js" defer></script>
   <script src="/assets/nav-scroll.js" defer></script>
+  <script src="/assets/lead-storage.js" defer></script>
   <script src="/assets/consultation.js" defer></script>
   <style>
 
@@ -46,11 +47,11 @@
       text-align: center;
     }
     #nav-logo-link .g2g-wordmark,
-    #footer-logo-link .g2g-wordmark { font-size: clamp(28px, 4vw, 38px); }
+    #footer-logo-link .g2g-wordmark { font-size: clamp(32px, 4.6vw, 44px); }
     #nav-logo-link .g2g-tagline,
     #footer-logo-link .g2g-tagline { font-size: clamp(12px, 1.5vw, 14px); transform: scaleX(.9); }
     @media (max-width: 370px) {
-      #nav-logo-link .g2g-wordmark { font-size: 24px; }
+      #nav-logo-link .g2g-wordmark { font-size: 28px; }
       #nav-logo-link .g2g-tagline { font-size: 12px; }
       #nav-logo-link .g2g-logo-mark { width: 60px; height: 60px; }
       #nav-logo-link { gap: 8px; }
@@ -185,7 +186,7 @@
           <!-- Q2 -->
           <div>
             <label for="contact-name" class="req block text-sm font-bold text-[#12201C] mb-3">2. Contact Name &amp; Title</label>
-            <input class="field" type="text" id="contact-name" name="contact-name" placeholder="e.g., Jane Doe, Program Director" required  aria-describedby="err-contact-name"/>
+            <input class="field" type="text" id="contact-name" name="contact-name" placeholder="e.g., Jane Doe, Program Director" required  aria-describedby="err-contact-name" data-g2g-save="name"/>
             <p id="err-contact-name" class="err" role="alert" data-for="contact-name">Please enter your name and title.</p>
           </div>
 
@@ -193,7 +194,7 @@
           <div class="grid sm:grid-cols-2 gap-5">
             <div>
               <label for="email" class="req block text-sm font-bold text-[#12201C] mb-3">3a. Email</label>
-              <input class="field" type="email" id="email" name="email" placeholder="jane@agency.org" required autocomplete="email" aria-describedby="err-email" />
+              <input class="field" type="email" id="email" name="email" placeholder="jane@agency.org" required autocomplete="email" aria-describedby="err-email" data-g2g-save="email" />
               <p class="err" id="err-email" data-for="email" role="alert">Please enter a valid email address.</p>
             </div>
             <div>
