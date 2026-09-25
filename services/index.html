@@ -118,6 +118,45 @@
     .glass-nav { background: rgba(245,248,244,.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(15,118,110,.08); }
     .card-shadow { box-shadow: 0 16px 40px rgba(18,32,28,.08); }
     .container-custom { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    @media (max-width: 639px) { main .container-custom { padding-left: 16px; padding-right: 16px; } }
+    .has-stamp { position: relative; isolation: isolate; }
+    .has-stamp::after {
+      content: ""; position: absolute; top: 28px; right: 28px; width: 200px; height: 200px;
+      background: var(--stamp) center / contain no-repeat; opacity: 0.16; transform: rotate(-9deg);
+      pointer-events: none; z-index: -1;
+    }
+    @media (max-width: 639px) { .has-stamp::after { top: 14px; right: 14px; width: 110px; height: 110px; } }
+    .stamp-discovery { --stamp: url('/assets/icons/icon-discovery.webp'); }
+    .stamp-guidance { --stamp: url('/assets/icons/icon-guidance.webp'); }
+    .stamp-knowledge { --stamp: url('/assets/icons/icon-knowledge.webp'); }
+    .stamp-wisdom { --stamp: url('/assets/icons/icon-wisdom.webp'); }
+    .stamp-corner { overflow: hidden; }
+    .stamp-corner::after { top: -36px; right: -36px; width: 150px; height: 150px; opacity: 0.16; transform: none; }
+    @media (max-width: 639px) { .stamp-corner::after { top: -28px; right: -28px; width: 110px; height: 110px; } }
+    .tier-more > summary { list-style: none; cursor: pointer; }
+    .tier-more > summary::-webkit-details-marker { display: none; }
+    .tier-more-toggle {
+      display: flex; align-items: center; justify-content: center; gap: .5rem; min-height: 52px; margin-bottom: 1.5rem;
+      border: 2px solid rgba(15,118,110,.3); border-radius: 9999px; color: #0F766E; font-weight: 700; font-size: 1rem; background: rgba(255,255,255,.6);
+    }
+    .tier-more-toggle:focus-visible { outline: 3px solid #0F766E; outline-offset: 3px; }
+    .tier-more-toggle .when-open, .tier-more[open] .tier-more-toggle .when-closed { display: none; }
+    .tier-more[open] .tier-more-toggle .when-open { display: inline; }
+    .tier-chevron { transition: transform .2s ease; }
+    .tier-more[open] .tier-chevron { transform: rotate(180deg); }
+    @media (min-width: 768px) { .tier-more > summary { display: none; } }
+    .path-icon {
+      display: block; width: 112px; height: 112px; margin: 0 auto 20px; border-radius: 9999px;
+      box-shadow: 0 10px 24px rgba(18,32,28,.14), 0 0 0 4px #fff, 0 0 0 5px rgba(15,118,110,.18);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .path-icon img { display: block; width: 100%; height: 100%; border-radius: 9999px; }
+    .path-icon:hover, .explore-tile:hover .path-icon, a.group:hover .path-icon {
+      transform: translateY(-4px) scale(1.06);
+      box-shadow: 0 16px 32px rgba(18,32,28,.2), 0 0 0 4px #fff, 0 0 0 5px rgba(15,118,110,.4);
+    }
+    @media (max-width: 639px) { .path-icon { width: 80px; height: 80px; margin-bottom: 14px; } }
+    @media (prefers-reduced-motion: reduce) { .path-icon, .path-icon:hover, .explore-tile:hover .path-icon, a.group:hover .path-icon { transition: none; transform: none; } }
     .nav-link { position: relative; }
     .nav-link::after { content:''; position:absolute; bottom:-6px; left:0; width:0; height:2px; background:var(--accent-teal); transition:width .3s; }
     .nav-link:hover::after { width:100%; }
@@ -193,17 +232,6 @@
       }
       .services-subnav a.subnav-contact:hover { color: #3a2519; background: rgba(75,48,33,.08); }
     }
-    .path-leaf-icon {
-      display: block;
-      width: 56px;
-      height: 56px;
-      flex: 0 0 56px;
-      background-image: url('/assets/path-leaf-icons.png');
-      background-repeat: no-repeat;
-      background-size: 300% 100%;
-    }
-    .path-leaf-icon--strengthen { background-position: center center; }
-    .path-leaf-icon--build { background-position: right center; }
     .tier-divider { display: flex; flex-direction: column; align-items: center; gap: .5rem; padding: .25rem 0; }
     .tier-divider-line { width: 1px; flex: 1; min-height: 1.5rem; background: rgba(15,118,110,.18); }
     .tier-divider-or {
@@ -230,17 +258,28 @@
     @media (min-width: 640px) {
       .roadmap-arrow { display: inline-flex; margin: 0 .1rem; }
     }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body.sticky-consult-on .g2g-wa { bottom: calc(84px + env(safe-area-inset-bottom, 0px)) !important; }
     .sticky-consult {
       position: fixed; bottom: 0; left: 0; right: 0; z-index: 45;
-      background: rgba(255,255,255,.95); backdrop-filter: blur(12px);
+      background: rgba(255,255,255,.96); backdrop-filter: blur(12px);
       border-top: 1px solid rgba(15,118,110,.12);
-      padding: .75rem 1rem calc(.75rem + env(safe-area-inset-bottom));
+      padding: .6rem 1rem calc(.6rem + env(safe-area-inset-bottom));
       box-shadow: 0 -8px 24px rgba(18,32,28,.08);
+      transform: translateY(110%); visibility: hidden;
+      transition: transform .3s ease, visibility 0s linear .3s;
     }
+    .sticky-consult.is-visible { transform: translateY(0); visibility: visible; transition: transform .3s ease; }
     .sticky-consult-inner {
-      max-width: 1120px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      max-width: 1120px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: .75rem;
     }
-    body { padding-bottom: 88px; }
+    .sticky-consult-close {
+      flex: 0 0 auto; width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 9999px; color: #5A6A63; background: transparent; border: 0; cursor: pointer; font-size: 1.25rem;
+    }
+    .sticky-consult-close:hover { background: rgba(15,118,110,.08); color: #12201C; }
+    @media (prefers-reduced-motion: reduce) { .sticky-consult, .sticky-consult.is-visible { transition: none; } }
     .tier-summary-grid { display: grid; gap: 1rem; align-items: stretch; }
     @media (min-width: 768px) { .tier-summary-grid { grid-template-columns: 1fr auto 1fr; gap: 1.5rem; } }
   </style>
@@ -319,15 +358,15 @@
     </div>
 
     <main id="main" class="flex-1 pt-28 pb-24">
-      <div class="container-custom max-w-5xl">
+      <div class="container-custom">
         <nav class="flex items-center gap-2 text-sm font-medium text-[#5A6A63] mb-10">
           <a href="/" class="hover:text-[#0F766E]">Home</a>
           <span class="opacity-40">/</span>
           <span class="text-[#12201C]">Services</span>
         </nav>
-        <div class="max-w-2xl">
+        <div class="max-w-3xl">
           <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[14px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Two ways to engage</span>
-          <h1 class="text-[3.5rem] sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-[1.1]"><span class="hero-path-text">Strengthen</span> what you have, or <span class="hero-path-text">build</span> what you don't.</h1>
+          <h1 class="text-[2.5rem] sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-[1.1]"><span class="hero-path-text">Strengthen</span> what you have, or <span class="hero-path-text">build</span> what you don't.</h1>
           <p class="text-[#5A6A63] text-lg leading-[1.6]">
             <a href="/" class="font-bold text-[#0F766E] hover:underline">Grow2Guide</a> offers two consulting tiers, depending on where your organization is today: evaluating what already exists, or building the infrastructure from the ground up.
           </p>
@@ -335,12 +374,12 @@
 
         <!-- Tier overview cards -->
         <div class="tier-summary-grid mt-12">
-          <a href="#tier-2" class="group bg-white rounded-[24px] p-7 border border-[#0F766E]/10 card-shadow hover:border-[#0F766E]/25 transition-colors flex flex-col">
-            <span class="path-leaf-icon path-leaf-icon--strengthen mb-5" role="img" aria-label="Two leaves"></span>
+          <a href="#tier-2" class="text-center group bg-white rounded-[24px] p-5 sm:p-7 border border-[#0F766E]/10 card-shadow hover:border-[#0F766E]/25 transition-colors flex flex-col">
+            <span class="path-icon"><img src="/assets/icons/icon-discovery.webp" alt="" width="112" height="112" loading="lazy" /></span>
             <span class="text-[14px] font-bold text-[#0F766E] tracking-[0.06em] uppercase">Tier 2 &middot; For Organizations</span>
             <h2 class="service-title text-2xl sm:text-3xl text-[#12201C] mt-2 mb-2">Organizational Gap Assessment</h2>
             <p class="text-[#5A6A63] text-[15px] leading-relaxed mb-6 flex-1">You already have policies and systems—maybe you're even halfway to licensing or accreditation, but feel stuck. We assess what works, what's missing, and what to prioritize next.</p>
-            <span class="inline-flex items-center gap-1.5 text-sm font-bold text-[#0F766E]">
+            <span class="inline-flex items-center justify-center gap-1.5 text-sm font-bold text-[#0F766E]">
               View Tier 2 details
               <iconify-icon icon="lucide:chevron-down" class="text-base transition-transform group-hover:translate-y-0.5"></iconify-icon>
             </span>
@@ -350,12 +389,12 @@
             <span class="tier-divider-or">or</span>
             <span class="tier-divider-line"></span>
           </div>
-          <a href="#tier-3" class="group bg-[#EAF3EF] rounded-[24px] p-7 border border-[#0F766E]/10 card-shadow hover:border-[#0F766E]/25 transition-colors flex flex-col">
-            <span class="path-leaf-icon path-leaf-icon--build mb-5" role="img" aria-label="Three leaves"></span>
+          <a href="#tier-3" class="text-center group bg-[#EAF3EF] rounded-[24px] p-5 sm:p-7 border border-[#0F766E]/10 card-shadow hover:border-[#0F766E]/25 transition-colors flex flex-col">
+            <span class="path-icon"><img src="/assets/icons/icon-guidance.webp" alt="" width="112" height="112" loading="lazy" /></span>
             <span class="text-[14px] font-bold text-[#0F766E] tracking-[0.06em] uppercase">Tier 3 &middot; For Organizations</span>
             <h2 class="service-title text-2xl sm:text-3xl text-[#12201C] mt-2 mb-2">Become &amp; Stay Ready</h2>
             <p class="text-[#5A6A63] text-[15px] leading-relaxed mb-6 flex-1">Don't have the infrastructure yet? We build it with you—and help your team put it into practice.</p>
-            <span class="inline-flex items-center gap-1.5 text-sm font-bold text-[#0F766E]">
+            <span class="inline-flex items-center justify-center gap-1.5 text-sm font-bold text-[#0F766E]">
               View Tier 3 details
               <iconify-icon icon="lucide:chevron-down" class="text-base transition-transform group-hover:translate-y-0.5"></iconify-icon>
             </span>
@@ -364,11 +403,17 @@
       </div>
 
 <!-- TIER 2 -->
-      <div id="tier-2" class="container-custom max-w-5xl mt-20 scroll-mt-32 scroll-mt-40">
-        <div class="bg-white rounded-[32px] p-6 sm:p-10 lg:p-16 card-shadow border border-[#0F766E]/5">
+      <div id="tier-2" class="container-custom mt-14 sm:mt-20 scroll-mt-40">
+        <div class="has-stamp stamp-discovery bg-white rounded-[24px] sm:rounded-[32px] p-4 sm:p-10 lg:p-12 card-shadow border border-[#0F766E]/5">
           <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[14px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Tier 2</span>
-          <h2 class="service-title text-4xl lg:text-5xl mb-4 text-[#12201C]">Organizational Gap Assessment</h2>
-          <p class="service-tagline text-[#0F766E] text-base sm:text-lg leading-relaxed mb-8">You Have the Pieces. We'll Find What's Missing.</p>
+          <h2 class="service-title text-3xl sm:text-4xl lg:text-5xl mb-4 text-[#12201C]">Organizational Gap Assessment</h2>
+          <p class="service-tagline text-[#0F766E] text-base sm:text-lg leading-relaxed mb-6">You Have the Pieces. We'll Find What's Missing.</p>
+          <div class="mb-8">
+            <a href="/consultation/" data-consult-cta class="btn-active flex sm:inline-flex w-full sm:w-auto min-h-[56px] px-6 sm:px-8 py-3 items-center justify-center gap-3 rounded-full bg-[#4b3021] text-white text-center font-semibold text-base leading-snug shadow-md shadow-[#4b3021]/10 hover:bg-[#3a2519] transition-colors">
+              <span>Schedule a Consultation</span>
+              <iconify-icon icon="lucide:arrow-right" class="shrink-0 text-xl" aria-hidden="true"></iconify-icon>
+            </a>
+          </div>
           <p class="text-[#5A6A63] text-base leading-[1.6] mb-3">
             You provide your existing policies, procedures, forms, workflows, and organizational materials. <strong class="text-[#12201C]">We assess what you have—and how well it actually works in practice.</strong>
           </p>
@@ -376,6 +421,8 @@
             Because being compliant on paper isn't the same as being compliant in practice. Halfway to licensing or accreditation but feel stuck? We've got you.
           </p>
 
+          <details class="tier-more" open>
+            <summary class="tier-more-toggle"><span class="when-closed">See everything included</span><span class="when-open">Hide details</span><iconify-icon icon="lucide:chevron-down" class="tier-chevron text-xl" aria-hidden="true"></iconify-icon></summary>
           <h3 class="text-sm font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-6">We Assess</h3>
           <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-4 mb-10">
             <li class="flex items-start gap-3 text-base text-[#5A6A63]">
@@ -412,7 +459,7 @@
             Our assessments may consider applicable <strong class="text-[#12201C]">state licensing, health department requirements, adult and aging services, CARF, The Joint Commission, regulatory audits, payer reviews,</strong> and other oversight requirements.
           </p>
 
-          <div class="bg-[#F5F8F4] rounded-[20px] px-4 py-6 sm:p-8 mb-8">
+          <div class="bg-[#F5F8F4] rounded-[20px] p-4 sm:p-8 mb-8">
             <h3 class="text-sm font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-5">What You Receive</h3>
             <p class="text-[#5A6A63] text-base leading-[1.6] mb-6">
               A <strong class="text-[#12201C]">customized evaluation and prioritized roadmap</strong>, staged step by step:
@@ -449,17 +496,18 @@
             <p class="text-[#5A6A63] text-xs italic mt-4">Ask us for full package details and timelines at <a href="/consultation/" class="underline hover:text-[#0F766E]">your consultation</a>.</p>
           </div>
 
-          <section aria-labelledby="assessment-next-step" class="bg-[#EAF3EF] border border-[#0F766E]/15 rounded-[24px] p-5 sm:p-8 mb-6">
+          <section aria-labelledby="assessment-next-step" class="bg-[#EAF3EF] border border-[#0F766E]/15 rounded-[20px] sm:rounded-[24px] p-4 sm:p-8 mb-6">
             <h3 id="assessment-next-step" class="service-title text-2xl sm:text-3xl leading-[1.25] text-[#12201C] mb-4">
               <span class="block">You provide the materials.</span>
               <span class="block text-[#0F766E] mt-1">We provide the clarity.</span>
             </h3>
             <p class="text-[#5A6A63] text-base leading-relaxed max-w-lg mb-6">Before someone else finds the gaps—find them first.</p>
-            <a href="/consultation/" class="btn-active flex sm:inline-flex w-full sm:w-auto min-h-[56px] px-4 sm:px-8 py-3 items-center justify-center gap-3 rounded-full bg-[#4b3021] text-white text-center font-semibold text-base leading-snug shadow-md shadow-[#4b3021]/10 hover:bg-[#3a2519] transition-colors">
+            <a href="/consultation/" data-consult-cta class="btn-active flex sm:inline-flex w-full sm:w-auto min-h-[56px] px-4 sm:px-8 py-3 items-center justify-center gap-3 rounded-full bg-[#4b3021] text-white text-center font-semibold text-base leading-snug shadow-md shadow-[#4b3021]/10 hover:bg-[#3a2519] transition-colors">
               <span>Schedule a Consultation</span>
               <iconify-icon icon="lucide:arrow-right" class="shrink-0 text-xl" aria-hidden="true"></iconify-icon>
             </a>
           </section>
+          </details>
           <div class="bg-[#F7FBF9] border border-[#0F766E]/10 rounded-[16px] px-5 py-4 space-y-2 text-sm text-[#5A6A63] leading-relaxed">
             <p><strong class="text-[#12201C]">Please note:</strong> Assessment scope varies by organization, program, jurisdiction, and applicable requirements. An assessment does <strong class="text-[#12201C]">not guarantee</strong> licensure, accreditation, certification, or audit outcomes.</p>
             <p>Grow2Guide provides educational consulting and implementation support — <strong class="text-[#12201C]">not legal advice</strong>.</p>
@@ -468,11 +516,17 @@
       </div>
 
       <!-- TIER 3 -->
-      <div id="tier-3" class="container-custom max-w-5xl mt-12 scroll-mt-32 scroll-mt-40">
-        <div class="bg-[#EAF3EF] rounded-[32px] p-10 lg:p-16 card-shadow border border-[#0F766E]/10">
+      <div id="tier-3" class="container-custom mt-8 sm:mt-12 scroll-mt-40">
+        <div class="has-stamp stamp-guidance bg-[#EAF3EF] rounded-[24px] sm:rounded-[32px] p-4 sm:p-10 lg:p-12 card-shadow border border-[#0F766E]/10">
           <span class="bg-white text-[#0F766E] px-3.5 py-1.5 rounded-full text-[14px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Tier 3</span>
-          <h2 class="service-title text-4xl lg:text-5xl mb-4 text-[#12201C]">Become & Stay Ready</h2>
-          <p class="text-[#0F766E] font-bold text-lg mb-8">Don't Have the Infrastructure? We'll Build It—and Show You How to Use It.</p>
+          <h2 class="service-title text-3xl sm:text-4xl lg:text-5xl mb-4 text-[#12201C]">Become & Stay Ready</h2>
+          <p class="text-[#0F766E] font-bold text-lg mb-6">Don't Have the Infrastructure? We'll Build It—and Show You How to Use It.</p>
+          <div class="mb-8">
+            <a href="/consultation/" data-consult-cta class="btn-active flex sm:inline-flex w-full sm:w-auto min-h-[56px] px-6 sm:px-8 py-3 items-center justify-center gap-3 rounded-full bg-[#4b3021] text-white text-center font-semibold text-base leading-snug shadow-md shadow-[#4b3021]/10 hover:bg-[#3a2519] transition-colors">
+              <span>Schedule a Consultation</span>
+              <iconify-icon icon="lucide:arrow-right" class="shrink-0 text-xl" aria-hidden="true"></iconify-icon>
+            </a>
+          </div>
           <p class="text-[#5A6A63] text-base leading-[1.6] mb-3">
             Starting or rebuilding a behavioral health or aging-services organization requires more than policies on paper.
           </p>
@@ -480,51 +534,53 @@
             <strong class="text-[#12201C]">We build the infrastructure—and help you put it into practice.</strong>
           </p>
 
+          <details class="tier-more" open>
+            <summary class="tier-more-toggle"><span class="when-closed">See everything included</span><span class="when-open">Hide details</span><iconify-icon icon="lucide:chevron-down" class="tier-chevron text-xl" aria-hidden="true"></iconify-icon></summary>
           <h3 class="text-sm font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-6">We Build</h3>
-          <ul class="space-y-4 mb-10">
-            <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+          <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-4 mb-10">
+            <li class="flex items-start gap-3 text-base text-[#5A6A63]">
               <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg shrink-0"></iconify-icon>
               <span>Licensing and accreditation readiness, from the ground up</span>
             </li>
-            <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+            <li class="flex items-start gap-3 text-base text-[#5A6A63]">
               <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg shrink-0"></iconify-icon>
               <span>Policies & procedures</span>
             </li>
-            <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+            <li class="flex items-start gap-3 text-base text-[#5A6A63]">
               <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg shrink-0"></iconify-icon>
               <span>Program manuals</span>
             </li>
-            <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+            <li class="flex items-start gap-3 text-base text-[#5A6A63]">
               <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg shrink-0"></iconify-icon>
               <span>Inpatient and outpatient programs, across different levels of care</span>
             </li>
-            <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+            <li class="flex items-start gap-3 text-base text-[#5A6A63]">
               <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg shrink-0"></iconify-icon>
               <span>Forms & documentation</span>
             </li>
-            <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+            <li class="flex items-start gap-3 text-base text-[#5A6A63]">
               <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg shrink-0"></iconify-icon>
               <span>Clinical & operational workflows</span>
             </li>
-            <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+            <li class="flex items-start gap-3 text-base text-[#5A6A63]">
               <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg shrink-0"></iconify-icon>
               <span>QA/QI systems</span>
             </li>
-            <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+            <li class="flex items-start gap-3 text-base text-[#5A6A63]">
               <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg shrink-0"></iconify-icon>
               <span>Compliance & risk-management systems</span>
             </li>
-            <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+            <li class="flex items-start gap-3 text-base text-[#5A6A63]">
               <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg shrink-0"></iconify-icon>
               <span>Staff training & competency structures</span>
             </li>
-            <li class="flex items-start gap-4 text-base text-[#5A6A63]">
+            <li class="flex items-start gap-3 text-base text-[#5A6A63]">
               <iconify-icon icon="lucide:circle-check" class="text-[#0F766E] mt-0.5 text-lg shrink-0"></iconify-icon>
               <span>Audit and monitoring systems</span>
             </li>
           </ul>
 
-          <div class="bg-white rounded-[20px] p-8 mb-10">
+          <div class="bg-white rounded-[20px] p-4 sm:p-8 mb-10">
             <h3 class="text-sm font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-5">We Implement</h3>
             <p class="text-[#5A6A63] text-base leading-[1.6] mb-4">We don't simply hand you a manual.</p>
             <p class="text-[#5A6A63] text-base leading-[1.6]">
@@ -536,9 +592,9 @@
             Our work can support readiness for applicable <strong class="text-[#12201C]">state licensing, health department requirements, adult and aging services, CARF, The Joint Commission, regulatory audits, payer reviews,</strong> and other oversight requirements.
           </p>
 
-          <div class="bg-white rounded-[20px] p-8 mb-10">
+          <div class="bg-white rounded-[20px] p-4 sm:p-8 mb-10">
             <h3 class="text-sm font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-5">What This Can Look Like</h3>
-            <div class="space-y-5">
+            <div class="grid md:grid-cols-2 gap-x-10 gap-y-8">
               <div>
                 <p class="text-[14px] font-bold text-[#0F766E] tracking-[0.06em] uppercase mb-2">Licensing</p>
                 <p class="text-[#12201C] font-bold text-base mb-1">Nevada License Ready</p>
@@ -578,9 +634,10 @@
           <p class="text-[#5A6A63] text-base leading-[1.6] mb-2">Build the right systems. Know how to use them. Keep them working.</p>
           <p class="text-[#12201C] font-bold text-base leading-[1.6] mb-10">You build the vision. We build the infrastructure.</p>
 
-          <a href="/consultation/" class="btn-active inline-flex bg-[#4b3021] text-white h-[56px] px-10 items-center justify-center rounded-full font-bold text-base shadow-lg shadow-[#4b3021]/20 hover:bg-[#3a2519] transition-all mb-6">
+          <a href="/consultation/" data-consult-cta class="btn-active flex w-full sm:inline-flex sm:w-auto bg-[#4b3021] text-white h-[56px] px-6 sm:px-10 items-center justify-center rounded-full font-bold text-base shadow-lg shadow-[#4b3021]/20 hover:bg-[#3a2519] transition-all mb-6">
             Schedule a Consultation
           </a>
+          </details>
           <div class="bg-white/80 border border-[#0F766E]/10 rounded-[16px] px-5 py-4 space-y-2 text-sm text-[#5A6A63] leading-relaxed">
             <p><strong class="text-[#12201C]">Please note:</strong> Services are customized based on your organization, program type, jurisdiction, and applicable requirements. Readiness support does <strong class="text-[#12201C]">not guarantee</strong> licensure, accreditation, certification, or audit outcomes.</p>
             <p>Grow2Guide provides educational consulting and implementation support — <strong class="text-[#12201C]">not legal advice</strong>.</p>
@@ -589,26 +646,34 @@
       </div>
 
       <!-- Getting Started -->
-      <div class="container-custom max-w-3xl mt-16">
+      <div class="container-custom max-w-4xl mt-12 sm:mt-16">
         <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[14px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Getting started</span>
-        <h2 class="text-3xl lg:text-4xl font-bold tracking-tight text-[#12201C] mb-10">Three steps to get started</h2>
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#12201C] mb-6 sm:mb-10">Three steps to get started</h2>
         <div class="space-y-4">
-          <div class="flex gap-5 bg-white rounded-[16px] p-6 card-shadow border border-[#0F766E]/5">
+          <div class="flex gap-4 bg-white rounded-[16px] p-5 sm:p-6 card-shadow border border-[#0F766E]/5">
             <span class="shrink-0 w-9 h-9 rounded-full bg-[#0F766E] text-white text-sm font-bold flex items-center justify-center">1</span>
             <div><p class="font-bold text-[#12201C] mb-1">Explore the services</p><p class="text-[#5A6A63] text-[15px] leading-relaxed">Review Tier 2 and Tier 3 above to see which matches where your organization is today.</p></div>
           </div>
-          <div class="flex gap-5 bg-white rounded-[16px] p-6 card-shadow border border-[#0F766E]/5">
+          <div class="flex gap-4 bg-white rounded-[16px] p-5 sm:p-6 card-shadow border border-[#0F766E]/5">
             <span class="shrink-0 w-9 h-9 rounded-full bg-[#0F766E] text-white text-sm font-bold flex items-center justify-center">2</span>
             <div><p class="font-bold text-[#12201C] mb-1">Schedule a consultation</p><p class="text-[#5A6A63] text-[15px] leading-relaxed">A conversation to understand your program, timeline, and goals.</p></div>
           </div>
-          <div class="flex gap-5 bg-white rounded-[16px] p-6 card-shadow border border-[#0F766E]/5">
+          <div class="flex gap-4 bg-white rounded-[16px] p-5 sm:p-6 card-shadow border border-[#0F766E]/5">
             <span class="shrink-0 w-9 h-9 rounded-full bg-[#0F766E] text-white text-sm font-bold flex items-center justify-center">3</span>
             <div><p class="font-bold text-[#12201C] mb-1">Make a decision, together</p><p class="text-[#5A6A63] text-[15px] leading-relaxed">We'll figure out together whether—and how—we're the right fit to work together.</p></div>
           </div>
         </div>
       </div>
 
-      <div class="container-custom max-w-3xl mt-16">
+      <div class="container-custom max-w-4xl mt-12 sm:mt-16 text-center">
+        <a href="/consultation/" id="services-journey" class="explore-tile group inline-block">
+          <span class="path-icon"><img src="/assets/icons/icon-journey.webp" alt="" width="112" height="112" loading="lazy" /></span>
+          <span class="block font-bold text-xl text-[#4b3021] mb-1">Start your journey</span>
+          <span class="block text-[#5A6A63] text-[15px] leading-snug">Request a consultation <span aria-hidden="true">&rarr;</span></span>
+        </a>
+      </div>
+
+      <div class="container-custom max-w-4xl mt-12 sm:mt-16">
         <h3 class="text-lg font-bold text-[#12201C] mb-3">Clinical insight meets operational systems</h3>
         <p class="text-[#5A6A63] text-base leading-[1.6] mb-10">
           We bridge clinical services and organizational operations: policy development, compliance, quality assurance, program design, implementation, and staff learning—so requirements live in day-to-day practice, not only in a binder.
@@ -616,21 +681,21 @@
 
       </div>
 
-      <div class="container-custom max-w-3xl mt-16 text-center">
+      <div class="container-custom max-w-4xl mt-12 sm:mt-16 text-center">
         <p class="text-[#5A6A63] text-lg mb-3">Not sure which tier fits?</p>
         <p class="text-[#12201C] font-bold text-xl mb-10">Start with where you are. We'll help you figure out what's next.</p>
-        <a href="/consultation/" class="btn-active inline-flex bg-white border border-[#4b3021]/30 text-[#4b3021] h-[56px] px-10 items-center justify-center rounded-full font-bold text-base hover:bg-[rgba(75,48,33,0.12)] transition-all">
+        <a href="/consultation/" data-consult-cta class="btn-active flex w-full sm:inline-flex sm:w-auto bg-white border border-[#4b3021]/30 text-[#4b3021] h-[56px] px-6 sm:px-10 items-center justify-center rounded-full font-bold text-base hover:bg-[rgba(75,48,33,0.12)] transition-all">
           Request a Consultation
         </a>
       </div>
 
       <!-- Digital Programs / Products Section -->
-      <section id="products" class="py-20 lg:py-24 scroll-mt-40">
+      <section id="products" class="py-14 sm:py-20 lg:py-24 scroll-mt-40">
         <div class="container-custom">
-          <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-20">
+          <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 lg:mb-20">
             <div class="max-w-2xl">
               <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[14px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">For Professionals</span>
-              <h2 class="text-4xl font-bold text-[#12201C] tracking-tight">Practical guides for your next step</h2>
+              <h2 class="text-3xl sm:text-4xl font-bold text-[#12201C] tracking-tight">Practical guides for your next step</h2>
             </div>
             <p class="text-[#5A6A63] text-lg max-w-sm">
               Downloadable resources for busy clinical managers and behavioral health professionals.
@@ -640,7 +705,7 @@
 
           <div class="grid lg:grid-cols-2 gap-10">
             <!-- Product 1 -->
-            <div class="w-full max-w-[414px] mx-auto bg-white rounded-[24px] p-6 sm:p-12 card-shadow border border-[#0F766E]/5 flex flex-col">
+            <div class="has-stamp stamp-corner stamp-knowledge w-full max-w-[414px] mx-auto bg-white rounded-[24px] p-6 sm:p-12 card-shadow border border-[#0F766E]/5 flex flex-col">
               <div class="flex items-center gap-4 mb-8">
                 <div class="w-[76.8px] h-[76.8px] shrink-0 rounded-2xl bg-[#FFF1F1] text-[#EC1C24] flex items-center justify-center">
                   <iconify-icon icon="simple-icons:adobeacrobatreader" class="text-[54.72px]"></iconify-icon>
@@ -668,7 +733,7 @@
             </div>
 
             <!-- Product 2 -->
-            <div class="w-full max-w-[414px] mx-auto bg-white rounded-[24px] p-6 sm:p-12 card-shadow border border-[#0F766E]/5 flex flex-col">
+            <div class="has-stamp stamp-corner stamp-wisdom w-full max-w-[414px] mx-auto bg-white rounded-[24px] p-6 sm:p-12 card-shadow border border-[#0F766E]/5 flex flex-col">
               <div class="flex items-center gap-4 mb-8">
                 <div class="w-[76.8px] h-[76.8px] shrink-0 rounded-2xl bg-[#FFF1F1] text-[#EC1C24] flex items-center justify-center">
                   <iconify-icon icon="simple-icons:adobeacrobatreader" class="text-[54.72px]"></iconify-icon>
@@ -724,7 +789,10 @@
     <div class="sticky-consult" id="sticky-consult" role="complementary" aria-label="Schedule a consultation">
       <div class="sticky-consult-inner">
         <p class="text-sm font-semibold text-[#12201C] hidden sm:block">Questions about fit or scope?</p>
-        <a href="/consultation/" class="inline-flex bg-[#4b3021] text-white h-[44px] px-6 items-center justify-center rounded-full font-bold text-sm shadow-md shadow-[#4b3021]/20 hover:bg-[#3a2519] transition-all w-full sm:w-auto">Schedule a consultation</a>
+        <a href="/consultation/" class="inline-flex flex-1 sm:flex-none bg-[#4b3021] text-white h-[48px] px-7 items-center justify-center rounded-full font-bold text-[15px] shadow-md shadow-[#4b3021]/20 hover:bg-[#3a2519] transition-all sm:ml-auto">Schedule a consultation</a>
+        <button type="button" class="sticky-consult-close" id="sticky-consult-close" aria-label="Dismiss consultation bar">
+          <iconify-icon icon="ph:x-bold" aria-hidden="true"></iconify-icon>
+        </button>
       </div>
     </div>
     <footer id="site-footer" class="bg-[#F7FBF9] text-[#5A6A63] border-t border-[#0F766E]/12 py-12">
@@ -784,5 +852,49 @@
       </div>
     </footer>
   </div>
+  <script>
+    (function () {
+      var ENABLED = false; // sticky consultation bar is switched off for now; set true to re-enable
+      var bar = document.getElementById("sticky-consult");
+      var close = document.getElementById("sticky-consult-close");
+      if (!bar) return;
+      var dismissed = false;
+      try { dismissed = sessionStorage.getItem("g2g-consult-dismissed") === "1"; } catch (e) {}
+      var scrolled = false, blockers = 0;
+      function update() {
+        var show = ENABLED && !dismissed && scrolled && blockers === 0;
+        bar.classList.toggle("is-visible", show);
+        document.body.classList.toggle("sticky-consult-on", show);
+      }
+      // Show only after scrolling down past 50% of the page; hide again on scroll up
+      var lastY = window.scrollY;
+      function onScroll() {
+        var y = window.scrollY;
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        var pastHalf = max > 0 && y / max >= 0.5;
+        if (y < lastY - 4) scrolled = false;
+        else if (y > lastY + 4) scrolled = pastHalf;
+        else if (!pastHalf) scrolled = false;
+        lastY = y;
+        update();
+      }
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+      // Hide while the footer or another consultation CTA is on screen
+      if ("IntersectionObserver" in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) { blockers += en.isIntersecting ? 1 : -1; });
+          blockers = Math.max(0, blockers);
+          update();
+        });
+        document.querySelectorAll("#site-footer, [data-consult-cta]").forEach(function (el) { io.observe(el); });
+      }
+      close.addEventListener("click", function () {
+        dismissed = true;
+        try { sessionStorage.setItem("g2g-consult-dismissed", "1"); } catch (e) {}
+        update();
+      });
+    })();
+  </script>
 </body>
 </html>
