@@ -1,4 +1,4 @@
-"""Copy the shared footer and subscribe block into live pages; use --check to detect drift."""
+"""Copy the shared footer, subscribe block, and subscribe modal into live pages; use --check to detect drift."""
 from pathlib import Path
 import re
 import sys
@@ -6,6 +6,8 @@ import sys
 root = Path(__file__).resolve().parents[1]
 footer = (root / "components/footer.html").read_text().strip()
 subscribe = (root / "components/subscribe-form.html").read_text().strip()
+modal = (root / "components/subscribe-modal.html").read_text().strip()
+modal_script = '  <script src="/assets/subscribe-modal.js" defer></script>'
 stylesheet = '  <link rel="stylesheet" href="/assets/footer.css" />'
 subscribe_script = '  <script src="/assets/subscribe.js" defer></script>'
 # Transactional flows keep a clean page without a newsletter prompt.
@@ -35,6 +37,17 @@ for page in pages:
             updated = updated.replace("<footer", subscribe + "\n    <footer", 1)
         if subscribe_script not in updated:
             updated = updated.replace("</head>", subscribe_script + "\n</head>", 1)
+        if "<!-- subscribe-modal:start -->" in updated:
+            updated = re.sub(
+                r"<!-- subscribe-modal:start -->.*?<!-- subscribe-modal:end -->",
+                lambda _: modal,
+                updated,
+                flags=re.S,
+            )
+        else:
+            updated = updated.replace("</body>", "    " + modal + "\n  </body>", 1)
+        if modal_script not in updated:
+            updated = updated.replace("</head>", modal_script + "\n</head>", 1)
     if updated != original:
         outdated.append(str(rel))
         if not check:
