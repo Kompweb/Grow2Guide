@@ -5,9 +5,11 @@ The article HTML (h2/h3/p/ul/ol/blockquote) is read from stdin. The template's
 generic consultation aside is replaced with a call to action for /guides/.
 """
 import argparse
+import json
 import re
 import sys
 from datetime import date
+from html import escape
 from pathlib import Path
 
 root = Path(__file__).resolve().parents[1]
@@ -18,6 +20,8 @@ ap.add_argument("--description", required=True)
 ap.add_argument("--date", required=True)
 args = ap.parse_args()
 
+if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", args.slug):
+    sys.exit("Slug must be lowercase letters, digits and single hyphens, e.g. my-first-post")
 if not 150 <= len(args.description) <= 160:
     sys.exit(f"Description must be 150-160 characters, got {len(args.description)}")
 article = sys.stdin.read().strip()
@@ -31,7 +35,17 @@ d = date.fromisoformat(args.date)
 display = f"{d:%B} {d.day}, {d.year}"
 html = (root / "components/blog-post-template.html").read_text()
 html = re.sub(r"<!--\n  Blog post template\..*?-->\n", "", html, count=1, flags=re.S)
-html = html.replace("{{TITLE}}", args.title).replace("{{DESCRIPTION}}", args.description)
+def fill(text, title, description):
+    return text.replace("{{TITLE}}", title).replace("{{DESCRIPTION}}", description)
+
+def json_text(value):
+    return json.dumps(value, ensure_ascii=False)[1:-1].replace("</", "<\\/")
+
+# Inside the JSON-LD block values are JSON-escaped; everywhere else they are HTML-escaped.
+html = re.sub(r'(<script type="application/ld\+json">)(.*?)(</script>)',
+              lambda m: m.group(1) + fill(m.group(2), json_text(args.title), json_text(args.description)) + m.group(3),
+              html, flags=re.S)
+html = fill(html, escape(args.title), escape(args.description))
 html = html.replace("{{SLUG}}", args.slug).replace("{{DATE_ISO}}", args.date).replace("{{DATE_DISPLAY}}", display)
 
 placeholder = re.compile(r'<div class="prose-g2g">.*?</div>', re.S)
