@@ -1,0 +1,457 @@
+<title>Grow2Guide Guides</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light;
+    --paper: #F5F8F4;
+    --surface: #FFFFFF;
+    --mint: #EAF3EF;
+    --mint-deep: #D8F0EA;
+    --ink: #12201C;
+    --ink-soft: #3D4F47;
+    --muted: #5A6A63;
+    --teal: #0F766E;
+    --teal-dark: #0B5F59;
+    --brown: #4B3021;
+    --brown-dark: #3A2519;
+    --line: rgba(15,118,110,.14);
+    --logo: url("/assets/logo-mark.png");
+    --serif: "Playfair Display", Georgia, "Times New Roman", serif;
+    --sans: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--sans); font-size: 16px; line-height: 1.6;
+    padding-inline: 16px; padding-block: 0 96px;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; border-radius: 6px; }
+  .wrap { max-width: 1080px; margin-inline: auto; }
+  h1, h2, h3 { font-family: var(--serif); text-wrap: balance; margin: 0; letter-spacing: -0.015em; line-height: 1.12; }
+  p { margin: 0; }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--teal); }
+  .pill { display: inline-block; background: var(--mint-deep); color: var(--teal); padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+
+  /* header */
+  .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 18px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; line-height: 1; }
+  .brand .txt { display: flex; flex-direction: column; }
+  .logo { flex: none; width: 64px; height: 64px; background: var(--logo) center / contain no-repeat; }
+  .logo.sm { width: 56px; height: 56px; }
+  .brand .txt b { font-family: var(--serif); font-size: 28px; font-weight: 600; letter-spacing: -.03em; color: #174d35; }
+  .brand b i { font-style: normal; color: var(--brown); }
+  .brand .txt span { margin-top: 3px; font-size: 10.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--brown); }
+  .top a.help { font-size: 14px; font-weight: 600; color: var(--muted); text-decoration: none; }
+  .top a.help:hover { color: var(--teal); }
+
+  /* buttons */
+  .btn { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; font-family: var(--sans); font-weight: 700; border-radius: 999px; transition: background .2s, transform .1s, border-color .2s; text-align: center; }
+  .btn:active { transform: scale(.98); }
+  .btn-primary { background: var(--brown); color: #fff; height: 60px; padding-inline: 34px; font-size: 18px; box-shadow: 0 10px 24px rgba(75,48,33,.22); }
+  .btn-primary:hover { background: var(--brown-dark); }
+  .btn-ghost { border: 2px solid rgba(75,48,33,.3); color: var(--brown); height: 52px; padding-inline: 26px; font-size: 15px; background: transparent; }
+  .btn-ghost:hover { border-color: var(--brown); background: rgba(75,48,33,.05); }
+  .btn-teal { background: var(--teal); color: #fff; height: 52px; padding-inline: 26px; font-size: 15px; }
+  .btn-teal:hover { background: var(--teal-dark); }
+
+  /* hero */
+  .hero { display: grid; gap: 40px; padding-block: 24px 64px; align-items: center; }
+  .hero h1 { font-size: clamp(38px, 8.6vw, 68px); font-weight: 600; margin-block: 18px 20px; }
+  .hero h1 em { font-style: italic; color: var(--teal); }
+  .lead { font-size: 18px; line-height: 1.6; color: var(--ink-soft); max-width: 34em; }
+  .cta-row { display: flex; flex-direction: column; gap: 14px; margin-top: 30px; align-items: flex-start; }
+  .price-line { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .price-line .now { font-family: var(--serif); font-size: 44px; font-weight: 600; color: var(--ink); line-height: 1; }
+  .price-line s { color: var(--muted); font-size: 20px; }
+  .price-line .save { background: var(--mint-deep); color: var(--teal-dark); font-size: 13px; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
+  .micro { font-size: 13px; color: var(--muted); }
+  .alt { font-size: 14px; color: var(--muted); }
+  .alt a { color: var(--teal); font-weight: 700; text-underline-offset: 3px; }
+  .for { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .for span { font-size: 13px; font-weight: 600; color: var(--ink-soft); border: 1px solid var(--line); background: var(--surface); padding: 6px 12px; border-radius: 999px; }
+
+  /* cover mockups */
+  .covers { position: relative; height: 380px; max-width: 460px; width: 100%; margin-inline: auto; }
+  .cover { position: absolute; width: 224px; aspect-ratio: 8.5 / 11; border-radius: 6px 12px 12px 6px; padding: 22px 20px 20px 26px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 22px 44px rgba(18,32,28,.22), inset 6px 0 0 rgba(0,0,0,.12); overflow: hidden; }
+  .cover .k { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; opacity: .85; }
+  .cover .t { font-family: var(--serif); font-size: 21px; line-height: 1.12; font-weight: 600; letter-spacing: -.01em; }
+  .cover .s { font-size: 11px; font-weight: 600; opacity: .9; line-height: 1.4; }
+  .cover .badge { align-self: flex-start; font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 4px 9px; border-radius: 999px; }
+  .cover .num { position: absolute; right: -8px; bottom: -34px; font-family: var(--serif); font-size: 150px; font-weight: 700; line-height: 1; opacity: .12; }
+  .c1 { left: 0; top: 40px; transform: rotate(-5deg); background: var(--teal); color: #fff; z-index: 1; }
+  .c1 .badge { background: rgba(255,255,255,.18); }
+  .c2 { right: 0; top: 0; transform: rotate(4deg); background: var(--brown); color: #F6EEE6; z-index: 2; }
+  .c2 .badge { background: rgba(255,255,255,.14); }
+  .covers .tag { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); z-index: 3; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; font-size: 13px; font-weight: 700; box-shadow: 0 8px 20px rgba(18,32,28,.1); white-space: nowrap; }
+
+  /* sections */
+  section { padding-block: 64px; }
+  .sec-head { max-width: 40em; margin-bottom: 36px; }
+  .sec-head h2 { font-size: clamp(30px, 5.4vw, 46px); font-weight: 600; margin-top: 12px; }
+  .sec-head p { margin-top: 14px; color: var(--muted); font-size: 17px; }
+
+  /* problem */
+  .pains { display: grid; gap: 0; border-top: 1px solid var(--line); }
+  .pain { display: grid; gap: 4px; padding-block: 22px; border-bottom: 1px solid var(--line); }
+  .pain h3 { font-family: var(--sans); font-size: 19px; font-weight: 700; letter-spacing: -.005em; }
+  .pain p { color: var(--muted); font-size: 16px; }
+
+  /* products */
+  .products { display: grid; gap: 24px; }
+  .product { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 28px 24px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 16px 40px rgba(18,32,28,.07); }
+  .product .kicker { font-size: 13px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
+  .product h3 { font-size: 27px; font-weight: 600; }
+  .product .desc { color: var(--ink-soft); }
+  .product ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .product li { display: flex; gap: 12px; align-items: flex-start; font-weight: 600; }
+  .product li svg { flex: none; margin-top: 3px; color: var(--teal); }
+  .product .who { font-size: 14px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; }
+  .product .who b { color: var(--ink); }
+  .product .buy { margin-top: auto; display: grid; gap: 10px; }
+
+  /* bundle */
+  .bundle { background: var(--mint); border: 1px solid var(--line); border-radius: 32px; padding: 36px 24px; display: grid; gap: 28px; }
+  .bundle h2 { font-size: clamp(32px, 6vw, 52px); font-weight: 600; margin-block: 14px 12px; }
+  .bundle .lead { font-size: 18px; }
+  .bundle .box { background: var(--surface); border-radius: 20px; padding: 24px; display: grid; gap: 14px; justify-items: start; }
+  .bundle .box .btn-primary { width: 100%; }
+  .compare { width: 100%; display: grid; gap: 8px; font-size: 15px; }
+  .compare div { display: flex; justify-content: space-between; gap: 12px; padding-bottom: 8px; border-bottom: 1px dashed var(--line); }
+  .compare div:last-child { border: 0; padding: 0; font-weight: 700; color: var(--teal-dark); }
+  .compare span:last-child { font-variant-numeric: tabular-nums; }
+
+  /* trust */
+  .trust { display: grid; gap: 32px; align-items: start; }
+  .trust .steps { display: grid; gap: 18px; }
+  .step { display: flex; gap: 14px; align-items: flex-start; }
+  .step .ic { flex: none; width: 44px; height: 44px; border-radius: 14px; background: var(--mint-deep); color: var(--teal); display: grid; place-items: center; }
+  .step h3 { font-family: var(--sans); font-size: 17px; font-weight: 700; letter-spacing: 0; line-height: 1.3; margin-bottom: 2px; }
+  .step p { color: var(--muted); font-size: 15px; }
+  .about { position: relative; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 28px 24px; }
+  .about::after { content: ""; position: absolute; right: -28px; bottom: -28px; width: 150px; height: 150px; background: var(--logo) center / contain no-repeat; opacity: .12; pointer-events: none; }
+  .about h3 { font-size: 26px; font-weight: 600; margin-block: 10px 12px; }
+  .about p { color: var(--ink-soft); margin-bottom: 14px; }
+  .about a { color: var(--teal); font-weight: 700; text-underline-offset: 3px; }
+
+  /* blog */
+  .posts { display: grid; gap: 16px; }
+  .post { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 10px; text-decoration: none; transition: border-color .2s, transform .2s; }
+  .post:hover { border-color: rgba(15,118,110,.4); transform: translateY(-2px); }
+  .post .meta { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); }
+  .post h3 { font-size: 22px; font-weight: 600; }
+  .post p { color: var(--muted); font-size: 15px; flex: 1; }
+  .post .go { font-weight: 700; color: var(--brown); font-size: 15px; }
+  .draft-note { margin-top: 18px; font-size: 13px; color: var(--muted); }
+
+  /* faq */
+  .faq { display: grid; gap: 10px; max-width: 46em; }
+  details { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 0 20px; }
+  summary { cursor: pointer; list-style: none; font-weight: 700; padding-block: 18px; display: flex; justify-content: space-between; align-items: center; gap: 14px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; font-size: 24px; font-weight: 500; color: var(--teal); line-height: 1; flex: none; }
+  details[open] summary::after { content: "\2212"; }
+  details p { color: var(--ink-soft); padding-bottom: 18px; font-size: 15.5px; }
+  details a { color: var(--teal); font-weight: 700; text-underline-offset: 3px; }
+
+  /* final */
+  .final { text-align: center; background: var(--brown); color: #F6EEE6; border-radius: 32px; padding: 48px 24px; display: grid; gap: 18px; justify-items: center; }
+  .final h2 { font-size: clamp(30px, 6vw, 48px); font-weight: 600; max-width: 16em; }
+  .final p { max-width: 34em; color: rgba(246,238,230,.82); }
+  .final .btn-primary { background: #fff; color: var(--brown); box-shadow: none; }
+  .final .btn-primary:hover { background: var(--mint-deep); }
+  .final .micro { color: rgba(246,238,230,.7); }
+  .final .alt a { color: #fff; }
+  .final .alt { color: rgba(246,238,230,.75); }
+
+  footer { padding-block: 40px 16px; color: var(--muted); font-size: 13px; display: grid; gap: 12px; }
+  footer nav { display: flex; flex-wrap: wrap; gap: 18px; font-weight: 600; }
+  footer nav a { text-decoration: none; }
+  footer nav a:hover { color: var(--teal); }
+
+  /* sticky buy bar */
+  .sticky { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: rgba(245,248,244,.94); backdrop-filter: blur(14px); border-top: 1px solid var(--line); padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)); }
+  .sticky .in { max-width: 1080px; margin-inline: auto; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+  .sticky .txt { font-size: 14px; line-height: 1.3; display: none; }
+  .sticky .txt b { display: block; font-size: 15px; }
+  .sticky .btn { height: 50px; padding-inline: 22px; font-size: 16px; width: 100%; background: var(--brown); color: #fff; }
+
+  @media (min-width: 720px) {
+    body { padding-inline: 32px; }
+    .hero { grid-template-columns: 1.15fr .85fr; gap: 56px; padding-block: 40px 88px; }
+    .cta-row { flex-direction: row; align-items: center; flex-wrap: wrap; }
+    .pains { grid-template-columns: repeat(2, 1fr); column-gap: 48px; }
+    .products { grid-template-columns: 1fr 1fr; }
+    .product { padding: 36px 32px; }
+    .bundle { grid-template-columns: 1.1fr .9fr; padding: 56px 48px; align-items: center; }
+    .trust { grid-template-columns: 1fr 1fr; gap: 48px; }
+    .posts { grid-template-columns: repeat(3, 1fr); }
+    .sticky .txt { display: block; }
+    .sticky .btn { width: auto; }
+    footer { grid-template-columns: 1fr auto; align-items: start; }
+  }
+  @media (max-width: 400px) {
+    .covers { height: 330px; }
+    .cover { width: 190px; padding: 18px 16px 16px 22px; }
+    .cover .t { font-size: 18px; }
+    .btn-primary { font-size: 17px; padding-inline: 24px; width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="https://www.grow2guide.com/" aria-label="Grow 2 Guide home">
+      <span class="logo" role="img" aria-hidden="true"></span><span class="txt"><b>Grow <i>2</i> Guide</b><span>Elevate Your Knowledge</span></span>
+    </a>
+    <a class="help" href="https://www.grow2guide.com/faq/">Questions?</a>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <div class="hero">
+      <div>
+        <span class="pill">Downloadable PDF guides</span>
+        <h1>Know which policies apply to <em>you</em>. Lead with confidence.</h1>
+        <p class="lead">Two practical PDF guides for behavioral health professionals: one that makes 69 policy topics make sense for your role, and one that helps you become the supervisor or manager you set out to be.</p>
+        <div class="cta-row">
+          <div class="price-line" aria-label="Bundle price">
+            <span class="now">$99</span><s>$134 separate</s><span class="save">Save $35</span>
+          </div>
+        </div>
+        <div class="cta-row" style="margin-top:18px">
+          <a class="btn btn-primary" id="hero-bundle-cta" href="https://buy.stripe.com/6oU4gz3vyeCZ0CW2lQ4Ja00" data-offer="bundle">Get both guides &mdash; $99</a>
+        </div>
+        <p class="micro" style="margin-top:12px">Pay securely &mdash; unlocks instantly, plus a copy by email.</p>
+        <p class="alt" style="margin-top:8px">Just need one? <a href="#guide-1">Policy Guide &mdash; $67</a> &middot; <a href="#guide-2">Supervisor Toolkit &mdash; $67</a></p>
+        <div class="for" aria-label="Who it's for">
+          <span>Case managers</span><span>BHTs</span><span>Direct care staff</span><span>New supervisors</span><span>Managers</span>
+        </div>
+      </div>
+      <div class="covers" role="img" aria-label="Cover mockups of the two guides">
+        <div class="cover c1">
+          <span class="k">PDF 1 &bull; Foundations</span>
+          <div>
+            <div class="t">Behavioral Health Policy Inventory &amp; Learning Guide</div>
+          </div>
+          <div>
+            <span class="badge">69 policy topics</span>
+            <div class="s" style="margin-top:10px">What does it have to do with me?</div>
+          </div>
+          <div class="num" aria-hidden="true">69</div>
+        </div>
+        <div class="cover c2">
+          <span class="k">PDF 2 &bull; Readiness</span>
+          <div>
+            <div class="t">Supervisor &amp; Manager Toolkit and Reflection</div>
+          </div>
+          <div>
+            <span class="badge">Scenarios &bull; Skills &bull; Tools</span>
+            <div class="s" style="margin-top:10px">Am I becoming the supervisor I envisioned?</div>
+          </div>
+        </div>
+        <div class="tag">Instant download &middot; PDF</div>
+      </div>
+    </div>
+
+    <!-- PROBLEM -->
+    <section aria-labelledby="problem-h">
+      <div class="sec-head">
+        <span class="eyebrow">Sound familiar?</span>
+        <h2 id="problem-h">Nobody hands you the policy manual and explains it.</h2>
+        <p>You are expected to follow systems you were never walked through, and to lead people before anyone taught you how.</p>
+      </div>
+      <div class="pains">
+        <div class="pain"><h3>&ldquo;Does this policy even apply to me?&rdquo;</h3><p>Dozens of policies, written for the organization, not for a case manager, BHT or direct care role.</p></div>
+        <div class="pain"><h3>&ldquo;Am I doing this right?&rdquo;</h3><p>You want straight answers to the questions you hesitate to ask out loud.</p></div>
+        <div class="pain"><h3>&ldquo;I just became a supervisor.&rdquo;</h3><p>The title arrived. The training didn&rsquo;t. Real situations show up on day one.</p></div>
+        <div class="pain"><h3>&ldquo;How do I grow from here?&rdquo;</h3><p>Established managers still need a way to check their own growth, honestly and on their own terms.</p></div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section id="guides" aria-labelledby="guides-h">
+      <div class="sec-head">
+        <span class="eyebrow">What you get</span>
+        <h2 id="guides-h">Two guides. One for the floor, one for the lead.</h2>
+      </div>
+      <div class="products">
+        <article class="product" id="guide-1">
+          <span class="kicker">PDF 1 &bull; Foundations</span>
+          <h3>Behavioral Health Policy Inventory &amp; Learning Guide</h3>
+          <p class="desc">Understand policies and systems, and recognize how they apply to you as a case manager, BHT, or direct care staff. The questions you have are now answered.</p>
+          <ul>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>69 policy topic inventory</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.7.7l3.6 3.6A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5M10 9H8m8 4H8m8 4H8"/></svg>&ldquo;What does it have to do with me?&rdquo; for every topic</li>
+          </ul>
+          <p class="who"><b>Best for:</b> case managers, BHTs and direct care staff.</p>
+          <div class="buy">
+            <a class="btn btn-ghost" id="lp-buy-guide" href="https://buy.stripe.com/cNibJ16HKgL75XgaSm4Ja02" data-offer="guide">Buy Guide &mdash; $67</a>
+            <p class="micro" style="text-align:center">Pay securely &mdash; unlocks instantly, plus a copy by email.</p>
+          </div>
+        </article>
+
+        <article class="product" id="guide-2">
+          <span class="kicker">PDF 2 &bull; Readiness</span>
+          <h3>Supervisor &amp; Manager Toolkit and Reflection</h3>
+          <p class="desc">Am I becoming the supervisor or manager I envisioned? How do I grow from here? Everything you need when you become a supervisor, or when you already lead and take responsibility for your own growth.</p>
+          <ul>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>Real life scenarios</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>Skills and tools</li>
+          </ul>
+          <p class="who"><b>Best for:</b> new supervisors and managers who want to keep growing.</p>
+          <div class="buy">
+            <a class="btn btn-ghost" id="lp-buy-toolkit" href="https://buy.stripe.com/bJecN57LO0M9gBU9Oi4Ja01" data-offer="toolkit">Buy Toolkit &mdash; $67</a>
+            <p class="micro" style="text-align:center">Pay securely &mdash; unlocks instantly, plus a copy by email.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- BUNDLE -->
+    <section aria-labelledby="bundle-h" style="padding-block:16px 64px">
+      <div class="bundle">
+        <div>
+          <span class="pill">Best value</span>
+          <h2 id="bundle-h">Get both for $99</h2>
+          <p class="lead">Learn the policies that shape your role, then grow into the leader who applies them well. One purchase covers both.</p>
+        </div>
+        <div class="box">
+          <div class="compare">
+            <div><span>Policy Inventory &amp; Learning Guide</span><span>$67</span></div>
+            <div><span>Supervisor &amp; Manager Toolkit</span><span>$67</span></div>
+            <div><span>Bundle price (save $35)</span><span>$99</span></div>
+          </div>
+          <a class="btn btn-primary" id="lp-bundle-cta" href="https://buy.stripe.com/6oU4gz3vyeCZ0CW2lQ4Ja00" data-offer="bundle">Buy Bundle &mdash; $99</a>
+          <p class="micro">Pay securely &mdash; unlocks instantly, plus a copy by email.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST -->
+    <section aria-labelledby="trust-h">
+      <div class="trust">
+        <div>
+          <div class="sec-head" style="margin-bottom:24px">
+            <span class="eyebrow">How it works</span>
+            <h2 id="trust-h">Buy, download, start reading.</h2>
+          </div>
+          <div class="steps">
+            <div class="step"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><div><h3>Secure checkout</h3><p>Pay through Stripe. Choose the bundle or a single guide.</p></div></div>
+            <div class="step"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16"/></svg></div><div><h3>Instant unlock</h3><p>Your PDF unlocks right after payment, plus a copy arrives by email.</p></div></div>
+            <div class="step"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v13H7l-3 3z"/></svg></div><div><h3>Real support if something goes wrong</h3><p>Didn&rsquo;t get your file within 48 hours? Email us and we&rsquo;ll resend or fix it. See the <a href="https://www.grow2guide.com/refunds/" style="color:var(--teal);font-weight:700">refund policy</a>.</p></div></div>
+          </div>
+        </div>
+        <aside class="about">
+          <span class="eyebrow">Who&rsquo;s behind it</span>
+          <h3>Practical, real-world guidance</h3>
+          <p>Grow2Guide creates practical resources and real-world consulting for behavioral health professionals and organizations. These guides come from that same work.</p>
+          <p>Prefer to talk it through, or need help for a whole team? <a href="https://www.grow2guide.com/consultation/">Request a consultation</a>.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- BLOG -->
+    <section aria-labelledby="blog-h">
+      <div class="sec-head">
+        <span class="eyebrow">From the blog</span>
+        <h2 id="blog-h">Read first, decide when you&rsquo;re ready.</h2>
+        <p>Short, practical reads that go deeper on the same questions the guides answer.</p>
+      </div>
+      <div class="posts">
+        <a class="post" href="https://www.grow2guide.com/blog/" data-post="policies-bht-case-manager">
+          <span class="meta">For case managers &amp; BHTs</span>
+          <h3>Policies every BHT and case manager should know</h3>
+          <p>A plain-language look at the policy areas that touch your daily work, and how to tell which ones are really yours.</p>
+          <span class="go">Read article &rarr;</span>
+        </a>
+        <a class="post" href="https://www.grow2guide.com/blog/" data-post="first-time-supervisor">
+          <span class="meta">For new supervisors</span>
+          <h3>First-time supervisor mistakes, and what to do instead</h3>
+          <p>The situations new leaders run into first, and the habits that help you handle them well.</p>
+          <span class="go">Read article &rarr;</span>
+        </a>
+        <a class="post" href="https://www.grow2guide.com/blog/" data-post="read-policy-manual">
+          <span class="meta">For everyone</span>
+          <h3>How to read a policy manual without getting lost</h3>
+          <p>A simple way to find what applies to your role and turn it into questions worth asking.</p>
+          <span class="go">Read article &rarr;</span>
+        </a>
+      </div>
+      <p class="draft-note">Draft preview: article cards link to the blog index until the three launch posts are written.</p>
+    </section>
+
+    <!-- FAQ -->
+    <section aria-labelledby="faq-h">
+      <div class="sec-head">
+        <span class="eyebrow">Before you buy</span>
+        <h2 id="faq-h">Questions people ask</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>How do I receive the PDF?</summary>
+          <p>After payment, your PDF unlocks instantly and a copy is sent to your email. If you don&rsquo;t have it within 48 hours of confirmed payment, email us and we&rsquo;ll resend it or resolve it promptly.</p>
+        </details>
+        <details>
+          <summary>Which guide is right for me?</summary>
+          <p>If you&rsquo;re a case manager, BHT or direct care staff who wants to understand how policies apply to you, start with the Policy Inventory &amp; Learning Guide. If you&rsquo;re stepping into, or already in, a supervisor or manager role, the Toolkit is the fit. Many people want both, which is what the $99 bundle covers.</p>
+        </details>
+        <details>
+          <summary>Is this legal advice, or does it guarantee licensure?</summary>
+          <p>No. These are educational resources only, not legal advice, and licensure is not guaranteed. They help you understand and reflect; your organization&rsquo;s own policies and your state&rsquo;s requirements always come first.</p>
+        </details>
+        <details>
+          <summary>What is your refund policy?</summary>
+          <p>Because files can be copied once delivered, refunds are reviewed case by case. Duplicate purchases and delivery failures are typically honored. Details are on the <a href="https://www.grow2guide.com/refunds/">refund page</a>.</p>
+        </details>
+        <details>
+          <summary>Can I get help for my whole team or organization?</summary>
+          <p>Yes. Grow2Guide also offers consulting for organizations. <a href="https://www.grow2guide.com/consultation/">Request a consultation</a> to talk through fit and scope.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section style="padding-block:24px 48px">
+      <div class="final">
+        <h2>Stop guessing. Start leading with clarity.</h2>
+        <p>Both guides, one price, in your inbox in minutes.</p>
+        <a class="btn btn-primary" id="final-bundle-cta" href="https://buy.stripe.com/6oU4gz3vyeCZ0CW2lQ4Ja00" data-offer="bundle">Get both guides &mdash; $99</a>
+        <p class="micro">Pay securely &mdash; unlocks instantly, plus a copy by email.</p>
+        <p class="alt">Or buy one: <a href="https://buy.stripe.com/cNibJ16HKgL75XgaSm4Ja02">Policy Guide $67</a> &middot; <a href="https://buy.stripe.com/bJecN57LO0M9gBU9Oi4Ja01">Toolkit $67</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand" href="https://www.grow2guide.com/" aria-label="Grow 2 Guide home" style="grid-column:1/-1"><span class="logo sm" aria-hidden="true"></span><span class="txt"><b>Grow <i>2</i> Guide</b><span>Elevate Your Knowledge</span></span></a>
+    <p>&copy; 2026 Grow2Guide. Educational resources only &mdash; not legal advice. Licensure is not guaranteed.</p>
+    <nav aria-label="Legal">
+      <a href="https://www.grow2guide.com/faq/">FAQ</a>
+      <a href="https://www.grow2guide.com/terms/">Terms</a>
+      <a href="https://www.grow2guide.com/privacy/">Privacy</a>
+      <a href="https://www.grow2guide.com/refunds/">Refunds</a>
+    </nav>
+  </footer>
+</div>
+
+<div class="sticky" role="complementary" aria-label="Buy the bundle">
+  <div class="in">
+    <div class="txt"><b>Both guides &mdash; $99</b>Save $35 vs. buying separately</div>
+    <a class="btn" id="sticky-bundle-cta" href="https://buy.stripe.com/6oU4gz3vyeCZ0CW2lQ4Ja00" data-offer="bundle">Get both guides &mdash; $99</a>
+  </div>
+</div>
+
+<script>
+  // Draft preview: push buy-click events to GTM's dataLayer so the offers can be compared in the live page.
+  window.dataLayer = window.dataLayer || [];
+  document.querySelectorAll("[data-offer]").forEach(function (el) {
+    el.addEventListener("click", function () {
+      window.dataLayer.push({ event: "guides_buy_click", offer: el.getAttribute("data-offer"), placement: el.id });
+    });
+  });
+</script>
