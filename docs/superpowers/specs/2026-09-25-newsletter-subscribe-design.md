@@ -61,7 +61,20 @@ Resend, and give the team a starting structure for writing and sending newslette
 - `newsletter/issues/2026-XX-first-issue.md` or `.html`: first draft issue.
 - Workflow in `newsletter/README.md`: write issue, paste into a Resend Broadcast, send test, send.
 
-### 6. Privacy page
+### 6. Exit-intent and idle modal
+- `components/subscribe-modal.html`: a `<dialog>` containing the same subscribe form, synced
+  into pages like the inline block; `assets/subscribe-modal.js` opens it.
+- Triggers: desktop exit intent (pointer leaves through the top of the window, ignored for
+  the first 8 seconds), or 45 seconds without mouse, key, scroll or touch activity
+  (the only trigger on phones and tablets).
+- Restraint: at most once per page load; dismissal snoozes it for 14 days; a successful
+  signup (from the modal or the inline block) suppresses it permanently; it waits while
+  the visitor is typing in a field or the tab is hidden. State lives in localStorage
+  (`g2g_subscribe_modal`) and everything degrades safely if storage is blocked.
+- Excluded from `quiz/`, `consultation/` and `thank-you/` so it never interrupts a form in progress.
+- Accessible: native dialog focus handling, Escape and backdrop click close it, close button is 44px.
+
+### 7. Privacy page
 - Add a short section to `privacy/index.html`: what is collected, Resend as processor,
   how to unsubscribe, contact for removal.
 
