@@ -53,11 +53,11 @@
     var style = document.createElement("style");
     style.textContent =
       ".g2g-wa{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;" +
-      "display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;" +
+      "display:flex;align-items:center;justify-content:center;width:62px;height:62px;border-radius:50%;" +
       "background:#25D366;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.25);transition:transform .15s ease}" +
       ".g2g-wa:hover{transform:scale(1.06)}" +
       ".g2g-wa:focus-visible{outline:3px solid #12201C;outline-offset:3px}" +
-      ".g2g-wa svg{width:30px;height:30px;fill:currentColor}" +
+      ".g2g-wa svg{width:33px;height:33px;fill:currentColor}" +
       "@media (min-width:768px){.g2g-wa{right:24px;bottom:24px}}" +
       "@media (prefers-reduced-motion:reduce){.g2g-wa{transition:none}.g2g-wa:hover{transform:none}}";
     document.head.appendChild(style);
