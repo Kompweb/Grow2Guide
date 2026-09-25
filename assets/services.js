@@ -44,3 +44,14 @@
 
   updateActiveSection();
 })();
+
+(function () {
+  var mq = window.matchMedia('(min-width: 768px)');
+  var panels = document.querySelectorAll('.tier-more');
+  function sync() {
+    panels.forEach(function (panel) { panel.open = mq.matches; });
+  }
+  sync();
+  if (mq.addEventListener) { mq.addEventListener('change', sync); }
+  else if (mq.addListener) { mq.addListener(sync); }
+})();
