@@ -67,7 +67,9 @@ export default {
     const firstName = typeof data.firstName === "string" ? data.firstName.trim().slice(0, MAX_NAME) : "";
     const source = typeof data.source === "string" ? data.source.slice(0, MAX_SOURCE) : "";
 
-    const contact = { email, unsubscribed: false };
+    // Never send `unsubscribed`: the create call upserts, so setting it would re-subscribe
+    // someone who already opted out. New contacts are subscribed by default.
+    const contact = { email };
     if (firstName) contact.first_name = firstName;
 
     try {

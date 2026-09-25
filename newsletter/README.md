@@ -14,7 +14,8 @@ Stored in the Resend Audience, one contact per person:
 | `created_at` | Resend | signup time |
 
 Consent record (not stored in Resend): each signup writes `{ "event": "subscribed", "source": "<page path>", "consentAt": "<ISO time>" }`
-to the Worker log (`npx wrangler tail` in `workers/subscribe/`), without the email address.
+to the Worker log (Workers Logs in the Cloudflare dashboard, or `npx wrangler tail` in `workers/subscribe/`),
+without the email address. Cloudflare limits how long logs are kept, so copy them out if you need a long-term consent record.
 The form's checkbox text is the consent wording: "I agree to receive Grow2Guide emails and understand I can unsubscribe at any time."
 
 Export the list any time: `python3 scripts/export-subscribers.py --out subscribers.csv`

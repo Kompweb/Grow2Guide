@@ -38,15 +38,20 @@ test("valid signup creates a Resend contact and returns ok", async () => {
   assert.deepEqual(JSON.parse(calls[0].init.body), {
     email: "jane@example.com",
     first_name: "Jane",
-    unsubscribed: false,
   });
+});
+
+test("never sends the unsubscribed flag, so a repeat signup cannot re-subscribe someone who opted out", async () => {
+  const calls = stubResend();
+  await worker.fetch(req(valid), ENV);
+  assert.equal("unsubscribed" in JSON.parse(calls[0].init.body), false);
 });
 
 test("first name is optional and omitted when empty", async () => {
   const calls = stubResend();
   const res = await worker.fetch(req({ ...valid, firstName: "  " }), ENV);
   assert.equal(res.status, 200);
-  assert.deepEqual(JSON.parse(calls[0].init.body), { email: "jane@example.com", unsubscribed: false });
+  assert.deepEqual(JSON.parse(calls[0].init.body), { email: "jane@example.com" });
 });
 
 test("very long first name is truncated to 80 characters", async () => {

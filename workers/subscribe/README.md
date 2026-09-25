@@ -41,4 +41,12 @@ curl -i -X POST http://localhost:8787/ \
   -d '{"email":"you@example.com","firstName":"You","consent":true,"source":"/test/"}'
 ```
 
-Consent records (source page and timestamp, no email) appear in `npx wrangler tail`.
+Consent records (source page and timestamp, no email) appear in `npx wrangler tail` and, with
+`[observability]` enabled in `wrangler.toml`, in the Worker's Logs in the Cloudflare dashboard.
+Cloudflare limits how long logs are kept, so copy them out if you need a long-term record.
+
+Before the first deploy, run `npx wrangler deploy --dry-run` to validate `wrangler.toml`.
+If the `RATE_LIMITER` binding is missing the Worker still accepts signups but without rate limiting.
+
+Re-subscribing: the Worker never sends the `unsubscribed` flag, so a repeat signup with an address
+that already unsubscribed does not re-subscribe it.
