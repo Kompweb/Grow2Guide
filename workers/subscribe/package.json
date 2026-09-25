@@ -1,0 +1,8 @@
+{
+  "name": "g2g-subscribe-worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  }
+}
