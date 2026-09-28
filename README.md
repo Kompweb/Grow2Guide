@@ -21,6 +21,8 @@ and links work on nested pages.
 - `quiz/tier-1/`, `quiz/tier-2/`: multi-step inquiry forms.
 - `blog/`: blog index and one folder per post; see [Adding a blog post](#adding-a-blog-post).
 - `handbook/`: handbook pages; see [README.handbook.md](README.handbook.md).
+- `newsletter/`: newsletter issue template, issues, and subscriber data notes; see `newsletter/README.md`.
+- `workers/subscribe/`: Cloudflare Worker that stores newsletter signups in Resend; see its README for deploy steps.
 - `terms/`, `privacy/`, `refunds/`: policy pages.
 - `styles.css` and page-level `<style>` blocks: site styling.
 - `assets/`: images, documents, and JavaScript.
@@ -53,8 +55,9 @@ in the static HTML and work without JavaScript. Archived snapshots are excluded.
 
 - Preview the affected pages at mobile and desktop widths.
 - Check menu opening, closing, link clicks, Escape, and outside clicks.
-- For forms, check validation and navigation between steps. Successful submission
-  opens an email draft through the visitor's mail application.
+- For the consultation and quiz forms, check validation and navigation between steps.
+  Successful submission opens an email draft through the visitor's mail application.
+  The newsletter subscribe form posts to the Worker instead (see below).
 - Check the browser console for errors and network requests for missing assets.
 - With Node.js installed, check a changed script with `node --check assets/<file>.js`.
 
@@ -68,3 +71,13 @@ in the static HTML and work without JavaScript. Archived snapshots are excluded.
    there) and delete the "First articles coming soon" card.
 4. Add the post URL to `sitemap.xml`.
 5. Run `python3 scripts/sync-footer.py`.
+
+## Newsletter signups
+
+The subscribe block (`components/subscribe-form.html`) and the popup
+(`components/subscribe-modal.html`, opened by `assets/subscribe-modal.js` on desktop exit
+intent or after 45 seconds of inactivity) are copied into every page except `quiz/`,
+`consultation/`, and `thank-you/` by `python3 scripts/sync-footer.py`, which also adds
+`assets/subscribe.js` and `assets/subscribe-modal.js`. Edit a component, then re-run the script.
+The form posts to the Worker in `workers/subscribe/`.
+Run every test with `node --test` from the repo root, and `python3 scripts/test_export_subscribers.py`.

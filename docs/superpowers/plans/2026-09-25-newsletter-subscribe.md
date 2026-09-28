@@ -952,7 +952,7 @@ Expected: `Updated N pages.`, then `Shared footers verified.`, then `Updated 0 p
 
 - [ ] **Step 8: Update the client test-suite expectation and re-run everything so far**
 
-Run: `node --test tests/ && (cd workers/subscribe && node --test)`
+Run: `node --test` (from the repo root; discovers every `*.test.*` file)
 Expected: all PASS.
 
 - [ ] **Step 9: Browser verification (`python3 -m http.server 8000`, open `http://localhost:8000/`)**
@@ -1278,7 +1278,7 @@ The subscribe block (`components/subscribe-form.html`) and the popup
 intent or after 45 seconds of inactivity) are copied into every page except `quiz/`,
 `consultation/`, and `thank-you/` by `python3 scripts/sync-footer.py`, which also adds
 `assets/subscribe.js` and `assets/subscribe-modal.js`. Edit a component, then re-run the script. The form posts to the Worker in `workers/subscribe/`.
-Run the tests with `node --test tests/`,
+Run every test with `node --test` from the repo root,
 `(cd workers/subscribe && npm test)`, and `python3 scripts/test_export_subscribers.py`.
 ```
 Also update the "For forms" line in "Checking changes" to say the subscribe form posts to the Worker while the consultation and quiz forms still open an email draft.
@@ -1286,8 +1286,7 @@ Also update the "For forms" line in "Checking changes" to say the subscribe form
 - [ ] **Step 6: Run the full verification**
 
 ```bash
-node --test tests/
-(cd workers/subscribe && node --test)
+node --test
 python3 scripts/test_export_subscribers.py
 node --check assets/subscribe.js && node --check workers/subscribe/index.js
 python3 scripts/sync-footer.py --check
