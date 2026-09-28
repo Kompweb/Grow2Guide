@@ -48,5 +48,7 @@ Cloudflare limits how long logs are kept, so copy them out if you need a long-te
 Before the first deploy, run `npx wrangler deploy --dry-run` to validate `wrangler.toml`.
 If the `RATE_LIMITER` binding is missing the Worker still accepts signups but without rate limiting.
 
-Re-subscribing: the Worker never sends the `unsubscribed` flag, so a repeat signup with an address
-that already unsubscribed does not re-subscribe it.
+Re-subscribing: Resend's create-contact call is a full-replace upsert, not a merge, so the Worker
+looks a contact up before writing. An address that already unsubscribed is left alone by a repeat
+signup, and an existing first name is kept if the repeat signup does not provide one. Verified
+against the live Resend API — see git history for `workers/subscribe/index.js`.
