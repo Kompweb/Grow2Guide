@@ -157,7 +157,7 @@
   body {
     margin: 0; background: var(--paper); color: var(--ink);
     font-family: var(--sans); font-size: 16px; line-height: 1.6;
-    padding-block: 0 76px;
+    padding-block: 0;
     -webkit-font-smoothing: antialiased;
   }
   a { color: inherit; }
@@ -235,6 +235,9 @@
   /* products */
   .products { display: grid; gap: 24px; }
   .product { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 28px 24px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 16px 40px rgba(18,32,28,.07); }
+  .product .badge-row { display: flex; align-items: center; gap: 14px; }
+  .product .pdf-icon { flex: none; width: 52px; height: 52px; border-radius: 14px; background: #FFF1F1; color: #EC1C24; display: grid; place-items: center; }
+  .product .pdf-icon iconify-icon { font-size: 30px; }
   .product .kicker { font-size: 13px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
   .product h3 { font-size: 27px; font-weight: 600; }
   .product .desc { color: var(--ink-soft); }
@@ -280,13 +283,15 @@
 
   /* faq */
   .faq { display: grid; gap: 10px; max-width: 46em; }
-  details { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 0 20px; }
-  summary { cursor: pointer; list-style: none; font-weight: 700; padding-block: 18px; display: flex; justify-content: space-between; align-items: center; gap: 14px; }
-  summary::-webkit-details-marker { display: none; }
-  summary::after { content: "+"; font-size: 24px; font-weight: 500; color: var(--teal); line-height: 1; flex: none; }
-  details[open] summary::after { content: "\2212"; }
-  details p { color: var(--ink-soft); padding-bottom: 18px; font-size: 15.5px; }
-  details a { color: var(--teal); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+  .faq details { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 0 20px; }
+  /* .faq prefix (not bare `summary`) beats the Tailwind CDN's injected `summary{display:list-item}`
+     preflight rule, which lands after this stylesheet at equal specificity and otherwise wins. */
+  .faq summary { cursor: pointer; list-style: none; font-weight: 700; padding-block: 18px; display: flex; justify-content: space-between; align-items: center; gap: 14px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; font-size: 24px; font-weight: 500; color: var(--teal); line-height: 1; flex: none; }
+  .faq details[open] summary::after { content: "\2212"; }
+  .faq details p { color: var(--ink-soft); padding-bottom: 18px; font-size: 15.5px; }
+  .faq details a { color: var(--teal); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 
   /* final */
   .final { text-align: center; background: var(--brown); color: #F6EEE6; border-radius: 32px; padding: 48px 24px; display: grid; gap: 18px; justify-items: center; }
@@ -299,13 +304,6 @@
   .final .alt { color: rgba(246,238,230,.75); }
 
 
-  /* buy bar */
-  .buy-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: rgba(245,248,244,.94); backdrop-filter: blur(14px); border-top: 1px solid var(--line); padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)); }
-  .buy-bar .in { max-width: 1080px; margin-inline: auto; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
-  .buy-bar .txt { font-size: 14px; line-height: 1.3; display: none; }
-  .buy-bar .txt b { display: block; font-size: 15px; }
-  .buy-bar .btn { height: 50px; padding-inline: 22px; font-size: 16px; width: 100%; background: var(--brown); color: #fff; }
-
   @media (min-width: 720px) {
     .wrap { padding-inline: 32px; }
     .hero { grid-template-columns: 1.15fr .85fr; gap: 56px; padding-block: 40px 88px; }
@@ -316,13 +314,17 @@
     .bundle { grid-template-columns: 1.1fr .9fr; padding: 56px 48px; align-items: center; }
     .trust { grid-template-columns: 1fr 1fr; gap: 48px; }
     .posts { grid-template-columns: repeat(3, 1fr); }
-    .buy-bar .txt { display: block; }
-    .buy-bar .btn { width: auto; }
   }
-  @media (max-width: 400px) {
-    .covers { height: 330px; }
-    .cover { width: 190px; padding: 18px 16px 16px 22px; }
-    .cover .t { font-size: 18px; }
+  @media (max-width: 719px) {
+    /* Below the hero's single-column breakpoint the two fanned covers can overlap
+       enough to cover PDF 1's title (confirmed at 375px: ~30px of real overlap).
+       Side-by-side cards remove the overlap outright instead of tuning offsets. */
+    .covers { height: auto; max-width: 420px; display: grid; grid-template-columns: 1fr 1fr; column-gap: 14px; row-gap: 16px; }
+    .cover { position: static; width: 100%; padding: 16px 14px 14px 18px; }
+    .c1 { grid-column: 1; grid-row: 1; transform: rotate(-3deg); }
+    .c2 { grid-column: 2; grid-row: 1; transform: rotate(3deg); }
+    .cover .t { font-size: 17px; }
+    .covers .tag { grid-column: 1 / 3; grid-row: 2; position: static; justify-self: center; transform: none; }
     .btn-primary { font-size: 17px; padding-inline: 24px; width: 100%; }
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
@@ -422,7 +424,10 @@
       </div>
       <div class="products">
         <article class="product" id="guide-1">
-          <span class="kicker">PDF 1 &bull; Foundations</span>
+          <div class="badge-row">
+            <span class="pdf-icon" aria-hidden="true"><iconify-icon icon="simple-icons:adobeacrobatreader"></iconify-icon></span>
+            <span class="kicker">PDF 1 &bull; Foundations</span>
+          </div>
           <h3>Behavioral Health Policy Inventory &amp; Learning Guide</h3>
           <p class="desc">Understand policies and systems, and recognize how they apply to you as a case manager, BHT, or direct care staff. The questions you have are now answered.</p>
           <ul>
@@ -437,7 +442,10 @@
         </article>
 
         <article class="product" id="guide-2">
-          <span class="kicker">PDF 2 &bull; Readiness</span>
+          <div class="badge-row">
+            <span class="pdf-icon" aria-hidden="true"><iconify-icon icon="simple-icons:adobeacrobatreader"></iconify-icon></span>
+            <span class="kicker">PDF 2 &bull; Readiness</span>
+          </div>
           <h3>Supervisor &amp; Manager Toolkit and Reflection</h3>
           <p class="desc">Am I becoming the supervisor or manager I envisioned? How do I grow from here? Everything you need when you become a supervisor, or when you already lead and take responsibility for your own growth.</p>
           <ul>
@@ -624,12 +632,5 @@
         <p class="relative z-10 mt-6 text-center lg:text-left text-[12px] text-[#5A6A63]/70"><a href="https://www.kompweb.com" target="_blank" rel="noopener noreferrer" class="relative z-10 inline-flex items-center gap-2 hover:text-[#0F766E] transition-colors"><img src="/assets/kompweb-logo-small.png" alt="" width="24" height="24" class="relative z-10 block w-6 h-6 shrink-0 object-contain opacity-20" aria-hidden="true">KOMPWEB Studios</a></p>
       </div>
     </footer>
-
-<div class="buy-bar" role="complementary" aria-label="Buy the bundle">
-  <div class="in">
-    <div class="txt"><b>Both guides &mdash; $99</b>Save $35 vs. buying separately</div>
-    <a class="btn" id="sticky-bundle-cta" href="https://buy.stripe.com/6oU4gz3vyeCZ0CW2lQ4Ja00" data-offer="bundle">Get both guides &mdash; $99</a>
-  </div>
-</div>
 </body>
 </html>
