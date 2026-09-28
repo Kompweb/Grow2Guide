@@ -218,7 +218,10 @@
   .c1 .badge { background: rgba(255,255,255,.18); }
   .c2 { right: 0; top: 0; transform: rotate(4deg); background: var(--brown); color: #F6EEE6; z-index: 2; }
   .c2 .badge { background: rgba(255,255,255,.14); }
-  .covers .tag { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); z-index: 3; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; font-size: 13px; font-weight: 700; box-shadow: 0 8px 20px rgba(18,32,28,.1); white-space: nowrap; }
+  .covers .tag-group { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .covers .tag { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 10px 22px; font-size: 15px; font-weight: 700; box-shadow: 0 8px 20px rgba(18,32,28,.1); white-space: nowrap; }
+  .covers .tag-icon { width: 36px; height: 36px; border-radius: 11px; background: #FFF1F1; color: #EC1C24; display: grid; place-items: center; box-shadow: 0 8px 16px rgba(18,32,28,.12); }
+  .covers .tag-icon iconify-icon { font-size: 20px; }
 
   /* sections */
   section { padding-block: 64px; }
@@ -234,7 +237,7 @@
 
   /* products */
   .products { display: grid; gap: 24px; }
-  .product { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 28px 24px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 16px 40px rgba(18,32,28,.07); }
+  .product { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 16px 40px rgba(18,32,28,.07); }
   /* Icon-stamp watermark, same pattern as the services page's own PDF cards (services/index.html
      .has-stamp/.stamp-corner) — reused verbatim so both places treat the two guides the same way. */
   .has-stamp { position: relative; isolation: isolate; }
@@ -277,9 +280,11 @@
 
   /* trust */
   .trust { display: grid; gap: 32px; align-items: start; }
-  .trust .steps { display: grid; gap: 18px; }
-  .step { display: flex; gap: 14px; align-items: flex-start; }
-  .step .ic { flex: none; width: 44px; height: 44px; border-radius: 14px; background: var(--mint-deep); color: var(--teal); display: grid; place-items: center; }
+  .trust .steps { display: grid; gap: 14px; }
+  /* Rows get the same surface/border/padding as the page's other cards (products, FAQ, posts)
+     instead of sitting bare against the section edge, and the icon grows to match .pdf-icon. */
+  .step { display: flex; gap: 16px; align-items: flex-start; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px; }
+  .step .ic { flex: none; width: 52px; height: 52px; border-radius: 14px; background: var(--mint-deep); color: var(--teal); display: grid; place-items: center; }
   .step h3 { font-family: var(--sans); font-size: 17px; font-weight: 700; letter-spacing: 0; line-height: 1.3; margin-bottom: 2px; }
   .step p { color: var(--muted); font-size: 15px; }
   .about { position: relative; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 28px 24px; }
@@ -340,7 +345,7 @@
     .c1 { grid-column: 1; grid-row: 1; transform: rotate(-3deg); }
     .c2 { grid-column: 2; grid-row: 1; transform: rotate(3deg); }
     .cover .t { font-size: 17px; }
-    .covers .tag { grid-column: 1 / 3; grid-row: 2; position: static; justify-self: center; transform: none; }
+    .covers .tag-group { grid-column: 1 / 3; grid-row: 2; position: static; justify-self: center; transform: none; }
     .btn-primary { font-size: 17px; padding-inline: 24px; width: 100%; }
   }
   @media (min-width: 480px) and (max-width: 719px) {
@@ -422,7 +427,10 @@
             <div class="s" style="margin-top:10px">Am I becoming the supervisor I envisioned?</div>
           </div>
         </div>
-        <div class="tag">Instant download &middot; PDF</div>
+        <div class="tag-group">
+          <div class="tag">Instant download &middot; PDF</div>
+          <span class="tag-icon" aria-hidden="true"><iconify-icon icon="simple-icons:adobeacrobatreader"></iconify-icon></span>
+        </div>
       </div>
     </div>
 
@@ -515,9 +523,9 @@
             <h2 id="trust-h">Buy, download, start reading.</h2>
           </div>
           <div class="steps">
-            <div class="step"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><div><h3>Secure checkout</h3><p>Pay through Stripe. Choose the bundle or a single guide.</p></div></div>
-            <div class="step"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16"/></svg></div><div><h3>Instant unlock</h3><p>Your PDF unlocks right after payment, plus a copy arrives by email.</p></div></div>
-            <div class="step"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v13H7l-3 3z"/></svg></div><div><h3>Real support if something goes wrong</h3><p>Didn&rsquo;t get your file within 48 hours? Email us and we&rsquo;ll resend or fix it. See the <a href="/refunds/" style="color:var(--teal);font-weight:700">refund policy</a>.</p></div></div>
+            <div class="step"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><div><h3>Secure checkout</h3><p>Pay through Stripe. Choose the bundle or a single guide.</p></div></div>
+            <div class="step"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16"/></svg></div><div><h3>Instant unlock</h3><p>Your PDF unlocks right after payment, plus a copy arrives by email.</p></div></div>
+            <div class="step"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v13H7l-3 3z"/></svg></div><div><h3>Real support if something goes wrong</h3><p>Didn&rsquo;t get your file within 48 hours? Email us and we&rsquo;ll resend or fix it. See the <a href="/refunds/" style="color:var(--teal);font-weight:700">refund policy</a>.</p></div></div>
           </div>
         </div>
         <aside class="about">
