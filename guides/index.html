@@ -338,8 +338,14 @@
   .g2g-wordmark .g2g-number { color: #4b3021; }
   .g2g-logo-mark { width: 72px; height: 72px; object-fit: contain; }
   #footer-logo-link > span { align-items: stretch; text-align: center; }
-  #footer-logo-link .g2g-wordmark { font-size: clamp(32px, 4.6vw, 44px); }
-  #footer-logo-link .g2g-tagline { font-size: clamp(12px, 1.5vw, 14px); transform: scaleX(.9); }
+  /* This page's header is a slim, fixed-size custom bar, not the site's tall nav — so the
+     shared footer's clamp(32px,4.6vw,44px) in assets/footer.css, sized for that taller nav,
+     reads oversized next to it. Match the header's own fixed sizes (.brand .txt b / span
+     above) here instead. `html` in front matches assets/footer.css's #site-footer
+     #footer-logo-link .g2g-wordmark on ID count and then wins on the element-selector
+     tiebreaker — needed since that external stylesheet loads after this one. */
+  html #site-footer #footer-logo-link .g2g-wordmark { font-size: 28px; }
+  html #site-footer #footer-logo-link .g2g-tagline { font-size: 10.5px; transform: none; }
   .g2g-tagline { margin-top: 2px; font-family: "Montserrat", Arial, sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0; text-transform: uppercase; color: #4b3021; }
   </style>
   <link rel="stylesheet" href="/assets/footer.css" />
