@@ -20,3 +20,36 @@
 @media (min-width: 1024px) {
   #site-footer > .container-custom { padding-block: 80px; }
 }
+
+/* Phones: center-align the footer content */
+@media (max-width: 639px) {
+  #site-footer > .container-custom { padding: 48px 24px 40px; text-align: center; }
+
+  #site-footer .grid { row-gap: 32px; }
+
+  /* brand block */
+  #site-footer #footer-logo-link {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  #site-footer #footer-logo-link > span { align-items: center; text-align: center; }
+  #site-footer .grid > div:first-child { margin-inline: auto; }
+  #site-footer .grid > div:first-child > p { margin-inline: auto; max-width: 30ch; }
+  #site-footer .grid > div:first-child > div { justify-content: center; }
+
+  /* link columns: divider above each, centered lists */
+  #site-footer .grid > div + div {
+    padding-top: 28px;
+    border-top: 1px solid rgba(15, 118, 110, .10);
+  }
+  #site-footer .grid h4 { margin-bottom: 14px; }
+  #site-footer .grid ul { text-align: center; }
+
+  /* legal row */
+  #site-footer .container-custom > div:last-of-type { align-items: center; text-align: center; }
+  #site-footer #disclaimer { margin-inline: auto; }
+  #site-footer .container-custom > div:last-of-type > div { justify-content: center; }
+}
