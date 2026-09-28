@@ -235,6 +235,22 @@
   /* products */
   .products { display: grid; gap: 24px; }
   .product { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 28px 24px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 16px 40px rgba(18,32,28,.07); }
+  /* Icon-stamp watermark, same pattern as the services page's own PDF cards (services/index.html
+     .has-stamp/.stamp-corner) — reused verbatim so both places treat the two guides the same way. */
+  .has-stamp { position: relative; isolation: isolate; }
+  .has-stamp::after {
+    content: ""; position: absolute; top: 28px; right: 28px; width: 200px; height: 200px;
+    background: var(--stamp) center / contain no-repeat; opacity: 0.16; transform: rotate(-9deg);
+    pointer-events: none; z-index: -1;
+  }
+  .stamp-corner { overflow: hidden; }
+  .stamp-corner::after { top: -36px; right: -36px; width: 150px; height: 150px; opacity: 0.16; transform: none; }
+  .stamp-knowledge { --stamp: url('/assets/icons/icon-knowledge.webp'); }
+  .stamp-wisdom { --stamp: url('/assets/icons/icon-wisdom.webp'); }
+  @media (max-width: 639px) {
+    .has-stamp::after { top: 14px; right: 14px; width: 110px; height: 110px; }
+    .stamp-corner::after { top: -28px; right: -28px; width: 110px; height: 110px; }
+  }
   .product .badge-row { display: flex; align-items: center; gap: 14px; }
   .product .pdf-icon { flex: none; width: 52px; height: 52px; border-radius: 14px; background: #FFF1F1; color: #EC1C24; display: grid; place-items: center; }
   .product .pdf-icon iconify-icon { font-size: 30px; }
@@ -432,7 +448,7 @@
         <h2 id="guides-h">Two guides. One for the floor, one for the lead.</h2>
       </div>
       <div class="products">
-        <article class="product" id="guide-1">
+        <article class="product has-stamp stamp-corner stamp-knowledge" id="guide-1">
           <div class="badge-row">
             <span class="pdf-icon" aria-hidden="true"><iconify-icon icon="simple-icons:adobeacrobatreader"></iconify-icon></span>
             <span class="kicker">PDF 1 &bull; Foundations</span>
@@ -450,7 +466,7 @@
           </div>
         </article>
 
-        <article class="product" id="guide-2">
+        <article class="product has-stamp stamp-corner stamp-wisdom" id="guide-2">
           <div class="badge-row">
             <span class="pdf-icon" aria-hidden="true"><iconify-icon icon="simple-icons:adobeacrobatreader"></iconify-icon></span>
             <span class="kicker">PDF 2 &bull; Readiness</span>
