@@ -16,49 +16,91 @@ function req(body, { method = "POST", origin = ORIGIN, raw } = {}) {
   });
 }
 
-function stubResend(status = 200) {
+// Resend's contact model: GET .../contacts/<email> looks a contact up (404 if none),
+// POST .../contacts creates or fully replaces one. lookupStatus/lookupBody control the
+// GET; createStatus controls the POST.
+function stubResend({ lookupStatus = 404, lookupBody, createStatus = 200 } = {}) {
   const calls = [];
   globalThis.fetch = async (url, init) => {
-    calls.push({ url, init });
-    return new Response(JSON.stringify({ id: "c_1" }), { status });
+    const method = (init && init.method) || "GET";
+    calls.push({ url, method, init });
+    if (method === "GET") {
+      return new Response(JSON.stringify(lookupBody || { message: "Contact not found" }), { status: lookupStatus });
+    }
+    return new Response(JSON.stringify({ id: "c_1" }), { status: createStatus });
   };
   return calls;
 }
 
-test("valid signup creates a Resend contact and returns ok", async () => {
+test("valid signup looks the contact up, then creates it, and returns ok", async () => {
   const calls = stubResend();
   const res = await worker.fetch(req({ ...valid, email: " Jane@Example.COM " }), ENV);
   assert.equal(res.status, 200);
   assert.deepEqual(await res.json(), { ok: true });
   assert.equal(res.headers.get("Access-Control-Allow-Origin"), ORIGIN);
-  assert.equal(calls.length, 1);
-  assert.equal(calls[0].url, "https://api.resend.com/audiences/aud_123/contacts");
-  assert.equal(calls[0].init.method, "POST");
-  assert.equal(calls[0].init.headers.Authorization, "Bearer re_test");
-  assert.deepEqual(JSON.parse(calls[0].init.body), {
+  assert.equal(calls.length, 2);
+  assert.equal(calls[0].method, "GET");
+  assert.equal(calls[0].url, "https://api.resend.com/audiences/aud_123/contacts/jane%40example.com");
+  assert.equal(calls[1].method, "POST");
+  assert.equal(calls[1].url, "https://api.resend.com/audiences/aud_123/contacts");
+  assert.equal(calls[1].init.headers.Authorization, "Bearer re_test");
+  assert.deepEqual(JSON.parse(calls[1].init.body), {
     email: "jane@example.com",
     first_name: "Jane",
   });
 });
 
-test("never sends the unsubscribed flag, so a repeat signup cannot re-subscribe someone who opted out", async () => {
+test("never sends the unsubscribed flag on create", async () => {
   const calls = stubResend();
   await worker.fetch(req(valid), ENV);
-  assert.equal("unsubscribed" in JSON.parse(calls[0].init.body), false);
+  const create = calls.find((c) => c.method === "POST");
+  assert.equal("unsubscribed" in JSON.parse(create.init.body), false);
 });
 
-test("first name is optional and omitted when empty", async () => {
+test("an already-unsubscribed contact is not re-subscribed by a repeat signup", async () => {
+  const calls = stubResend({ lookupStatus: 200, lookupBody: { email: "jane@example.com", unsubscribed: true } });
+  const res = await worker.fetch(req(valid), ENV);
+  assert.equal(res.status, 200);
+  assert.deepEqual(await res.json(), { ok: true });
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].method, "GET");
+});
+
+test("keeps the existing first name when a later signup omits it", async () => {
+  const calls = stubResend({
+    lookupStatus: 200,
+    lookupBody: { email: "jane@example.com", unsubscribed: false, first_name: "Jane" },
+  });
+  const res = await worker.fetch(req({ ...valid, firstName: "" }), ENV);
+  assert.equal(res.status, 200);
+  const create = calls.find((c) => c.method === "POST");
+  assert.deepEqual(JSON.parse(create.init.body), { email: "jane@example.com", first_name: "Jane" });
+});
+
+test("a new signup's name overrides the stored one when both are given", async () => {
+  const calls = stubResend({
+    lookupStatus: 200,
+    lookupBody: { email: "jane@example.com", unsubscribed: false, first_name: "Old Name" },
+  });
+  await worker.fetch(req({ ...valid, firstName: "New Name" }), ENV);
+  const create = calls.find((c) => c.method === "POST");
+  assert.equal(JSON.parse(create.init.body).first_name, "New Name");
+});
+
+test("first name is optional and omitted when empty for a new contact", async () => {
   const calls = stubResend();
   const res = await worker.fetch(req({ ...valid, firstName: "  " }), ENV);
   assert.equal(res.status, 200);
-  assert.deepEqual(JSON.parse(calls[0].init.body), { email: "jane@example.com" });
+  const create = calls.find((c) => c.method === "POST");
+  assert.deepEqual(JSON.parse(create.init.body), { email: "jane@example.com" });
 });
 
 test("very long first name is truncated to 80 characters", async () => {
   const calls = stubResend();
   const res = await worker.fetch(req({ ...valid, firstName: "A".repeat(5000) }), ENV);
   assert.equal(res.status, 200);
-  assert.equal(JSON.parse(calls[0].init.body).first_name.length, 80);
+  const create = calls.find((c) => c.method === "POST");
+  assert.equal(JSON.parse(create.init.body).first_name.length, 80);
 });
 
 test("disallowed origin is rejected without calling Resend", async () => {
@@ -126,8 +168,16 @@ test("non-object or invalid JSON bodies return 400 invalid_json", async () => {
   assert.equal(calls.length, 0);
 });
 
-test("Resend error status returns 502 upstream_error", async () => {
-  stubResend(500);
+test("Resend lookup error status returns 502 upstream_error without attempting create", async () => {
+  const calls = stubResend({ lookupStatus: 500 });
+  const res = await worker.fetch(req(valid), ENV);
+  assert.equal(res.status, 502);
+  assert.equal((await res.json()).error, "upstream_error");
+  assert.equal(calls.length, 1);
+});
+
+test("Resend create error status returns 502 upstream_error", async () => {
+  stubResend({ createStatus: 500 });
   const res = await worker.fetch(req(valid), ENV);
   assert.equal(res.status, 502);
   assert.equal((await res.json()).error, "upstream_error");

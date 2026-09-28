@@ -66,24 +66,43 @@ export default {
 
     const firstName = typeof data.firstName === "string" ? data.firstName.trim().slice(0, MAX_NAME) : "";
     const source = typeof data.source === "string" ? data.source.slice(0, MAX_SOURCE) : "";
+    const contactsPath = "/audiences/" + encodeURIComponent(env.RESEND_AUDIENCE_ID) + "/contacts";
 
-    // Never send `unsubscribed`: the create call upserts, so setting it would re-subscribe
-    // someone who already opted out. New contacts are subscribed by default.
+    // Resend's create-contact call is a full-replace upsert, not a merge: any field left out
+    // of the body is reset to its default rather than left alone. So look the contact up
+    // first. An already-unsubscribed contact is left alone — a repeat signup must never
+    // undo someone's opt-out — and an existing first name is kept if this signup omits one.
+    let existingFirstName = "";
+    try {
+      const lookup = await fetch("https://api.resend.com" + contactsPath + "/" + encodeURIComponent(email), {
+        headers: { Authorization: "Bearer " + env.RESEND_API_KEY },
+      });
+      if (lookup.status === 200) {
+        const existing = await lookup.json();
+        if (existing.unsubscribed === true) return reply(200, { ok: true }, origin);
+        if (typeof existing.first_name === "string") existingFirstName = existing.first_name;
+      } else if (lookup.status !== 404) {
+        console.error("Resend lookup responded " + lookup.status);
+        return fail(502, "upstream_error", origin);
+      }
+    } catch (e) {
+      console.error("Resend lookup failed");
+      return fail(502, "upstream_error", origin);
+    }
+
     const contact = { email };
-    if (firstName) contact.first_name = firstName;
+    const nameToStore = firstName || existingFirstName;
+    if (nameToStore) contact.first_name = nameToStore;
 
     try {
-      const res = await fetch(
-        "https://api.resend.com/audiences/" + encodeURIComponent(env.RESEND_AUDIENCE_ID) + "/contacts",
-        {
-          method: "POST",
-          headers: {
-            Authorization: "Bearer " + env.RESEND_API_KEY,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(contact),
-        }
-      );
+      const res = await fetch("https://api.resend.com" + contactsPath, {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + env.RESEND_API_KEY,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(contact),
+      });
       if (!res.ok) {
         console.error("Resend responded " + res.status);
         return fail(502, "upstream_error", origin);
