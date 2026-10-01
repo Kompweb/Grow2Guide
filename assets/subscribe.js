@@ -1,5 +1,7 @@
 (function () {
-  var ENDPOINT = 'https://subscribe.grow2guide.com/';
+  // grow2guide.com's DNS is on Wix, not Cloudflare, so the Worker can't use a custom domain
+  // here (confirmed live 2026-10-01). Using the Cloudflare workers.dev address instead.
+  var ENDPOINT = 'https://g2g-subscribe.grow2guide.workers.dev/';
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   function validate(values) {

@@ -21,9 +21,12 @@ npx wrangler secret put RESEND_AUDIENCE_ID
 npx wrangler deploy
 ```
 
-3. If grow2guide.com is not on Cloudflare DNS, delete the `routes` line in `wrangler.toml`
-   before deploying. Wrangler prints a `https://g2g-subscribe.<account>.workers.dev` URL;
-   put that URL in `ENDPOINT` at the top of `assets/subscribe.js`.
+3. grow2guide.com's DNS is on Wix (ns2/ns3.wixdns.net), not Cloudflare, so the Worker is
+   deployed at `https://g2g-subscribe.grow2guide.workers.dev` (`workers_dev = true` in
+   `wrangler.toml`), which is already set as `ENDPOINT` in `assets/subscribe.js`. A brand new
+   `workers.dev` subdomain can take a minute or two for Cloudflare's edge to serve TLS for —
+   confirmed live 2026-10-01. If grow2guide.com's DNS ever moves to Cloudflare, switch
+   `wrangler.toml` back to the `routes` custom-domain block and update `ENDPOINT`.
 
 ## Local development and tests
 

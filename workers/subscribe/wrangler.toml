@@ -2,10 +2,11 @@ name = "g2g-subscribe"
 main = "index.js"
 compatibility_date = "2026-09-01"
 
-# Serves the Worker at https://subscribe.grow2guide.com (needs grow2guide.com DNS on Cloudflare).
-# If the domain is not on Cloudflare, delete this block and use the workers.dev URL instead
-# (see README.md).
-routes = [{ pattern = "subscribe.grow2guide.com", custom_domain = true }]
+# grow2guide.com's DNS is on Wix (ns2/ns3.wixdns.net), not Cloudflare, so a custom domain
+# route here cannot resolve — confirmed live on 2026-10-01 (subscribe.grow2guide.com did not
+# resolve after deploying with the route below). Using the workers.dev URL instead; see README.md.
+# routes = [{ pattern = "subscribe.grow2guide.com", custom_domain = true }]
+workers_dev = true
 
 # Keep Worker logs (the consent records written on each signup) in the Cloudflare dashboard.
 [observability]
