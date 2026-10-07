@@ -2,7 +2,7 @@
 <!--
   Blog post template. To add a post:
   1. mkdir blog/<slug> and copy this file to blog/<slug>/index.html
-  2. Replace every {{PLACEHOLDER}}: TITLE (H1), SEO_TITLE (<title>/og:title, defaults to TITLE), DESCRIPTION (120-160 chars), SLUG,
+  2. Replace every {{PLACEHOLDER}}: TITLE (H1), SEO_TITLE (<title>/og:title, defaults to TITLE), DESCRIPTION (120-160 chars), SLUG, READ_MIN (whole minutes, ~200 words/min),
      DATE_ISO (YYYY-MM-DD), DATE_DISPLAY (e.g. September 25, 2026)
   3. Write the article inside the <div class="prose-g2g"> block
   4. Add a card to blog/index.html (newest first) and a <url> to sitemap.xml
@@ -106,19 +106,8 @@
     .nav-link::after { content:''; position:absolute; bottom:-6px; left:0; width:0; height:2px; background:var(--accent-teal); transition:width .3s; }
     .nav-link:hover::after { width:100%; }
     .btn-active:active { transform: scale(0.98); }
-    .prose-g2g h2 { font-size: 28px; font-weight: 700; color: #12201C; margin: 48px 0 16px; letter-spacing: -0.02em; line-height: 1.25; }
-    .prose-g2g h3 { font-size: 21px; font-weight: 700; color: #12201C; margin: 32px 0 12px; line-height: 1.3; }
-    .prose-g2g p { font-size: 17px; line-height: 1.75; color: #3d4f47; margin-bottom: 20px; }
-    .prose-g2g a { color: #0F766E; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
-    .prose-g2g ul, .prose-g2g ol { margin: 0 0 24px; padding-left: 24px; }
-    .prose-g2g ul { list-style: disc; }
-    .prose-g2g ol { list-style: decimal; }
-    .prose-g2g li { font-size: 17px; line-height: 1.7; color: #3d4f47; margin-bottom: 10px; padding-left: 4px; }
-    .prose-g2g li::marker { color: #0F766E; }
-    .prose-g2g blockquote { border-left: 4px solid #0F766E; background: #EAF3EF; padding: 16px 20px; border-radius: 0 12px 12px 0; margin: 28px 0; color: #12201C; }
-    .prose-g2g blockquote p { margin: 0; }
-    .prose-g2g img { max-width: 100%; height: auto; border-radius: 16px; margin: 28px 0; }
   </style>
+  <link rel="stylesheet" href="/assets/blog.css?v=1" />
   <link rel="stylesheet" href="/assets/footer.css?v=5" />
   <script src="/assets/subscribe.js" defer></script>
   <script src="/assets/subscribe-modal.js" defer></script>
@@ -168,29 +157,32 @@
         </div>
       </div>
     </nav>
-    <main id="main" class="flex-1 pt-28 pb-24">
-      <div class="container-custom max-w-3xl">
-        <nav class="flex items-center gap-2 text-sm font-medium text-[#5A6A63] mb-10" aria-label="Breadcrumb">
-          <a href="/" class="hover:text-[#0F766E]">Home</a>
-          <span class="opacity-40">/</span>
-          <a href="/blog/" class="hover:text-[#0F766E]">Blog</a>
-          <span class="opacity-40">/</span>
-          <span class="text-[#12201C]">{{TITLE}}</span>
+    <main id="main" class="flex-1 pt-[104px] sm:pt-28 pb-12 sm:pb-20">
+      <div class="blog-wrap">
+        <nav class="mb-3 sm:mb-5 text-sm font-medium text-[#5A6A63]" aria-label="Breadcrumb">
+          <a href="/blog/" class="sm:hidden inline-flex items-center min-h-[44px] -mt-2 hover:text-[#0F766E]">&larr; Blog</a>
+          <div class="hidden sm:flex items-center gap-2 min-w-0">
+            <a href="/" class="shrink-0 hover:text-[#0F766E]">Home</a>
+            <span class="opacity-40">/</span>
+            <a href="/blog/" class="shrink-0 hover:text-[#0F766E]">Blog</a>
+            <span class="opacity-40">/</span>
+            <span class="truncate min-w-0 text-[#12201C]">{{TITLE}}</span>
+          </div>
         </nav>
         <article>
-          <header class="mb-10">
-            <h1 class="text-4xl lg:text-5xl font-bold tracking-tight leading-tight mb-4">{{TITLE}}</h1>
-            <p class="text-[#5A6A63] font-medium">By Sara Tudor · <time datetime="{{DATE_ISO}}">{{DATE_DISPLAY}}</time></p>
+          <header class="mb-5 sm:mb-8">
+            <h1 class="text-[28px] sm:text-4xl lg:text-[40px] font-bold tracking-tight leading-[1.15] mb-3">{{TITLE}}</h1>
+            <p class="text-sm sm:text-base text-[#5A6A63] font-medium">By Sara Tudor · <time datetime="{{DATE_ISO}}">{{DATE_DISPLAY}}</time> · {{READ_MIN}} min read</p>
           </header>
-          <div class="bg-white rounded-[24px] p-8 lg:p-12 card-shadow border border-[#0F766E]/5">
+          <div class="article-card">
             <div class="prose-g2g">
               <p>Write the article here. Use <code>h2</code> and <code>h3</code> for sections, <code>p</code>, <code>ul</code>/<code>ol</code>, and <code>blockquote</code>.</p>
             </div>
           </div>
         </article>
-        <aside class="mt-12 bg-[#EAF3EF] rounded-[24px] p-8 lg:p-10 border border-[#0F766E]/10">
-          <h2 class="text-2xl font-bold tracking-tight mb-3">Need guidance on your next step?</h2>
-          <p class="text-[#5A6A63] leading-relaxed mb-6">Talk with Grow2Guide about your goals and get practical, personalized direction.</p>
+        <aside class="mt-8 sm:mt-10 bg-[#EAF3EF] rounded-[20px] sm:rounded-[24px] p-5 sm:p-8 border border-[#0F766E]/10">
+          <h2 class="text-xl sm:text-2xl font-bold tracking-tight mb-2">Need guidance on your next step?</h2>
+          <p class="text-[15px] sm:text-base text-[#5A6A63] leading-relaxed mb-5">Talk with Grow2Guide about your goals and get practical, personalized direction.</p>
           <div class="flex flex-col sm:flex-row gap-3">
             <a href="/consultation/" class="btn-active bg-[#4b3021] text-white h-[52px] px-8 flex items-center justify-center rounded-full font-bold hover:bg-[#3a2519] transition-all">Request consultation</a>
             <a href="/blog/" class="btn-active bg-white border border-[#0F766E]/30 text-[#0F766E] h-[52px] px-8 flex items-center justify-center rounded-full font-bold hover:bg-[#D8F0EA] transition-all">More articles</a>

@@ -1,0 +1,36 @@
+/* Blog reading styles (index + posts). Mobile-first: base rules are for phones,
+   media queries add room from 640px up. Linked as /assets/blog.css?v=N on each blog page. */
+
+.blog-wrap { max-width: 44rem; margin: 0 auto; padding: 0 20px; }
+@media (min-width: 640px) { .blog-wrap { padding: 0 24px; } }
+
+/* On phones the article sits straight on the page so text gets the full width;
+   the white card appears from 640px up. */
+.article-card { padding: 0; }
+@media (min-width: 640px) {
+  .article-card { background: #fff; border: 1px solid rgba(15,118,110,.05); border-radius: 24px; padding: 32px; box-shadow: 0 16px 40px rgba(18,32,28,.08); }
+}
+@media (min-width: 1024px) { .article-card { padding: 40px 48px; } }
+
+.prose-g2g { font-size: 17px; line-height: 1.65; color: #2c3d36; overflow-wrap: break-word; }
+@media (min-width: 640px) { .prose-g2g { font-size: 18px; line-height: 1.7; } }
+.prose-g2g > :first-child { margin-top: 0; }
+.prose-g2g > :last-child { margin-bottom: 0; }
+
+.prose-g2g h2 { font-size: 24px; font-weight: 700; color: #12201C; margin: 32px 0 10px; letter-spacing: -0.02em; line-height: 1.25; }
+.prose-g2g h3 { font-size: 19px; font-weight: 700; color: #12201C; margin: 24px 0 8px; line-height: 1.3; }
+@media (min-width: 640px) {
+  .prose-g2g h2 { font-size: 28px; margin-top: 40px; }
+  .prose-g2g h3 { font-size: 21px; }
+}
+.prose-g2g p { margin: 0 0 14px; }
+.prose-g2g a { color: #0F766E; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.prose-g2g ul, .prose-g2g ol { margin: 0 0 16px; padding-left: 22px; }
+.prose-g2g ul { list-style: disc; }
+.prose-g2g ol { list-style: decimal; }
+.prose-g2g li { line-height: 1.6; margin-bottom: 6px; padding-left: 4px; }
+.prose-g2g li::marker { color: #0F766E; }
+.prose-g2g blockquote { border-left: 4px solid #0F766E; background: #EAF3EF; padding: 12px 16px; border-radius: 0 12px 12px 0; margin: 20px 0; color: #12201C; }
+.prose-g2g blockquote p { margin: 0; }
+.prose-g2g hr { border: 0; border-top: 1px solid rgba(15,118,110,.2); margin: 28px 0; }
+.prose-g2g img { max-width: 100%; height: auto; border-radius: 16px; margin: 20px 0; }

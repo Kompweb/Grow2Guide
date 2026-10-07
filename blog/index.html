@@ -89,6 +89,7 @@
     .prose-g2g blockquote p { margin: 0; }
     .prose-g2g img { max-width: 100%; height: auto; border-radius: 16px; margin: 28px 0; }
   </style>
+  <link rel="stylesheet" href="/assets/blog.css?v=1" />
   <link rel="stylesheet" href="/assets/footer.css?v=5" />
   <script src="/assets/subscribe.js" defer></script>
   <script src="/assets/subscribe-modal.js" defer></script>
@@ -138,66 +139,66 @@
         </div>
       </div>
     </nav>
-    <main id="main" class="flex-1 pt-28 pb-24">
-      <div class="container-custom max-w-3xl">
-        <nav class="flex items-center gap-2 text-sm font-medium text-[#5A6A63] mb-10" aria-label="Breadcrumb">
+    <main id="main" class="flex-1 pt-[104px] sm:pt-28 pb-12 sm:pb-20">
+      <div class="blog-wrap">
+        <nav class="flex items-center gap-2 text-sm font-medium text-[#5A6A63] mb-3 sm:mb-5" aria-label="Breadcrumb">
           <a href="/" class="hover:text-[#0F766E]">Home</a>
           <span class="opacity-40">/</span>
           <span class="text-[#12201C]">Blog</span>
         </nav>
-        <h1 class="text-4xl lg:text-5xl font-bold tracking-tight mb-4">Blog</h1>
-        <p class="text-lg text-[#5A6A63] leading-relaxed mb-12">Practical guidance on behavioral health careers, licensure, and building your practice.</p>
+        <h1 class="text-[32px] sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight mb-2">Blog</h1>
+        <p class="text-base sm:text-lg text-[#5A6A63] leading-relaxed mb-6 sm:mb-8">Practical guidance on behavioral health careers, licensure, and building your practice.</p>
         <!--
           Post cards go inside <div id="post-list"> below, newest first. Copy this card:
-          <a href="/blog/SLUG/" class="group block bg-white rounded-[20px] p-8 card-shadow border border-[#0F766E]/5 hover:border-[#0F766E]/20 transition-colors">
-            <p class="text-sm font-semibold text-[#5A6A63] mb-2"><time datetime="YYYY-MM-DD">Month D, YYYY</time></p>
-            <h2 class="text-2xl font-bold tracking-tight mb-3 group-hover:text-[#0F766E] transition-colors">Post title</h2>
-            <p class="text-[#5A6A63] leading-relaxed mb-4">One or two sentence excerpt.</p>
+          <a href="/blog/SLUG/" class="group block bg-white rounded-[20px] p-5 sm:p-7 card-shadow border border-[#0F766E]/5 hover:border-[#0F766E]/20 transition-colors">
+            <p class="text-[13px] sm:text-sm font-semibold text-[#5A6A63] mb-1.5"><time datetime="YYYY-MM-DD">Month D, YYYY</time></p>
+            <h2 class="text-xl sm:text-2xl font-bold tracking-tight leading-snug mb-2 group-hover:text-[#0F766E] transition-colors">Post title</h2>
+            <p class="text-[15px] sm:text-base text-[#5A6A63] leading-relaxed mb-3">One or two sentence excerpt.</p>
             <span class="text-[#0F766E] font-bold">Read article &rarr;</span>
           </a>
           Then delete the #post-empty card.
         -->
-        <div id="post-list" class="flex flex-col gap-6">
-          <a href="/blog/i-didnt-know-wont-protect-you/" class="group block bg-white rounded-[20px] p-8 card-shadow border border-[#0F766E]/5 hover:border-[#0F766E]/20 transition-colors">
-            <p class="text-sm font-semibold text-[#5A6A63] mb-2"><time datetime="2026-10-06">October 6, 2026</time></p>
-            <h2 class="text-2xl font-bold tracking-tight mb-3 group-hover:text-[#0F766E] transition-colors">Nobody Explained the Policies at Orientation — But Let’s Be Honest, You Didn’t Read Them Either</h2>
-            <p class="text-[#5A6A63] leading-relaxed mb-4">You initialed every policy on day one. Here’s why “I didn’t know” won’t protect you, and what to do instead.</p>
+        <div id="post-list" class="flex flex-col gap-3 sm:gap-4">
+          <a href="/blog/i-didnt-know-wont-protect-you/" class="group block bg-white rounded-[20px] p-5 sm:p-7 card-shadow border border-[#0F766E]/5 hover:border-[#0F766E]/20 transition-colors">
+            <p class="text-[13px] sm:text-sm font-semibold text-[#5A6A63] mb-1.5"><time datetime="2026-10-06">October 6, 2026</time></p>
+            <h2 class="text-xl sm:text-2xl font-bold tracking-tight leading-snug mb-2 group-hover:text-[#0F766E] transition-colors">Nobody explained the policies at orientation — but let’s be honest, you didn’t read them either</h2>
+            <p class="text-[15px] sm:text-base text-[#5A6A63] leading-relaxed mb-3">You initialed every policy on day one. Here’s why “I didn’t know” won’t protect you, and what to do instead.</p>
             <span class="text-[#0F766E] font-bold">Read article &rarr;</span>
           </a>
-          <a href="/blog/late-to-work-nobody-said-a-word/" class="group block bg-white rounded-[20px] p-8 card-shadow border border-[#0F766E]/5 hover:border-[#0F766E]/20 transition-colors">
-            <p class="text-sm font-semibold text-[#5A6A63] mb-2"><time datetime="2026-10-06">October 6, 2026</time></p>
-            <h2 class="text-2xl font-bold tracking-tight mb-3 group-hover:text-[#0F766E] transition-colors">I’ve Been Late to Work for Most of My Career. Nobody Ever Said a Word.</h2>
-            <p class="text-[#5A6A63] leading-relaxed mb-4">What years of being late taught me about boundaries, silence, and what a real correction sounds like.</p>
+          <a href="/blog/late-to-work-nobody-said-a-word/" class="group block bg-white rounded-[20px] p-5 sm:p-7 card-shadow border border-[#0F766E]/5 hover:border-[#0F766E]/20 transition-colors">
+            <p class="text-[13px] sm:text-sm font-semibold text-[#5A6A63] mb-1.5"><time datetime="2026-10-06">October 6, 2026</time></p>
+            <h2 class="text-xl sm:text-2xl font-bold tracking-tight leading-snug mb-2 group-hover:text-[#0F766E] transition-colors">I’ve been late to work for most of my career. Nobody ever said a word.</h2>
+            <p class="text-[15px] sm:text-base text-[#5A6A63] leading-relaxed mb-3">What years of being late taught me about boundaries, silence, and what a real correction sounds like.</p>
             <span class="text-[#0F766E] font-bold">Read article &rarr;</span>
           </a>
-          <a href="/blog/maybe-you-dont-want-to-be-a-supervisor/" class="group block bg-white rounded-[20px] p-8 card-shadow border border-[#0F766E]/5 hover:border-[#0F766E]/20 transition-colors">
-            <p class="text-sm font-semibold text-[#5A6A63] mb-2"><time datetime="2026-10-06">October 6, 2026</time></p>
-            <h2 class="text-2xl font-bold tracking-tight mb-3 group-hover:text-[#0F766E] transition-colors">Maybe You Don’t Want to Be a Supervisor (And That’s Okay)</h2>
-            <p class="text-[#5A6A63] leading-relaxed mb-4">In behavioral health, “moving up” usually means supervising. How to tell whether you want the job or just what comes with it.</p>
+          <a href="/blog/maybe-you-dont-want-to-be-a-supervisor/" class="group block bg-white rounded-[20px] p-5 sm:p-7 card-shadow border border-[#0F766E]/5 hover:border-[#0F766E]/20 transition-colors">
+            <p class="text-[13px] sm:text-sm font-semibold text-[#5A6A63] mb-1.5"><time datetime="2026-10-06">October 6, 2026</time></p>
+            <h2 class="text-xl sm:text-2xl font-bold tracking-tight leading-snug mb-2 group-hover:text-[#0F766E] transition-colors">Maybe you don’t want to be a supervisor (and that’s okay)</h2>
+            <p class="text-[15px] sm:text-base text-[#5A6A63] leading-relaxed mb-3">In behavioral health, “moving up” usually means supervising. How to tell whether you want the job or just what comes with it.</p>
             <span class="text-[#0F766E] font-bold">Read article &rarr;</span>
           </a>
-          <a href="/blog/the-2-am-replay-after-a-hard-shift/" class="group block bg-white rounded-[20px] p-8 card-shadow border border-[#0F766E]/5 hover:border-[#0F766E]/20 transition-colors">
-            <p class="text-sm font-semibold text-[#5A6A63] mb-2"><time datetime="2026-10-06">October 6, 2026</time></p>
-            <h2 class="text-2xl font-bold tracking-tight mb-3 group-hover:text-[#0F766E] transition-colors">The 2 a.m. Replay: What to Do When You Can’t Stop Thinking About a Shift</h2>
-            <p class="text-[#5A6A63] leading-relaxed mb-4">How to tell review from rumination, and a five-minute, three-line habit for putting a hard shift down.</p>
+          <a href="/blog/the-2-am-replay-after-a-hard-shift/" class="group block bg-white rounded-[20px] p-5 sm:p-7 card-shadow border border-[#0F766E]/5 hover:border-[#0F766E]/20 transition-colors">
+            <p class="text-[13px] sm:text-sm font-semibold text-[#5A6A63] mb-1.5"><time datetime="2026-10-06">October 6, 2026</time></p>
+            <h2 class="text-xl sm:text-2xl font-bold tracking-tight leading-snug mb-2 group-hover:text-[#0F766E] transition-colors">The 2 a.m. replay: what to do when you can’t stop thinking about a shift</h2>
+            <p class="text-[15px] sm:text-base text-[#5A6A63] leading-relaxed mb-3">How to tell review from rumination, and a five-minute, three-line habit for putting a hard shift down.</p>
             <span class="text-[#0F766E] font-bold">Read article &rarr;</span>
           </a>
-          <a href="/blog/client-was-aggressive-is-not-a-note/" class="group block bg-white rounded-[20px] p-8 card-shadow border border-[#0F766E]/5 hover:border-[#0F766E]/20 transition-colors">
-            <p class="text-sm font-semibold text-[#5A6A63] mb-2"><time datetime="2026-10-06">October 6, 2026</time></p>
-            <h2 class="text-2xl font-bold tracking-tight mb-3 group-hover:text-[#0F766E] transition-colors">“Client Was Aggressive” Is Not a Note</h2>
-            <p class="text-[#5A6A63] leading-relaxed mb-4">Five common labels rewritten as strong, objective documentation, plus a checklist to run before you submit.</p>
+          <a href="/blog/client-was-aggressive-is-not-a-note/" class="group block bg-white rounded-[20px] p-5 sm:p-7 card-shadow border border-[#0F766E]/5 hover:border-[#0F766E]/20 transition-colors">
+            <p class="text-[13px] sm:text-sm font-semibold text-[#5A6A63] mb-1.5"><time datetime="2026-10-06">October 6, 2026</time></p>
+            <h2 class="text-xl sm:text-2xl font-bold tracking-tight leading-snug mb-2 group-hover:text-[#0F766E] transition-colors">“Client was aggressive” is not a note</h2>
+            <p class="text-[15px] sm:text-base text-[#5A6A63] leading-relaxed mb-3">Five common labels rewritten as strong, objective documentation, plus a checklist to run before you submit.</p>
             <span class="text-[#0F766E] font-bold">Read article &rarr;</span>
           </a>
-          <a href="/blog/when-to-take-a-break-from-behavioral-health/" class="group block bg-white rounded-[20px] p-8 card-shadow border border-[#0F766E]/5 hover:border-[#0F766E]/20 transition-colors">
-            <p class="text-sm font-semibold text-[#5A6A63] mb-2"><time datetime="2026-10-06">October 6, 2026</time></p>
-            <h2 class="text-2xl font-bold tracking-tight mb-3 group-hover:text-[#0F766E] transition-colors">When Is It Time to Take a Break From the Profession?</h2>
-            <p class="text-[#5A6A63] leading-relaxed mb-4">I teach vicarious trauma and still missed it in myself. The signs self-care has stopped working, and what to say.</p>
+          <a href="/blog/when-to-take-a-break-from-behavioral-health/" class="group block bg-white rounded-[20px] p-5 sm:p-7 card-shadow border border-[#0F766E]/5 hover:border-[#0F766E]/20 transition-colors">
+            <p class="text-[13px] sm:text-sm font-semibold text-[#5A6A63] mb-1.5"><time datetime="2026-10-06">October 6, 2026</time></p>
+            <h2 class="text-xl sm:text-2xl font-bold tracking-tight leading-snug mb-2 group-hover:text-[#0F766E] transition-colors">When is it time to take a break from the profession?</h2>
+            <p class="text-[15px] sm:text-base text-[#5A6A63] leading-relaxed mb-3">I teach vicarious trauma and still missed it in myself. The signs self-care has stopped working, and what to say.</p>
             <span class="text-[#0F766E] font-bold">Read article &rarr;</span>
           </a>
-          <a href="/blog/do-i-hate-my-job-or-am-i-in-the-wrong-place/" class="group block bg-white rounded-[20px] p-8 card-shadow border border-[#0F766E]/5 hover:border-[#0F766E]/20 transition-colors">
-            <p class="text-sm font-semibold text-[#5A6A63] mb-2"><time datetime="2026-09-25">September 25, 2026</time></p>
-            <h2 class="text-2xl font-bold tracking-tight mb-3 group-hover:text-[#0F766E] transition-colors">Do I Hate My Job, or Am I Just in the Wrong Place?</h2>
-            <p class="text-[#5A6A63] leading-relaxed mb-4">How to tell whether you hate the work itself or just the place you are doing it, and what a healthy agency looks like.</p>
+          <a href="/blog/do-i-hate-my-job-or-am-i-in-the-wrong-place/" class="group block bg-white rounded-[20px] p-5 sm:p-7 card-shadow border border-[#0F766E]/5 hover:border-[#0F766E]/20 transition-colors">
+            <p class="text-[13px] sm:text-sm font-semibold text-[#5A6A63] mb-1.5"><time datetime="2026-09-25">September 25, 2026</time></p>
+            <h2 class="text-xl sm:text-2xl font-bold tracking-tight leading-snug mb-2 group-hover:text-[#0F766E] transition-colors">Do I hate my job, or am I just in the wrong place?</h2>
+            <p class="text-[15px] sm:text-base text-[#5A6A63] leading-relaxed mb-3">How to tell whether you hate the work itself or just the place you are doing it, and what a healthy agency looks like.</p>
             <span class="text-[#0F766E] font-bold">Read article &rarr;</span>
           </a>
         </div>
