@@ -13,6 +13,9 @@ from datetime import date
 from html import escape
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from blog_toc import apply_to_page
+
 root = Path(__file__).resolve().parents[1]
 ap = argparse.ArgumentParser()
 ap.add_argument("--slug", required=True)
@@ -68,6 +71,7 @@ cta = """<aside class="mt-8 sm:mt-10 bg-[#EAF3EF] rounded-[20px] sm:rounded-[24p
 html, n = aside.subn(lambda _: cta, html, count=1)
 assert n == 1, "aside not found in template"
 
+html = apply_to_page(html)  # h2 ids + "In this article" list
 if "{{" in html:
     sys.exit("Unreplaced placeholder left in output")
 target.parent.mkdir(parents=True, exist_ok=True)
