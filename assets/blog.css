@@ -43,6 +43,18 @@
 .prose-g2g blockquote { border-left: 4px solid #0F766E; background: #EAF3EF; padding: 16px 18px; border-radius: 0 12px 12px 0; margin: 24px 0; color: #12201C; font-size: 19px; line-height: 1.6; }
 .prose-g2g blockquote p { margin: 0; }
 .prose-g2g .nowrap { white-space: nowrap; }
+
+/* Before/after example notes: a weak and a strong version stacked as one unit.
+   Labels are text so the meaning never depends on color alone. */
+.prose-g2g .note-pair { margin: 0 0 20px; }
+.prose-g2g .note-pair p { margin: 0; padding: 12px 16px; font-size: 17px; line-height: 1.6; color: #12201C; }
+.prose-g2g .note-bad { background: #FDF1F0; border-left: 4px solid #B42318; border-radius: 12px 12px 0 0; }
+.prose-g2g .note-good { background: #EAF3EF; border-left: 4px solid #0F766E; border-radius: 0 0 12px 12px; margin-top: 3px !important; }
+.prose-g2g .note-label { display: block; margin-bottom: 4px; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.prose-g2g .note-bad .note-label { color: #B42318; }
+.prose-g2g .note-good .note-label { color: #0B5F59; }
+.prose-g2g .note-bad .note-label::before { content: "\2715\00a0"; }
+.prose-g2g .note-good .note-label::before { content: "\2713\00a0"; }
 .prose-g2g hr { border: 0; border-top: 1px solid rgba(15,118,110,.2); margin: 32px 0; }
 .prose-g2g img { max-width: 100%; height: auto; border-radius: 16px; margin: 24px 0; }
 

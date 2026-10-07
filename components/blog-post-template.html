@@ -7,6 +7,9 @@
   3. Write the article inside the <div class="prose-g2g"> block
   4. Add a card to blog/index.html (newest first) and a <url> to sitemap.xml
   5. Run: python3 scripts/sync-footer.py
+  6. Share card: python3 scripts/og_image.py --only <slug>  (new-post.py does this for you)
+  Before/after example boxes: wrap a pair in <div class="note-pair"> with <p class="note-bad"><span class="note-label">Weak note</span>...</p>
+  and <p class="note-good"><span class="note-label">Strong note</span>...</p> (see blog/client-was-aggressive-is-not-a-note).
 -->
 <html lang="en">
 <head>
@@ -107,7 +110,7 @@
     .nav-link:hover::after { width:100%; }
     .btn-active:active { transform: scale(0.98); }
   </style>
-  <link rel="stylesheet" href="/assets/blog.css?v=3" />
+  <link rel="stylesheet" href="/assets/blog.css?v=4" />
   <link rel="stylesheet" href="/assets/footer.css?v=5" />
   <script src="/assets/subscribe.js" defer></script>
   <script src="/assets/subscribe-modal.js" defer></script>
