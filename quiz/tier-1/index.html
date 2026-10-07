@@ -119,7 +119,7 @@
     .btn-active:active { transform: scale(0.98); }
     .err { color:#b91c1c; font-size:0.875rem; margin-top:0.5rem; display:none; }
 </style>
-  <link rel="stylesheet" href="/assets/footer.css?v=2" />
+  <link rel="stylesheet" href="/assets/footer.css?v=5" />
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -347,9 +347,27 @@
     </main>
     <footer id="site-footer" class="bg-[#F7FBF9] text-[#5A6A63] border-t border-[#0F766E]/12 py-12">
       <div class="container-custom py-16 lg:py-20">
+        <!-- Services: the two paid tiers -->
+        <nav class="offer-grid" aria-label="Services">
+          <a href="/services/#tier-2" id="footer-tier2" class="offer-card offer-card--teal">
+            <span class="offer-numeral" aria-hidden="true">2</span>
+            <span class="offer-pill">Tier 2</span>
+            <span class="offer-title">Already have something?</span>
+            <span class="offer-copy">We review the policies, forms and workflows you already have and show you what's missing.</span>
+            <span class="offer-cta">Get a gap assessment<span class="offer-cta-icon"><iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></span></span>
+          </a>
+          <a href="/services/#tier-3" id="footer-tier3" class="offer-card offer-card--ink">
+            <span class="offer-numeral" aria-hidden="true">3</span>
+            <span class="offer-pill">Tier 3</span>
+            <span class="offer-title">Build it with you</span>
+            <span class="offer-copy">Starting from scratch? We build your compliance infrastructure and teach your team to run it.</span>
+            <span class="offer-cta">See how we build<span class="offer-cta-icon"><iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></span></span>
+          </a>
+        </nav>
+
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-x-10 gap-y-12">
           <!-- Brand -->
-          <div class="lg:col-span-5 max-w-sm">
+          <div class="lg:col-span-7 max-w-sm">
             <a href="/" id="footer-logo-link" class="flex items-center gap-3 shrink-0 bg-transparent">
             <img src="/assets/logo-mark.png" alt="" width="72" height="72"
                  class="g2g-logo-mark bg-transparent" aria-hidden="true" />
@@ -367,17 +385,8 @@
             </div>
           </div>
 
-          <!-- Services -->
-          <div class="lg:col-span-4">
-            <h4 class="text-[#12201C] font-semibold text-[12px] tracking-[0.06em] uppercase mb-5">Services</h4>
-            <ul class="space-y-3 text-[14px]">
-              <li><a href="/services/#tier-2" id="footer-tier2" class="hover:text-[#0F766E] transition-colors"><strong class="font-semibold">Tier 2</strong> · Already have something</a></li>
-              <li><a href="/services/#tier-3" id="footer-tier3" class="hover:text-[#0F766E] transition-colors"><strong class="font-semibold">Tier 3</strong> · Build it with you</a></li>
-            </ul>
-          </div>
-
           <!-- Company -->
-          <div class="lg:col-span-3">
+          <div class="lg:col-span-5">
             <h4 class="text-[#12201C] font-semibold text-[12px] tracking-[0.06em] uppercase mb-5">Company</h4>
             <ul class="space-y-3 text-[14px]">
               <li><a href="/#about" id="footer-about" class="hover:text-[#0F766E] transition-colors">About</a></li>

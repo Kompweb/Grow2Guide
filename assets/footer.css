@@ -53,3 +53,140 @@
   #site-footer #disclaimer { margin-inline: auto; }
   #site-footer .container-custom > div:last-of-type > div { justify-content: center; }
 }
+
+/* Phones: give the newsletter form wider side margins */
+@media (max-width: 639px) {
+  #subscribe > .container-custom { padding-left: 56px; padding-right: 56px; }
+}
+
+/* Services offer cards */
+#site-footer .offer-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  margin-bottom: 64px;
+}
+@media (min-width: 768px) {
+  #site-footer .offer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; margin-bottom: 72px; }
+}
+
+#site-footer .offer-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  isolation: isolate;
+  min-height: 320px;
+  padding: 32px 28px 28px;
+  border-radius: 28px;
+  color: #fff;
+  text-align: left;
+  text-decoration: none;
+  box-shadow: 0 24px 48px -20px rgba(11, 95, 89, .55);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+@media (min-width: 1024px) {
+  #site-footer .offer-card { min-height: 360px; padding: 44px 44px 40px; border-radius: 32px; }
+}
+#site-footer .offer-card--teal {
+  background:
+    radial-gradient(520px 320px at 100% 0%, rgba(216, 240, 234, .28), transparent 62%),
+    linear-gradient(145deg, #0F766E 0%, #0B5F59 55%, #08423E 100%);
+}
+#site-footer .offer-card--ink {
+  background:
+    radial-gradient(520px 320px at 0% 100%, rgba(15, 118, 110, .55), transparent 62%),
+    linear-gradient(145deg, #12201C 0%, #0D2A26 100%);
+  box-shadow: 0 24px 48px -20px rgba(18, 32, 28, .6);
+}
+#site-footer .offer-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(216, 240, 234, .18);
+}
+
+/* oversized tier numeral, cropped off the corner */
+#site-footer .offer-numeral {
+  position: absolute;
+  right: -.04em;
+  bottom: -.22em;
+  z-index: -1;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(220px, 34vw, 340px);
+  line-height: 1;
+  color: rgba(216, 240, 234, .10);
+  pointer-events: none;
+  user-select: none;
+}
+
+#site-footer .offer-pill {
+  display: inline-block;
+  padding: 6px 14px;
+  margin-bottom: 20px;
+  border-radius: 999px;
+  background: #D8F0EA;
+  color: #0B5F59;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+#site-footer .offer-title {
+  max-width: 14ch;
+  margin-bottom: 14px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(32px, 4.4vw, 46px);
+  line-height: 1.08;
+  color: #fff;
+}
+#site-footer .offer-copy {
+  max-width: 34ch;
+  margin-bottom: 28px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, .82);
+}
+#site-footer .offer-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: auto;
+  padding: 8px 8px 8px 22px;
+  border-radius: 999px;
+  background: #fff;
+  color: #0B5F59;
+  font-size: 15px;
+  font-weight: 700;
+  box-shadow: 0 10px 24px -10px rgba(0, 0, 0, .45);
+}
+#site-footer .offer-cta-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #0F766E;
+  color: #fff;
+  font-size: 20px;
+  transition: transform .25s ease;
+}
+#site-footer .offer-card--ink .offer-cta { background: #D8F0EA; }
+
+#site-footer .offer-card:hover,
+#site-footer .offer-card:focus-visible { transform: translateY(-4px); box-shadow: 0 32px 56px -22px rgba(11, 95, 89, .7); }
+#site-footer .offer-card:hover .offer-cta-icon,
+#site-footer .offer-card:focus-visible .offer-cta-icon { transform: translateX(3px); }
+#site-footer .offer-card:focus-visible { outline: 3px solid #D8F0EA; outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  #site-footer .offer-card,
+  #site-footer .offer-cta-icon { transition: none; }
+  #site-footer .offer-card:hover,
+  #site-footer .offer-card:focus-visible { transform: none; }
+}

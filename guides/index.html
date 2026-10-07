@@ -372,7 +372,7 @@
   html #site-footer #footer-logo-link .g2g-tagline { font-size: 10.5px; transform: none; }
   .g2g-tagline { margin-top: 2px; font-family: "Montserrat", Arial, sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0; text-transform: uppercase; color: #4b3021; }
   </style>
-  <link rel="stylesheet" href="/assets/footer.css?v=2" />
+  <link rel="stylesheet" href="/assets/footer.css?v=5" />
   <script src="/assets/subscribe.js" defer></script>
   <script src="/assets/subscribe-modal.js" defer></script>
 </head>
@@ -550,22 +550,22 @@
         <p>Short, practical reads that go deeper on the same questions the guides answer.</p>
       </div>
       <div class="posts">
-        <a class="post" href="/blog/policies-every-bht-case-manager-should-know/" data-post="policies-every-bht-case-manager-should-know">
+        <a class="post" href="/blog/i-didnt-know-wont-protect-you/" data-post="i-didnt-know-wont-protect-you">
           <span class="meta">For case managers &amp; BHTs</span>
-          <h3>Policies every BHT and case manager should know</h3>
-          <p>A plain-language look at the policy areas that touch your daily work, and how to tell which ones are really yours.</p>
+          <h3>Why &ldquo;I didn&rsquo;t know&rdquo; won&rsquo;t protect you</h3>
+          <p>You initialed every policy on day one. Why that won&rsquo;t protect you on shift, and how to make policies make sense.</p>
           <span class="go">Read article &rarr;</span>
         </a>
-        <a class="post" href="/blog/first-time-supervisor-mistakes/" data-post="first-time-supervisor-mistakes">
+        <a class="post" href="/blog/maybe-you-dont-want-to-be-a-supervisor/" data-post="maybe-you-dont-want-to-be-a-supervisor">
           <span class="meta">For new supervisors</span>
-          <h3>First-time supervisor mistakes, and what to do instead</h3>
-          <p>The situations new leaders run into first, and the habits that help you handle them well.</p>
+          <h3>Maybe you don&rsquo;t want to be a supervisor (and that&rsquo;s okay)</h3>
+          <p>How to tell whether you want the job or just what comes with it, and what else growth can look like.</p>
           <span class="go">Read article &rarr;</span>
         </a>
-        <a class="post" href="/blog/read-a-policy-manual/" data-post="read-a-policy-manual">
+        <a class="post" href="/blog/do-i-hate-my-job-or-am-i-in-the-wrong-place/" data-post="do-i-hate-my-job-or-am-i-in-the-wrong-place">
           <span class="meta">For everyone</span>
-          <h3>How to read a policy manual without getting lost</h3>
-          <p>A simple way to find what applies to your role and turn it into questions worth asking.</p>
+          <h3>Do I hate my job, or am I in the wrong place?</h3>
+          <p>How to tell whether you hate the work itself or just the place you are doing it, and what a healthy agency looks like.</p>
           <span class="go">Read article &rarr;</span>
         </a>
       </div>
@@ -618,7 +618,7 @@
 <section id="subscribe" aria-labelledby="subscribe-title" class="bg-[#F7FBF9] border-t border-[#0F766E]/12">
       <div class="container-custom max-w-3xl py-14 text-center">
         <h2 id="subscribe-title" class="text-2xl lg:text-3xl font-bold tracking-tight text-[#12201C] mb-3">Get new guides by email</h2>
-        <p class="text-[#5A6A63] leading-relaxed mb-8">Practical guidance for behavioral health professionals, sent occasionally. Unsubscribe anytime.</p>
+        <p class="text-[#5A6A63] leading-relaxed mb-8">Practical guidance for behavioral health professionals, sent occasionally.</p>
         <form data-g2g-subscribe novalidate class="text-left max-w-xl mx-auto">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div>
@@ -636,7 +636,7 @@
           </div>
           <label class="flex items-start gap-3 text-sm text-[#5A6A63] leading-relaxed mb-1">
             <input name="consent" type="checkbox" class="mt-1 w-4 h-4 accent-[#0F766E]" />
-            <span>I agree to receive Grow2Guide emails and understand I can unsubscribe at any time. See the <a href="/privacy/" class="text-[#0F766E] font-semibold underline">privacy page</a>.</span>
+            <span>I agree to receive Grow2Guide emails. See the <a href="/privacy/" class="text-[#0F766E] font-semibold underline">privacy page</a>.</span>
           </label>
           <p data-error="consent" hidden class="text-sm mb-3" style="color:#B42318"></p>
           <button type="submit" class="mt-4 w-full sm:w-auto bg-[#0F766E] text-white h-[52px] px-8 rounded-full font-bold hover:bg-[#0B5F59] transition-all disabled:opacity-60">Subscribe</button>
@@ -647,9 +647,27 @@
 <!-- subscribe:end -->
     <footer id="site-footer" class="bg-[#F7FBF9] text-[#5A6A63] border-t border-[#0F766E]/12 py-12">
       <div class="container-custom py-16 lg:py-20">
+        <!-- Services: the two paid tiers -->
+        <nav class="offer-grid" aria-label="Services">
+          <a href="/services/#tier-2" id="footer-tier2" class="offer-card offer-card--teal">
+            <span class="offer-numeral" aria-hidden="true">2</span>
+            <span class="offer-pill">Tier 2</span>
+            <span class="offer-title">Already have something?</span>
+            <span class="offer-copy">We review the policies, forms and workflows you already have and show you what's missing.</span>
+            <span class="offer-cta">Get a gap assessment<span class="offer-cta-icon"><iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></span></span>
+          </a>
+          <a href="/services/#tier-3" id="footer-tier3" class="offer-card offer-card--ink">
+            <span class="offer-numeral" aria-hidden="true">3</span>
+            <span class="offer-pill">Tier 3</span>
+            <span class="offer-title">Build it with you</span>
+            <span class="offer-copy">Starting from scratch? We build your compliance infrastructure and teach your team to run it.</span>
+            <span class="offer-cta">See how we build<span class="offer-cta-icon"><iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></span></span>
+          </a>
+        </nav>
+
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-x-10 gap-y-12">
           <!-- Brand -->
-          <div class="lg:col-span-5 max-w-sm">
+          <div class="lg:col-span-7 max-w-sm">
             <a href="/" id="footer-logo-link" class="flex items-center gap-3 shrink-0 bg-transparent">
             <img src="/assets/logo-mark.png" alt="" width="72" height="72"
                  class="g2g-logo-mark bg-transparent" aria-hidden="true" />
@@ -667,17 +685,8 @@
             </div>
           </div>
 
-          <!-- Services -->
-          <div class="lg:col-span-4">
-            <h4 class="text-[#12201C] font-semibold text-[12px] tracking-[0.06em] uppercase mb-5">Services</h4>
-            <ul class="space-y-3 text-[14px]">
-              <li><a href="/services/#tier-2" id="footer-tier2" class="hover:text-[#0F766E] transition-colors"><strong class="font-semibold">Tier 2</strong> · Already have something</a></li>
-              <li><a href="/services/#tier-3" id="footer-tier3" class="hover:text-[#0F766E] transition-colors"><strong class="font-semibold">Tier 3</strong> · Build it with you</a></li>
-            </ul>
-          </div>
-
           <!-- Company -->
-          <div class="lg:col-span-3">
+          <div class="lg:col-span-5">
             <h4 class="text-[#12201C] font-semibold text-[12px] tracking-[0.06em] uppercase mb-5">Company</h4>
             <ul class="space-y-3 text-[14px]">
               <li><a href="/#about" id="footer-about" class="hover:text-[#0F766E] transition-colors">About</a></li>
@@ -706,7 +715,7 @@
       <div class="relative px-10 py-8 sm:p-10">
         <button type="button" data-modal-close aria-label="Close" class="absolute top-3 right-3 w-11 h-11 flex items-center justify-center rounded-full text-[#5A6A63] hover:bg-[#D8F0EA] text-2xl leading-none">&times;</button>
         <h2 id="subscribe-modal-title" class="text-2xl font-bold tracking-tight mb-2 pr-8">Don&rsquo;t miss new guides</h2>
-        <p class="text-[#5A6A63] leading-relaxed mb-6">Practical guidance for behavioral health professionals, sent occasionally. Unsubscribe anytime.</p>
+        <p class="text-[#5A6A63] leading-relaxed mb-6">Practical guidance for behavioral health professionals, sent occasionally.</p>
         <form data-g2g-subscribe novalidate>
           <div class="grid grid-cols-1 gap-4 mb-4">
             <div>
@@ -724,7 +733,7 @@
           </div>
           <label class="flex items-start gap-3 text-sm text-[#5A6A63] leading-relaxed mb-1">
             <input name="consent" type="checkbox" class="mt-1 w-4 h-4 accent-[#0F766E]" />
-            <span>I agree to receive Grow2Guide emails and understand I can unsubscribe at any time. See the <a href="/privacy/" class="text-[#0F766E] font-semibold underline">privacy page</a>.</span>
+            <span>I agree to receive Grow2Guide emails. See the <a href="/privacy/" class="text-[#0F766E] font-semibold underline">privacy page</a>.</span>
           </label>
           <p data-error="consent" hidden class="text-sm mb-3" style="color:#B42318"></p>
           <div class="mt-4 flex flex-col sm:flex-row sm:items-center gap-3">
