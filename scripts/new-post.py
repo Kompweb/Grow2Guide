@@ -3,6 +3,7 @@
 Usage: python3 scripts/new-post.py --slug S --title T [--seo-title ST] --description D --date YYYY-MM-DD < article.html
 The article HTML (h2/h3/p/ul/ol/blockquote) is read from stdin. The template's
 generic consultation aside is replaced with a call to action for /guides/.
+A 1200x630 share card is rendered to assets/og/<slug>.jpg (skip with --no-image).
 """
 import argparse
 import json
@@ -15,6 +16,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from blog_toc import apply_to_page
+from og_image import render as render_card
 
 root = Path(__file__).resolve().parents[1]
 ap = argparse.ArgumentParser()
@@ -22,6 +24,7 @@ ap.add_argument("--slug", required=True)
 ap.add_argument("--title", required=True)
 ap.add_argument("--seo-title", default=None, help="<title>/og:title text; defaults to --title")
 ap.add_argument("--description", required=True)
+ap.add_argument("--no-image", action="store_true", help="skip generating the share card (assets/og/<slug>.jpg)")
 ap.add_argument("--date", required=True)
 args = ap.parse_args()
 
@@ -77,3 +80,5 @@ if "{{" in html:
 target.parent.mkdir(parents=True, exist_ok=True)
 target.write_text(html)
 print(f"Wrote {target.relative_to(root)}")
+if not args.no_image:
+    print(f"Wrote {render_card(args.slug, args.title, read_min).relative_to(root)}")

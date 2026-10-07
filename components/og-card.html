@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!-- Share-card template (1200x630). Filled and rendered by scripts/og_image.py; not a live page.
+     Placeholders: {{TITLE}} (HTML-escaped), {{META}}, {{LOGO_URL}}. -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body { position: relative; font-family: "Montserrat", Arial, sans-serif; color: #12201C;
+         background: radial-gradient(900px 500px at 12% 0%, #FFFDF8 0%, transparent 60%), linear-gradient(135deg, #FBF7EE 0%, #F3ECDD 100%); }
+  .brand { position: absolute; top: 44px; left: 72px; display: flex; align-items: center; gap: 18px; }
+  .brand img { width: 76px; height: 76px; object-fit: contain; }
+  .wordmark { font-family: "Playfair Display", Georgia, serif; font-weight: 600; font-size: 40px; line-height: 1; letter-spacing: -0.03em; color: #174d35; }
+  .wordmark b { color: #4b3021; font-weight: 600; }
+  main { position: absolute; left: 72px; right: 72px; top: 150px; height: 340px; display: flex; flex-direction: column; justify-content: center; }
+  .bar { width: 64px; height: 6px; border-radius: 3px; background: #0F766E; margin-bottom: 26px; flex: none; }
+  h1 { font-family: "Playfair Display", Georgia, serif; font-weight: 600; letter-spacing: -0.02em; line-height: 1.12; color: #12201C; font-size: 68px; max-height: 250px; overflow: hidden; text-wrap: balance; }
+  .meta { margin-top: 24px; font-size: 24px; font-weight: 600; color: #4b3021; flex: none; }
+  footer { position: absolute; left: 0; right: 0; bottom: 0; height: 96px; background: #174d35; border-top: 6px solid #0F766E;
+           display: flex; align-items: center; justify-content: space-between; padding: 0 72px; color: #fff; }
+  footer .tag { font-size: 24px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
+  footer .url { font-size: 24px; font-weight: 500; color: #BFE3D6; }
+</style>
+</head>
+<body>
+  <div class="brand"><img src="{{LOGO_URL}}" alt=""><span class="wordmark">Grow <b>2</b> Guide</span></div>
+  <main>
+    <div class="bar"></div>
+    <h1 id="t">{{TITLE}}</h1>
+    <p class="meta">{{META}}</p>
+  </main>
+  <footer><span class="tag">Elevate your knowledge</span><span class="url">grow2guide.com</span></footer>
+<script>
+  // Shrink the title until it fits its box, so long titles never get cut off.
+  document.fonts.ready.then(function () {
+    var t = document.getElementById('t'), size = 68;
+    t.style.maxHeight = 'none';
+    while (t.scrollHeight > 250 && size > 36) { size -= 2; t.style.fontSize = size + 'px'; }
+    document.title = 'ready';
+  });
+</script>
+</body>
+</html>
