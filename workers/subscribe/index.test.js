@@ -284,3 +284,89 @@ test("the welcome email is handed to ctx.waitUntil when the runtime provides it"
   await pending[0];
   assert.equal(calls.filter(isWelcome).length, 1);
 });
+
+// Google Sheets backup via an Apps Script web app.
+const SHEET_URL = "https://script.google.com/macros/s/abc/exec";
+const SHEET_ENV = { ...ENV, SHEETS_WEBHOOK_URL: SHEET_URL, SHEETS_WEBHOOK_SECRET: "s3cret" };
+const isSheet = (c) => c.url === SHEET_URL;
+
+function stubWithSheet({ lookupStatus = 404, lookupBody, sheet = () => new Response('{"ok":true}') } = {}) {
+  const calls = [];
+  globalThis.fetch = async (url, init) => {
+    const method = (init && init.method) || "GET";
+    calls.push({ url, method, init });
+    if (url === SHEET_URL) return sheet();
+    if (method === "GET") return new Response(JSON.stringify(lookupBody || {}), { status: lookupStatus });
+    return new Response('{"id":"c_1"}', { status: 200 });
+  };
+  return calls;
+}
+
+test("a stored signup is backed up to the sheet with its consent record", async () => {
+  const calls = stubWithSheet();
+  const res = await worker.fetch(req(valid), SHEET_ENV);
+  assert.equal(res.status, 200);
+  const backup = calls.find(isSheet);
+  assert.equal(backup.method, "POST");
+  const body = JSON.parse(backup.init.body);
+  assert.equal(body.secret, "s3cret");
+  assert.equal(body.email, "jane@example.com");
+  assert.equal(body.firstName, "Jane");
+  assert.equal(body.source, "/blog/");
+  assert.equal(body.newContact, true);
+  assert.match(body.consentText, /^I agree to receive Grow2Guide emails/);
+  assert.ok(!Number.isNaN(Date.parse(body.consentAt)));
+});
+
+test("a repeat signup is backed up and marked as not new", async () => {
+  const calls = stubWithSheet({ lookupStatus: 200, lookupBody: { unsubscribed: false, first_name: "Jane" } });
+  await worker.fetch(req({ ...valid, firstName: "" }), SHEET_ENV);
+  const body = JSON.parse(calls.find(isSheet).init.body);
+  assert.equal(body.newContact, false);
+  assert.equal(body.firstName, "Jane");
+});
+
+test("an unsubscribed contact's repeat signup is not backed up", async () => {
+  const calls = stubWithSheet({ lookupStatus: 200, lookupBody: { unsubscribed: true } });
+  await worker.fetch(req(valid), SHEET_ENV);
+  assert.equal(calls.some(isSheet), false);
+});
+
+test("nothing is backed up when storing the contact fails or the honeypot is filled", async () => {
+  const calls = stubResend({ createStatus: 500 });
+  await worker.fetch(req(valid), SHEET_ENV);
+  await worker.fetch(req({ ...valid, website: "spam" }), SHEET_ENV);
+  assert.equal(calls.some(isSheet), false);
+});
+
+test("no backup is attempted unless both sheet settings are present", async () => {
+  const calls = stubWithSheet();
+  await worker.fetch(req(valid), { ...ENV, SHEETS_WEBHOOK_URL: SHEET_URL });
+  await worker.fetch(req(valid), { ...ENV, SHEETS_WEBHOOK_SECRET: "s3cret" });
+  assert.equal(calls.some(isSheet), false);
+});
+
+test("a failed or rejected sheet backup still returns ok to the visitor", async () => {
+  for (const sheet of [
+    () => { throw new Error("down"); },
+    () => new Response('{"ok":false,"error":"forbidden"}'),
+    () => new Response("<html>error</html>", { status: 500 }),
+  ]) {
+    stubWithSheet({ sheet });
+    const res = await worker.fetch(req(valid), SHEET_ENV);
+    assert.equal(res.status, 200);
+    assert.deepEqual(await res.json(), { ok: true });
+  }
+});
+
+test("welcome email and sheet backup both run in the background", async () => {
+  const calls = stubWithSheet();
+  const pending = [];
+  await worker.fetch(req(valid), { ...SHEET_ENV, WELCOME_FROM: "G2G <hello@grow2guide.com>" }, {
+    waitUntil: (p) => pending.push(p),
+  });
+  assert.equal(pending.length, 2);
+  await Promise.all(pending);
+  assert.equal(calls.filter(isSheet).length, 1);
+  assert.equal(calls.filter(isWelcome).length, 1);
+});

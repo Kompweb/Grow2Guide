@@ -63,6 +63,32 @@ async function sendWelcome(env, email, firstName) {
   }
 }
 
+// The checkbox wording visitors agree to, copied into each backup row as the consent record.
+const CONSENT_TEXT =
+  "I agree to receive Grow2Guide emails and understand I can unsubscribe at any time.";
+
+// Best effort backup of each signup to a Google Sheet via an Apps Script web app
+// (see google-sheets-backup.gs). Resend stays the source of truth.
+async function backupToSheet(env, row) {
+  try {
+    const res = await fetch(env.SHEETS_WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ secret: env.SHEETS_WEBHOOK_SECRET, ...row }),
+    });
+    const body = await res.json().catch(() => null);
+    if (!res.ok || !body || body.ok !== true) console.error("Sheets backup responded " + res.status);
+  } catch (e) {
+    console.error("Sheets backup failed");
+  }
+}
+
+// Runs after the response when the runtime allows it, so the visitor never waits on extras.
+async function inBackground(ctx, promise) {
+  if (ctx && typeof ctx.waitUntil === "function") ctx.waitUntil(promise);
+  else await promise;
+}
+
 export default {
   async fetch(request, env, ctx) {
     const origin = request.headers.get("Origin");
@@ -156,13 +182,23 @@ export default {
 
     // Welcome only brand-new contacts; repeat signups and opted-out addresses get nothing.
     if (isNewContact && env.WELCOME_FROM) {
-      const welcome = sendWelcome(env, email, nameToStore);
-      if (ctx && typeof ctx.waitUntil === "function") ctx.waitUntil(welcome);
-      else await welcome;
+      await inBackground(ctx, sendWelcome(env, email, nameToStore));
+    }
+
+    const consentAt = new Date().toISOString();
+    if (env.SHEETS_WEBHOOK_URL && env.SHEETS_WEBHOOK_SECRET) {
+      await inBackground(ctx, backupToSheet(env, {
+        consentAt,
+        email,
+        firstName: nameToStore,
+        source,
+        newContact: isNewContact,
+        consentText: CONSENT_TEXT,
+      }));
     }
 
     // Consent record. The email address is deliberately not logged.
-    console.log(JSON.stringify({ event: "subscribed", source, consentAt: new Date().toISOString() }));
+    console.log(JSON.stringify({ event: "subscribed", source, consentAt }));
     return reply(200, { ok: true }, origin);
   },
 };

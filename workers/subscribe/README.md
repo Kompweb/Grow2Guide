@@ -58,3 +58,28 @@ Re-subscribing: Resend's create-contact call is a full-replace upsert, not a mer
 looks a contact up before writing. An address that already unsubscribed is left alone by a repeat
 signup, and an existing first name is kept if the repeat signup does not provide one. Verified
 against the live Resend API — see git history for `workers/subscribe/index.js`.
+
+## Google Sheets backup (optional)
+
+Each successful signup is also appended to a private Google Sheet: consent time, email, first
+name, source page, whether the contact is new, and the checkbox wording agreed to. Resend stays
+the source of truth; the sheet is a backup and a long-term consent record. Signups from addresses
+that already unsubscribed are not written. A failed backup never fails the signup; it logs
+`Sheets backup responded <status>` instead.
+
+1. Create a Google Sheet (keep it private). Extensions → Apps Script. Replace the code with
+   `google-sheets-backup.gs` and save.
+2. Project Settings → Script properties → add `WEBHOOK_SECRET` with a long random value
+   (for example the output of `openssl rand -hex 32`).
+3. Deploy → New deployment → type **Web app**. Execute as: **Me**. Who has access: **Anyone**.
+   Authorize when asked, then copy the web app URL (ends in `/exec`).
+4. In this folder:
+
+```sh
+npx wrangler secret put SHEETS_WEBHOOK_URL     # the /exec URL
+npx wrangler secret put SHEETS_WEBHOOK_SECRET  # same value as WEBHOOK_SECRET
+```
+
+"Anyone" access is required for the Worker to reach the script; the shared secret is what keeps
+other callers out. After editing the script, use Deploy → Manage deployments → edit → New version,
+or the URL keeps serving the old code.
