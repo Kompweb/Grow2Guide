@@ -7,6 +7,11 @@ compatibility_date = "2026-09-01"
 # (see README.md).
 routes = [{ pattern = "subscribe.grow2guide.com", custom_domain = true }]
 
+# Sender for the welcome email sent to each new subscriber. Must be on a domain verified in
+# Resend. Remove this block to turn the welcome email off.
+[vars]
+WELCOME_FROM = "Grow2Guide <hello@grow2guide.com>"
+
 # Keep Worker logs (the consent records written on each signup) in the Cloudflare dashboard.
 [observability]
 enabled = true

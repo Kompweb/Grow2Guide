@@ -208,3 +208,79 @@ test("rate limiter rejection returns 429", async () => {
   assert.equal((await res.json()).error, "rate_limited");
   assert.equal(calls.length, 0);
 });
+
+// Welcome email. Resend sends email via POST https://api.resend.com/emails.
+const WELCOME_ENV = { ...ENV, WELCOME_FROM: "Grow2Guide <hello@grow2guide.com>" };
+const isWelcome = (c) => c.url === "https://api.resend.com/emails";
+
+test("a brand-new contact gets one welcome email after being stored", async () => {
+  const calls = stubResend();
+  const res = await worker.fetch(req({ ...valid, firstName: "<Jane>" }), WELCOME_ENV);
+  assert.equal(res.status, 200);
+  assert.equal(calls.length, 3);
+  assert.equal(calls[1].url, "https://api.resend.com/audiences/aud_123/contacts");
+  const welcome = calls[2];
+  assert.ok(isWelcome(welcome));
+  assert.equal(welcome.init.headers.Authorization, "Bearer re_test");
+  assert.equal(welcome.init.headers["Idempotency-Key"], "welcome/jane@example.com");
+  const body = JSON.parse(welcome.init.body);
+  assert.equal(body.from, "Grow2Guide <hello@grow2guide.com>");
+  assert.deepEqual(body.to, ["jane@example.com"]);
+  assert.equal(body.subject, "Welcome to Grow2Guide");
+  assert.match(body.text, /^Hi <Jane>,/);
+  assert.match(body.html, /Hi &lt;Jane&gt;,/);
+  assert.match(body.text, /unsubscribe/);
+});
+
+test("the welcome email greets without a name when none is given", async () => {
+  const calls = stubResend();
+  await worker.fetch(req({ ...valid, firstName: "" }), WELCOME_ENV);
+  assert.match(JSON.parse(calls.find(isWelcome).init.body).text, /^Hi,/);
+});
+
+test("an existing subscribed contact signing up again gets no welcome email", async () => {
+  const calls = stubResend({ lookupStatus: 200, lookupBody: { email: "jane@example.com", unsubscribed: false } });
+  const res = await worker.fetch(req(valid), WELCOME_ENV);
+  assert.equal(res.status, 200);
+  assert.equal(calls.some(isWelcome), false);
+});
+
+test("an unsubscribed contact signing up again gets no welcome email", async () => {
+  const calls = stubResend({ lookupStatus: 200, lookupBody: { email: "jane@example.com", unsubscribed: true } });
+  await worker.fetch(req(valid), WELCOME_ENV);
+  assert.equal(calls.some(isWelcome), false);
+});
+
+test("no welcome email is sent when WELCOME_FROM is not set", async () => {
+  const calls = stubResend();
+  await worker.fetch(req(valid), ENV);
+  assert.equal(calls.some(isWelcome), false);
+});
+
+test("no welcome email is sent when storing the contact fails", async () => {
+  const calls = stubResend({ createStatus: 500 });
+  const res = await worker.fetch(req(valid), WELCOME_ENV);
+  assert.equal(res.status, 502);
+  assert.equal(calls.some(isWelcome), false);
+});
+
+test("a failed welcome email still returns ok to the visitor", async () => {
+  globalThis.fetch = async (url, init) => {
+    if (url === "https://api.resend.com/emails") throw new Error("network down");
+    const method = (init && init.method) || "GET";
+    return new Response("{}", { status: method === "GET" ? 404 : 200 });
+  };
+  const res = await worker.fetch(req(valid), WELCOME_ENV);
+  assert.equal(res.status, 200);
+  assert.deepEqual(await res.json(), { ok: true });
+});
+
+test("the welcome email is handed to ctx.waitUntil when the runtime provides it", async () => {
+  const calls = stubResend();
+  const pending = [];
+  const res = await worker.fetch(req(valid), WELCOME_ENV, { waitUntil: (p) => pending.push(p) });
+  assert.equal(res.status, 200);
+  assert.equal(pending.length, 1);
+  await pending[0];
+  assert.equal(calls.filter(isWelcome).length, 1);
+});

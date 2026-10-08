@@ -21,7 +21,9 @@ npx wrangler secret put RESEND_AUDIENCE_ID
 npx wrangler deploy
 ```
 
-3. If grow2guide.com is not on Cloudflare DNS, delete the `routes` line in `wrangler.toml`
+3. Set `WELCOME_FROM` in `wrangler.toml` to a sender on your Resend-verified domain. Every new
+   subscriber gets one welcome email from it; delete the `[vars]` block to turn that off.
+4. If grow2guide.com is not on Cloudflare DNS, delete the `routes` line in `wrangler.toml`
    before deploying. Wrangler prints a `https://g2g-subscribe.<account>.workers.dev` URL;
    put that URL in `ENDPOINT` at the top of `assets/subscribe.js`.
 
@@ -47,6 +49,10 @@ Cloudflare limits how long logs are kept, so copy them out if you need a long-te
 
 Before the first deploy, run `npx wrangler deploy --dry-run` to validate `wrangler.toml`.
 If the `RATE_LIMITER` binding is missing the Worker still accepts signups but without rate limiting.
+
+Welcome email: sent only to addresses that were not already in the Audience. Repeat signups and
+unsubscribed addresses get nothing. It is best effort: if Resend rejects it, the signup still
+succeeds and `Resend welcome email responded <status>` appears in the Worker logs.
 
 Re-subscribing: Resend's create-contact call is a full-replace upsert, not a merge, so the Worker
 looks a contact up before writing. An address that already unsubscribed is left alone by a repeat
