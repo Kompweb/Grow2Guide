@@ -11,8 +11,8 @@ Do not commit `output/` into the GitHub Pages site.
 
 | Stripe payment-link SKU | Email attachments |
 |---|---|
-| `g2g-learning-guide` | `How_Do_I_Supervise_Employees_Effectively_Updated.pdf`, `Why_We_Do_It_This_Way_Guide_Updated.pdf` |
-| `g2g-supervisor-toolkit` | `Why_We_Do_It_This_Way_Workbook_Updated.pdf` |
+| `g2g-learning-guide` (PDF 1 - Employees) | Behavioral Health Guide for employees + Behavioral health guide workbook |
+| `g2g-supervisor-toolkit` (PDF 2 - Supervisors) | Supervisor Guide - How do I supervise employees effectively |
 | `g2g-bundle` | All three updated PDFs |
 
 The SKU is read from `checkout.session.metadata.sku`. Stripe copies Payment Link metadata

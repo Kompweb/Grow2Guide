@@ -3,12 +3,12 @@ const PRODUCTS = {
     title: "Behavioral Health Policy Inventory & Learning Guide",
     files: [
       {
-        key: "pdf/How_Do_I_Supervise_Employees_Effectively_Updated.pdf",
-        filename: "How_Do_I_Supervise_Employees_Effectively_Updated.pdf",
+        key: "pdf/Why_We_Do_It_This_Way_Guide_Updated.pdf",
+        filename: "Behavioral Health Guide for employees - Why do we do it this way.pdf",
       },
       {
-        key: "pdf/Why_We_Do_It_This_Way_Guide_Updated.pdf",
-        filename: "Why_We_Do_It_This_Way_Guide_Updated.pdf",
+        key: "pdf/Why_We_Do_It_This_Way_Workbook_Updated.pdf",
+        filename: "Behavioral health guide workbook - why do we do it this way.pdf",
       },
     ],
   },
@@ -16,8 +16,8 @@ const PRODUCTS = {
     title: "Supervisor & Manager Toolkit and Reflection",
     files: [
       {
-        key: "pdf/Why_We_Do_It_This_Way_Workbook_Updated.pdf",
-        filename: "Why_We_Do_It_This_Way_Workbook_Updated.pdf",
+        key: "pdf/How_Do_I_Supervise_Employees_Effectively_Updated.pdf",
+        filename: "Supervisor Guide - How do I supervise employees effectively.pdf",
       },
     ],
   },
@@ -25,16 +25,16 @@ const PRODUCTS = {
     title: "Grow2Guide PDF Guides Bundle",
     files: [
       {
-        key: "pdf/How_Do_I_Supervise_Employees_Effectively_Updated.pdf",
-        filename: "How_Do_I_Supervise_Employees_Effectively_Updated.pdf",
-      },
-      {
         key: "pdf/Why_We_Do_It_This_Way_Guide_Updated.pdf",
-        filename: "Why_We_Do_It_This_Way_Guide_Updated.pdf",
+        filename: "Behavioral Health Guide for employees - Why do we do it this way.pdf",
       },
       {
         key: "pdf/Why_We_Do_It_This_Way_Workbook_Updated.pdf",
-        filename: "Why_We_Do_It_This_Way_Workbook_Updated.pdf",
+        filename: "Behavioral health guide workbook - why do we do it this way.pdf",
+      },
+      {
+        key: "pdf/How_Do_I_Supervise_Employees_Effectively_Updated.pdf",
+        filename: "Supervisor Guide - How do I supervise employees effectively.pdf",
       },
     ],
   },
@@ -154,7 +154,8 @@ async function sendPurchaseEmail(env, session, product) {
   });
 
   if (!response.ok) {
-    console.error(JSON.stringify({ event: "purchase_email_failed", status: response.status, sessionId: session.id }));
+    const detail = (await response.text().catch(() => "")).slice(0, 300);
+    console.error(JSON.stringify({ event: "purchase_email_failed", status: response.status, detail, sessionId: session.id }));
     throw new Error("Resend rejected the purchase email");
   }
 
@@ -213,7 +214,7 @@ export default {
       console.log(JSON.stringify({ event: "purchase_email_sent", eventId: event.id, sessionId: session.id, sku, emailId }));
       return json(200, { received: true });
     } catch (error) {
-      console.error(JSON.stringify({ event: "purchase_fulfillment_failed", eventId: event.id, sessionId: session.id, sku }));
+      console.error(JSON.stringify({ event: "purchase_fulfillment_failed", eventId: event.id, sessionId: session.id, sku, reason: String(error?.message || error) }));
       return json(500, { ok: false, error: "fulfillment_failed" });
     }
   },
