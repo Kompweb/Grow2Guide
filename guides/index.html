@@ -39,7 +39,7 @@
   "@graph": [
     {
       "@type": "Product",
-      "name": "Behavioral Health Policy Inventory & Learning Guide",
+      "name": "Behavioral Health Guide for employees - Why do we do it this way?",
       "description": "A 69-topic policy inventory that shows how policies and systems apply to case managers, BHTs and direct care staff. PDF.",
       "image": "https://www.grow2guide.com/assets/og-image.jpg",
       "brand": {
@@ -56,7 +56,7 @@
     },
     {
       "@type": "Product",
-      "name": "Supervisor & Manager Toolkit and Reflection",
+      "name": "Supervisor Guide - How do I supervise employees effectively",
       "description": "Real life scenarios, skills and tools for new and established supervisors and managers. PDF.",
       "image": "https://www.grow2guide.com/assets/og-image.jpg",
       "brand": {
@@ -74,7 +74,7 @@
     {
       "@type": "Product",
       "name": "Grow2Guide Guides Bundle",
-      "description": "Both PDF guides: the Policy Inventory & Learning Guide and the Supervisor & Manager Toolkit and Reflection.",
+      "description": "Both PDF guides: the Behavioral Health Guide for employees - Why do we do it this way? and the Supervisor Guide - How do I supervise employees effectively.",
       "image": "https://www.grow2guide.com/assets/og-image.jpg",
       "brand": {
         "@type": "Brand",
@@ -104,7 +104,7 @@
           "name": "Which guide is right for me?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "If you’re a case manager, BHT or direct care staff who wants to understand how policies apply to you, start with the Policy Inventory & Learning Guide. If you’re stepping into, or already in, a supervisor or manager role, the Toolkit is the fit. Many people want both, which is what the $99 bundle covers."
+            "text": "If you’re a case manager, BHT or direct care staff who wants to understand how policies apply to you, start with the Behavioral Health Guide for employees - Why do we do it this way? If you’re stepping into, or already in, a supervisor or manager role, the Supervisor Guide is the fit. Many people want both, which is what the $99 bundle covers."
           }
         },
         {
@@ -240,7 +240,7 @@
 
   /* products */
   .products { display: grid; gap: 24px; }
-  .product { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 16px 40px rgba(18,32,28,.07); }
+  .product { background: var(--surface); border: 2px solid rgba(15,118,110,.38); border-radius: 24px; padding: 27px 31px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 2px 6px rgba(18,32,28,.08), 0 22px 50px rgba(18,32,28,.2); }
   /* Icon-stamp watermark, same pattern as the services page's own PDF cards (services/index.html
      .has-stamp/.stamp-corner) — reused verbatim so both places treat the two guides the same way. */
   .has-stamp { position: relative; isolation: isolate; }
@@ -250,12 +250,12 @@
     pointer-events: none; z-index: -1;
   }
   .stamp-corner { overflow: hidden; }
-  .stamp-corner::after { top: -36px; right: -36px; width: 150px; height: 150px; opacity: 0.16; transform: none; }
+  .stamp-corner::after { top: -36px; right: -36px; width: 175px; height: 175px; opacity: 0.16; transform: none; }
   .stamp-knowledge { --stamp: url('/assets/icons/icon-knowledge.webp'); }
   .stamp-wisdom { --stamp: url('/assets/icons/icon-wisdom.webp'); }
   @media (max-width: 639px) {
     .has-stamp::after { top: 14px; right: 14px; width: 110px; height: 110px; }
-    .stamp-corner::after { top: -28px; right: -28px; width: 110px; height: 110px; }
+    .stamp-corner::after { top: -28px; right: -28px; width: 130px; height: 130px; }
   }
   .product .badge-row { display: flex; align-items: center; gap: 14px; }
   .product .pdf-icon { flex: none; width: 52px; height: 52px; border-radius: 14px; background: #FFF1F1; color: #EC1C24; display: grid; place-items: center; }
@@ -263,6 +263,8 @@
   .product .kicker { font-size: 13px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
   .product h3 { font-size: 27px; font-weight: 600; }
   .product .desc { color: var(--ink-soft); }
+  .product .pkg-q { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: -6px; }
+  .product .specs { font-size: 14px; font-weight: 700; color: var(--teal); margin-top: -8px; }
   .product ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
   .product li { display: flex; gap: 12px; align-items: flex-start; font-weight: 600; }
   .product li svg { flex: none; margin-top: 3px; color: var(--teal); }
@@ -414,22 +416,24 @@
         <div class="cover c1">
           <span class="k">PDF 1 - Employees</span>
           <div>
-            <div class="t">Behavioral Health Policy Inventory &amp; Learning Guide</div>
+            <div class="t">Behavioral Health Guide for employees - Why do we do it this way?</div>
           </div>
           <div>
             <span class="badge">69 policy topics</span>
             <div class="s" style="margin-top:10px">What does it have to do with me?</div>
+            <div class="s" style="margin-top:6px;opacity:.75">94 pages + 29-page workbook</div>
           </div>
           <div class="num" aria-hidden="true">69</div>
         </div>
         <div class="cover c2">
           <span class="k">PDF 2 - Supervisors</span>
           <div>
-            <div class="t">Supervisor &amp; Manager Toolkit and Reflection</div>
+            <div class="t">Supervisor Guide - How do I supervise employees effectively</div>
           </div>
           <div>
             <span class="badge">Scenarios &bull; Skills &bull; Tools</span>
             <div class="s" style="margin-top:10px">Am I becoming the supervisor I envisioned?</div>
+            <div class="s" style="margin-top:6px;opacity:.75">98 pages</div>
           </div>
         </div>
         <div class="tag-group">
@@ -464,18 +468,20 @@
         <article class="product has-stamp stamp-corner stamp-knowledge" id="guide-1">
           <div class="badge-row">
             <span class="pdf-icon" aria-hidden="true"><iconify-icon icon="simple-icons:adobeacrobatreader"></iconify-icon></span>
-            <span class="kicker">PDF 1 - Employees</span>
+            <span class="kicker">PDF 1 - Guide + Workbook</span>
           </div>
-          <h3>Behavioral Health Policy Inventory &amp; Learning Guide</h3>
+          <h3>Behavioral Health Guide for employees - Why do we do it this way?</h3>
           <p class="desc">Understand policies and systems, and recognize how they apply to you as a case manager, BHT, or direct care staff. The questions you have are now answered.</p>
+          <p class="pkg-q">What&rsquo;s in the package?</p>
           <ul>
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>69 policy topic inventory</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>Know the why behind policy.</li>
             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.7.7l3.6 3.6A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5M10 9H8m8 4H8m8 4H8"/></svg>&ldquo;What does it have to do with me?&rdquo;</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7h-3a2 2 0 0 1-2-2V2"/><path d="M9 18a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h7l4 4v10a2 2 0 0 1-2 2Z"/><path d="M3 7.6v12.8A1.6 1.6 0 0 0 4.6 22h9.8"/></svg>Guide + companion workbook</li>
           </ul>
           <p class="who"><b>Best for:</b> case managers, BHTs and direct care staff.</p>
           <div class="buy">
             <a class="btn btn-ghost" id="lp-buy-guide" href="https://buy.stripe.com/cNibJ16HKgL75XgaSm4Ja02" data-offer="guide">Buy Guide &mdash; $67</a>
-            <p class="micro" style="text-align:center">Pay securely &mdash; unlocks instantly, plus a copy by email.</p>
+            <p class="micro" style="text-align:center">2 files: 94-page guide + 29-page workbook &middot; 2.9 MB total<br>Pay securely &mdash; unlocks instantly, plus a copy by email.</p>
           </div>
         </article>
 
@@ -484,8 +490,10 @@
             <span class="pdf-icon" aria-hidden="true"><iconify-icon icon="simple-icons:adobeacrobatreader"></iconify-icon></span>
             <span class="kicker">PDF 2 - Supervisors</span>
           </div>
-          <h3>Supervisor &amp; Manager Toolkit and Reflection</h3>
+          <h3>Supervisor Guide - How do I supervise employees effectively</h3>
+          <p class="specs">98-page guide &middot; PDF</p>
           <p class="desc">Am I becoming the supervisor or manager I envisioned? How do I grow from here? Everything you need when you become a supervisor, or when you already lead and take responsibility for your own growth.</p>
+          <p class="pkg-q">What&rsquo;s in the package?</p>
           <ul>
             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>Real life scenarios</li>
             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>Skills and tools</li>
@@ -493,7 +501,7 @@
           <p class="who"><b>Best for:</b> new supervisors and managers who want to keep growing.</p>
           <div class="buy">
             <a class="btn btn-ghost" id="lp-buy-toolkit" href="https://buy.stripe.com/bJecN57LO0M9gBU9Oi4Ja01" data-offer="toolkit">Buy Toolkit &mdash; $67</a>
-            <p class="micro" style="text-align:center">Pay securely &mdash; unlocks instantly, plus a copy by email.</p>
+            <p class="micro" style="text-align:center">PDF &middot; 1.6 MB<br>Pay securely &mdash; unlocks instantly, plus a copy by email.</p>
           </div>
         </article>
       </div>
@@ -509,8 +517,9 @@
         </div>
         <div class="box">
           <div class="compare">
-            <div><span>Policy Inventory &amp; Learning Guide</span><span>$67</span></div>
-            <div><span>Supervisor &amp; Manager Toolkit</span><span>$67</span></div>
+            <div><span>Behavioral Health Guide for employees - Why do we do it this way?</span><span>$67</span></div>
+            <div><span>Supervisor Guide - How do I supervise employees effectively</span><span>$67</span></div>
+            <div><span>Guide + workbook + supervisor guide</span><span>221 pages</span></div>
             <div><span>Bundle price (save $35)</span><span>$99</span></div>
           </div>
           <a class="btn btn-primary" id="lp-bundle-cta" href="https://buy.stripe.com/6oU4gz3vyeCZ0CW2lQ4Ja00" data-offer="bundle">Buy Bundle &mdash; $99</a>
@@ -584,7 +593,7 @@
         </details>
         <details>
           <summary>Which guide is right for me?</summary>
-          <p>If you&rsquo;re a case manager, BHT or direct care staff who wants to understand how policies apply to you, start with the Policy Inventory &amp; Learning Guide. If you&rsquo;re stepping into, or already in, a supervisor or manager role, the Toolkit is the fit. Many people want both, which is what the $99 bundle covers.</p>
+          <p>If you&rsquo;re a case manager, BHT or direct care staff who wants to understand how policies apply to you, start with the Behavioral Health Guide for employees - Why do we do it this way? If you&rsquo;re stepping into, or already in, a supervisor or manager role, the Supervisor Guide is the fit. Many people want both, which is what the $99 bundle covers.</p>
         </details>
         <details>
           <summary>Is this legal advice, or does it guarantee licensure?</summary>

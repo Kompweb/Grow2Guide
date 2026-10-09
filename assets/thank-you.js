@@ -1,7 +1,7 @@
 (function () {
   var ITEM_LABELS = {
-    guide: 'Thanks for buying the Behavioral Health Policy Inventory & Learning Guide.',
-    checklist: 'Thanks for buying the Supervisor & Manager toolkit and reflection guide.',
+    guide: 'Thanks for buying the Behavioral Health Guide for employees - Why do we do it this way?',
+    checklist: 'Thanks for buying the Supervisor Guide - How do I supervise employees effectively.',
     bundle: 'Thanks for buying the bundle — both PDF guides are on their way.'
   };
 

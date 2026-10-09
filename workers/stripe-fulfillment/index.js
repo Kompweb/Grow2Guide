@@ -1,6 +1,6 @@
 const PRODUCTS = {
   "g2g-learning-guide": {
-    title: "Behavioral Health Policy Inventory & Learning Guide",
+    title: "Behavioral Health Guide for employees - Why do we do it this way?",
     files: [
       {
         key: "pdf/Why_We_Do_It_This_Way_Guide_Updated.pdf",
@@ -13,7 +13,7 @@ const PRODUCTS = {
     ],
   },
   "g2g-supervisor-toolkit": {
-    title: "Supervisor & Manager Toolkit and Reflection",
+    title: "Supervisor Guide - How do I supervise employees effectively",
     files: [
       {
         key: "pdf/How_Do_I_Supervise_Employees_Effectively_Updated.pdf",
