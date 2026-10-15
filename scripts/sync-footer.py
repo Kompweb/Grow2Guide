@@ -8,7 +8,7 @@ footer = (root / "components/footer.html").read_text().strip()
 subscribe = (root / "components/subscribe-form.html").read_text().strip()
 modal = (root / "components/subscribe-modal.html").read_text().strip()
 modal_script = '  <script src="/assets/subscribe-modal.js" defer></script>'
-stylesheet = '  <link rel="stylesheet" href="/assets/footer.css" />'
+stylesheet = '  <link rel="stylesheet" href="/assets/footer.css?v=5" />'
 subscribe_script = '  <script src="/assets/subscribe.js" defer></script>'
 # Transactional flows keep a clean page without a newsletter prompt.
 NO_SUBSCRIBE = {"quiz", "consultation", "thank-you"}
@@ -23,7 +23,11 @@ for page in pages:
     updated, count = re.subn(r"<footer\b.*?</footer>", lambda _: footer, original, flags=re.S)
     if count != 1:
         raise SystemExit(f"Expected one footer in {rel}, found {count}")
-    if stylesheet not in updated:
+    if stylesheet in updated:
+        pass
+    elif re.search(r'<link rel="stylesheet" href="/assets/footer\.css[^"]*" />', updated):
+        updated = re.sub(r'  ?<link rel="stylesheet" href="/assets/footer\.css[^"]*" />', lambda _: stylesheet, updated, count=1)
+    else:
         updated = updated.replace("</head>", stylesheet + "\n</head>", 1)
     if rel.parts[0] not in NO_SUBSCRIBE:
         if "<!-- subscribe:start -->" in updated:
