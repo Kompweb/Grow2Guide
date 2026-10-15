@@ -27,6 +27,8 @@ npx wrangler deploy
    `workers.dev` subdomain can take a minute or two for Cloudflare's edge to serve TLS for —
    confirmed live 2026-10-01. If grow2guide.com's DNS ever moves to Cloudflare, switch
    `wrangler.toml` back to the `routes` custom-domain block and update `ENDPOINT`.
+4. Set `WELCOME_FROM` in `wrangler.toml` to a sender on your Resend-verified domain. Every new
+   subscriber gets one welcome email from it; delete the `[vars]` block to turn that off.
 
 ## Local development and tests
 
@@ -51,7 +53,36 @@ Cloudflare limits how long logs are kept, so copy them out if you need a long-te
 Before the first deploy, run `npx wrangler deploy --dry-run` to validate `wrangler.toml`.
 If the `RATE_LIMITER` binding is missing the Worker still accepts signups but without rate limiting.
 
+Welcome email: sent only to addresses that were not already in the Audience. Repeat signups and
+unsubscribed addresses get nothing. It is best effort: if Resend rejects it, the signup still
+succeeds and `Resend welcome email responded <status>` appears in the Worker logs.
+
 Re-subscribing: Resend's create-contact call is a full-replace upsert, not a merge, so the Worker
 looks a contact up before writing. An address that already unsubscribed is left alone by a repeat
 signup, and an existing first name is kept if the repeat signup does not provide one. Verified
 against the live Resend API — see git history for `workers/subscribe/index.js`.
+
+## Google Sheets backup (optional)
+
+Each successful signup is also appended to a private Google Sheet: consent time, email, first
+name, source page, whether the contact is new, and the checkbox wording agreed to. Resend stays
+the source of truth; the sheet is a backup and a long-term consent record. Signups from addresses
+that already unsubscribed are not written. A failed backup never fails the signup; it logs
+`Sheets backup responded <status>` instead.
+
+1. Create a Google Sheet (keep it private). Extensions → Apps Script. Replace the code with
+   `google-sheets-backup.gs` and save.
+2. Project Settings → Script properties → add `WEBHOOK_SECRET` with a long random value
+   (for example the output of `openssl rand -hex 32`).
+3. Deploy → New deployment → type **Web app**. Execute as: **Me**. Who has access: **Anyone**.
+   Authorize when asked, then copy the web app URL (ends in `/exec`).
+4. In this folder:
+
+```sh
+npx wrangler secret put SHEETS_WEBHOOK_URL     # the /exec URL
+npx wrangler secret put SHEETS_WEBHOOK_SECRET  # same value as WEBHOOK_SECRET
+```
+
+"Anyone" access is required for the Worker to reach the script; the shared secret is what keeps
+other callers out. After editing the script, use Deploy → Manage deployments → edit → New version,
+or the URL keeps serving the old code.

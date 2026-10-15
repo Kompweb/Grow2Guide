@@ -24,8 +24,73 @@ function fail(status, error, origin) {
   return reply(status, { ok: false, error }, origin);
 }
 
+function escapeHtml(text) {
+  return text.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+}
+
+function welcomeEmail(firstName) {
+  const greeting = firstName ? "Hi " + firstName + "," : "Hi,";
+  const lines = [
+    "Thanks for subscribing to Grow2Guide.",
+    "You'll get practical guides for behavioral health professionals, sent occasionally. No daily emails.",
+    "Every newsletter has an unsubscribe link at the bottom, so you can stop at any time.",
+    "If you didn't sign up, you can ignore this email, or reply and we'll remove you.",
+  ];
+  const text = [greeting, ...lines, "The Grow2Guide team", "https://grow2guide.com"].join("\n\n");
+  const html =
+    "<p>" + escapeHtml(greeting) + "</p>" +
+    lines.map((line) => "<p>" + escapeHtml(line) + "</p>").join("") +
+    '<p>The Grow2Guide team<br><a href="https://grow2guide.com">grow2guide.com</a></p>';
+  return { subject: "Welcome to Grow2Guide", text, html };
+}
+
+// Best effort: the signup is already stored, so a failed welcome email is logged, never surfaced.
+async function sendWelcome(env, email, firstName) {
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + env.RESEND_API_KEY,
+        "Content-Type": "application/json",
+        // Stops a quick double submit from sending two welcomes.
+        "Idempotency-Key": "welcome/" + email,
+      },
+      body: JSON.stringify({ from: env.WELCOME_FROM, to: [email], ...welcomeEmail(firstName) }),
+    });
+    if (!res.ok) console.error("Resend welcome email responded " + res.status);
+  } catch (e) {
+    console.error("Resend welcome email failed");
+  }
+}
+
+// The checkbox wording visitors agree to, copied into each backup row as the consent record.
+const CONSENT_TEXT =
+  "I agree to receive Grow2Guide emails and understand I can unsubscribe at any time.";
+
+// Best effort backup of each signup to a Google Sheet via an Apps Script web app
+// (see google-sheets-backup.gs). Resend stays the source of truth.
+async function backupToSheet(env, row) {
+  try {
+    const res = await fetch(env.SHEETS_WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ secret: env.SHEETS_WEBHOOK_SECRET, ...row }),
+    });
+    const body = await res.json().catch(() => null);
+    if (!res.ok || !body || body.ok !== true) console.error("Sheets backup responded " + res.status);
+  } catch (e) {
+    console.error("Sheets backup failed");
+  }
+}
+
+// Runs after the response when the runtime allows it, so the visitor never waits on extras.
+async function inBackground(ctx, promise) {
+  if (ctx && typeof ctx.waitUntil === "function") ctx.waitUntil(promise);
+  else await promise;
+}
+
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const origin = request.headers.get("Origin");
     if (!origin || !ALLOWED_ORIGINS.has(origin)) return fail(403, "forbidden");
     if (request.method === "OPTIONS") return reply(204, null, origin);
@@ -73,6 +138,7 @@ export default {
     // first. An already-unsubscribed contact is left alone — a repeat signup must never
     // undo someone's opt-out — and an existing first name is kept if this signup omits one.
     let existingFirstName = "";
+    let isNewContact = false;
     try {
       const lookup = await fetch("https://api.resend.com" + contactsPath + "/" + encodeURIComponent(email), {
         headers: { Authorization: "Bearer " + env.RESEND_API_KEY },
@@ -81,7 +147,9 @@ export default {
         const existing = await lookup.json();
         if (existing.unsubscribed === true) return reply(200, { ok: true }, origin);
         if (typeof existing.first_name === "string") existingFirstName = existing.first_name;
-      } else if (lookup.status !== 404) {
+      } else if (lookup.status === 404) {
+        isNewContact = true;
+      } else {
         console.error("Resend lookup responded " + lookup.status);
         return fail(502, "upstream_error", origin);
       }
@@ -112,8 +180,25 @@ export default {
       return fail(502, "upstream_error", origin);
     }
 
+    // Welcome only brand-new contacts; repeat signups and opted-out addresses get nothing.
+    if (isNewContact && env.WELCOME_FROM) {
+      await inBackground(ctx, sendWelcome(env, email, nameToStore));
+    }
+
+    const consentAt = new Date().toISOString();
+    if (env.SHEETS_WEBHOOK_URL && env.SHEETS_WEBHOOK_SECRET) {
+      await inBackground(ctx, backupToSheet(env, {
+        consentAt,
+        email,
+        firstName: nameToStore,
+        source,
+        newContact: isNewContact,
+        consentText: CONSENT_TEXT,
+      }));
+    }
+
     // Consent record. The email address is deliberately not logged.
-    console.log(JSON.stringify({ event: "subscribed", source, consentAt: new Date().toISOString() }));
+    console.log(JSON.stringify({ event: "subscribed", source, consentAt }));
     return reply(200, { ok: true }, origin);
   },
 };

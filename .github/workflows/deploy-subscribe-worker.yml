@@ -1,0 +1,65 @@
+name: Deploy subscribe Worker
+
+# Runs the Worker tests, then deploys workers/subscribe to Cloudflare and sets its secrets.
+# Repository secrets (Settings → Secrets and variables → Actions):
+#   required: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, RESEND_API_KEY, RESEND_AUDIENCE_ID
+#   optional: SHEETS_WEBHOOK_URL, SHEETS_WEBHOOK_SECRET (Google Sheets backup)
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "workers/subscribe/**"
+      - ".github/workflows/deploy-subscribe-worker.yml"
+
+concurrency:
+  group: deploy-subscribe-worker
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: workers/subscribe
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      RESEND_AUDIENCE_ID: ${{ secrets.RESEND_AUDIENCE_ID }}
+      SHEETS_WEBHOOK_URL: ${{ secrets.SHEETS_WEBHOOK_URL }}
+      SHEETS_WEBHOOK_SECRET: ${{ secrets.SHEETS_WEBHOOK_SECRET }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Test
+        run: npm test
+
+      - name: Check required secrets
+        run: |
+          missing=""
+          for name in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID RESEND_API_KEY RESEND_AUDIENCE_ID; do
+            [ -n "${!name}" ] || missing="$missing $name"
+          done
+          if [ -n "$missing" ]; then
+            echo "::error::Missing repository secrets:$missing"
+            exit 1
+          fi
+
+      - name: Deploy
+        run: npx -y wrangler@4 deploy
+
+      - name: Set Resend secrets
+        run: |
+          printf '%s' "$RESEND_API_KEY" | npx -y wrangler@4 secret put RESEND_API_KEY
+          printf '%s' "$RESEND_AUDIENCE_ID" | npx -y wrangler@4 secret put RESEND_AUDIENCE_ID
+
+      - name: Set Google Sheets backup secrets
+        if: ${{ env.SHEETS_WEBHOOK_URL != '' && env.SHEETS_WEBHOOK_SECRET != '' }}
+        run: |
+          printf '%s' "$SHEETS_WEBHOOK_URL" | npx -y wrangler@4 secret put SHEETS_WEBHOOK_URL
+          printf '%s' "$SHEETS_WEBHOOK_SECRET" | npx -y wrangler@4 secret put SHEETS_WEBHOOK_SECRET
