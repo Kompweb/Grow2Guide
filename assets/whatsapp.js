@@ -54,7 +54,8 @@
     style.textContent =
       ".g2g-wa{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;" +
       "display:flex;align-items:center;justify-content:center;width:62px;height:62px;border-radius:50%;" +
-      "background:#25D366;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.25);transition:transform .15s ease}" +
+      "background:#25D366;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.25);transition:transform .15s ease,opacity .15s ease}" +
+      ".g2g-wa.g2g-wa-hidden{opacity:0;pointer-events:none}" +
       ".g2g-wa:hover{transform:scale(1.06)}" +
       ".g2g-wa:focus-visible{outline:3px solid #12201C;outline-offset:3px}" +
       ".g2g-wa svg{width:33px;height:33px;fill:currentColor}" +
@@ -73,11 +74,46 @@
       "</svg>";
     decorate(link, "floating_button");
     document.body.appendChild(link);
+    return link;
+  }
+
+  // Hide the floating button while it sits over text marked [data-wa-avoid].
+  function avoidMarkedText(button) {
+    var marked = document.querySelectorAll("[data-wa-avoid]");
+    if (!marked.length) return;
+    var pending = false;
+
+    function overlaps(a, b) {
+      return a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+    }
+
+    function update() {
+      pending = false;
+      button.classList.remove("g2g-wa-hidden");
+      var rect = button.getBoundingClientRect();
+      for (var i = 0; i < marked.length; i++) {
+        if (overlaps(rect, marked[i].getBoundingClientRect())) {
+          button.classList.add("g2g-wa-hidden");
+          return;
+        }
+      }
+    }
+
+    function schedule() {
+      if (!pending) {
+        pending = true;
+        window.requestAnimationFrame(update);
+      }
+    }
+
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    update();
   }
 
   function init() {
     injectStyles();
-    injectButton();
+    avoidMarkedText(injectButton());
     var links = document.querySelectorAll("[data-wa-link]");
     for (var i = 0; i < links.length; i++) {
       decorate(links[i], "inline_link");
