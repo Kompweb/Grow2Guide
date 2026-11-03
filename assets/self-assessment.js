@@ -280,9 +280,17 @@
     return parts;
   }
 
+  /* ---------- Next step: which guide cards to show for the optional role answer ---------- */
+  function guidesForRole(role) {
+    if (role === 'direct-care' || role === 'student') return ['guide', 'bundle'];
+    if (role === 'supervisor') return ['supervisor', 'bundle'];
+    return ['guide', 'supervisor', 'bundle'];
+  }
+
   /* Expose for testing / reuse */
   var api = { QUESTIONS: QUESTIONS, CATEGORIES: CATEGORIES, DIMENSIONS: DIMENSIONS, BANDS: BANDS,
-              computeResults: computeResults, toPercent: toPercent, bandFor: bandFor, compareText: compareText };
+              computeResults: computeResults, toPercent: toPercent, bandFor: bandFor, compareText: compareText,
+              guidesForRole: guidesForRole };
   if (typeof module !== 'undefined' && module.exports) { module.exports = api; }
   if (typeof document === 'undefined') { return; }
   window.G2GAssessment = api;
@@ -300,6 +308,8 @@
   }
   var $ = function (id) { return document.getElementById(id); };
   var form = $('assessment'), qWrap = $('questions'), errBox = $('error');
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var scrollBehavior = reduceMotion ? 'auto' : 'smooth';
 
   function renderQuestions() {
     var catIndex = {}; CATEGORIES.forEach(function (c) { catIndex[c.id] = c; });
@@ -339,9 +349,30 @@
     });
     return a;
   }
+  /* Part shown in the progress bar: the last part heading that has scrolled up to the bar. */
+  function currentPart() {
+    var titles = qWrap.querySelectorAll('.part-title'), part = 1;
+    var bar = form.querySelector('.progress-line').getBoundingClientRect().bottom;
+    for (var i = 0; i < titles.length; i++) {
+      if (titles[i].getBoundingClientRect().top <= bar + 40) part = i + 1;
+    }
+    return part;
+  }
   function updateCount() {
     var n = Object.keys(readAnswers()).length;
-    $('answered-count').textContent = n + ' of ' + QUESTIONS.length + ' answered';
+    $('answered-count').textContent = 'Part ' + currentPart() + ' of 2 \u00b7 ' + n + ' of ' + QUESTIONS.length + ' answered';
+    $('progress-fill').style.width = Math.round((n / QUESTIONS.length) * 100) + '%';
+    $('next-unanswered').hidden = n === QUESTIONS.length;
+  }
+  function firstUnanswered() {
+    var a = readAnswers();
+    for (var i = 0; i < QUESTIONS.length; i++) { if (!a[QUESTIONS[i].id]) return QUESTIONS[i]; }
+    return null;
+  }
+  function goToQuestion(q, focus) {
+    var fs = $('fs-' + q.id);
+    fs.scrollIntoView({ behavior: scrollBehavior, block: 'center' });
+    if (focus) { var first = fs.querySelector('input'); if (first) first.focus({ preventScroll: true }); }
   }
 
   function barBlock(pct, label) {
@@ -352,6 +383,12 @@
     return bar;
   }
   function isLowBand(b) { return b.key === 'inconsistent' || b.key === 'priority'; }
+
+  function renderNextStep(role) {
+    var show = guidesForRole(role);
+    var cards = document.querySelectorAll('#next-step-section [data-guide]');
+    for (var i = 0; i < cards.length; i++) cards[i].hidden = show.indexOf(cards[i].getAttribute('data-guide')) === -1;
+  }
 
   function renderResults(res) {
     var dimWrap = $('dimension-results'), catWrap = $('category-results'), cmp = $('comparison');
@@ -409,9 +446,7 @@
       var a = el('a', { href: '#fs-q' + n }, 'Question ' + n);
       a.addEventListener('click', function (e) {
         e.preventDefault();
-        var target = $('fs-q' + n);
-        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        var first = target.querySelector('input'); if (first) first.focus();
+        goToQuestion(QUESTIONS[n - 1], true);
       });
       errBox.appendChild(a);
       if (i < unanswered.length - 1) errBox.appendChild(document.createTextNode(', '));
@@ -423,7 +458,11 @@
   function resetAll() {
     form.reset();
     ['ref-strength', 'ref-development', 'ref-behavior', 'ref-progress', 'ref-date'].forEach(function (id) { $(id).value = ''; });
-    QUESTIONS.forEach(function (q) { $('fs-' + q.id).classList.remove('unanswered'); });
+    QUESTIONS.forEach(function (q) {
+      var fs = $('fs-' + q.id);
+      fs.classList.remove('unanswered');
+      fs.removeAttribute('data-advanced');
+    });
     errBox.hidden = true;
     $('results').hidden = true;
     $('intro').hidden = false;
@@ -441,6 +480,45 @@
 
   renderQuestions();
   updateCount();
+
+  /* After a first answer given by tap or click, bring the next question into view.
+     Keyboard users change answers with arrow keys, so they are never moved. */
+  var lastPointer = 0;
+  form.addEventListener('pointerdown', function () { lastPointer = Date.now(); });
+  form.addEventListener('change', function (e) {
+    var t = e.target;
+    if (!/^q\d+$/.test(t.name) || Date.now() - lastPointer > 1500) return;
+    var fs = $('fs-' + t.name);
+    if (fs.getAttribute('data-advanced')) return;
+    fs.setAttribute('data-advanced', '1');
+    var idx = Number(t.name.slice(1));
+    var next = idx < QUESTIONS.length ? QUESTIONS[idx] : null;
+    var target = next ? $('fs-' + next.id) : $('fs-role');
+    if (next && form.querySelector('input[name="' + next.id + '"]:checked')) return;
+    window.setTimeout(function () { target.scrollIntoView({ behavior: scrollBehavior, block: 'center' }); }, 150);
+  });
+
+  var partTick = false;
+  window.addEventListener('scroll', function () {
+    if (partTick || form.hidden) return;
+    partTick = true;
+    window.requestAnimationFrame(function () { partTick = false; updateCount(); });
+  }, { passive: true });
+
+  $('next-unanswered').addEventListener('click', function () {
+    var q = firstUnanswered();
+    if (q) goToQuestion(q, true);
+  });
+
+  /* Same event the Guides page sends for its buy buttons. No role or score data. */
+  var buyLinks = document.querySelectorAll('#next-step-section [data-offer]');
+  for (var b = 0; b < buyLinks.length; b++) {
+    buyLinks[b].addEventListener('click', function () {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'guides_buy_click', offer: this.getAttribute('data-offer'), placement: this.id });
+    });
+  }
+
   form.addEventListener('change', function () {
     updateCount();
     // clear the error highlight on a question as soon as it is answered
@@ -454,6 +532,8 @@
     if (!res.complete) { showErrors(res.unanswered); return; }
     errBox.hidden = true;
     renderResults(res);
+    var role = form.querySelector('input[name="role"]:checked');
+    renderNextStep(role ? role.value : 'skip');
     $('intro').hidden = true;
     form.hidden = true;
     $('results').hidden = false;

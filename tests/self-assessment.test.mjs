@@ -59,3 +59,12 @@ test("care and workplace are scored separately and compared", () => {
   assert.equal(res.dimensions.workplace.pct, 25);
   assert.match(compareText(res)[0], /Care Competence \(100%\) is higher than your Workplace Competence \(25%\)/);
 });
+
+test("role picks the next-step guides; skipping shows both", () => {
+  const { guidesForRole } = mod.exports;
+  assert.deepEqual(guidesForRole("direct-care"), ["guide", "bundle"]);
+  assert.deepEqual(guidesForRole("student"), ["guide", "bundle"]);
+  assert.deepEqual(guidesForRole("supervisor"), ["supervisor", "bundle"]);
+  assert.deepEqual(guidesForRole("skip"), ["guide", "supervisor", "bundle"]);
+  assert.deepEqual(guidesForRole(undefined), ["guide", "supervisor", "bundle"]);
+});

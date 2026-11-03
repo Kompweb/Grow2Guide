@@ -129,8 +129,35 @@
     }
     #sa .opt input:checked + span { border-color: var(--brand); background: var(--brand); color: #fff; font-weight: 600; }
     #sa .opt input:focus-visible + span { outline: 3px solid var(--brand-dark); outline-offset: 2px; }
-    /* Sits under the site nav (z-50) when the nav is showing; visible once the nav hides on scroll. */
-    #sa .progress-line { position: sticky; top: 0; background: var(--sa-bg); padding: 8px 0; border-bottom: 1px solid var(--border); z-index: 2; font-size: .95rem; }
+    #sa .role-options .opt { flex: 1 1 140px; }
+
+    /* Phones: the five answers sit in one row as a dot scale, so each question takes far less height. */
+    @media (max-width: 600px) {
+      #sa fieldset.q { margin-inline: -10px; padding: 12px 10px; }
+      #sa .options:not(.role-options) { flex-wrap: nowrap; gap: 4px; }
+      #sa .options:not(.role-options) .opt { flex: 1 1 0; min-width: 0; }
+      #sa .options:not(.role-options) .opt span {
+        display: flex; flex-direction: column; align-items: center; gap: 6px;
+        padding: 8px 0 6px; border-width: 1px; font-size: 11px; letter-spacing: -0.01em; line-height: 1.2;
+      }
+      #sa .options:not(.role-options) .opt span::before {
+        content: ""; width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--border); background: var(--sa-bg);
+      }
+      #sa .options:not(.role-options) .opt input:checked + span { background: var(--surface); color: var(--brand-dark); border-color: var(--brand); }
+      #sa .options:not(.role-options) .opt input:checked + span::before { background: var(--brand); border-color: var(--brand); box-shadow: inset 0 0 0 3px var(--sa-bg); }
+    }
+    /* Sticks directly under the site nav; nav-scroll.js moves it up to 0 when the nav hides. */
+    #sa .progress-line {
+      position: sticky; top: 96px; z-index: 40; transition: top .3s ease;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      background: #F5F8F4; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: .95rem;
+    }
+    @media (max-width: 600px) { #sa .progress-line { font-size: .82rem; } }
+    @media (min-width: 1024px) { #sa .progress-line { top: 100px; } }
+    #sa .progress-line button { margin: 0; padding: 6px 12px; font-size: .85rem; white-space: nowrap; }
+    #sa .progress-meter { height: 4px; background: var(--track); border-radius: 999px; overflow: hidden; margin-top: 6px; }
+    #sa .progress-meter > div { height: 100%; width: 0; background: var(--brand); transition: width .2s ease; }
+    #sa fieldset.q, #sa .part-title, #sa .cat-title { scroll-margin-top: 170px; }
     #sa #error { background: var(--error-bg); color: var(--error); border: 1px solid var(--error); padding: 12px 14px; border-radius: 8px; margin: 16px 0; }
     #sa #error a { color: inherit; font-weight: 600; text-decoration: underline; }
     #sa button {
@@ -158,6 +185,21 @@
       background: var(--sa-bg); color: var(--text); min-height: 44px;
     }
     #sa textarea { min-height: 72px; resize: vertical; }
+    #sa .next-step { display: grid; grid-template-columns: 1fr; gap: 16px; margin: 16px 0; }
+    @media (min-width: 700px) { #sa .next-step { grid-template-columns: 1fr 1fr; } }
+    #sa .guide-card { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: 10px; padding: 16px; background: var(--sa-bg); }
+    #sa .guide-card h3 { margin-bottom: 8px; }
+    #sa .guide-card p { color: var(--muted); font-size: .95rem; flex: 1; }
+    #sa .guide-card.bundle { background: var(--surface); }
+    #sa .buy-btn {
+      display: flex; align-items: center; justify-content: center; min-height: 48px; margin-top: 8px;
+      border: 2px solid rgba(75,48,33,.3); border-radius: 999px; color: #4b3021; font-weight: 700; text-decoration: none;
+    }
+    #sa .buy-btn:hover { background: #f6eee6; }
+    #sa .buy-btn:focus-visible { outline: 3px solid var(--brand-dark); outline-offset: 2px; }
+    #sa .buy-note { font-size: .8rem; text-align: center; color: var(--muted); margin: 8px 0 0; flex: none; }
+    @media (prefers-reduced-motion: reduce) { #sa .progress-line, #sa .progress-meter > div { transition: none; } }
+
     #sa .sa-footer { margin-top: 40px; font-size: .9rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 14px; }
     #sa .sa-footer a { color: var(--brand); font-weight: 600; text-decoration: underline; }
 
@@ -165,7 +207,7 @@
     @media print {
       body { background: #fff; color: #000; font-size: 11pt; }
       nav.glass-nav, .atmosphere-glow, .sa-crumbs, #site-footer, .g2g-wa, #subscribe, #subscribe-modal,
-      #sa #intro, #sa #assessment, #sa #print-actions, #sa .progress-line, #sa .no-print { display: none !important; }
+      #sa #intro, #sa #assessment, #sa #print-actions, #sa .progress-line, #sa .no-print, #sa #next-step-section { display: none !important; }
       main#main { padding-top: 0 !important; }
       #sa .card, #sa .cat-card { break-inside: avoid; background: #fff; border-color: #888; }
       #sa .bar { border: 1px solid #555; background: #fff; }
@@ -262,8 +304,24 @@
 
           <!-- ===== Questions are built by /assets/self-assessment.js ===== -->
           <form id="assessment" novalidate>
-            <div class="progress-line" aria-live="polite"><span id="answered-count">0 of 32 answered</span></div>
+            <div class="progress-line" data-follow-nav>
+              <div style="flex:1;min-width:0">
+                <span id="answered-count" aria-live="polite">Part 1 of 2 &middot; 0 of 32 answered</span>
+                <div class="progress-meter" aria-hidden="true"><div id="progress-fill"></div></div>
+              </div>
+              <button type="button" id="next-unanswered" class="secondary">Next unanswered</button>
+            </div>
             <div id="questions"></div>
+
+            <fieldset class="q" id="fs-role">
+              <legend>What&rsquo;s your role? (optional)</legend>
+              <div class="options role-options">
+                <label class="opt"><input type="radio" name="role" value="direct-care" id="role-direct-care"><span>Direct care staff</span></label>
+                <label class="opt"><input type="radio" name="role" value="supervisor" id="role-supervisor"><span>Supervisor</span></label>
+                <label class="opt"><input type="radio" name="role" value="student" id="role-student"><span>Student or job seeker</span></label>
+                <label class="opt"><input type="radio" name="role" value="skip" id="role-skip"><span>Skip</span></label>
+              </div>
+            </fieldset>
             <div id="error" role="alert" tabindex="-1" hidden></div>
             <button type="submit">See my results</button>
           </form>
@@ -280,6 +338,30 @@
 
             <h2>How Your Results Compare</h2>
             <div class="card" id="comparison"></div>
+
+            <section id="next-step-section" aria-labelledby="next-step-heading">
+              <h2 id="next-step-heading">Next step</h2>
+              <div class="next-step">
+                <div class="guide-card" data-guide="guide">
+                  <h3>Behavioral Health Guide for employees - Why do we do it this way?</h3>
+                  <p>Understanding policies and systems, and how they apply to you as a case manager, BHT, or direct care staff. 31 policies in 8 sections, documentation, incident reports, and what to do on shift. The questions you have are now answered.</p>
+                  <a class="buy-btn" id="sa-buy-guide" data-offer="guide" href="https://buy.stripe.com/cNibJ16HKgL75XgaSm4Ja02">Buy Guide &mdash; $67</a>
+                  <p class="buy-note">Pay securely &mdash; unlocks instantly, plus a copy by email.</p>
+                </div>
+                <div class="guide-card" data-guide="supervisor">
+                  <h3>Supervisor Guide - How do I supervise employees effectively</h3>
+                  <p>For supervisors of direct care staff. What to say in difficult conversations, how to set expectations, give feedback, and document performance, and what to do in your first 90 days. Employee supervision, not clinical supervision.</p>
+                  <a class="buy-btn" id="sa-buy-supervisor" data-offer="toolkit" href="https://buy.stripe.com/bJecN57LO0M9gBU9Oi4Ja01">Buy Supervisor Guide &mdash; $67</a>
+                  <p class="buy-note">Pay securely &mdash; unlocks instantly, plus a copy by email.</p>
+                </div>
+                <div class="guide-card bundle" data-guide="bundle">
+                  <h3>Bundle both for $99</h3>
+                  <p>Guide + workbook + supervisor guide: 221 pages.</p>
+                  <a class="buy-btn" id="sa-buy-bundle" data-offer="bundle" href="https://buy.stripe.com/6oU4gz3vyeCZ0CW2lQ4Ja00">Buy Bundle &mdash; $99</a>
+                  <p class="buy-note">Pay securely &mdash; unlocks instantly, plus a copy by email.</p>
+                </div>
+              </div>
+            </section>
 
             <h2>Reflection</h2>
             <p>Use these prompts to turn your results into one small, observable step. What you type here stays on this page. It is not saved or sent, so print or copy it before you close the window.</p>

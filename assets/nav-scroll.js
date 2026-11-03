@@ -6,7 +6,8 @@
 
   var mobileMenu = document.getElementById('mobile-menu');
   var mobileMenuButton = document.getElementById('mobile-menu-btn');
-  var secondaryNav = document.querySelector('.services-subnav');
+  // A bar that sticks directly under the nav (Services sub-nav, Self-Assessment progress bar).
+  var secondaryNav = document.querySelector('.services-subnav, [data-follow-nav]');
   var lastY = Math.max(window.scrollY, 0);
   var ticking = false;
   var navHidden = false;
