@@ -19,6 +19,7 @@ and links work on nested pages.
 - `index.html`: home page.
 - `services/`, `consultation/`, `faq/`: service information and inquiries.
 - `quiz/tier-1/`, `quiz/tier-2/`: multi-step inquiry forms.
+- `self-assessment/`: Care & Workplace Competence Self-Assessment. Scored in the browser by `assets/self-assessment.js`; answers never leave the page.
 - `blog/`: blog index and one folder per post; see [Adding a blog post](#adding-a-blog-post).
 - `handbook/`: handbook pages; see [README.handbook.md](README.handbook.md).
 - `newsletter/`: newsletter issue template, issues, and subscriber data notes; see `newsletter/README.md`.
