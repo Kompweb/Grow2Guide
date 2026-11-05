@@ -312,19 +312,14 @@
   var scrollBehavior = reduceMotion ? 'auto' : 'smooth';
 
   function renderQuestions() {
-    var catIndex = {}; CATEGORIES.forEach(function (c) { catIndex[c.id] = c; });
-    var lastCat = null, lastDim = null;
+    // Category names appear only in the results, not above the questions.
+    var lastDim = null;
     QUESTIONS.forEach(function (q) {
-      var cat = catIndex[q.category];
       if (q.dimension !== lastDim) {
         var d = DIMENSIONS[q.dimension];
         qWrap.appendChild(el('h2', { class: 'part-title' }, (q.dimension === 'care' ? 'Part 1: ' : 'Part 2: ') + d.name));
         qWrap.appendChild(el('p', { class: 'part-sub' }, d.question));
         lastDim = q.dimension;
-      }
-      if (cat.id !== lastCat) {
-        qWrap.appendChild(el('h3', { class: 'cat-title' }, 'Category ' + cat.id.replace('cat', '') + ': ' + cat.name));
-        lastCat = cat.id;
       }
       var fs = el('fieldset', { class: 'q', id: 'fs-' + q.id });
       fs.appendChild(el('legend', null, q.number + '. ' + q.text));
