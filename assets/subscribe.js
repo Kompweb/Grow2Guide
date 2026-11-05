@@ -4,7 +4,7 @@
   // What the site can see, and sends to GTM → GA4:
   //   newsletter_form_view  — the form was at least half on screen (once per form per page load)
   //   newsletter_form_start — the visitor clicked or tapped into the form (once per form per page load)
-  // Both carry signup_placement: page, modal or self_assessment (the box's data-placement).
+  // Both carry signup_placement: page or modal (the box's data-placement).
 
   function placementOf(box) {
     return box.getAttribute('data-placement') || 'page';

@@ -21,7 +21,6 @@
   <script src="/assets/nav-scroll.js" defer></script>
   <script src="/assets/whatsapp.js" defer></script>
   <script src="/assets/self-assessment.js?v=20261105" defer></script>
-  <script src="/assets/subscribe.js?v=20261105" defer></script>
   <style>
 
     .g2g-wordmark { /* = .brand-name */
@@ -318,9 +317,9 @@
             <p>Answer based on your actual behavior over the <strong>past 30 days</strong>, especially during stressful situations, disagreements, or moments when you felt frustrated or overwhelmed. Choose the response that best reflects what you typically do, not what you believe you should do.</p>
             <p class="note">This tool is intended for personal reflection and professional development. It is not a validated psychological test, a diagnostic tool, or a measure of your overall worth as a professional.</p>
             <!-- Shown while results email is off (RESULTS_EMAIL = false in self-assessment.js). -->
-            <p class="note" data-privacy="newsletter"><strong>Your privacy:</strong> your answers are calculated on this page only. Nothing you enter in the assessment is collected, sent, or stored. The newsletter sign-up below your results is run by Substack.</p>
+            <p class="note" data-privacy="newsletter"><strong>Your privacy:</strong> your answers are calculated on this page only. Nothing you enter in the assessment is collected, sent, or stored.</p>
             <!-- DRAFT privacy wording for the results email, pending Sara's approval. -->
-            <p class="note" data-privacy="results-email" hidden><strong>Your privacy:</strong> your answers are calculated on this page only and are never sent. If you choose to email yourself your results, your email address and your scores (not your answers) go to our email provider to send them. This does not sign you up for the newsletter; that is a separate Substack form below your results.</p>
+            <p class="note" data-privacy="results-email" hidden><strong>Your privacy:</strong> your answers are calculated on this page only and are never sent. If you choose to email yourself your results, your email address and your scores (not your answers) go to our email provider to send them. This does not sign you up for the newsletter.</p>
           </section>
 
           <!-- ===== Questions are built by /assets/self-assessment.js ===== -->
@@ -414,15 +413,6 @@
             </div>
             <p id="email-status" class="no-print" role="status" aria-live="polite" hidden></p>
             <div id="email-slot" class="no-print"></div>
-
-            <!-- Newsletter sign-up: Substack's embedded form. Views and clicks are tracked by assets/subscribe.js. -->
-            <div class="email-box no-print" id="newsletter-box">
-              <h3>One practical post every Wednesday</h3>
-              <p class="hint">The free Grow2Guide newsletter for behavioral health staff and new supervisors. Delivered by Substack.</p>
-              <div data-g2g-substack data-placement="self_assessment">
-                <iframe src="https://grow2guide.substack.com/embed" title="Subscribe to the Grow2Guide newsletter on Substack" width="480" height="320" loading="lazy" frameborder="0" scrolling="no" style="display:block;width:100%;max-width:480px;height:320px;border:1px solid #E5EEEA;border-radius:16px;background:#fff;"></iframe>
-              </div>
-            </div>
 
             <div class="no-print">
               <button type="button" id="retake-btn" class="secondary">Retake the assessment</button>

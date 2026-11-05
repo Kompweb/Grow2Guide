@@ -315,7 +315,7 @@
   }
   var $ = function (id) { return document.getElementById(id); };
   var form = $('assessment'), qWrap = $('questions'), errBox = $('error');
-  /* Off: no "email my results" box. The Substack newsletter form under the results shows either way. */
+  /* Off: no "email my results" box. This page has no newsletter sign-up; that lives on the other pages. */
   var RESULTS_EMAIL = true;
   var RESULTS_ENDPOINT = 'https://g2g-subscribe.grow2guide.workers.dev/results';
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -475,12 +475,9 @@
     errBox.hidden = true;
     // Put the email box back at the end of the questions, empty.
     form.insertBefore(emailBox, errBox);
-    emailInput.value = ''; newsletterBox.checked = false; $('results-website').value = '';
+    emailInput.value = ''; $('results-website').value = '';
     showEmailError('');
     sendBtn.hidden = true; emailBox.hidden = !RESULTS_EMAIL;
-    var nl = $('newsletter-box');
-    nl.reset(); nl.hidden = true;
-    nl.querySelector('[data-status]').textContent = '';
     setStatus('');
     lastResults = null;
     $('results').hidden = true;

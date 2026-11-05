@@ -7,8 +7,8 @@ The site pushes events to GTM's `dataLayer` (container `GTM-WLRZD726`). GTM forw
 
 | dataLayer event | GA4 event | Parameters | Fired by | Where |
 |---|---|---|---|---|
-| `newsletter_form_view` | `newsletter_form_view` | `signup_placement` (page, modal, self_assessment) | `assets/subscribe.js`, when the Substack form is half on screen (once per form per page) | Every page with the form; /self-assessment/ |
-| `newsletter_form_start` | `newsletter_form_start` | `signup_placement` (page, modal, self_assessment) | `assets/subscribe.js`, when the visitor clicks or taps into the Substack form (once per form per page) | Every page with the form; /self-assessment/ |
+| `newsletter_form_view` | `newsletter_form_view` | `signup_placement` (page, modal) | `assets/subscribe.js`, when the Substack form is half on screen (once per form per page) | Every page with the form (not /self-assessment/) |
+| `newsletter_form_start` | `newsletter_form_start` | `signup_placement` (page, modal) | `assets/subscribe.js`, when the visitor clicks or taps into the Substack form (once per form per page) | Every page with the form (not /self-assessment/) |
 | `generate_lead` | `generate_lead` | `lead_type` (consultation, quiz_tier_1, quiz_tier_2), `form_method` (mailto) | `consultation.js`, `quiz-tier-1.js`, `quiz-tier-2.js` | /consultation/, /quiz/tier-1/, /quiz/tier-2/ |
 | `purchase` | `purchase` | ecommerce: `value`, `currency`, `items`, `transaction_id` (Stripe `session_id` when present) | `assets/thank-you.js` | /thank-you/?item=… |
 | `guides_buy_click` | `begin_checkout` | `offer` (guide, toolkit, bundle), `placement` (button id) | `assets/guides.js` | /guides/ |
