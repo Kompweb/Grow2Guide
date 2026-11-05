@@ -22,7 +22,7 @@ and links work on nested pages.
 - `self-assessment/`: Care & Workplace Competence Self-Assessment. Scored in the browser by `assets/self-assessment.js`; answers never leave the page.
 - `blog/`: blog index and one folder per post; see [Adding a blog post](#adding-a-blog-post).
 - `handbook/`: handbook pages; see [README.handbook.md](README.handbook.md).
-- `newsletter/`: the newsletter is on Substack (grow2guide.substack.com); see `newsletter/README.md`.
+- `newsletter/`: the newsletter is on Substack (grow2guide.substack.com), with a daily Google Sheets backup script; see `newsletter/README.md`.
 - `workers/subscribe/`: Cloudflare Worker that sends Self-Assessment results emails through Resend; see its README.
 - `terms/`, `privacy/`, `refunds/`: policy pages.
 - `styles.css` and page-level `<style>` blocks: site styling.
