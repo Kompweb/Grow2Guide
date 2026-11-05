@@ -555,6 +555,7 @@
     }).then(function () {
       setStatus('Sent to ' + email + '. Check your inbox.', 'ok');
       track('results_email_sent', { newsletter: newsletter });
+      if (newsletter) track('newsletter_signup', { signup_placement: 'self_assessment' });
     }).catch(function (err) {
       if (err.message === 'invalid_email') {
         setStatus('That email address doesn\u2019t look right. Check it and try again.', 'err');
@@ -567,7 +568,7 @@
         setStatus(subscribed
           ? 'We couldn\u2019t email your results right now, but you\u2019re signed up for the newsletter. Use Print my results to keep a copy.'
           : 'We couldn\u2019t send your results. Please try again in a minute.', 'err');
-        if (subscribed) track('newsletter_signup', { placement: 'self_assessment_fallback' });
+        if (subscribed) track('newsletter_signup', { signup_placement: 'self_assessment_fallback' });
         else showEmailBoxInResults();
       });
     });
