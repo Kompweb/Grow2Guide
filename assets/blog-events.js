@@ -3,7 +3,7 @@
   //   blog_cta_click      - guide/consultation link clicked (cta_placement: inline | end | other)
   //   blog_related_click  - "Keep reading" link clicked
   //   blog_card_click     - article card clicked on the blog index
-  // newsletter_signup is pushed by subscribe.js on every page.
+  // newsletter_form_view / newsletter_form_start are pushed by subscribe.js on every page.
   window.dataLayer = window.dataLayer || [];
 
   function pageSlug(path) {

@@ -7,7 +7,8 @@ The site pushes events to GTM's `dataLayer` (container `GTM-WLRZD726`). GTM forw
 
 | dataLayer event | GA4 event | Parameters | Fired by | Where |
 |---|---|---|---|---|
-| `newsletter_signup` | `newsletter_signup` | `signup_placement` (page, modal, self_assessment, self_assessment_fallback) | `assets/subscribe.js`, after the Worker confirms | Every page with the form; /self-assessment/ |
+| `newsletter_form_view` | `newsletter_form_view` | `signup_placement` (page, modal, self_assessment) | `assets/subscribe.js`, when the Substack form is half on screen (once per form per page) | Every page with the form; /self-assessment/ |
+| `newsletter_form_start` | `newsletter_form_start` | `signup_placement` (page, modal, self_assessment) | `assets/subscribe.js`, when the visitor clicks or taps into the Substack form (once per form per page) | Every page with the form; /self-assessment/ |
 | `generate_lead` | `generate_lead` | `lead_type` (consultation, quiz_tier_1, quiz_tier_2), `form_method` (mailto) | `consultation.js`, `quiz-tier-1.js`, `quiz-tier-2.js` | /consultation/, /quiz/tier-1/, /quiz/tier-2/ |
 | `purchase` | `purchase` | ecommerce: `value`, `currency`, `items`, `transaction_id` (Stripe `session_id` when present) | `assets/thank-you.js` | /thank-you/?item=… |
 | `guides_buy_click` | `begin_checkout` | `offer` (guide, toolkit, bundle), `placement` (button id) | `assets/guides.js` | /guides/ |
@@ -17,6 +18,10 @@ The site pushes events to GTM's `dataLayer` (container `GTM-WLRZD726`). GTM forw
 | `blog_card_click` | `blog_card_click` | `destination_slug` | `assets/blog-events.js` | /blog/ |
 
 Limits to keep in mind:
+- Newsletter signups happen inside Substack's embedded form (an iframe), so the site cannot see
+  a completed signup. `newsletter_form_start` is the closest signal the site has. Count real
+  signups in Substack: Dashboard → Subscribers, which shows each subscriber's source.
+  `newsletter_signup` (fired by the old Resend form until Nov 2026) no longer fires.
 - `generate_lead` marks that the visitor pressed submit and their email app opened. It cannot
   tell whether they actually sent the email.
 - `purchase` fires when the thank-you page loads with a known `item`. It is not verified
@@ -38,7 +43,9 @@ Limits to keep in mind:
 ## 2. GA4: make the events readable
 
 1. **Key events** (Admin → Events, or Admin → Key events → New key event). Mark:
-   `generate_lead`, `newsletter_signup`, `purchase`. They appear here up to 24 hours after
+   `generate_lead`, `purchase`. Leave `newsletter_form_start` as a normal event: it counts
+   clicks into the form, not signups, so marking it a key event would overstate results.
+   Unmark `newsletter_signup` if it is a key event; it no longer fires. They appear here up to 24 hours after
    they first fire; you can type the names in by hand before then.
 2. **Custom dimensions** (Admin → Custom definitions → Create, scope **Event**). Without these
    the parameters are collected but cannot be shown in reports. Create one per parameter:
@@ -58,14 +65,14 @@ event, e.g. `generate_lead`.
 - Technique: Free form. Rows: Landing page + query string. Columns: Event name.
   Values: Event count.
 - Filter: Event name matches regex
-  `newsletter_signup|generate_lead|purchase|begin_checkout|whatsapp_click|blog_cta_click`
+  `newsletter_form_view|newsletter_form_start|generate_lead|purchase|begin_checkout|whatsapp_click|blog_cta_click`
 
 This answers "which landing pages produce signups, leads and sales".
 
 ## Check it works
 
 1. GTM **Preview**, then open the site in the debug window.
-2. Do one of each: subscribe, start the consultation form and submit, click WhatsApp,
+2. Do one of each: scroll to the newsletter form and click into it, start the consultation form and submit, click WhatsApp,
    click a guide "Buy" button.
 3. In Tag Assistant, each action should show the matching dataLayer event with the
    **GA4 - …** tag under "Tags Fired".

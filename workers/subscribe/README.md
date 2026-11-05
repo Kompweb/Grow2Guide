@@ -1,42 +1,41 @@
 # Subscribe Worker
 
-Receives newsletter signups from grow2guide.com and adds them to a Resend Audience.
-The Resend API key lives only in Cloudflare as a secret.
+Sends Self-Assessment results emails through Resend. The Resend API key lives only in Cloudflare
+as a secret.
+
+Newsletter signups moved to Substack in November 2026 (see `newsletter/README.md`). `POST /` now
+answers `410 { "ok": false, "error": "newsletter_moved" }` so an old cached page fails clearly
+instead of adding people to a list nobody sends from.
 
 ## Request contract
 
-`POST /` with JSON `{ "email", "firstName"?, "consent": true, "source"?, "website"? }`.
-Responds `{ "ok": true }` or `{ "ok": false, "error": "<code>" }`.
-`website` is a honeypot: leave it empty.
-
 `POST /results` (Self-Assessment page) with JSON
-`{ "email", "scores": { "care", "workplace", "categories": [8 numbers] }, "newsletter"?, "source"?, "website"? }`
+`{ "email", "scores": { "care", "workplace", "categories": [8 numbers] }, "source"?, "website"? }`
 emails the visitor their results from `WELCOME_FROM`. Scores must be whole numbers from 0 to 100;
 category names, labels and suggestions come from `assets/self-assessment.js`, so no visitor text
-is ever put in the email. With `"newsletter": true` the address is also added to the Audience,
-with "Also send me the newsletter and tips." as the consent record and no separate welcome email.
-The workflow redeploys when `assets/self-assessment.js` changes, so the email always matches the page.
+is ever put in the email. It never adds anyone to a contact list. `website` is a honeypot: leave it
+empty. The workflow redeploys when `assets/self-assessment.js` changes, so the email always matches
+the page.
 
 ## One-time setup
 
-1. In Resend: verify your sending domain, create an Audience, copy its ID, create an API key.
+1. In Resend: verify your sending domain and create an API key.
 2. In this folder:
 
 ```sh
 npx wrangler login
 npx wrangler secret put RESEND_API_KEY
-npx wrangler secret put RESEND_AUDIENCE_ID
 npx wrangler deploy
 ```
 
 3. grow2guide.com's DNS is on Wix (ns2/ns3.wixdns.net), not Cloudflare, so the Worker is
    deployed at `https://g2g-subscribe.grow2guide.workers.dev` (`workers_dev = true` in
-   `wrangler.toml`), which is already set as `ENDPOINT` in `assets/subscribe.js`. A brand new
+   `wrangler.toml`), which is already set as `RESULTS_ENDPOINT` in `assets/self-assessment.js`. A brand new
    `workers.dev` subdomain can take a minute or two for Cloudflare's edge to serve TLS for —
    confirmed live 2026-10-01. If grow2guide.com's DNS ever moves to Cloudflare, switch
-   `wrangler.toml` back to the `routes` custom-domain block and update `ENDPOINT`.
-4. Set `WELCOME_FROM` in `wrangler.toml` to a sender on your Resend-verified domain. Every new
-   subscriber gets one welcome email from it; delete the `[vars]` block to turn that off.
+   `wrangler.toml` back to the `routes` custom-domain block and update `RESULTS_ENDPOINT`.
+4. Set `WELCOME_FROM` in `wrangler.toml` to a sender on your Resend-verified domain. The results
+   email is sent from it.
 
 ## Local development and tests
 
@@ -45,52 +44,16 @@ npm test                      # unit tests, no network needed
 npx wrangler dev              # local Worker on http://localhost:8787
 ```
 
-For `wrangler dev`, create `.dev.vars` (git-ignored) with `RESEND_API_KEY=...` and
-`RESEND_AUDIENCE_ID=...`, then:
+For `wrangler dev`, create `.dev.vars` (git-ignored) with `RESEND_API_KEY=...`, then:
 
 ```sh
-curl -i -X POST http://localhost:8787/ \
+curl -i -X POST http://localhost:8787/results \
   -H "Origin: http://localhost:8000" -H "Content-Type: application/json" \
-  -d '{"email":"you@example.com","firstName":"You","consent":true,"source":"/test/"}'
+  -d '{"email":"you@example.com","scores":{"care":75,"workplace":60,"categories":[75,75,75,75,60,60,60,60]}}'
 ```
-
-Consent records (source page and timestamp, no email) appear in `npx wrangler tail` and, with
-`[observability]` enabled in `wrangler.toml`, in the Worker's Logs in the Cloudflare dashboard.
-Cloudflare limits how long logs are kept, so copy them out if you need a long-term record.
 
 Before the first deploy, run `npx wrangler deploy --dry-run` to validate `wrangler.toml`.
-If the `RATE_LIMITER` binding is missing the Worker still accepts signups but without rate limiting.
+If the `RATE_LIMITER` binding is missing the Worker still works but without rate limiting.
 
-Welcome email: sent only to addresses that were not already in the Audience. Repeat signups and
-unsubscribed addresses get nothing. It is best effort: if Resend rejects it, the signup still
-succeeds and `Resend welcome email responded <status>` appears in the Worker logs.
-
-Re-subscribing: Resend's create-contact call is a full-replace upsert, not a merge, so the Worker
-looks a contact up before writing. An address that already unsubscribed is left alone by a repeat
-signup, and an existing first name is kept if the repeat signup does not provide one. Verified
-against the live Resend API — see git history for `workers/subscribe/index.js`.
-
-## Google Sheets backup (optional)
-
-Each successful signup is also appended to a private Google Sheet: consent time, email, first
-name, source page, whether the contact is new, and the checkbox wording agreed to. Resend stays
-the source of truth; the sheet is a backup and a long-term consent record. Signups from addresses
-that already unsubscribed are not written. A failed backup never fails the signup; it logs
-`Sheets backup responded <status>` instead.
-
-1. Create a Google Sheet (keep it private). Extensions → Apps Script. Replace the code with
-   `google-sheets-backup.gs` and save.
-2. Project Settings → Script properties → add `WEBHOOK_SECRET` with a long random value
-   (for example the output of `openssl rand -hex 32`).
-3. Deploy → New deployment → type **Web app**. Execute as: **Me**. Who has access: **Anyone**.
-   Authorize when asked, then copy the web app URL (ends in `/exec`).
-4. In this folder:
-
-```sh
-npx wrangler secret put SHEETS_WEBHOOK_URL     # the /exec URL
-npx wrangler secret put SHEETS_WEBHOOK_SECRET  # same value as WEBHOOK_SECRET
-```
-
-"Anyone" access is required for the Worker to reach the script; the shared secret is what keeps
-other callers out. After editing the script, use Deploy → Manage deployments → edit → New version,
-or the URL keeps serving the old code.
+Old secrets: `RESEND_AUDIENCE_ID`, `SHEETS_WEBHOOK_URL` and `SHEETS_WEBHOOK_SECRET` are no longer
+read. Remove them with `npx wrangler secret delete <NAME>` once the Resend list has been moved.

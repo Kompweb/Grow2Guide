@@ -315,14 +315,12 @@
   }
   var $ = function (id) { return document.getElementById(id); };
   var form = $('assessment'), qWrap = $('questions'), errBox = $('error');
-  /* Turn on once the subscribe Worker with POST /results is deployed. Off: the results page offers
-     the newsletter sign-up (assets/subscribe.js) under Print instead of "email my results". */
+  /* Off: no "email my results" box. The Substack newsletter form under the results shows either way. */
   var RESULTS_EMAIL = true;
   var RESULTS_ENDPOINT = 'https://g2g-subscribe.grow2guide.workers.dev/results';
-  var SUBSCRIBE_ENDPOINT = 'https://g2g-subscribe.grow2guide.workers.dev/';
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   var emailBox = $('email-box'), emailInput = $('results-email'), emailErr = $('results-email-error');
-  var newsletterBox = $('results-newsletter'), sendBtn = $('send-results-btn'), emailStatus = $('email-status');
+  var sendBtn = $('send-results-btn'), emailStatus = $('email-status');
   var lastResults = null;
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var scrollBehavior = reduceMotion ? 'auto' : 'smooth';
@@ -525,13 +523,12 @@
   }
   /* On the results page the box sits under Print my results, with its own Send button. */
   function showEmailBoxInResults() {
-    if (!RESULTS_EMAIL) { $('newsletter-box').hidden = false; return; }
+    if (!RESULTS_EMAIL) return;
     $('email-slot').appendChild(emailBox);
     sendBtn.hidden = false;
     emailBox.hidden = false;
   }
   function sendResults(email) {
-    var newsletter = newsletterBox.checked;
     emailBox.hidden = true;
     setStatus('Sending your results to ' + email + '\u2026');
     fetch(RESULTS_ENDPOINT, {
@@ -544,7 +541,6 @@
           workplace: lastResults.dimensions.workplace.pct,
           categories: lastResults.categories.map(function (c) { return c.pct; })
         },
-        newsletter: newsletter,
         source: '/self-assessment/',
         website: $('results-website').value
       })
@@ -554,33 +550,16 @@
       });
     }).then(function () {
       setStatus('Sent to ' + email + '. Check your inbox.', 'ok');
-      track('results_email_sent', { newsletter: newsletter });
-      if (newsletter) track('newsletter_signup', { signup_placement: 'self_assessment' });
+      track('results_email_sent');
     }).catch(function (err) {
       if (err.message === 'invalid_email') {
         setStatus('That email address doesn\u2019t look right. Check it and try again.', 'err');
         showEmailBoxInResults();
         return;
       }
-      // The results email failed. If they asked for the newsletter, still sign them up
-      // through the regular newsletter sign-up so their consented address is not lost.
-      (newsletter ? subscribeOnly(email) : Promise.resolve(false)).then(function (subscribed) {
-        setStatus(subscribed
-          ? 'We couldn\u2019t email your results right now, but you\u2019re signed up for the newsletter. Use Print my results to keep a copy.'
-          : 'We couldn\u2019t send your results. Please try again in a minute.', 'err');
-        if (subscribed) track('newsletter_signup', { signup_placement: 'self_assessment_fallback' });
-        else showEmailBoxInResults();
-      });
+      setStatus('We couldn\u2019t send your results. Please try again in a minute, or use Print my results.', 'err');
+      showEmailBoxInResults();
     });
-  }
-  function subscribeOnly(email) {
-    return fetch(SUBSCRIBE_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, firstName: '', consent: true, source: '/self-assessment/', website: $('results-website').value })
-    }).then(function (r) {
-      return r.json().then(function (b) { return r.ok && b.ok === true; }, function () { return false; });
-    }).catch(function () { return false; });
   }
 
   renderQuestions();

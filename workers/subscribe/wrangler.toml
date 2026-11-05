@@ -8,16 +8,16 @@ compatibility_date = "2026-09-01"
 # routes = [{ pattern = "subscribe.grow2guide.com", custom_domain = true }]
 workers_dev = true
 
-# Sender for the welcome email sent to each new subscriber. Must be on a domain verified in
-# Resend. Remove this block to turn the welcome email off.
+# Sender for the Self-Assessment results email. Must be on a domain verified in Resend.
+# (Newsletter signups moved to Substack; this Worker no longer adds anyone to a list.)
 [vars]
 WELCOME_FROM = "Grow2Guide <hello@grow2guide.com>"
 
-# Keep Worker logs (the consent records written on each signup) in the Cloudflare dashboard.
+# Keep Worker logs in the Cloudflare dashboard.
 [observability]
 enabled = true
 
-# At most 5 signups per minute per IP.
+# At most 5 requests per minute per IP.
 [[ratelimits]]
 name = "RATE_LIMITER"
 namespace_id = "1001"

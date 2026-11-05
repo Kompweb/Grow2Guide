@@ -22,8 +22,8 @@ and links work on nested pages.
 - `self-assessment/`: Care & Workplace Competence Self-Assessment. Scored in the browser by `assets/self-assessment.js`; answers never leave the page.
 - `blog/`: blog index and one folder per post; see [Adding a blog post](#adding-a-blog-post).
 - `handbook/`: handbook pages; see [README.handbook.md](README.handbook.md).
-- `newsletter/`: newsletter issue template, issues, and subscriber data notes; see `newsletter/README.md`.
-- `workers/subscribe/`: Cloudflare Worker that stores newsletter signups in Resend; see its README for deploy steps.
+- `newsletter/`: the newsletter is on Substack (grow2guide.substack.com); see `newsletter/README.md`.
+- `workers/subscribe/`: Cloudflare Worker that sends Self-Assessment results emails through Resend; see its README.
 - `terms/`, `privacy/`, `refunds/`: policy pages.
 - `styles.css` and page-level `<style>` blocks: site styling.
 - `assets/`: images, documents, and JavaScript.
@@ -58,20 +58,25 @@ in the static HTML and work without JavaScript. Archived snapshots are excluded.
 - Check menu opening, closing, link clicks, Escape, and outside clicks.
 - For the consultation and quiz forms, check validation and navigation between steps.
   Successful submission opens an email draft through the visitor's mail application.
-  The newsletter subscribe form posts to the Worker instead (see below).
+  The newsletter sign-up is Substack's embedded form (see below).
 - Check the browser console for errors and network requests for missing assets.
 - With Node.js installed, check a changed script with `node --check assets/<file>.js`.
 
 ## Adding a blog post
 
+Each post goes out on Substack first. The site version follows 1–2 weeks later and is written
+for search: its own title and search phrase, longer and more step-by-step, with an FAQ. Do not
+copy the Substack text word for word, or the two copies compete in search.
+
 1. `mkdir blog/<slug>` and copy `components/blog-post-template.html` to
    `blog/<slug>/index.html`.
-2. Replace the `{{PLACEHOLDER}}` values (title, description, slug, dates) and write
+2. Link to the Substack post from the site version ("First published in the Grow2Guide newsletter").
+3. Replace the `{{PLACEHOLDER}}` values (title, description, slug, dates) and write
    the article inside `<div class="prose-g2g">`.
-3. Add a card to `blog/index.html` (newest first, card markup is in the comment
+4. Add a card to `blog/index.html` (newest first, card markup is in the comment
    there) and delete the "First articles coming soon" card.
-4. Add the post URL to `sitemap.xml`.
-5. Run `python3 scripts/sync-footer.py`.
+5. Add the post URL to `sitemap.xml`.
+6. Run `python3 scripts/sync-footer.py`.
 
 ## Newsletter signups
 
@@ -80,5 +85,7 @@ The subscribe block (`components/subscribe-form.html`) and the popup
 intent or after 45 seconds of inactivity) are copied into every page except `quiz/`,
 `consultation/`, and `thank-you/` by `python3 scripts/sync-footer.py`, which also adds
 `assets/subscribe.js` and `assets/subscribe-modal.js`. Edit a component, then re-run the script.
-The form posts to the Worker in `workers/subscribe/`.
+Both hold Substack's embedded form (`grow2guide.substack.com/embed`), so signups go straight to
+Substack. `assets/subscribe.js` only reports `newsletter_form_view` and `newsletter_form_start` to GTM;
+see `docs/analytics/README.md`.
 Run every test with `node --test` from the repo root, and `python3 scripts/test_export_subscribers.py`.

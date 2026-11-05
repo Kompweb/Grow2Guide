@@ -1,6 +1,6 @@
 {
   "exportFormatVersion": 2,
-  "exportTime": "2026-10-15 00:00:00",
+  "exportTime": "2026-11-05 00:00:00",
   "containerVersion": {
     "path": "accounts/0/containers/0/versions/0",
     "accountId": "0",
@@ -39,13 +39,13 @@
         "accountId": "0",
         "containerId": "0",
         "tagId": "200",
-        "name": "GA4 - newsletter_signup",
+        "name": "GA4 - newsletter_form_start",
         "type": "gaawe",
         "parameter": [
           {
             "type": "TEMPLATE",
             "key": "eventName",
-            "value": "newsletter_signup"
+            "value": "newsletter_form_start"
           },
           {
             "type": "TEMPLATE",
@@ -81,6 +81,55 @@
         ],
         "firingTriggerId": [
           "100"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "208",
+        "name": "GA4 - newsletter_form_view",
+        "type": "gaawe",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "eventName",
+            "value": "newsletter_form_view"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "measurementIdOverride",
+            "value": "{{GA4 Measurement ID}}"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "sendEcommerceData",
+            "value": "false"
+          },
+          {
+            "type": "LIST",
+            "key": "eventSettingsTable",
+            "list": [
+              {
+                "type": "MAP",
+                "map": [
+                  {
+                    "type": "TEMPLATE",
+                    "key": "parameter",
+                    "value": "signup_placement"
+                  },
+                  {
+                    "type": "TEMPLATE",
+                    "key": "parameterValue",
+                    "value": "{{DLV - signup_placement}}"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "firingTriggerId": [
+          "108"
         ],
         "tagFiringOption": "ONCE_PER_EVENT"
       },
@@ -507,7 +556,7 @@
         "accountId": "0",
         "containerId": "0",
         "triggerId": "100",
-        "name": "CE - newsletter_signup",
+        "name": "CE - newsletter_form_start",
         "type": "CUSTOM_EVENT",
         "customEventFilter": [
           {
@@ -521,7 +570,31 @@
               {
                 "type": "TEMPLATE",
                 "key": "arg1",
-                "value": "newsletter_signup"
+                "value": "newsletter_form_start"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "108",
+        "name": "CE - newsletter_form_view",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "newsletter_form_view"
               }
             ]
           }

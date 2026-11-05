@@ -1,99 +1,56 @@
 (function () {
-  // grow2guide.com's DNS is on Wix, not Cloudflare, so the Worker can't use a custom domain
-  // here (confirmed live 2026-10-01). Using the Cloudflare workers.dev address instead.
-  var ENDPOINT = 'https://g2g-subscribe.grow2guide.workers.dev/';
-  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  // The newsletter lives on Substack. Signups happen inside Substack's embedded form (an iframe),
+  // so this page cannot see a completed signup: count those in Substack (Subscribers → source).
+  // What the site can see, and sends to GTM → GA4:
+  //   newsletter_form_view  — the form was at least half on screen (once per form per page load)
+  //   newsletter_form_start — the visitor clicked or tapped into the form (once per form per page load)
+  // Both carry signup_placement: page, modal or self_assessment (the box's data-placement).
 
-  function validate(values) {
-    var errors = {};
-    if (!EMAIL_RE.test((values.email || '').trim())) errors.email = 'Enter a valid email address.';
-    if (!values.consent) errors.consent = 'Please tick the box to subscribe.';
-    return errors;
+  function placementOf(box) {
+    return box.getAttribute('data-placement') || 'page';
   }
 
-  function buildPayload(values, source) {
-    return {
-      email: (values.email || '').trim(),
-      firstName: (values.firstName || '').trim(),
-      consent: true,
-      source: source,
-      website: values.website || ''
-    };
+  function push(event, box) {
+    var key = 'data-g2g-' + event;
+    if (box.getAttribute(key)) return false;
+    box.setAttribute(key, '1');
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: event, signup_placement: placementOf(box) });
+    return true;
   }
 
-  window.g2gSubscribe = { validate: validate, buildPayload: buildPayload };
-
-  function wire(form) {
-    var status = form.querySelector('[data-status]');
-    var button = form.querySelector('button[type="submit"]');
-
-    function read() {
-      return {
-        email: form.elements['email'].value,
-        firstName: form.elements['first_name'].value,
-        consent: form.elements['consent'].checked,
-        website: form.elements['website'].value
-      };
+  // Focus moving into an iframe blurs the page window; activeElement is then that iframe.
+  function boxForActiveFrame(boxes, active) {
+    if (!active || active.tagName !== 'IFRAME') return null;
+    for (var i = 0; i < boxes.length; i++) {
+      if (boxes[i].contains(active)) return boxes[i];
     }
+    return null;
+  }
 
-    function showErrors(errors) {
-      form.querySelectorAll('[data-error]').forEach(function (el) {
-        var message = errors[el.getAttribute('data-error')] || '';
-        el.textContent = message;
-        el.hidden = !message;
+  window.g2gSubscribe = { placementOf: placementOf, push: push, boxForActiveFrame: boxForActiveFrame };
+
+  if (typeof document === 'undefined') return;
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('[data-g2g-substack]'));
+  if (!boxes.length) return;
+
+  if (typeof window.IntersectionObserver === 'function') {
+    var observer = new window.IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          push('newsletter_form_view', entry.target);
+          observer.unobserve(entry.target);
+        }
       });
-    }
-
-    function setStatus(message, ok) {
-      status.textContent = message;
-      status.style.color = ok ? '#0F766E' : '#B42318';
-    }
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var values = read();
-      var errors = validate(values);
-      showErrors(errors);
-      setStatus('', true);
-      if (Object.keys(errors).length) return;
-
-      button.disabled = true;
-      button.textContent = 'Subscribing…';
-
-      fetch(ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(buildPayload(values, window.location.pathname))
-      })
-        .then(function (res) {
-          return res.json().then(
-            function (body) { return res.ok && body.ok === true; },
-            function () { return false; }
-          );
-        })
-        .catch(function () { return false; })
-        .then(function (ok) {
-          button.disabled = false;
-          button.textContent = 'Subscribe';
-          if (ok) {
-            form.reset();
-            setStatus('Thanks! You are subscribed.', true);
-            // GTM → GA4 newsletter_signup, on every page that has a form (page section or pop-up).
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-              event: 'newsletter_signup',
-              signup_placement: form.closest('#subscribe-modal') ? 'modal' : 'page'
-            });
-            document.dispatchEvent(new CustomEvent('g2g:subscribed'));
-          } else {
-            // Leave the fields filled in so the visitor can retry.
-            setStatus('Something went wrong. Please try again in a moment.', false);
-          }
-        });
-    });
+    }, { threshold: 0.5 });
+    boxes.forEach(function (box) { observer.observe(box); });
   }
 
-  if (typeof document !== 'undefined') {
-    document.querySelectorAll('form[data-g2g-subscribe]').forEach(wire);
-  }
+  window.addEventListener('blur', function () {
+    // activeElement updates just after blur in some browsers.
+    window.setTimeout(function () {
+      var box = boxForActiveFrame(boxes, document.activeElement);
+      if (box) push('newsletter_form_start', box);
+    }, 0);
+  });
 })();

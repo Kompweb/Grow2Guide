@@ -1,33 +1,32 @@
 # Newsletter
 
-Newsletters are written as HTML in this folder and sent from Resend as Broadcasts.
+The newsletter is published on Substack: https://grow2guide.substack.com (moved from Resend in
+November 2026). Write, schedule and send posts in Substack. Subscribers, unsubscribes and signup
+sources live in the Substack dashboard.
 
-## Subscriber data
+## Signups on grow2guide.com
 
-Stored in the Resend Audience, one contact per person:
+Every page's subscribe block and pop-up, and the Self-Assessment results page, hold Substack's
+embedded form (`https://grow2guide.substack.com/embed`). The site never sees the email address.
+See the root `README.md` (Newsletter signups) and `docs/analytics/README.md` for tracking.
 
-| Field | Source | Notes |
-|---|---|---|
-| `email` | signup form | required, lowercased, trimmed |
-| `first_name` | signup form | optional, max 80 characters |
-| `unsubscribed` | Resend | set automatically when someone uses the unsubscribe link |
-| `created_at` | Resend | signup time |
+## Moving the old Resend list to Substack (one time)
 
-Consent record (not stored in Resend): each signup writes `{ "event": "subscribed", "source": "<page path>", "consentAt": "<ISO time>" }`
-to the Worker log (Workers Logs in the Cloudflare dashboard, or `npx wrangler tail` in `workers/subscribe/`),
-without the email address. Cloudflare limits how long logs are kept, so copy them out if you need a long-term consent record.
-The form's checkbox text is the consent wording: "I agree to receive Grow2Guide emails and understand I can unsubscribe at any time."
+The Resend Audience holds everyone who subscribed on the site before the move.
 
-Export the list any time: `python3 scripts/export-subscribers.py --out subscribers.csv`
-(needs `RESEND_API_KEY` and `RESEND_AUDIENCE_ID` in your environment). Do not commit exports.
+1. Export it: `python3 scripts/export-subscribers.py --out subscribers.csv`
+   (needs `RESEND_API_KEY` and `RESEND_AUDIENCE_ID` in your environment). Do not commit the file.
+2. Delete every row where `unsubscribed` is `true`. Those people opted out and must not be imported.
+3. Substack → Dashboard → Subscribers → Import. Upload the CSV.
+4. Send one short note to the imported group: the newsletter now comes from Substack, one post
+   every Wednesday, unsubscribe link at the bottom.
+5. Delete `subscribers.csv`. Leave the Resend Audience as it is for a few weeks as a record,
+   then delete it in Resend.
 
-## Writing and sending an issue
+These people agreed to "Grow2Guide emails", so moving them to the same newsletter on another
+platform stays within that consent.
 
-1. Copy `issue-template.html` to `issues/YYYY-MM-<slug>.html` and replace the content between the `CONTENT START` and `CONTENT END` comments.
-2. In Resend: Broadcasts, create a broadcast, choose the Audience, paste the HTML.
-3. Keep `{{{RESEND_UNSUBSCRIBE_URL}}}` in the footer; Resend requires an unsubscribe link and fills it in per recipient.
-4. Send a test to yourself, check it on phone and desktop, then send.
-5. Optionally publish the same content as a blog post (see the root `README.md`).
+## Old files
 
-Merge tags used: `{{{FIRST_NAME|there}}}` (falls back to "there") and `{{{RESEND_UNSUBSCRIBE_URL}}}`.
-If Resend's current docs use different tag syntax, update the template and the first issue.
+`issue-template.html` and `issues/2026-10-welcome.html` were for Resend Broadcasts. They are kept
+for reference only; the welcome message now lives in Substack (Settings → Welcome email).

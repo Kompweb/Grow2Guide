@@ -9,7 +9,7 @@ subscribe = (root / "components/subscribe-form.html").read_text().strip()
 modal = (root / "components/subscribe-modal.html").read_text().strip()
 modal_script = '  <script src="/assets/subscribe-modal.js" defer></script>'
 stylesheet = '  <link rel="stylesheet" href="/assets/footer.css?v=5" />'
-subscribe_script = '  <script src="/assets/subscribe.js" defer></script>'
+subscribe_script = '  <script src="/assets/subscribe.js?v=20261105" defer></script>'
 # Transactional flows keep a clean page without a newsletter prompt.
 NO_SUBSCRIBE = {"quiz", "consultation", "thank-you", "self-assessment"}
 check = "--check" in sys.argv

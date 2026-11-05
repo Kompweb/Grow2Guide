@@ -102,10 +102,5 @@
     btn.addEventListener('click', function () { dialog.close(); });
   });
 
-  document.addEventListener('g2g:subscribed', function () {
-    save({ subscribed: true, snoozedUntil: 0 });
-    if (dialog.open) window.setTimeout(function () { dialog.close(); }, 2500);
-  });
-
   armIdle();
 })();
