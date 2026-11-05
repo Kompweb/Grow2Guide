@@ -315,6 +315,9 @@
   }
   var $ = function (id) { return document.getElementById(id); };
   var form = $('assessment'), qWrap = $('questions'), errBox = $('error');
+  /* Turn on once the subscribe Worker with POST /results is deployed. Off: the results page offers
+     the newsletter sign-up (assets/subscribe.js) under Print instead of "email my results". */
+  var RESULTS_EMAIL = false;
   var RESULTS_ENDPOINT = 'https://g2g-subscribe.grow2guide.workers.dev/results';
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   var emailBox = $('email-box'), emailInput = $('results-email'), emailErr = $('results-email-error');
@@ -475,7 +478,10 @@
     form.insertBefore(emailBox, errBox);
     emailInput.value = ''; newsletterBox.checked = false; $('results-website').value = '';
     showEmailError('');
-    sendBtn.hidden = true; emailBox.hidden = false;
+    sendBtn.hidden = true; emailBox.hidden = !RESULTS_EMAIL;
+    var nl = $('newsletter-box');
+    nl.reset(); nl.hidden = true;
+    nl.querySelector('[data-status]').textContent = '';
     setStatus('');
     lastResults = null;
     $('results').hidden = true;
@@ -516,8 +522,9 @@
     emailStatus.className = kind || '';
     emailStatus.hidden = !text;
   }
-  /* On the results page the box sits in place of the old Print button, with its own Send button. */
+  /* On the results page the box sits under Print my results, with its own Send button. */
   function showEmailBoxInResults() {
+    if (!RESULTS_EMAIL) { $('newsletter-box').hidden = false; return; }
     $('email-slot').appendChild(emailBox);
     sendBtn.hidden = false;
     emailBox.hidden = false;
@@ -557,6 +564,9 @@
 
   renderQuestions();
   updateCount();
+  emailBox.hidden = !RESULTS_EMAIL;
+  document.querySelector('[data-privacy="newsletter"]').hidden = RESULTS_EMAIL;
+  document.querySelector('[data-privacy="results-email"]').hidden = !RESULTS_EMAIL;
 
   /* After a first answer given by tap or click, bring the next question into view.
      Keyboard users change answers with arrow keys, so they are never moved. */
@@ -622,6 +632,7 @@
     track('assessment_complete');
     if (email) sendResults(email); else showEmailBoxInResults();
   });
+  $('print-btn').addEventListener('click', function () { window.print(); });
   sendBtn.addEventListener('click', function () {
     var email = checkedEmail(true);
     if (email) sendResults(email);

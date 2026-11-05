@@ -21,6 +21,7 @@
   <script src="/assets/nav-scroll.js" defer></script>
   <script src="/assets/whatsapp.js" defer></script>
   <script src="/assets/self-assessment.js" defer></script>
+  <script src="/assets/subscribe.js" defer></script>
   <style>
 
     .g2g-wordmark { /* = .brand-name */
@@ -210,6 +211,8 @@
     #sa .email-box .check { display: flex; align-items: flex-start; gap: 10px; margin: 12px 0 4px; font-size: .95rem; cursor: pointer; }
     #sa .email-box .check input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--brand); flex: none; }
     #sa .email-box .field-error { color: var(--error); font-size: .9rem; margin: 6px 0 0; }
+    #sa .email-box a { color: var(--brand); text-decoration: underline; }
+    #sa .email-box label.field { margin-top: 0; }
     #sa .email-box .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
     #sa #email-status { font-weight: 600; }
     #sa #email-status.ok { color: var(--brand-dark); }
@@ -314,8 +317,10 @@
             </ul>
             <p>Answer based on your actual behavior over the <strong>past 30 days</strong>, especially during stressful situations, disagreements, or moments when you felt frustrated or overwhelmed. Choose the response that best reflects what you typically do, not what you believe you should do.</p>
             <p class="note">This tool is intended for personal reflection and professional development. It is not a validated psychological test, a diagnostic tool, or a measure of your overall worth as a professional.</p>
-            <!-- DRAFT privacy wording, pending Sara's approval -->
-            <p class="note"><strong>Your privacy:</strong> your answers are calculated on this page only and are never sent. If you choose to email yourself your results, your email address and your scores (not your answers) go to our email provider to send them. You only join the newsletter if you tick the box.</p>
+            <!-- Shown while results email is off (RESULTS_EMAIL = false in self-assessment.js). -->
+            <p class="note" data-privacy="newsletter"><strong>Your privacy:</strong> your answers are calculated on this page only. Nothing you enter in the assessment is collected, sent, or stored. If you sign up for the newsletter, we receive only your email address.</p>
+            <!-- DRAFT privacy wording for the results email, pending Sara's approval. -->
+            <p class="note" data-privacy="results-email" hidden><strong>Your privacy:</strong> your answers are calculated on this page only and are never sent. If you choose to email yourself your results, your email address and your scores (not your answers) go to our email provider to send them. You only join the newsletter if you tick the box.</p>
           </section>
 
           <!-- ===== Questions are built by /assets/self-assessment.js ===== -->
@@ -405,9 +410,28 @@
             <p style="margin-top:16px"><strong>Questions to consider:</strong></p>
             <ol id="reflection-questions"></ol>
 
-            <p id="email-status" role="status" aria-live="polite" hidden></p>
-            <div id="email-slot"></div>
             <div id="print-actions">
+              <button type="button" id="print-btn">Print my results</button>
+            </div>
+            <p id="email-status" class="no-print" role="status" aria-live="polite" hidden></p>
+            <div id="email-slot" class="no-print"></div>
+
+            <!-- Newsletter sign-up (existing subscribe Worker), shown while results email is off. -->
+            <form class="email-box no-print" id="newsletter-box" data-g2g-subscribe novalidate hidden>
+              <h3>Get on it for the newsletter and tips</h3>
+              <p class="hint">Practical guidance for behavioral health professionals, sent occasionally.</p>
+              <label class="field" for="newsletter-email">Email</label>
+              <input type="email" id="newsletter-email" name="email" autocomplete="email" inputmode="email" maxlength="254">
+              <p class="field-error" data-error="email" hidden></p>
+              <input type="hidden" name="first_name" value="">
+              <label class="hp" aria-hidden="true">Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+              <label class="check"><input type="checkbox" name="consent"><span>I agree to receive Grow2Guide emails. See the <a href="/privacy/">privacy page</a>.</span></label>
+              <p class="field-error" data-error="consent" hidden></p>
+              <button type="submit">Subscribe</button>
+              <p data-status role="status" aria-live="polite" style="margin:8px 0 0;font-weight:600"></p>
+            </form>
+
+            <div class="no-print">
               <button type="button" id="retake-btn" class="secondary">Retake the assessment</button>
             </div>
           </section>
