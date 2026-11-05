@@ -9,6 +9,14 @@ The Resend API key lives only in Cloudflare as a secret.
 Responds `{ "ok": true }` or `{ "ok": false, "error": "<code>" }`.
 `website` is a honeypot: leave it empty.
 
+`POST /results` (Self-Assessment page) with JSON
+`{ "email", "scores": { "care", "workplace", "categories": [8 numbers] }, "newsletter"?, "source"?, "website"? }`
+emails the visitor their results from `WELCOME_FROM`. Scores must be whole numbers from 0 to 100;
+category names, labels and suggestions come from `assets/self-assessment.js`, so no visitor text
+is ever put in the email. With `"newsletter": true` the address is also added to the Audience,
+with "Also send me the newsletter and tips." as the consent record and no separate welcome email.
+The workflow redeploys when `assets/self-assessment.js` changes, so the email always matches the page.
+
 ## One-time setup
 
 1. In Resend: verify your sending domain, create an Audience, copy its ID, create an API key.

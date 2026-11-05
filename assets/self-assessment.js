@@ -1,8 +1,10 @@
 /* =====================================================================
    Grow2Guide Care & Workplace Competence Self-Assessment
-   Client-side only. Answers, scores and reflections never leave the page:
-   no network requests, no storage, no cookies. The only analytics signal
-   is an "assessment_complete" dataLayer event with no answer or score data.
+   Scored in the browser. Answers, role and reflections never leave the page.
+   Only if the visitor asks for their results by email are their email address
+   and the ten percentages sent to the subscribe Worker (/results), which builds
+   the email itself from this file. No storage, no cookies. Analytics events
+   carry no answers, scores or email address.
 
    HOW TO EDIT LATER
    - Score ranges ........ edit BANDS
@@ -280,6 +282,11 @@
     return parts;
   }
 
+  /* Development suggestion shown for a category at a given percentage (page and results email). */
+  function suggestionFor(cat, pct) {
+    return pct >= HIGH_SUGGESTION_MIN ? cat.suggestionHigh : cat.suggestionLow;
+  }
+
   /* ---------- Next step: which guide cards to show for the optional role answer ---------- */
   function guidesForRole(role) {
     if (role === 'direct-care' || role === 'student') return ['guide', 'bundle'];
@@ -290,7 +297,7 @@
   /* Expose for testing / reuse */
   var api = { QUESTIONS: QUESTIONS, CATEGORIES: CATEGORIES, DIMENSIONS: DIMENSIONS, BANDS: BANDS,
               computeResults: computeResults, toPercent: toPercent, bandFor: bandFor, compareText: compareText,
-              guidesForRole: guidesForRole };
+              guidesForRole: guidesForRole, suggestionFor: suggestionFor };
   if (typeof module !== 'undefined' && module.exports) { module.exports = api; }
   if (typeof document === 'undefined') { return; }
   window.G2GAssessment = api;
@@ -308,6 +315,11 @@
   }
   var $ = function (id) { return document.getElementById(id); };
   var form = $('assessment'), qWrap = $('questions'), errBox = $('error');
+  var RESULTS_ENDPOINT = 'https://g2g-subscribe.grow2guide.workers.dev/results';
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var emailBox = $('email-box'), emailInput = $('results-email'), emailErr = $('results-email-error');
+  var newsletterBox = $('results-newsletter'), sendBtn = $('send-results-btn'), emailStatus = $('email-status');
+  var lastResults = null;
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var scrollBehavior = reduceMotion ? 'auto' : 'smooth';
 
@@ -415,7 +427,7 @@
       card.appendChild(barBlock(r.pct, cat.name));
       card.appendChild(el('p', null, cat.feedback[r.band.key]));
       if (isLowBand(r.band)) card.appendChild(el('p', { class: 'org-note' }, ORG_NOTE));
-      var tip = r.pct >= HIGH_SUGGESTION_MIN ? cat.suggestionHigh : cat.suggestionLow;
+      var tip = suggestionFor(cat, r.pct);
       var s = el('p', { class: 'suggest' });
       s.appendChild(el('strong', null, 'Development suggestion: '));
       s.appendChild(document.createTextNode(tip));
@@ -459,6 +471,13 @@
       fs.removeAttribute('data-advanced');
     });
     errBox.hidden = true;
+    // Put the email box back at the end of the questions, empty.
+    form.insertBefore(emailBox, errBox);
+    emailInput.value = ''; newsletterBox.checked = false; $('results-website').value = '';
+    showEmailError('');
+    sendBtn.hidden = true; emailBox.hidden = false;
+    setStatus('');
+    lastResults = null;
     $('results').hidden = true;
     $('intro').hidden = false;
     form.hidden = false;
@@ -466,11 +485,74 @@
     window.scrollTo(0, 0);
   }
 
-  /* Count completions only. Never add answers, scores, bands or reflection text here:
-     the page promises that nothing entered is collected. */
-  function trackComplete() {
+  /* Never add answers, scores, role, reflection text or the email address to these events. */
+  function track(event, extra) {
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: 'assessment_complete' });
+    var e = { event: event };
+    if (extra) Object.keys(extra).forEach(function (k) { e[k] = extra[k]; });
+    window.dataLayer.push(e);
+  }
+
+  /* ---------- Email my results ---------- */
+  function showEmailError(msg) {
+    emailErr.textContent = msg || '';
+    emailErr.hidden = !msg;
+    emailInput.setAttribute('aria-invalid', msg ? 'true' : 'false');
+  }
+  /* Returns the trimmed address, '' when empty, or null after showing an error. */
+  function checkedEmail(required) {
+    var v = emailInput.value.trim();
+    if (!v && !required) { showEmailError(''); return ''; }
+    if (!v || v.length > 254 || !EMAIL_RE.test(v)) {
+      showEmailError('Enter an email address like name@example.com.');
+      emailInput.focus();
+      return null;
+    }
+    showEmailError('');
+    return v;
+  }
+  function setStatus(text, kind) {
+    emailStatus.textContent = text;
+    emailStatus.className = kind || '';
+    emailStatus.hidden = !text;
+  }
+  /* On the results page the box sits in place of the old Print button, with its own Send button. */
+  function showEmailBoxInResults() {
+    $('email-slot').appendChild(emailBox);
+    sendBtn.hidden = false;
+    emailBox.hidden = false;
+  }
+  function sendResults(email) {
+    var newsletter = newsletterBox.checked;
+    emailBox.hidden = true;
+    setStatus('Sending your results to ' + email + '\u2026');
+    fetch(RESULTS_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: email,
+        scores: {
+          care: lastResults.dimensions.care.pct,
+          workplace: lastResults.dimensions.workplace.pct,
+          categories: lastResults.categories.map(function (c) { return c.pct; })
+        },
+        newsletter: newsletter,
+        source: '/self-assessment/',
+        website: $('results-website').value
+      })
+    }).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (body) {
+        if (!r.ok || !body.ok) throw new Error(body.error || 'failed');
+      });
+    }).then(function () {
+      setStatus('Sent to ' + email + '. Check your inbox.', 'ok');
+      track('results_email_sent', { newsletter: newsletter });
+    }).catch(function (err) {
+      setStatus(err.message === 'invalid_email'
+        ? 'That email address doesn\u2019t look right. Check it and try again.'
+        : 'We couldn\u2019t send your results. Please try again in a minute.', 'err');
+      showEmailBoxInResults();
+    });
   }
 
   renderQuestions();
@@ -525,7 +607,10 @@
     e.preventDefault();
     var res = computeResults(readAnswers());
     if (!res.complete) { showErrors(res.unanswered); return; }
+    var email = checkedEmail(false);
+    if (email === null) return;
     errBox.hidden = true;
+    lastResults = res;
     renderResults(res);
     var role = form.querySelector('input[name="role"]:checked');
     renderNextStep(role ? role.value : 'skip');
@@ -534,8 +619,17 @@
     $('results').hidden = false;
     $('results').focus();
     window.scrollTo(0, 0);
-    trackComplete();
+    track('assessment_complete');
+    if (email) sendResults(email); else showEmailBoxInResults();
   });
-  $('print-btn').addEventListener('click', function () { window.print(); });
+  sendBtn.addEventListener('click', function () {
+    var email = checkedEmail(true);
+    if (email) sendResults(email);
+  });
+  emailInput.addEventListener('input', function () { showEmailError(''); });
+  emailInput.addEventListener('keydown', function (e) {
+    // Outside the form (results page) Enter would do nothing, so send instead.
+    if (e.key === 'Enter' && !sendBtn.hidden) { e.preventDefault(); sendBtn.click(); }
+  });
   $('retake-btn').addEventListener('click', resetAll);
 })();

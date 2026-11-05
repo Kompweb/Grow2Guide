@@ -199,6 +199,22 @@
     #sa .buy-note { font-size: .8rem; text-align: center; color: var(--muted); margin: 8px 0 0; flex: none; }
     @media (prefers-reduced-motion: reduce) { #sa .progress-line, #sa .progress-meter > div { transition: none; } }
 
+    #sa .email-box { border: 2px solid var(--brand); border-radius: 10px; padding: 16px; margin: 16px 0; background: var(--surface); }
+    #sa .email-box h3 { margin-bottom: 4px; }
+    #sa .email-box .hint { font-size: .9rem; color: var(--muted); margin-bottom: 10px; }
+    #sa .email-box input[type="email"] {
+      width: 100%; font: inherit; padding: 10px; border: 2px solid var(--border); border-radius: 8px;
+      background: var(--sa-bg); color: var(--text); min-height: 48px;
+    }
+    #sa .email-box input[type="email"][aria-invalid="true"] { border-color: var(--error); }
+    #sa .email-box .check { display: flex; align-items: flex-start; gap: 10px; margin: 12px 0 4px; font-size: .95rem; cursor: pointer; }
+    #sa .email-box .check input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--brand); flex: none; }
+    #sa .email-box .field-error { color: var(--error); font-size: .9rem; margin: 6px 0 0; }
+    #sa .email-box .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    #sa #email-status { font-weight: 600; }
+    #sa #email-status.ok { color: var(--brand-dark); }
+    #sa #email-status.err { color: var(--error); }
+
     #sa .sa-footer { margin-top: 40px; font-size: .9rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 14px; }
     #sa .sa-footer a { color: var(--brand); font-weight: 600; text-decoration: underline; }
 
@@ -298,7 +314,8 @@
             </ul>
             <p>Answer based on your actual behavior over the <strong>past 30 days</strong>, especially during stressful situations, disagreements, or moments when you felt frustrated or overwhelmed. Choose the response that best reflects what you typically do, not what you believe you should do.</p>
             <p class="note">This tool is intended for personal reflection and professional development. It is not a validated psychological test, a diagnostic tool, or a measure of your overall worth as a professional.</p>
-            <p class="note"><strong>Your privacy:</strong> your answers are calculated on this page only. Nothing you enter is collected, sent, or stored.</p>
+            <!-- DRAFT privacy wording, pending Sara's approval -->
+            <p class="note"><strong>Your privacy:</strong> your answers are calculated on this page only and are never sent. If you choose to email yourself your results, your email address and your scores (not your answers) go to our email provider to send them. You only join the newsletter if you tick the box.</p>
           </section>
 
           <!-- ===== Questions are built by /assets/self-assessment.js ===== -->
@@ -321,6 +338,16 @@
                 <label class="opt"><input type="radio" name="role" value="skip" id="role-skip"><span>Skip</span></label>
               </div>
             </fieldset>
+            <div class="email-box" id="email-box">
+              <h3><label for="results-email">Email me my results (optional)</label></h3>
+              <p class="hint">Get a copy of your scores in your inbox.</p>
+              <input type="email" id="results-email" autocomplete="email" inputmode="email" maxlength="254" aria-describedby="results-email-error">
+              <p class="field-error" id="results-email-error" hidden></p>
+              <label class="check"><input type="checkbox" id="results-newsletter"><span>Also send me the newsletter and tips.</span></label>
+              <label class="hp" aria-hidden="true">Website <input type="text" id="results-website" tabindex="-1" autocomplete="off"></label>
+              <button type="button" id="send-results-btn" hidden>Send me my results</button>
+            </div>
+
             <div id="error" role="alert" tabindex="-1" hidden></div>
             <button type="submit">See my results</button>
           </form>
@@ -378,8 +405,9 @@
             <p style="margin-top:16px"><strong>Questions to consider:</strong></p>
             <ol id="reflection-questions"></ol>
 
+            <p id="email-status" role="status" aria-live="polite" hidden></p>
+            <div id="email-slot"></div>
             <div id="print-actions">
-              <button type="button" id="print-btn">Print my results</button>
               <button type="button" id="retake-btn" class="secondary">Retake the assessment</button>
             </div>
           </section>

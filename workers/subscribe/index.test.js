@@ -370,3 +370,104 @@ test("welcome email and sheet backup both run in the background", async () => {
   assert.equal(calls.filter(isSheet).length, 1);
   assert.equal(calls.filter(isWelcome).length, 1);
 });
+
+// ---------- Self-Assessment results email (POST /results) ----------
+
+const RESULTS_ENV = { RESEND_API_KEY: "re_test", WELCOME_FROM: "G2G <hello@grow2guide.com>" };
+const scores = { care: 75, workplace: 38, categories: [75, 75, 75, 75, 38, 38, 38, 38] };
+const results = { email: "Jane@Example.com", scores, newsletter: false, source: "/self-assessment/", website: "" };
+
+function resultsReq(body) {
+  return new Request("https://g2g-subscribe.grow2guide.workers.dev/results", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Origin: ORIGIN },
+    body: JSON.stringify(body),
+  });
+}
+const isEmail = (c) => c.url === "https://api.resend.com/emails";
+
+test("results: sends one email built from the scores, and touches no contact list", async () => {
+  const calls = stubResend();
+  const res = await worker.fetch(resultsReq(results), RESULTS_ENV);
+  assert.equal(res.status, 200);
+  assert.deepEqual(await res.json(), { ok: true });
+  assert.equal(calls.length, 1);
+  assert.ok(isEmail(calls[0]));
+  const sent = JSON.parse(calls[0].init.body);
+  assert.deepEqual(sent.to, ["jane@example.com"]);
+  assert.equal(sent.from, RESULTS_ENV.WELCOME_FROM);
+  assert.equal(sent.subject, "Your Self-Assessment results");
+  assert.match(sent.text, /Care Competence: 75% \(Generally demonstrated\)/);
+  assert.match(sent.text, /Workplace Competence: 38% \(Development priority\)/);
+  assert.match(sent.text, /Empathy vs\. Emotional Reactivity: 75% \(Generally demonstrated\)/);
+  assert.match(sent.text, /Development suggestion: Pick one de-escalation strategy|Development suggestion: Describe one pause/);
+  assert.match(sent.text, /We won't email you again/);
+  assert.equal(calls[0].init.headers["Idempotency-Key"], "results/jane@example.com/75-38-75-75-75-75-38-38-38-38");
+});
+
+test("results: only whole percentages from 0 to 100 for all eight categories are accepted", async () => {
+  const bad = [
+    undefined,
+    { ...scores, care: 75.5 },
+    { ...scores, workplace: 101 },
+    { ...scores, care: "75" },
+    { ...scores, categories: scores.categories.slice(0, 7) },
+    { ...scores, categories: [...scores.categories.slice(0, 7), "<b>buy now</b>"] },
+  ];
+  for (const s of bad) {
+    const calls = stubResend();
+    const res = await worker.fetch(resultsReq({ ...results, scores: s }), RESULTS_ENV);
+    assert.equal(res.status, 400);
+    assert.deepEqual(await res.json(), { ok: false, error: "invalid_scores" });
+    assert.equal(calls.length, 0);
+  }
+});
+
+test("results: extra text in the request never reaches the email", async () => {
+  const calls = stubResend();
+  await worker.fetch(resultsReq({ ...results, message: "Click here http://evil.example", scores: { ...scores, note: "spam" } }), RESULTS_ENV);
+  const sent = JSON.parse(calls[0].init.body);
+  assert.equal(/evil|spam/.test(sent.text + sent.html), false);
+});
+
+test("results: rejects a bad email, and pretends success to bots", async () => {
+  let calls = stubResend();
+  let res = await worker.fetch(resultsReq({ ...results, email: "not-an-email" }), RESULTS_ENV);
+  assert.equal(res.status, 400);
+  assert.deepEqual(await res.json(), { ok: false, error: "invalid_email" });
+  calls = stubResend();
+  res = await worker.fetch(resultsReq({ ...results, website: "bot" }), RESULTS_ENV);
+  assert.equal(res.status, 200);
+  assert.equal(calls.length, 0);
+});
+
+test("results: ticking the newsletter box adds the contact with its own consent wording, no welcome email", async () => {
+  const calls = stubWithSheet();
+  const res = await worker.fetch(resultsReq({ ...results, newsletter: true }), { ...SHEET_ENV, ...RESULTS_ENV });
+  assert.equal(res.status, 200);
+  assert.equal(calls.filter(isEmail).length, 1, "results email only, no separate welcome");
+  assert.match(JSON.parse(calls.find(isEmail).init.body).text, /You also asked for the newsletter/);
+  assert.ok(calls.some((c) => c.method === "POST" && c.url.endsWith("/audiences/aud_123/contacts")));
+  const row = JSON.parse(calls.find(isSheet).init.body);
+  assert.equal(row.consentText, "Also send me the newsletter and tips.");
+  assert.equal(row.source, "/self-assessment/");
+});
+
+test("results: a failed send returns upstream_error and signs nobody up", async () => {
+  const calls = [];
+  globalThis.fetch = async (url, init) => {
+    calls.push({ url, method: (init && init.method) || "GET" });
+    return new Response("{}", { status: 500 });
+  };
+  const res = await worker.fetch(resultsReq({ ...results, newsletter: true }), { ...ENV, ...RESULTS_ENV });
+  assert.equal(res.status, 502);
+  assert.deepEqual(await res.json(), { ok: false, error: "upstream_error" });
+  assert.equal(calls.length, 1);
+});
+
+test("results: without a sender address the Worker reports misconfiguration", async () => {
+  stubResend();
+  const res = await worker.fetch(resultsReq(results), { RESEND_API_KEY: "re_test" });
+  assert.equal(res.status, 500);
+  assert.deepEqual(await res.json(), { ok: false, error: "server_misconfigured" });
+});

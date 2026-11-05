@@ -1,3 +1,6 @@
+// Same file the Self-Assessment page uses, so the results email always matches the page.
+import assessment from "../../assets/self-assessment.js";
+
 const ALLOWED_ORIGINS = new Set([
   "https://grow2guide.com",
   "https://www.grow2guide.com",
@@ -89,17 +92,187 @@ async function inBackground(ctx, promise) {
   else await promise;
 }
 
+// Adds or refreshes a newsletter contact and records consent. Returns an error code, or null.
+async function addContact(env, ctx, { email, firstName, source, consentText, welcome }) {
+  const contactsPath = "/audiences/" + encodeURIComponent(env.RESEND_AUDIENCE_ID) + "/contacts";
+
+  // Resend's create-contact call is a full-replace upsert, not a merge: any field left out
+  // of the body is reset to its default rather than left alone. So look the contact up
+  // first. An already-unsubscribed contact is left alone — a repeat signup must never
+  // undo someone's opt-out — and an existing first name is kept if this signup omits one.
+  let existingFirstName = "";
+  let isNewContact = false;
+  try {
+    const lookup = await fetch("https://api.resend.com" + contactsPath + "/" + encodeURIComponent(email), {
+      headers: { Authorization: "Bearer " + env.RESEND_API_KEY },
+    });
+    if (lookup.status === 200) {
+      const existing = await lookup.json();
+      if (existing.unsubscribed === true) return null;
+      if (typeof existing.first_name === "string") existingFirstName = existing.first_name;
+    } else if (lookup.status === 404) {
+      isNewContact = true;
+    } else {
+      console.error("Resend lookup responded " + lookup.status);
+      return "upstream_error";
+    }
+  } catch (e) {
+    console.error("Resend lookup failed");
+    return "upstream_error";
+  }
+
+  const contact = { email };
+  const nameToStore = firstName || existingFirstName;
+  if (nameToStore) contact.first_name = nameToStore;
+
+  try {
+    const res = await fetch("https://api.resend.com" + contactsPath, {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + env.RESEND_API_KEY,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(contact),
+    });
+    if (!res.ok) {
+      console.error("Resend responded " + res.status);
+      return "upstream_error";
+    }
+  } catch (e) {
+    console.error("Resend request failed");
+    return "upstream_error";
+  }
+
+  // Welcome only brand-new contacts; repeat signups and opted-out addresses get nothing.
+  if (welcome && isNewContact && env.WELCOME_FROM) {
+    await inBackground(ctx, sendWelcome(env, email, nameToStore));
+  }
+
+  const consentAt = new Date().toISOString();
+  if (env.SHEETS_WEBHOOK_URL && env.SHEETS_WEBHOOK_SECRET) {
+    await inBackground(ctx, backupToSheet(env, {
+      consentAt,
+      email,
+      firstName: nameToStore,
+      source,
+      newContact: isNewContact,
+      consentText,
+    }));
+  }
+
+  // Consent record. The email address is deliberately not logged.
+  console.log(JSON.stringify({ event: "subscribed", source, consentAt }));
+  return null;
+}
+
+// Wording of the newsletter box on the Self-Assessment page, kept as that signup's consent record.
+const RESULTS_CONSENT_TEXT = "Also send me the newsletter and tips.";
+
+// Scores arrive as whole percentages only. Names, labels and suggestions come from the
+// assessment file, so this endpoint can never be used to send someone else's text.
+function readScores(scores) {
+  const pct = (n) => Number.isInteger(n) && n >= 0 && n <= 100;
+  if (!scores || typeof scores !== "object") return null;
+  const { care, workplace, categories } = scores;
+  if (!pct(care) || !pct(workplace)) return null;
+  if (!Array.isArray(categories) || categories.length !== assessment.CATEGORIES.length || !categories.every(pct)) return null;
+  return { care, workplace, categories };
+}
+
+// DRAFT wording for Sara's approval. Scores only: no answers, role or reflection text.
+function resultsEmail(scores, newsletter) {
+  const band = (pct) => assessment.bandFor(pct).label;
+  const intro = "Here are your results from the Care & Workplace Competence Self-Assessment.";
+  const overall = [
+    assessment.DIMENSIONS.care.name + ": " + scores.care + "% (" + band(scores.care) + ")",
+    assessment.DIMENSIONS.workplace.name + ": " + scores.workplace + "% (" + band(scores.workplace) + ")",
+  ];
+  const cats = assessment.CATEGORIES.map((cat, i) => ({
+    line: cat.name + ": " + scores.categories[i] + "% (" + band(scores.categories[i]) + ")",
+    tip: "Development suggestion: " + assessment.suggestionFor(cat, scores.categories[i]),
+  }));
+  const notes = [
+    "These results reflect your self-reported behavior over the past 30 days. They are not an objective or validated measure of professional competence.",
+    "Only your scores were sent to us to create this email, not your answers.",
+    newsletter
+      ? "You also asked for the newsletter and tips. Every newsletter has an unsubscribe link at the bottom."
+      : "We won't email you again unless you sign up for the newsletter.",
+  ];
+  const retake = "Retake the assessment any time: https://www.grow2guide.com/self-assessment/";
+
+  const text = [
+    intro,
+    overall.join("\n"),
+    "Your eight categories",
+    cats.map((c) => c.line + "\n" + c.tip).join("\n\n"),
+    ...notes,
+    retake,
+    "The Grow2Guide team",
+  ].join("\n\n");
+  const html =
+    "<p>" + escapeHtml(intro) + "</p>" +
+    "<p>" + overall.map((l) => "<strong>" + escapeHtml(l) + "</strong>").join("<br>") + "</p>" +
+    "<p><strong>Your eight categories</strong></p>" +
+    cats.map((c) => "<p>" + escapeHtml(c.line) + "<br>" + escapeHtml(c.tip) + "</p>").join("") +
+    notes.map((n) => "<p>" + escapeHtml(n) + "</p>").join("") +
+    '<p><a href="https://www.grow2guide.com/self-assessment/">Retake the assessment any time</a></p>' +
+    "<p>The Grow2Guide team</p>";
+  return { subject: "Your Self-Assessment results", text, html };
+}
+
+async function sendResults(data, env, ctx, origin) {
+  if (!env.RESEND_API_KEY || !env.WELCOME_FROM) {
+    console.error("Missing RESEND_API_KEY or WELCOME_FROM");
+    return fail(500, "server_misconfigured", origin);
+  }
+  const email = typeof data.email === "string" ? data.email.trim().toLowerCase() : "";
+  if (!email || email.length > MAX_EMAIL || !EMAIL_RE.test(email)) return fail(400, "invalid_email", origin);
+  const scores = readScores(data.scores);
+  if (!scores) return fail(400, "invalid_scores", origin);
+  const newsletter = data.newsletter === true;
+  if (newsletter && !env.RESEND_AUDIENCE_ID) {
+    console.error("Missing RESEND_AUDIENCE_ID");
+    return fail(500, "server_misconfigured", origin);
+  }
+
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + env.RESEND_API_KEY,
+        "Content-Type": "application/json",
+        // Stops a quick double submit from sending the same results twice.
+        "Idempotency-Key": "results/" + email + "/" + [scores.care, scores.workplace, ...scores.categories].join("-"),
+      },
+      body: JSON.stringify({ from: env.WELCOME_FROM, to: [email], ...resultsEmail(scores, newsletter) }),
+    });
+    if (!res.ok) {
+      console.error("Resend results email responded " + res.status);
+      return fail(502, "upstream_error", origin);
+    }
+  } catch (e) {
+    console.error("Resend results email failed");
+    return fail(502, "upstream_error", origin);
+  }
+
+  // The results are already on their way, so a failed newsletter signup is logged, not surfaced.
+  // No separate welcome email: the results email confirms the signup.
+  if (newsletter) {
+    const source = typeof data.source === "string" ? data.source.slice(0, MAX_SOURCE) : "";
+    const error = await addContact(env, ctx, { email, firstName: "", source, consentText: RESULTS_CONSENT_TEXT, welcome: false });
+    if (error) console.error("Results newsletter signup failed: " + error);
+  }
+
+  console.log(JSON.stringify({ event: "results_sent", newsletter }));
+  return reply(200, { ok: true }, origin);
+}
+
 export default {
   async fetch(request, env, ctx) {
     const origin = request.headers.get("Origin");
     if (!origin || !ALLOWED_ORIGINS.has(origin)) return fail(403, "forbidden");
     if (request.method === "OPTIONS") return reply(204, null, origin);
     if (request.method !== "POST") return fail(405, "method_not_allowed", origin);
-
-    if (!env.RESEND_API_KEY || !env.RESEND_AUDIENCE_ID) {
-      console.error("Missing RESEND_API_KEY or RESEND_AUDIENCE_ID");
-      return fail(500, "server_misconfigured", origin);
-    }
 
     if (env.RATE_LIMITER) {
       const key = request.headers.get("CF-Connecting-IP") || "unknown";
@@ -122,6 +295,13 @@ export default {
       return reply(200, { ok: true }, origin);
     }
 
+    if (new URL(request.url).pathname === "/results") return sendResults(data, env, ctx, origin);
+
+    if (!env.RESEND_API_KEY || !env.RESEND_AUDIENCE_ID) {
+      console.error("Missing RESEND_API_KEY or RESEND_AUDIENCE_ID");
+      return fail(500, "server_misconfigured", origin);
+    }
+
     if (data.consent !== true) return fail(400, "consent_required", origin);
 
     const email = typeof data.email === "string" ? data.email.trim().toLowerCase() : "";
@@ -131,74 +311,8 @@ export default {
 
     const firstName = typeof data.firstName === "string" ? data.firstName.trim().slice(0, MAX_NAME) : "";
     const source = typeof data.source === "string" ? data.source.slice(0, MAX_SOURCE) : "";
-    const contactsPath = "/audiences/" + encodeURIComponent(env.RESEND_AUDIENCE_ID) + "/contacts";
-
-    // Resend's create-contact call is a full-replace upsert, not a merge: any field left out
-    // of the body is reset to its default rather than left alone. So look the contact up
-    // first. An already-unsubscribed contact is left alone — a repeat signup must never
-    // undo someone's opt-out — and an existing first name is kept if this signup omits one.
-    let existingFirstName = "";
-    let isNewContact = false;
-    try {
-      const lookup = await fetch("https://api.resend.com" + contactsPath + "/" + encodeURIComponent(email), {
-        headers: { Authorization: "Bearer " + env.RESEND_API_KEY },
-      });
-      if (lookup.status === 200) {
-        const existing = await lookup.json();
-        if (existing.unsubscribed === true) return reply(200, { ok: true }, origin);
-        if (typeof existing.first_name === "string") existingFirstName = existing.first_name;
-      } else if (lookup.status === 404) {
-        isNewContact = true;
-      } else {
-        console.error("Resend lookup responded " + lookup.status);
-        return fail(502, "upstream_error", origin);
-      }
-    } catch (e) {
-      console.error("Resend lookup failed");
-      return fail(502, "upstream_error", origin);
-    }
-
-    const contact = { email };
-    const nameToStore = firstName || existingFirstName;
-    if (nameToStore) contact.first_name = nameToStore;
-
-    try {
-      const res = await fetch("https://api.resend.com" + contactsPath, {
-        method: "POST",
-        headers: {
-          Authorization: "Bearer " + env.RESEND_API_KEY,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(contact),
-      });
-      if (!res.ok) {
-        console.error("Resend responded " + res.status);
-        return fail(502, "upstream_error", origin);
-      }
-    } catch (e) {
-      console.error("Resend request failed");
-      return fail(502, "upstream_error", origin);
-    }
-
-    // Welcome only brand-new contacts; repeat signups and opted-out addresses get nothing.
-    if (isNewContact && env.WELCOME_FROM) {
-      await inBackground(ctx, sendWelcome(env, email, nameToStore));
-    }
-
-    const consentAt = new Date().toISOString();
-    if (env.SHEETS_WEBHOOK_URL && env.SHEETS_WEBHOOK_SECRET) {
-      await inBackground(ctx, backupToSheet(env, {
-        consentAt,
-        email,
-        firstName: nameToStore,
-        source,
-        newContact: isNewContact,
-        consentText: CONSENT_TEXT,
-      }));
-    }
-
-    // Consent record. The email address is deliberately not logged.
-    console.log(JSON.stringify({ event: "subscribed", source, consentAt }));
+    const error = await addContact(env, ctx, { email, firstName, source, consentText: CONSENT_TEXT, welcome: true });
+    if (error) return fail(502, error, origin);
     return reply(200, { ok: true }, origin);
   },
 };

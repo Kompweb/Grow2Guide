@@ -10,6 +10,8 @@ on:
     branches: [main]
     paths:
       - "workers/subscribe/**"
+      # The results email reads its names, labels and suggestions from this file.
+      - "assets/self-assessment.js"
       - ".github/workflows/deploy-subscribe-worker.yml"
 
 concurrency:
