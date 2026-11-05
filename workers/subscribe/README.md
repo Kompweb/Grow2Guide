@@ -35,7 +35,7 @@ npx wrangler deploy
    confirmed live 2026-10-01. If grow2guide.com's DNS ever moves to Cloudflare, switch
    `wrangler.toml` back to the `routes` custom-domain block and update `RESULTS_ENDPOINT`.
 4. Set `WELCOME_FROM` in `wrangler.toml` to a sender on your Resend-verified domain. The results
-   email is sent from it.
+   email is sent from it. `REPLY_TO` (also in `wrangler.toml`) is where replies to it go; it can be any inbox, Gmail included.
 
 ## Local development and tests
 

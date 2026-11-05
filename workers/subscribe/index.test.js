@@ -177,3 +177,13 @@ test("results: without a sender address or key the Worker reports misconfigurati
     assert.equal(calls.length, 0);
   }
 });
+
+test("results: replies go to REPLY_TO when it is set, and the field is left out when it is not", async () => {
+  let calls = stubResend();
+  await worker.fetch(resultsReq(results), { ...RESULTS_ENV, REPLY_TO: "grow2guide@gmail.com" });
+  assert.equal(JSON.parse(calls[0].init.body).reply_to, "grow2guide@gmail.com");
+  assert.equal(JSON.parse(calls[0].init.body).from, RESULTS_ENV.WELCOME_FROM);
+  calls = stubResend();
+  await worker.fetch(resultsReq(results), RESULTS_ENV);
+  assert.equal("reply_to" in JSON.parse(calls[0].init.body), false);
+});

@@ -97,7 +97,13 @@ async function sendResults(data, env, origin) {
         // Stops a quick double submit from sending the same results twice.
         "Idempotency-Key": "results/" + email + "/" + [scores.care, scores.workplace, ...scores.categories].join("-"),
       },
-      body: JSON.stringify({ from: env.WELCOME_FROM, to: [email], ...resultsEmail(scores) }),
+      body: JSON.stringify({
+        from: env.WELCOME_FROM,
+        to: [email],
+        // Replies go to the inbox Sara reads; the sender stays on the Resend-verified domain.
+        ...(env.REPLY_TO ? { reply_to: env.REPLY_TO } : {}),
+        ...resultsEmail(scores),
+      }),
     });
     if (!res.ok) {
       console.error("Resend results email responded " + res.status);

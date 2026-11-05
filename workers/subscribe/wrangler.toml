@@ -12,6 +12,9 @@ workers_dev = true
 # (Newsletter signups moved to Substack; this Worker no longer adds anyone to a list.)
 [vars]
 WELCOME_FROM = "Grow2Guide <hello@grow2guide.com>"
+# Where replies to the results email go. Gmail cannot be the sender (Resend only sends from a
+# verified domain), but it can receive replies.
+REPLY_TO = "grow2guide@gmail.com"
 
 # Keep Worker logs in the Cloudflare dashboard.
 [observability]
