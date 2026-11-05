@@ -11,3 +11,6 @@ subscribers*.csv
 
 # Paid PDF guides deployed with the Stripe fulfillment Worker; never publish
 output/
+
+# Python bytecode cache (created by scripts/ tests)
+__pycache__/
