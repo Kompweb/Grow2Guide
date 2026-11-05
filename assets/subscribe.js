@@ -78,6 +78,12 @@
           if (ok) {
             form.reset();
             setStatus('Thanks! You are subscribed.', true);
+            // GTM → GA4 newsletter_signup, on every page that has a form (page section or pop-up).
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'newsletter_signup',
+              signup_placement: form.closest('#subscribe-modal') ? 'modal' : 'page'
+            });
             document.dispatchEvent(new CustomEvent('g2g:subscribed'));
           } else {
             // Leave the fields filled in so the visitor can retry.

@@ -3,7 +3,7 @@
   //   blog_cta_click      - guide/consultation link clicked (cta_placement: inline | end | other)
   //   blog_related_click  - "Keep reading" link clicked
   //   blog_card_click     - article card clicked on the blog index
-  //   newsletter_signup   - signup succeeded (signup_placement: page | modal)
+  // newsletter_signup is pushed by subscribe.js on every page.
   window.dataLayer = window.dataLayer || [];
 
   function pageSlug(path) {
@@ -57,16 +57,6 @@
     var path = window.location.pathname;
     push(eventForLink({ pathname: a.pathname, text: a.textContent, zone: zoneOf(a, path) }, path));
   }, true);
-
-  // subscribe.js fires g2g:subscribed only after the signup succeeds; remember which form was submitted.
-  var lastForm = null;
-  document.addEventListener('submit', function (e) {
-    if (e.target && e.target.matches && e.target.matches('[data-g2g-subscribe]')) lastForm = e.target;
-  }, true);
-  document.addEventListener('g2g:subscribed', function () {
-    var placement = lastForm && lastForm.closest && lastForm.closest('#subscribe') ? 'page' : 'modal';
-    push({ event: 'newsletter_signup', params: { post_slug: pageSlug(window.location.pathname), signup_placement: placement } });
-  });
 
   window.g2gBlogEvents = { pageSlug: pageSlug, eventForLink: eventForLink };
 })();

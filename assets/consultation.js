@@ -66,6 +66,9 @@
       'Submitted from grow2guide.com/consultation/'
     ];
 
+    // GTM → GA4 generate_lead. The visitor's email app opens next, so this marks intent to send.
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'generate_lead', lead_type: 'consultation', form_method: 'mailto' });
     const subject = encodeURIComponent('Consultation Request — ' + val('org-name'));
     const body = encodeURIComponent(lines.join('\n'));
     window.location.href = window.g2gMail.mailto('subject=' + subject + '&body=' + body);

@@ -68,15 +68,3 @@ test("index cards are card clicks; other links push nothing", () => {
   click(env, link("/guides/", "external", [], "example.com"));
   assert.equal(env.win.dataLayer.length, 1);
 });
-
-test("a successful signup pushes newsletter_signup with the right placement", () => {
-  const env = load("/blog/the-2-am-replay-after-a-hard-shift/");
-  const form = (inPage) => ({ matches: (s) => s === "[data-g2g-subscribe]", closest: (s) => (s === "#subscribe" && inPage ? {} : null) });
-  env.handlers.submit.forEach((fn) => fn({ target: form(true) }));
-  env.handlers["g2g:subscribed"].forEach((fn) => fn());
-  env.handlers.submit.forEach((fn) => fn({ target: form(false) }));
-  env.handlers["g2g:subscribed"].forEach((fn) => fn());
-  assert.deepEqual(env.win.dataLayer.map((d) => d.signup_placement), ["page", "modal"]);
-  assert.equal(env.win.dataLayer[0].event, "newsletter_signup");
-  assert.equal(env.win.dataLayer[0].post_slug, "the-2-am-replay-after-a-hard-shift");
-});

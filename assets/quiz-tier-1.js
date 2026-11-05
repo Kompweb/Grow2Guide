@@ -50,6 +50,9 @@
   }
 
   function submitMailto() {
+    // GTM → GA4 generate_lead. The visitor's email app opens next, so this marks intent to send.
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'generate_lead', lead_type: 'quiz_tier_1', form_method: 'mailto' });
     const lines = [
       'Tier 1 Foundations — Intake Quiz',
       '',
