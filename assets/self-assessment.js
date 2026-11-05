@@ -317,8 +317,9 @@
   var form = $('assessment'), qWrap = $('questions'), errBox = $('error');
   /* Turn on once the subscribe Worker with POST /results is deployed. Off: the results page offers
      the newsletter sign-up (assets/subscribe.js) under Print instead of "email my results". */
-  var RESULTS_EMAIL = false;
+  var RESULTS_EMAIL = true;
   var RESULTS_ENDPOINT = 'https://g2g-subscribe.grow2guide.workers.dev/results';
+  var SUBSCRIBE_ENDPOINT = 'https://g2g-subscribe.grow2guide.workers.dev/';
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   var emailBox = $('email-box'), emailInput = $('results-email'), emailErr = $('results-email-error');
   var newsletterBox = $('results-newsletter'), sendBtn = $('send-results-btn'), emailStatus = $('email-status');
@@ -555,11 +556,30 @@
       setStatus('Sent to ' + email + '. Check your inbox.', 'ok');
       track('results_email_sent', { newsletter: newsletter });
     }).catch(function (err) {
-      setStatus(err.message === 'invalid_email'
-        ? 'That email address doesn\u2019t look right. Check it and try again.'
-        : 'We couldn\u2019t send your results. Please try again in a minute.', 'err');
-      showEmailBoxInResults();
+      if (err.message === 'invalid_email') {
+        setStatus('That email address doesn\u2019t look right. Check it and try again.', 'err');
+        showEmailBoxInResults();
+        return;
+      }
+      // The results email failed. If they asked for the newsletter, still sign them up
+      // through the regular newsletter sign-up so their consented address is not lost.
+      (newsletter ? subscribeOnly(email) : Promise.resolve(false)).then(function (subscribed) {
+        setStatus(subscribed
+          ? 'We couldn\u2019t email your results right now, but you\u2019re signed up for the newsletter. Use Print my results to keep a copy.'
+          : 'We couldn\u2019t send your results. Please try again in a minute.', 'err');
+        if (subscribed) track('newsletter_signup', { placement: 'self_assessment_fallback' });
+        else showEmailBoxInResults();
+      });
     });
+  }
+  function subscribeOnly(email) {
+    return fetch(SUBSCRIBE_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, firstName: '', consent: true, source: '/self-assessment/', website: $('results-website').value })
+    }).then(function (r) {
+      return r.json().then(function (b) { return r.ok && b.ok === true; }, function () { return false; });
+    }).catch(function () { return false; });
   }
 
   renderQuestions();
