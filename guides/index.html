@@ -188,6 +188,10 @@
   .btn:active { transform: scale(.98); }
   .btn-primary { background: var(--brown); color: #fff; height: 60px; padding-inline: 34px; font-size: 18px; box-shadow: 0 10px 24px rgba(75,48,33,.22); }
   .btn-primary:hover { background: var(--brown-dark); }
+  .sa-band { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; background: #fff; border: 2px solid rgba(15,118,110,.25); border-radius: 20px; padding: 22px 26px; }
+  .sa-band > div { flex: 1 1 360px; }
+  .sa-band h2 { font-size: 22px; line-height: 1.25; margin: 6px 0 6px; }
+  .sa-band p { margin: 0; color: var(--muted); }
   .btn-ghost { border: 2px solid rgba(75,48,33,.3); color: var(--brown); height: 52px; padding-inline: 26px; font-size: 15px; background: transparent; }
   .btn-ghost:hover { border-color: var(--brown); background: rgba(75,48,33,.05); }
   .btn-teal { background: var(--teal); color: #fff; height: 52px; padding-inline: 26px; font-size: 15px; }
@@ -377,6 +381,7 @@
   <link rel="stylesheet" href="/assets/footer.css?v=5" />
   <script src="/assets/subscribe.js?v=20261105" defer></script>
   <script src="/assets/subscribe-modal.js" defer></script>
+  <script src="/assets/assessment-cta.js" defer></script>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -509,6 +514,18 @@
       </div>
     </section>
 
+    <!-- SELF-ASSESSMENT (DRAFT wording, pending Sara's approval) -->
+    <section aria-labelledby="sa-band-h" style="padding-block:0 32px">
+      <div class="sa-band">
+        <div>
+          <span class="eyebrow">Free self-assessment</span>
+          <h2 id="sa-band-h">Not sure which guide fits? Start here.</h2>
+          <p>32 questions on how you care for people and how you work with your team. Private: your answers stay on your device. Your results point you to the guide that fits.</p>
+        </div>
+        <a class="btn btn-ghost" href="/self-assessment/" data-assessment-cta="guides_band">Take the Self-Assessment &rarr;</a>
+      </div>
+    </section>
+
     <!-- BUNDLE -->
     <section aria-labelledby="bundle-h" style="padding-block:16px 64px">
       <div class="bundle">
@@ -580,7 +597,6 @@
           <span class="go">Read article &rarr;</span>
         </a>
       </div>
-      <p class="alt" style="margin-top:20px;text-align:center"><a href="/self-assessment/" id="guides-self-assessment-link">Care &amp; Workplace Competence Self-Assessment</a></p>
     </section>
 
     <!-- FAQ -->
@@ -686,7 +702,7 @@
               <li><a href="/#about" id="footer-about" class="hover:text-[#0F766E] transition-colors">About</a></li>
               <li><a href="/blog/" id="footer-blog" class="hover:text-[#0F766E] transition-colors">Blog</a></li>
               <li><a href="/consultation/" id="footer-contact" class="hover:text-[#0F766E] transition-colors">Contact</a></li>
-              <li><a href="/self-assessment/" id="footer-self-assessment" class="hover:text-[#0F766E] transition-colors">Self-Assessment</a></li>
+              <li><a href="/self-assessment/" id="footer-self-assessment" data-assessment-cta="footer" class="hover:text-[#0F766E] transition-colors">Self-Assessment</a></li>
             </ul>
           </div>
         </div>

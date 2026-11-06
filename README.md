@@ -77,6 +77,8 @@ copy the Substack text word for word, or the two copies compete in search.
    there) and delete the "First articles coming soon" card.
 5. Add the post URL to `sitemap.xml`.
 6. Run `python3 scripts/sync-footer.py`.
+7. Add a line matched to the post in `LINES` in `scripts/assessment_cta.py`, then run it. New posts
+   already get the Self-Assessment card with the default line from the template.
 
 ## Newsletter signups
 

@@ -9,6 +9,8 @@ subscribe = (root / "components/subscribe-form.html").read_text().strip()
 modal = (root / "components/subscribe-modal.html").read_text().strip()
 modal_script = '  <script src="/assets/subscribe-modal.js" defer></script>'
 stylesheet = '  <link rel="stylesheet" href="/assets/footer.css?v=5" />'
+# Counts clicks on Self-Assessment links (footer, nav, blog card, home, Guides page).
+cta_script = '  <script src="/assets/assessment-cta.js" defer></script>'
 subscribe_script = '  <script src="/assets/subscribe.js?v=20261105" defer></script>'
 # Transactional flows keep a clean page without a newsletter prompt.
 NO_SUBSCRIBE = {"quiz", "consultation", "thank-you", "self-assessment"}
@@ -29,6 +31,8 @@ for page in pages:
         updated = re.sub(r'  ?<link rel="stylesheet" href="/assets/footer\.css[^"]*" />', lambda _: stylesheet, updated, count=1)
     else:
         updated = updated.replace("</head>", stylesheet + "\n</head>", 1)
+    if cta_script not in updated:
+        updated = updated.replace("</head>", cta_script + "\n</head>", 1)
     if rel.parts[0] not in NO_SUBSCRIBE:
         if "<!-- subscribe:start -->" in updated:
             updated = re.sub(
