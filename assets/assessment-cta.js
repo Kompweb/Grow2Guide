@@ -1,5 +1,5 @@
 /* Counts clicks on links to the Self-Assessment: GTM → GA4 assessment_cta_click.
-   placement comes from data-assessment-cta (blog_end, home_hero, home_fit, nav, guides_band, thank_you,
+   placement comes from data-assessment-cta (blog_end, home_hero, home_cards, nav, guides_band, thank_you,
    faq, footer).
    Loaded on every page by scripts/sync-footer.py. */
 (function () {

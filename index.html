@@ -589,9 +589,10 @@
         <div class="container-custom grid lg:grid-cols-[1.15fr_1fr] gap-14 lg:gap-16 items-center">
           <div>
             <span class="bg-[#D8F0EA] text-[#0F766E] px-3.5 py-1.5 rounded-full text-[14px] font-bold tracking-[0.06em] uppercase mb-6 inline-block">Practical Resources &amp; Consulting</span>
-            <h1 class="text-5xl xl:text-6xl font-bold leading-[1.08] tracking-[-0.03em] text-[#12201C] mb-6">
-              You Know Where You Want to Go.<br class="hidden sm:block">
-              Let's <span class="hero-path-text">Build the Path</span> to Get There.
+            <!-- DRAFT headline, pending Sara's approval. Built from the approved tagline "Practical resources. Real-world consulting." -->
+            <h1 class="text-4xl sm:text-5xl lg:text-[2.6rem] xl:text-[2.9rem] font-bold leading-[1.08] tracking-[-0.03em] text-[#12201C] mb-6">
+              Practical guides for behavioral health staff.<br class="hidden sm:block">
+              <span class="hero-path-text">Real-world consulting</span> for programs.
             </h1>
             <div class="space-y-4 text-lg text-[#5A6A63] leading-[1.6] max-w-xl mb-10">
               <p>Behavioral health doesn't come with a handbook for everything. Sometimes you need a practical resource, sometimes you need a second look at what isn't quite working, and sometimes you need someone to build it with you from the ground up.</p>
@@ -647,7 +648,7 @@
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 relative z-10">
               <!-- I Need a Guide -->
               <div id="path-guide" class="reveal-card text-center scroll-mt-32 bg-white rounded-[24px] p-8 lg:p-9 card-shadow border border-[#0F766E]/5 flex flex-col hover:border-[#0F766E]/20 hover:-translate-y-1 transition-all sm:col-span-2 lg:col-span-1" style="--reveal-delay: 0ms;">
-                <a href="/services/#products" class="path-icon" tabindex="-1" aria-hidden="true"><img src="/assets/icons/icon-knowledge.webp" alt="" width="112" height="112" loading="lazy" /></a>
+                <a href="/guides/" class="path-icon" tabindex="-1" aria-hidden="true"><img src="/assets/icons/icon-knowledge.webp" alt="" width="112" height="112" loading="lazy" /></a>
                 <div class="flex items-center justify-center gap-4 mb-6">
                   <span class="text-[14px] font-bold text-[#5A6A63] tracking-[0.06em] uppercase">For Professionals</span>
                 </div>
@@ -656,9 +657,11 @@
                   For behavioral health professionals and supervisors looking for practical tools and resources they can use in their work every day.
                 </p>
                 <p class="text-[#12201C] font-bold text-[15px] mb-8">Downloadable guides for the real-world questions behavioral health throws at you.</p>
-                <a href="/services/#products" id="path-products-btn" class="group btn-active cta-gloss w-full border-2 border-[#4b3021]/30 text-[#4b3021] h-[52px] flex items-center justify-center gap-2 rounded-full font-bold text-base transition-all mt-auto">
-                  Explore Products <iconify-icon icon="lucide:arrow-right" class="transition-transform group-hover:translate-x-1"></iconify-icon>
+                <a href="/guides/" id="path-products-btn" class="group btn-active cta-gloss w-full border-2 border-[#4b3021]/30 text-[#4b3021] h-[52px] flex items-center justify-center gap-2 rounded-full font-bold text-base transition-all mt-auto">
+                  See the Guides <iconify-icon icon="lucide:arrow-right" class="transition-transform group-hover:translate-x-1"></iconify-icon>
                 </a>
+                <!-- DRAFT wording, pending Sara's approval -->
+                <p class="mt-4 text-[15px] text-[#5A6A63]">Not sure where you stand? <a href="/self-assessment/" id="path-assessment-link" data-assessment-cta="home_cards" class="inline-block py-2 font-bold text-[#0F766E] underline underline-offset-4">Take the free Self-Assessment</a></p>
               </div>
 
               <!-- I Already Have Something -->
@@ -699,7 +702,7 @@
             <div class="flex flex-col sm:flex-row items-center sm:items-start justify-center gap-10 sm:gap-24">
               <a href="/consultation/" id="explore-journey" class="explore-tile group block max-w-[240px]">
                 <span class="path-icon"><img src="/assets/icons/icon-journey.webp" alt="" width="112" height="112" loading="lazy" /></span>
-                <span class="block font-bold text-xl text-[#4b3021] mb-1">Start your journey</span>
+                <span class="block font-bold text-xl text-[#4b3021] mb-1">Start a conversation</span>
                 <span class="block text-[#5A6A63] text-[15px] leading-snug">Request a consultation <span aria-hidden="true">&rarr;</span></span>
               </a>
               <a href="/faq/" id="explore-wisdom" class="explore-tile group block max-w-[240px]">
@@ -830,65 +833,6 @@
         </div>
       </section>
 
-      <!-- Where Do You Fit Section -->
-      <section class="py-20 lg:py-24">
-        <div class="container-custom max-w-3xl">
-          <h2 class="text-4xl font-bold text-[#12201C] tracking-tight mb-16 text-center">Where Do You Fit?</h2>
-          <div class="space-y-6 mb-16">
-            <a href="/services/#products" id="fit-products" class="group btn-active flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-white rounded-[20px] p-8 card-shadow border border-[#0F766E]/5 hover:border-[#0F766E]/20 transition-colors">
-              <span class="text-[#12201C] font-semibold text-lg">Looking for practical guidance?</span>
-              <span class="flex items-center gap-2 text-[#0F766E] font-bold">
-                Products <iconify-icon icon="lucide:arrow-right" class="transition-transform group-hover:translate-x-1"></iconify-icon>
-              </span>
-            </a>
-            <a href="/self-assessment/" id="fit-self-assessment" data-assessment-cta="home_fit" class="group btn-active flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-white rounded-[20px] p-8 card-shadow border border-[#0F766E]/5 hover:border-[#0F766E]/20 transition-colors">
-              <span class="text-[#12201C] font-semibold text-lg">Not sure where you stand?</span>
-              <span class="flex items-center gap-2 text-[#0F766E] font-bold shrink-0">
-                Free Self-Assessment <iconify-icon icon="lucide:arrow-right" class="transition-transform group-hover:translate-x-1"></iconify-icon>
-              </span>
-            </a>
-            <a href="/services/#tier-2" id="fit-tier2" class="group btn-active flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-white rounded-[20px] p-8 card-shadow border border-[#0F766E]/5 hover:border-[#0F766E]/20 transition-colors">
-              <span class="text-[#12201C] font-semibold text-lg">Already have something that needs to be evaluated or strengthened?</span>
-              <span class="flex items-center gap-2 text-[#0F766E] font-bold shrink-0">
-                Tier 2 Consulting <iconify-icon icon="lucide:arrow-right" class="transition-transform group-hover:translate-x-1"></iconify-icon>
-              </span>
-            </a>
-            <a href="/services/#tier-3" id="fit-tier3" class="group btn-active flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-white rounded-[20px] p-8 card-shadow border border-[#0F766E]/5 hover:border-[#0F766E]/20 transition-colors">
-              <span class="text-[#12201C] font-semibold text-lg">Need someone to build it for you?</span>
-              <span class="flex items-center gap-2 text-[#0F766E] font-bold shrink-0">
-                Tier 3 Consulting <iconify-icon icon="lucide:arrow-right" class="transition-transform group-hover:translate-x-1"></iconify-icon>
-              </span>
-            </a>
-          </div>
-          <div class="text-center">
-            <p class="text-[#5A6A63] text-lg">You don't have to know exactly what you need before you reach out.</p>
-            <p class="text-[#12201C] font-bold text-xl mt-3">Start with where you are. We'll help you figure out what's next.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Final Tagline Band -->
-      <section class="pb-32">
-        <div class="container-custom">
-          <div class="bg-white rounded-[32px] p-16 lg:p-24 text-center card-shadow border border-[#0F766E]/5 relative overflow-hidden">
-            <div class="absolute inset-0 opacity-[0.02] pointer-events-none" style="background-image: radial-gradient(#0F766E 2px, transparent 2px); background-size: 40px 40px;"></div>
-            <img src="/assets/icons/icon-journey.webp" alt="" width="112" height="112" loading="lazy" class="relative mx-auto mb-8 block w-24 h-24 rounded-full" />
-            <p class="text-[#12201C] text-2xl lg:text-3xl font-bold mb-4 tracking-tight">Practical resources. Real-world consulting. Better behavioral health systems.</p>
-            <p class="text-[#0F766E] text-lg font-bold mb-14 tracking-[0.02em] uppercase">Learn. Strengthen. Build.</p>
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
-              <a href="/services/#products" id="tagline-cta-products" class="btn-active bg-[#0F766E] text-white h-[60px] px-12 flex items-center justify-center rounded-full font-bold text-lg hover:bg-[#0B5F59] shadow-lg shadow-[#0F766E]/20 transition-all w-full sm:w-auto">
-                Explore Products
-              </a>
-              <a href="/services/#tier-2" id="tagline-cta-services" class="btn-active bg-white border border-[#0F766E]/30 text-[#0F766E] h-[60px] px-12 flex items-center justify-center rounded-full font-bold text-lg hover:bg-[#D8F0EA] transition-all w-full sm:w-auto">
-                Explore Services
-              </a>
-              <a href="#about" id="tagline-cta-about" class="btn-active bg-white border border-[#0F766E]/30 text-[#0F766E] h-[60px] px-12 flex items-center justify-center rounded-full font-bold text-lg hover:bg-[#D8F0EA] transition-all w-full sm:w-auto">
-                About Us
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
 
     </main>
 

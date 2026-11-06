@@ -10,21 +10,23 @@
   <!-- End Google Tag Manager -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="64x64" href="/assets/favicon.png" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
   <script src="/assets/mail-protect.js" defer></script>
+  <script src="/assets/mobile-menu.js" defer></script>
+  <script src="/assets/nav-scroll.js" defer></script>
   <script src="/assets/guides.js" defer></script>
   <title>Policy & Supervisor PDF Guides for Behavioral Health | Grow2Guide</title>
-  <meta name="description" content="Two practical PDF guides for behavioral health staff: a 69-topic policy inventory and a supervisor and manager toolkit. Bundle both for $99. Instant delivery." />
+  <meta name="description" content="Two practical PDF guides for behavioral health staff: 31 policies in 8 sections with a companion workbook, and a supervisor guide for supervisors of direct care staff. Bundle both for $99. Instant delivery." />
   <link rel="canonical" href="https://www.grow2guide.com/guides/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Grow2Guide" />
   <meta property="og:title" content="Policy & Supervisor PDF Guides for Behavioral Health | Grow2Guide" />
-  <meta property="og:description" content="Two practical PDF guides for behavioral health staff: a 69-topic policy inventory and a supervisor and manager toolkit. Bundle both for $99. Instant delivery." />
+  <meta property="og:description" content="Two practical PDF guides for behavioral health staff: 31 policies in 8 sections with a companion workbook, and a supervisor guide for supervisors of direct care staff. Bundle both for $99. Instant delivery." />
   <meta property="og:url" content="https://www.grow2guide.com/guides/" />
   <meta property="og:image" content="https://www.grow2guide.com/assets/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -40,7 +42,7 @@
     {
       "@type": "Product",
       "name": "Behavioral Health Guide for employees - Why do we do it this way?",
-      "description": "A 69-topic policy inventory that shows how policies and systems apply to case managers, BHTs and direct care staff. PDF.",
+      "description": "Understanding policies and systems, and how they apply to you as a case manager, BHT, or direct care staff. 31 policies in 8 sections, documentation, incident reports, and what to do on shift. The questions you have are now answered. PDF guide + workbook.",
       "image": "https://www.grow2guide.com/assets/og-image.jpg",
       "brand": {
         "@type": "Brand",
@@ -57,7 +59,7 @@
     {
       "@type": "Product",
       "name": "Supervisor Guide - How do I supervise employees effectively",
-      "description": "Real life scenarios, skills and tools for new and established supervisors and managers. PDF.",
+      "description": "For supervisors of direct care staff. What to say in difficult conversations, how to set expectations, give feedback, and document performance, and what to do in your first 90 days. Employee supervision, not clinical supervision. PDF.",
       "image": "https://www.grow2guide.com/assets/og-image.jpg",
       "brand": {
         "@type": "Brand",
@@ -153,7 +155,7 @@
     --line: rgba(15,118,110,.14);
     --logo: url("/assets/logo-mark.png");
     --serif: "Playfair Display", Georgia, "Times New Roman", serif;
-    --sans: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+    --sans: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -172,16 +174,23 @@
   .pill { display: inline-block; background: var(--mint-deep); color: var(--teal); padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 
   /* header */
-  .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 18px; }
-  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; line-height: 1; }
-  .brand .txt { display: flex; flex-direction: column; }
-  .logo { flex: none; width: 64px; height: 64px; background: var(--logo) center / contain no-repeat; }
-  .logo.sm { width: 56px; height: 56px; }
-  .brand .txt b { font-family: var(--serif); font-size: 28px; font-weight: 600; letter-spacing: -.03em; color: #174d35; }
-  .brand b i { font-style: normal; color: var(--brown); }
-  .brand .txt span { margin-top: 3px; font-size: 10.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--brown); }
-  .top a.help { font-size: 14px; font-weight: 600; color: var(--muted); text-decoration: none; }
-  .top a.help:hover { color: var(--teal); }
+  /* Site header (same as the other pages). The nav is fixed, so the page starts below it. */
+  .glass-nav { background: rgba(245,248,244,.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(15,118,110,.08); }
+  .nav-link { position: relative; }
+  .nav-link::after { content:''; position:absolute; bottom:-6px; left:0; width:0; height:2px; background:var(--teal); transition:width .3s; }
+  .nav-link:hover::after { width:100%; }
+  .btn-active:active { transform: scale(0.98); }
+  #nav-logo-link > span { align-items: stretch; text-align: center; }
+  #nav-logo-link .g2g-wordmark { font-size: clamp(32px, 4.6vw, 44px); }
+  #nav-logo-link .g2g-tagline { font-size: clamp(10.5px, 1.5vw, 14px); transform: scaleX(.9); }
+  @media (max-width: 370px) {
+    #nav-logo-link .g2g-wordmark { font-size: 28px; }
+    #nav-logo-link .g2g-tagline { font-size: 9px; }
+    #nav-logo-link .g2g-logo-mark { width: 60px; height: 60px; }
+    #nav-logo-link { gap: 8px; }
+  }
+  .wrap > main { padding-top: 104px; }
+  @media (min-width: 1024px) { .wrap > main { padding-top: 112px; } }
 
   /* buttons */
   .btn { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; font-family: var(--sans); font-weight: 700; border-radius: 999px; transition: background .2s, transform .1s, border-color .2s; text-align: center; }
@@ -368,14 +377,6 @@
   .g2g-wordmark .g2g-number { color: #4b3021; }
   .g2g-logo-mark { width: 72px; height: 72px; object-fit: contain; }
   #footer-logo-link > span { align-items: stretch; text-align: center; }
-  /* This page's header is a slim, fixed-size custom bar, not the site's tall nav — so the
-     shared footer's clamp(32px,4.6vw,44px) in assets/footer.css, sized for that taller nav,
-     reads oversized next to it. Match the header's own fixed sizes (.brand .txt b / span
-     above) here instead. `html` in front matches assets/footer.css's #site-footer
-     #footer-logo-link .g2g-wordmark on ID count and then wins on the element-selector
-     tiebreaker — needed since that external stylesheet loads after this one. */
-  html #site-footer #footer-logo-link .g2g-wordmark { font-size: 28px; }
-  html #site-footer #footer-logo-link .g2g-tagline { font-size: 10.5px; transform: none; }
   .g2g-tagline { margin-top: 2px; font-family: "Montserrat", Arial, sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0; text-transform: uppercase; color: #4b3021; }
   </style>
   <link rel="stylesheet" href="/assets/footer.css?v=5" />
@@ -388,13 +389,43 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WLRZD726"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+      <div class="container-custom h-[96px] lg:h-[100px] flex items-center justify-between">
+        <div class="flex items-center gap-10 lg:gap-8 xl:gap-14">
+          <a href="/" id="nav-logo-link" class="flex items-center gap-3 shrink-0 bg-transparent">
+            <img src="/assets/logo-mark.png" alt="" width="72" height="72"
+                 class="g2g-logo-mark bg-transparent" aria-hidden="true" />
+            <span class="flex flex-col leading-none">
+              <span class="g2g-wordmark">Grow <span class="g2g-number">2</span> Guide</span>
+              <span class="g2g-tagline">Elevate Your Knowledge</span>
+            </span>
+          </a>
+          <div class="hidden lg:flex items-center gap-6 xl:gap-10 whitespace-nowrap">
+            <a href="/services/" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Services</a>
+            <a href="/#about" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">About</a>
+            <a href="/blog/" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Blog</a>
+            <a href="/self-assessment/" data-assessment-cta="nav" class="nav-link text-[15px] font-semibold text-[#5A6A63] hover:text-[#0F766E]">Self-Assessment</a>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <a href="/consultation/" class="hidden sm:inline-flex bg-[#4b3021] text-white px-5 lg:px-6 py-2.5 rounded-full text-sm font-bold shadow-md shadow-[#4b3021]/20 hover:bg-[#3a2519] transition-all">Request consultation</a>
+          <button type="button" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu" class="lg:hidden w-14 h-14 flex items-center justify-center rounded-full border-2 border-[#4b3021]/25 text-[#4b3021] bg-white/70">
+            <iconify-icon id="menu-icon-open" icon="ph:list-bold" class="text-3xl"></iconify-icon>
+            <iconify-icon id="menu-icon-close" icon="ph:x-bold" class="text-3xl hidden"></iconify-icon>
+          </button>
+        </div>
+      </div>
+      <div id="mobile-menu" class="hidden lg:hidden border-t border-[#0F766E]/10 bg-[#F5F8F4]">
+        <div class="container-custom py-5 flex flex-col gap-1">
+          <a href="/services/" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Services</a>
+          <a href="/#about" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">About</a>
+          <a href="/blog/" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Blog</a>
+          <a href="/self-assessment/" data-assessment-cta="nav" class="text-[18px] font-semibold text-[#12201C] py-3 border-b border-[#0F766E]/8">Self-Assessment</a>
+          <a href="/consultation/" class="mt-4 bg-[#4b3021] text-white h-[48px] flex items-center justify-center rounded-full font-bold text-base">Request consultation</a>
+        </div>
+      </div>
+    </nav>
   <div class="wrap">
-  <header class="top">
-    <a class="brand" href="/" aria-label="Grow 2 Guide home">
-      <span class="logo" role="img" aria-hidden="true"></span><span class="txt"><b>Grow <i>2</i> Guide</b><span>Elevate Your Knowledge</span></span>
-    </a>
-    <a class="help" href="/faq/">Questions?</a>
-  </header>
 
   <main>
     <!-- HERO -->
@@ -402,7 +433,7 @@
       <div>
         <span class="pill">Downloadable PDF guides</span>
         <h1>Know which policies apply to <em>you</em>. Lead with confidence.</h1>
-        <p class="lead">Two practical PDF guides for behavioral health professionals: one that makes 69 policy topics make sense for your role, and one that helps you become the supervisor or manager you set out to be.</p>
+        <p class="lead">Two practical PDF guides for behavioral health professionals: one that explains 31 policies in 8 sections and how they apply to your role, and one that helps you become the supervisor or manager you set out to be.</p>
         <div class="cta-row">
           <div class="price-line" aria-label="Bundle price">
             <span class="now">$99</span><s>$134 separate</s><span class="save">Save $35</span>
@@ -424,11 +455,11 @@
             <div class="t">Behavioral Health Guide for employees - Why do we do it this way?</div>
           </div>
           <div>
-            <span class="badge">69 policy topics</span>
+            <span class="badge">31 policies &bull; 8 sections</span>
             <div class="s" style="margin-top:10px">What does it have to do with me?</div>
             <div class="s" style="margin-top:6px;opacity:.75">94 pages + 29-page workbook</div>
           </div>
-          <div class="num" aria-hidden="true">69</div>
+          <div class="num" aria-hidden="true">31</div>
         </div>
         <div class="cover c2">
           <span class="k">PDF 2 - Supervisors</span>
@@ -436,7 +467,7 @@
             <div class="t">Supervisor Guide - How do I supervise employees effectively</div>
           </div>
           <div>
-            <span class="badge">Scenarios &bull; Skills &bull; Tools</span>
+            <span class="badge">Scripts &bull; First 90 days &bull; Scenarios</span>
             <div class="s" style="margin-top:10px">Am I becoming the supervisor I envisioned?</div>
             <div class="s" style="margin-top:6px;opacity:.75">98 pages</div>
           </div>
@@ -636,7 +667,7 @@
         <p>Both guides, one price. Unlocks instantly, plus a copy by email.</p>
         <a class="btn btn-primary" id="final-bundle-cta" href="https://buy.stripe.com/6oU4gz3vyeCZ0CW2lQ4Ja00" data-offer="bundle">Get both guides &mdash; $99</a>
         <p class="micro">Pay securely &mdash; unlocks instantly, plus a copy by email.</p>
-        <p class="alt">Or buy one: <a href="https://buy.stripe.com/cNibJ16HKgL75XgaSm4Ja02" id="final-guide-cta" data-offer="guide">Policy Guide $67</a> &middot; <a href="https://buy.stripe.com/bJecN57LO0M9gBU9Oi4Ja01" id="final-toolkit-cta" data-offer="toolkit">Toolkit $67</a></p>
+        <p class="alt">Or buy one: <a href="https://buy.stripe.com/cNibJ16HKgL75XgaSm4Ja02" id="final-guide-cta" data-offer="guide">Policy Guide $67</a> &middot; <a href="https://buy.stripe.com/bJecN57LO0M9gBU9Oi4Ja01" id="final-toolkit-cta" data-offer="toolkit">Supervisor Guide $67</a></p>
       </div>
     </section>
   </main>
