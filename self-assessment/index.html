@@ -20,7 +20,7 @@
   <script src="/assets/mobile-menu.js" defer></script>
   <script src="/assets/nav-scroll.js" defer></script>
   <script src="/assets/whatsapp.js" defer></script>
-  <script src="/assets/self-assessment.js?v=20261105" defer></script>
+  <script src="/assets/self-assessment.js?v=20261106" defer></script>
   <style>
 
     .g2g-wordmark { /* = .brand-name */
@@ -112,8 +112,6 @@
     #sa .muted { color: var(--muted); }
     #sa .note { background: var(--surface); border-left: 4px solid var(--brand); padding: 12px 14px; border-radius: 6px; }
 
-    #sa .part-title { margin-top: 36px; }
-    #sa .part-sub { font-style: italic; color: var(--muted); margin-bottom: 12px; }
     #sa fieldset.q { border: 1px solid var(--border); border-radius: 8px; margin: 0 0 12px; padding: 12px 14px 14px; background: var(--sa-bg); }
     #sa fieldset.q.unanswered { border-color: var(--error); background: var(--error-bg); }
     /* Float keeps long, wrapping questions inside the box instead of across its top border. */
@@ -156,7 +154,8 @@
     #sa .progress-line button { margin: 0; padding: 6px 12px; font-size: .85rem; white-space: nowrap; }
     #sa .progress-meter { height: 4px; background: var(--track); border-radius: 999px; overflow: hidden; margin-top: 6px; }
     #sa .progress-meter > div { height: 100%; width: 0; background: var(--brand); transition: width .2s ease; }
-    #sa fieldset.q, #sa .part-title { scroll-margin-top: 170px; }
+    #sa fieldset.q { scroll-margin-top: 170px; }
+    #sa #questions { margin-top: 16px; }
     #sa #error { background: var(--error-bg); color: var(--error); border: 1px solid var(--error); padding: 12px 14px; border-radius: 8px; margin: 16px 0; }
     #sa #error a { color: inherit; font-weight: 600; text-decoration: underline; }
     #sa button {
@@ -326,7 +325,7 @@
           <form id="assessment" novalidate>
             <div class="progress-line" data-follow-nav>
               <div style="flex:1;min-width:0">
-                <span id="answered-count" aria-live="polite">Part 1 of 2 &middot; 0 of 32 answered</span>
+                <span id="answered-count" aria-live="polite">0 of 32 answered</span>
                 <div class="progress-meter" aria-hidden="true"><div id="progress-fill"></div></div>
               </div>
               <button type="button" id="next-unanswered" class="secondary">Next unanswered</button>

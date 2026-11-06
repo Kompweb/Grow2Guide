@@ -326,15 +326,8 @@
   var scrollBehavior = reduceMotion ? 'auto' : 'smooth';
 
   function renderQuestions() {
-    // Category names appear only in the results, not above the questions.
-    var lastDim = null;
+    // Questions run 1-32 with no part or category headings; those names appear only in the results.
     QUESTIONS.forEach(function (q) {
-      if (q.dimension !== lastDim) {
-        var d = DIMENSIONS[q.dimension];
-        qWrap.appendChild(el('h2', { class: 'part-title' }, (q.dimension === 'care' ? 'Part 1: ' : 'Part 2: ') + d.name));
-        qWrap.appendChild(el('p', { class: 'part-sub' }, d.question));
-        lastDim = q.dimension;
-      }
       var fs = el('fieldset', { class: 'q', id: 'fs-' + q.id });
       fs.appendChild(el('legend', null, q.number + '. ' + q.text));
       var opts = el('div', { class: 'options' });
@@ -358,18 +351,9 @@
     });
     return a;
   }
-  /* Part shown in the progress bar: the last part heading that has scrolled up to the bar. */
-  function currentPart() {
-    var titles = qWrap.querySelectorAll('.part-title'), part = 1;
-    var bar = form.querySelector('.progress-line').getBoundingClientRect().bottom;
-    for (var i = 0; i < titles.length; i++) {
-      if (titles[i].getBoundingClientRect().top <= bar + 40) part = i + 1;
-    }
-    return part;
-  }
   function updateCount() {
     var n = Object.keys(readAnswers()).length;
-    $('answered-count').textContent = 'Part ' + currentPart() + ' of 2 \u00b7 ' + n + ' of ' + QUESTIONS.length + ' answered';
+    $('answered-count').textContent = n + ' of ' + QUESTIONS.length + ' answered';
     $('progress-fill').style.width = Math.round((n / QUESTIONS.length) * 100) + '%';
     $('next-unanswered').hidden = n === QUESTIONS.length;
   }
@@ -581,13 +565,6 @@
     if (next && form.querySelector('input[name="' + next.id + '"]:checked')) return;
     window.setTimeout(function () { target.scrollIntoView({ behavior: scrollBehavior, block: 'center' }); }, 150);
   });
-
-  var partTick = false;
-  window.addEventListener('scroll', function () {
-    if (partTick || form.hidden) return;
-    partTick = true;
-    window.requestAnimationFrame(function () { partTick = false; updateCount(); });
-  }, { passive: true });
 
   $('next-unanswered').addEventListener('click', function () {
     var q = firstUnanswered();
