@@ -12,7 +12,7 @@ The site pushes events to GTM's `dataLayer` (container `GTM-WLRZD726`). GTM forw
 | `generate_lead` | `generate_lead` | `lead_type` (consultation, quiz_tier_1, quiz_tier_2), `form_method` (mailto) | `consultation.js`, `quiz-tier-1.js`, `quiz-tier-2.js` | /consultation/, /quiz/tier-1/, /quiz/tier-2/ |
 | `purchase` | `purchase` | ecommerce: `value`, `currency`, `items`, `transaction_id` (Stripe `session_id` when present) | `assets/thank-you.js` | /thank-you/?item=… |
 | `guides_buy_click` | `begin_checkout` | `offer` (guide, toolkit, bundle), `placement` (button id) | `assets/guides.js` | /guides/ |
-| `assessment_cta_click` | `assessment_cta_click` | `placement` (blog_end, home_fit, nav, guides_band, footer) | `assets/assessment-cta.js` | Every page with a Self-Assessment link |
+| `assessment_cta_click` | `assessment_cta_click` | `placement` (blog_end, home_hero, home_fit, nav, guides_band, thank_you, faq, footer) | `assets/assessment-cta.js` | Every page with a Self-Assessment link |
 | `assessment_complete` | `assessment_complete` | none | `assets/self-assessment.js`, when results are shown | /self-assessment/ |
 | `results_email_sent` | `results_email_sent` | none | `assets/self-assessment.js`, when the results email is accepted | /self-assessment/ |
 | `whatsapp_click` | `whatsapp_click` | `whatsapp_location` | `assets/whatsapp.js` | Pages with the WhatsApp button |
