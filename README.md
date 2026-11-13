@@ -27,6 +27,9 @@ and links work on nested pages.
 - `terms/`, `privacy/`, `refunds/`: policy pages.
 - `styles.css` and page-level `<style>` blocks: site styling.
 - `assets/`: images, documents, and JavaScript.
+  `assets/og/` holds each blog post's link-preview image (1200×630); `assets/substack/` the matching Substack cover
+  (1456×1048, title centred so Substack's square crop keeps it); `assets/emblems/` the section emblems they use:
+  lantern = Policy & Practice, clipboard = On the Record, path = Career & Wellbeing (key and clock are extras).
 - `archive/`: historical page snapshots.
 - `sitemap.xml` and `robots.txt`: search-engine crawl hints.
 - `CNAME` and `.nojekyll`: GitHub Pages hosting configuration.
