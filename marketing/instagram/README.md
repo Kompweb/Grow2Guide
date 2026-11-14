@@ -7,3 +7,5 @@ The last slide always points to the newsletter ("link in bio"), so keep grow2gui
 Post each carousel the same day its Substack post goes out. Track posting in Notion: Substack Growth Tasks.
 
 These files are marketing assets, not site pages; nothing on grow2guide.com links to them.
+
+`../drive-import.gs` copies these slides, the covers and the emblems into Google Drive > Grow2Guide Marketing (run `importAll` once in Apps Script as grow2guide@gmail.com).
