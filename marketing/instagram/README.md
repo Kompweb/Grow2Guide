@@ -8,4 +8,4 @@ Post each carousel the same day its Substack post goes out. Track posting in Not
 
 These files are marketing assets, not site pages; nothing on grow2guide.com links to them.
 
-`../drive-import.gs` copies these slides, the covers and the emblems into Google Drive > Grow2Guide Marketing (run `importAll` once in Apps Script as grow2guide@gmail.com).
+`../drive-import.gs` copies these slides, the Substack and site covers (into one Drive folder per post) and the emblems into Google Drive > Grow2Guide Marketing, then lists every file with its link in the "Grow2Guide asset index" Sheet (run `importAll` once in Apps Script as grow2guide@gmail.com).
